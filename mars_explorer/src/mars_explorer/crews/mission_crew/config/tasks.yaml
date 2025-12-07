@@ -9,7 +9,7 @@ reporting_priority:
   description: >
     
   expected_output: >
-    
+    hola
   agent: priority
 
 reporting_hazard:
