@@ -1,0 +1,34 @@
+additional_information:
+  description: > 
+    
+  expected_output: >
+    
+  agent: planner
+
+reporting_priority:
+  description: >
+    
+  expected_output: >
+    
+  agent: priority
+
+reporting_hazard:
+  description: >
+    
+  expected_output: >
+    
+  agent: hazard
+
+reporting_weather:
+  description: >
+    
+  expected_output: >
+    
+  agent: weather
+
+reporting_aggregation:
+  description: >
+    
+  expected_output: >
+    
+  agent: aggregator
