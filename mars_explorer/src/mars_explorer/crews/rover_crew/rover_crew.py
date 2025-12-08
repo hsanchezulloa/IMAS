@@ -24,18 +24,32 @@ class RoverCrew:
     # If you would lik to add tools to your crew, you can learn more about it here:
     # https://docs.crewai.com/concepts/agents#agent-tools
     @agent
-    def poem_writer(self) -> Agent:
+    def route_planner(self) -> Agent:
         return Agent(
-            config=self.agents_config["poem_writer"],  # type: ignore[index]
+            config=self.agents_config["route_planner"],  # type: ignore[index]
+        )
+    
+    @agent
+    def sample_collector(self) -> Agent:
+        return Agent(
+            config=self.agents_config["sample_collector"],  # type: ignore[index]
         )
 
     # To learn more about structured task outputs,
     # task dependencies, and task callbacks, check out the documentation:
     # https://docs.crewai.com/concepts/tasks#overview-of-a-task
     @task
-    def write_poem(self) -> Task:
+    def reporting_route(self) -> Task:
         return Task(
-            config=self.tasks_config["write_poem"],  # type: ignore[index]
+            config=self.tasks_config["reporting_route"],  # type: ignore[index]
+            output_file='report_route.md'
+        )
+
+    @task
+    def reporting_sampling(self) -> Task:
+        return Task(
+            config=self.tasks_config["reporting_sampling"],  # type: ignore[index]
+            output_file='report_sampling.md'
         )
 
     @crew
