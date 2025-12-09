@@ -20,16 +20,16 @@ class SatelliteCrew():
     # If you would like to add tools to your agents, you can learn more about it here:
     # https://docs.crewai.com/concepts/agents#agent-tools
     @agent
-    def researcher(self) -> Agent:
+    def orbit_planner(self) -> Agent:
         return Agent(
-            config=self.agents_config['researcher'], # type: ignore[index]
+            config=self.agents_config['orbit_planner'], # type: ignore[index]
             verbose=True
         )
 
     @agent
-    def reporting_analyst(self) -> Agent:
+    def satellite_planner(self) -> Agent:
         return Agent(
-            config=self.agents_config['reporting_analyst'], # type: ignore[index]
+            config=self.agents_config['satellite_planner'], # type: ignore[index]
             verbose=True
         )
 
@@ -37,16 +37,15 @@ class SatelliteCrew():
     # task dependencies, and task callbacks, check out the documentation:
     # https://docs.crewai.com/concepts/tasks#overview-of-a-task
     @task
-    def research_task(self) -> Task:
+    def orbit_planning_task(self) -> Task:
         return Task(
-            config=self.tasks_config['research_task'], # type: ignore[index]
+            config=self.tasks_config['orbit_planning_task'], # type: ignore[index]
         )
 
     @task
-    def reporting_task(self) -> Task:
+    def satellite_planning_task(self) -> Task:
         return Task(
-            config=self.tasks_config['reporting_task'], # type: ignore[index]
-            output_file='report.md'
+            config=self.tasks_config['satellite_planning_task'], # type: ignore[index]
         )
 
     @crew
