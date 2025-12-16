@@ -20,16 +20,16 @@ class DronesCrew():
     # If you would like to add tools to your agents, you can learn more about it here:
     # https://docs.crewai.com/concepts/agents#agent-tools
     @agent
-    def researcher(self) -> Agent:
+    def flight_planner_agent(self) -> Agent:
         return Agent(
-            config=self.agents_config['researcher'], # type: ignore[index]
+            config=self.agents_config['flight_planner_agent'], # type: ignore[index]
             verbose=True
         )
 
     @agent
-    def reporting_analyst(self) -> Agent:
+    def drone_sample_collector(self) -> Agent:
         return Agent(
-            config=self.agents_config['reporting_analyst'], # type: ignore[index]
+            config=self.agents_config['drone_sample_collector'], # type: ignore[index]
             verbose=True
         )
 
@@ -37,16 +37,17 @@ class DronesCrew():
     # task dependencies, and task callbacks, check out the documentation:
     # https://docs.crewai.com/concepts/tasks#overview-of-a-task
     @task
-    def research_task(self) -> Task:
+    def generating_route(self) -> Task:
         return Task(
-            config=self.tasks_config['research_task'], # type: ignore[index]
+            config=self.tasks_config['generating_route'], # type: ignore[index]
+            output_file='generate_route_drone.md'
         )
 
     @task
-    def reporting_task(self) -> Task:
+    def generate_sampling(self) -> Task:
         return Task(
-            config=self.tasks_config['reporting_task'], # type: ignore[index]
-            output_file='report.md'
+            config=self.tasks_config['generate_sampling'], # type: ignore[index]
+            output_file='generate_sampling_drone.md'
         )
 
     @crew

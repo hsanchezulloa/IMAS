@@ -1,17 +1,13 @@
-research_task:
+generating_route:
   description: >
-    Conduct a thorough research about {topic}
-    Make sure you find any interesting and relevant information given
-    the current year is {current_year}.
+    Analyze the aggregated mission report to compute optimal, safe, and energy-efficient flight routes for all drones. Consider environmental conditions, terrain elevation, airspace constraints, and mission objectives to ensure effective navigation and coverage. Compile detailed flight plans for each drone and prepare them for integration into the overall mission strategy.
   expected_output: >
-    A list with 10 bullet points of the most relevant information about {topic}
-  agent: researcher
+    A detailed report containing the optimal route for each drone
+  agent: flight_planner_agent
 
 reporting_task:
   description: >
-    Review the context you got and expand each topic into a full section for a report.
-    Make sure the report is detailed and contains any and all relevant information.
+    Plan and coordinate drone-based sampling operations based on mission objectives and environmental data. Ensure sampling plans are efficient, safe, and aligned with drone capabilities and mission priorities.
   expected_output: >
-    A fully fledged report with the main topics, each with a full section of information.
-    Formatted as markdown without '```'
-  agent: reporting_analyst
+    A detailed report containing the sampling instructions for each drone.
+  agent: drone_sample_collector
