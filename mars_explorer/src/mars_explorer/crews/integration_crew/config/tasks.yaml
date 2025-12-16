@@ -1,17 +1,42 @@
-research_task:
+reporting_inconsistencies:
   description: >
-    Conduct a thorough research about {topic}
-    Make sure you find any interesting and relevant information given
-    the current year is {current_year}.
+    Analyze the individual plans produced by each crew (rover, drone and satellite).
+    Identify any temporal or spatial conflict between them, for instance trying to perform
+    incompatible actions simultaneously or actions that vulnerate mission constraints.
+    If a conflict is detected, apply the necessary and minimal changes to solve it.
   expected_output: >
-    A list with 10 bullet points of the most relevant information about {topic}
-  agent: researcher
+    A unified plan free of conflicts, together with a detailed explanation of what
+    inconsistencies were identified and how they were solved.
+  agent: integrator
 
-reporting_task:
+verify_plan:
   description: >
-    Review the context you got and expand each topic into a full section for a report.
-    Make sure the report is detailed and contains any and all relevant information.
+    Perform a final verification of the unified mission plan, in order to ensure that all
+    mission priorities, constraints and dependencies are respected.
   expected_output: >
-    A fully fledged report with the main topics, each with a full section of information.
-    Formatted as markdown without '```'
-  agent: reporting_analyst
+    A validated mission plan, together with a brief explanation of the aspects analyzed.
+  agent: coordinator
+
+report_rovers:
+  description: >
+    Produce a clear and detailed report containing only the tasks and considerations
+    relevant for the rover crew.
+  expected_output: >
+    A mission report specific for the rover crew.
+  agent: coordinator
+
+report_drones:
+  description: >
+    Produce a clear and detailed report containing only the tasks and considerations
+    relevant for the drones crew.
+  expected_output: >
+    A mission report specific for the drones crew.
+  agent: coordinator
+
+report_satellites:
+  description: >
+    Produce a clear and detailed report containing only the tasks and considerations
+    relevant for the satellites crew.
+  expected_output: >
+    A mission report specific for the satellites crew.
+  agent: coordinator

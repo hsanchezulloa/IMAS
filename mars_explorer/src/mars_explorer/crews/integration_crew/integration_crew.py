@@ -8,7 +8,7 @@ from typing import List
 
 @CrewBase
 class IntegrationCrew():
-    """IntegrationCrew crew"""
+    """Integration Crew"""
 
     agents: List[BaseAgent]
     tasks: List[Task]
@@ -16,20 +16,22 @@ class IntegrationCrew():
     # Learn more about YAML configuration files here:
     # Agents: https://docs.crewai.com/concepts/agents#yaml-configuration-recommended
     # Tasks: https://docs.crewai.com/concepts/tasks#yaml-configuration-recommended
-    
+    agents_config = "config/agents.yaml"
+    tasks_config = "config/tasks.yaml"
+
     # If you would like to add tools to your agents, you can learn more about it here:
     # https://docs.crewai.com/concepts/agents#agent-tools
     @agent
-    def researcher(self) -> Agent:
+    def integrator(self) -> Agent:
         return Agent(
-            config=self.agents_config['researcher'], # type: ignore[index]
+            config=self.agents_config['integrator'], # type: ignore[index]
             verbose=True
         )
 
     @agent
-    def reporting_analyst(self) -> Agent:
+    def coordinator(self) -> Agent:
         return Agent(
-            config=self.agents_config['reporting_analyst'], # type: ignore[index]
+            config=self.agents_config['coordinator'], # type: ignore[index]
             verbose=True
         )
 
@@ -37,17 +39,39 @@ class IntegrationCrew():
     # task dependencies, and task callbacks, check out the documentation:
     # https://docs.crewai.com/concepts/tasks#overview-of-a-task
     @task
-    def research_task(self) -> Task:
+    def reporting_inconsistencies(self) -> Task:
         return Task(
-            config=self.tasks_config['research_task'], # type: ignore[index]
+            config=self.tasks_config['reporting_inconsistencies'], # type: ignore[index]
         )
 
     @task
-    def reporting_task(self) -> Task:
+    def verify_plan(self) -> Task:
         return Task(
-            config=self.tasks_config['reporting_task'], # type: ignore[index]
+            config=self.tasks_config['verify_plan'], # type: ignore[index]
             output_file='report.md'
         )
+
+    @task
+    def report_rovers(self) -> Task:
+        return Task(
+            config=self.tasks_config['report_rovers'], # type: ignore[index]
+            output_file='report.md'
+        )
+    
+    @task
+    def report_drones(self) -> Task:
+        return Task(
+            config=self.tasks_config['report_drones'], # type: ignore[index]
+            output_file='report.md'
+        )
+    
+    @task
+    def report_satellites(self) -> Task:
+        return Task(
+            config=self.tasks_config['report_satellites'], # type: ignore[index]
+            output_file='report.md'
+        )
+
 
     @crew
     def crew(self) -> Crew:
