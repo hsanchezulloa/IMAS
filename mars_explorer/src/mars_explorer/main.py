@@ -6,11 +6,17 @@ from pydantic import BaseModel
 from crewai.flow import Flow, listen, start
 
 
-from IMAS.mars_explorer.src.mars_explorer.crews.drone_crew import DronesCrew
-from IMAS.mars_explorer.src.mars_explorer.crews.integration_crew import IntegrationCrew
-from IMAS.mars_explorer.src.mars_explorer.crews.mission_crew import MissionCrew
-from IMAS.mars_explorer.src.mars_explorer.crews.rover_crew import RoverCrew
-from IMAS.mars_explorer.src.mars_explorer.crews.satellite_crew import SatelliteCrew
+# from IMAS.mars_explorer.src.mars_explorer.crews.drone_crew import DronesCrew
+# from IMAS.mars_explorer.src.mars_explorer.crews.integration_crew import IntegrationCrew
+# from IMAS.mars_explorer.src.mars_explorer.crews.mission_crew import MissionCrew
+# from IMAS.mars_explorer.src.mars_explorer.crews.rover_crew import RoverCrew
+# from IMAS.mars_explorer.src.mars_explorer.crews.satellite_crew import SatelliteCrew
+
+from crews.drone_crew.drone_crew import DronesCrew
+from crews.integration_crew.integration_crew import IntegrationCrew
+from crews.mission_crew.mission_crew import MissionCrew
+from crews.rover_crew.rover_crew import RoverCrew
+from crews.satellite_crew.satellite_crew import SatelliteCrew
 
 class MarsFlow(Flow):
     """
