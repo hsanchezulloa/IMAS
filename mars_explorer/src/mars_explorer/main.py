@@ -115,9 +115,6 @@ class MarsFlow(Flow):
     # --------------------------------------------------
     # 5. Integration & conflict resolution
     # --------------------------------------------------
-    # @listen(run_rover_planning)
-    # @listen(run_drone_planning)
-    # @listen(run_satellite_planning)
     @listen(and_(run_rover_planning, run_drone_planning, run_satellite_planning))
     def integrate_plans(self, _):
         print("[Flow] Integrating all plans")
