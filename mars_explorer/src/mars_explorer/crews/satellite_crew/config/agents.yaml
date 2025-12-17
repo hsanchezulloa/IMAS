@@ -9,7 +9,7 @@ orbit_planner:
     and mission-critical maneuver planning. You are really good at finding efficient,
     high-value orbital solutions under strict mission constraints.
 
-reporting_analyst:
+satellite_planner:
   role: >
     Multi-Satellite mission operations planner
   goal: >

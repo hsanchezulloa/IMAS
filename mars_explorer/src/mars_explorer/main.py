@@ -3,7 +3,7 @@ from random import randint
 
 from pydantic import BaseModel
 
-from crewai.flow import Flow, listen, start
+from crewai.flow import Flow, listen, start, and_
 
 
 # from IMAS.mars_explorer.src.mars_explorer.crews.drone_crew import DronesCrew
@@ -38,7 +38,7 @@ class MarsFlow(Flow):
         self.satellite_crew = satellite_crew
         self.integration_crew = integration_crew
 
-        self.state = {}
+        # self.state = {}
 
     # --------------------------------------------------
     # 1. Mission analysis & aggregation
@@ -112,13 +112,13 @@ class MarsFlow(Flow):
 
         self.state["satellite_plan"] = satellite_result
         return satellite_result
-
     # --------------------------------------------------
     # 5. Integration & conflict resolution
     # --------------------------------------------------
-    @listen(run_rover_planning)
-    @listen(run_drone_planning)
-    @listen(run_satellite_planning)
+    # @listen(run_rover_planning)
+    # @listen(run_drone_planning)
+    # @listen(run_satellite_planning)
+    @listen(and_(run_rover_planning, run_drone_planning, run_satellite_planning))
     def integrate_plans(self, _):
         print("[Flow] Integrating all plans")
 
@@ -134,36 +134,6 @@ class MarsFlow(Flow):
         return final_plan
 
 
-
-# class PoemState(BaseModel):
-#     sentence_count: int = 1
-#     poem: str = ""
-
-
-# class PoemFlow(Flow[PoemState]):
-
-#     @start()
-#     def generate_sentence_count(self):
-#         print("Generating sentence count")
-#         self.state.sentence_count = randint(1, 5)
-
-#     @listen(generate_sentence_count)
-#     def generate_poem(self):
-#         print("Generating poem")
-#         result = (
-#             PoemCrew()
-#             .crew()
-#             .kickoff(inputs={"sentence_count": self.state.sentence_count})
-#         )
-
-#         print("Poem generated", result.raw)
-#         self.state.poem = result.raw
-
-#     @listen(generate_poem)
-#     def save_poem(self):
-#         print("Saving poem")
-#         with open("poem.txt", "w") as f:
-#             f.write(self.state.poem)
 
 
 def kickoff(mission_report):
