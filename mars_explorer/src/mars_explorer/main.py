@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from crewai.flow import Flow, start, listen, and_, or_  
+from crewai.flow import Flow, start, listen, and_, or_ , router
 from crews.mission_crew.mission_crew import MissionCrew
 from crews.rover_crew.rover_crew import RoverCrew
 from crews.drone_crew.drone_crew import DronesCrew
@@ -30,13 +30,13 @@ class MarsFlow(Flow):
         self.state["retries"] = 0
         return result
     
-    #replan
-    @listen("decision") 
-    def replan(self, decision):
-        if decision != "replan":
-            return
-        print(f"Replanning all crews (attempt {self.state['retries']}/{self.MAX_RETRIES})")
-        return self.state["mission"]
+    # #replan
+    # @listen("decision") 
+    # def replan(self, decision):
+    #     if decision != "replan":
+    #         return
+    #     print(f"Replanning all crews (attempt {self.state['retries']}/{self.MAX_RETRIES})")
+    #     return self.state["mission"]
 
     #planning (parallel)
     @listen(or_(run_mission_analysis, "replan"))
@@ -76,7 +76,7 @@ class MarsFlow(Flow):
         return validation
 
     #decision
-    @listen(validate_plans)
+    @router(validate_plans)
     def decision(self, validation: ValidationResult):
         if (validation.rover_ok and validation.drone_ok and validation.satellite_ok):
             print("All plans valid")

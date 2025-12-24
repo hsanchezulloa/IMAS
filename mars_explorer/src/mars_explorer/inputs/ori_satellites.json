@@ -1,0 +1,27 @@
+[
+  {
+    "id": "satellite_0",
+    "orbit_path": "orbit_4",
+    "communication_window": "3h"
+  },
+  {
+    "id": "satellite_1",
+    "orbit_path": "orbit_4",
+    "communication_window": "1h"
+  },
+  {
+    "id": "satellite_2",
+    "orbit_path": "orbit_3",
+    "communication_window": "7h"
+  },
+  {
+    "id": "satellite_3",
+    "orbit_path": "orbit_5",
+    "communication_window": "1h"
+  },
+  {
+    "id": "satellite_4",
+    "orbit_path": "orbit_2",
+    "communication_window": "9h"
+  }
+]

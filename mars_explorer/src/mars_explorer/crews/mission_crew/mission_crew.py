@@ -67,21 +67,24 @@ class MissionCrew():
     def reporting_priority(self) -> Task:
         return Task(
             config=self.tasks_config['reporting_priority'], # type: ignore[index]
-            output_file='report_priority.md'
+            output_file='report_priority.md',
+            async_execution=True
         )
 
     @task
     def reporting_hazard(self) -> Task:
         return Task(
             config=self.tasks_config['reporting_hazard'], # type: ignore[index]
-            output_file='report_hazard.md'
+            output_file='report_hazard.md',
+            async_execution=True
         )
 
     @task
     def reporting_weather(self) -> Task:
         return Task(
             config=self.tasks_config['reporting_weather'], # type: ignore[index]
-            output_file='report_weather.md'
+            output_file='report_weather.md',
+            async_execution=True
         )
 
     @task

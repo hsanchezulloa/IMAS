@@ -40,14 +40,16 @@ class DronesCrew():
     def generating_route(self) -> Task:
         return Task(
             config=self.tasks_config['generating_route'], # type: ignore[index]
-            output_file='generate_route_drone.md'
+            output_file='generate_route_drone.md',
+            async_execution=True
         )
 
     @task
     def generate_sampling(self) -> Task:
         return Task(
             config=self.tasks_config['generate_sampling'], # type: ignore[index]
-            output_file='generate_sampling_drone.md'
+            output_file='generate_sampling_drone.md',
+            async_execution=True
         )
 
     @crew

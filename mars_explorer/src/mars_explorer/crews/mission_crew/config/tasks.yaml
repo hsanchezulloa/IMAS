@@ -1,34 +1,61 @@
 additional_information:
-  description: > 
-    
+  description: >
+    Analyze the initial Mars mission report to extract the main objectives,
+    constraints, and operational context. Identify missing or ambiguous information
+    and, when necessary, gather additional relevant data (e.g., environmental conditions,
+    mission constraints, or scientific requirements). Divide the mission information
+    into structured subreports tailored for priority assessment, hazard analysis,
+    and weather evaluation.
   expected_output: >
-    
+    A structured mission decomposition including: a subreport for task prioritization, a subreport for hazard and constraint analysis, a subreport for weather and environmental analysis and each subreport should contain only the information relevant to its target agent.
   agent: planner
 
 reporting_priority:
   description: >
-    
+    Evaluate the mission objectives and tasks provided by the planner agent.
+    Determine the relative priority of each task based on scientific value,
+    operational urgency, and mission goals. Clearly distinguish between
+    high-, medium-, and low-priority activities.
   expected_output: >
-    hola
+    A priority report ranking mission tasks and explaining the rationale
+    behind each priority assignment (e.g., critical sensor deployment versus
+    optional imaging tasks).
   agent: priority
 
 reporting_hazard:
   description: >
-    
+    Identify environmental hazards and operational constraints affecting the mission,
+    including terrain instability, radiation exposure, extreme temperatures,
+    and weather-related risks provided by the weather agent. Consolidate all
+    identified hazards into a coherent risk assessment.
   expected_output: >
-    
+    A hazard report describing dangerous zones, forbidden nodes, and operational
+    constraints that must be respected by all crews to ensure mission safety.
   agent: hazard
 
 reporting_weather:
   description: >
-    
+    Analyze the weather and environmental conditions relevant to the mission area,
+    including wind intensity, dust storms, temperature extremes, and visibility.
+    Identify conditions that may affect mission operations, especially aerial
+    activities such as drone flights. Communicate any weather-related constraints
+    to the hazard agent.
   expected_output: >
-    
+    A weather report detailing current and potential environmental conditions,
+    specifying which areas or operations should be avoided or limited due to
+    weather risks.
   agent: weather
+
 
 reporting_aggregation:
   description: >
-    
+    Combine the reports produced by the priority, hazard, and weather agents into
+    a unified mission context. Filter and tailor the information so that each
+    specialized crew (rovers, drones, satellites) receives only the data relevant
+    to its capabilities and responsibilities.
   expected_output: >
-    
+    An aggregated mission report containing: a rover-specific briefing, a drone-specific briefing, a satellite-specific briefing
+    Each briefing should include priorities, hazards, and constraints relevant
+    to the corresponding crew.
   agent: aggregator
+

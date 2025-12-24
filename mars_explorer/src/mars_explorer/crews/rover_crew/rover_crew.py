@@ -42,14 +42,16 @@ class RoverCrew:
     def reporting_route(self) -> Task:
         return Task(
             config=self.tasks_config["reporting_route"],  # type: ignore[index]
-            output_file='report_route.md'
+            output_file='report_route.md',
+            async_execution=True
         )
 
     @task
     def reporting_sampling(self) -> Task:
         return Task(
             config=self.tasks_config["reporting_sampling"],  # type: ignore[index]
-            output_file='report_sampling.md'
+            output_file='report_sampling.md',
+            async_execution=True
         )
 
     @crew

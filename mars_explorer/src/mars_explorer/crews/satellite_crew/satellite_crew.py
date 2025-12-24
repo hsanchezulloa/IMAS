@@ -40,12 +40,14 @@ class SatelliteCrew():
     def orbit_planning_task(self) -> Task:
         return Task(
             config=self.tasks_config['orbit_planning_task'], # type: ignore[index]
+            async_execution=True
         )
 
     @task
     def satellite_planning_task(self) -> Task:
         return Task(
             config=self.tasks_config['satellite_planning_task'], # type: ignore[index]
+            async_execution=True
         )
 
     @crew
