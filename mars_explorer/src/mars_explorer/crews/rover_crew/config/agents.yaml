@@ -9,8 +9,8 @@ route_planner:
     As a rover navigation specialist, I have extensive experience analyzing terrain
     data and rover capabilities. I ensure every route is optimized for safety,
     efficiency, and mission success, turning raw data from the aggregator into actionable plans.
-
-
+  tools:
+    Rover_Route_Calculator
 sample_collector:
   role: >
     Provides detailed instructions for collecting samples, specifying the sensors
