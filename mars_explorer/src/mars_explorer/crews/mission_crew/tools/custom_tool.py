@@ -1,4 +1,4 @@
-from typing import Type, Dict
+from typing import Type, Dict, Any
 from crewai.tools import BaseTool
 from pydantic import BaseModel, Field
 import re
@@ -16,7 +16,41 @@ class PlannerDivideTool(BaseTool):
     description: str = ("Divides the Mars mission Markdown report into structured sections: priorities, hazards, weather, constraints, and goals.")
     args_schema: Type[BaseModel] = PlannerDivideInput
 
-    def _run(self, markdown_report: str) -> Dict[str, str]:
+    def _parse_priorities(self, text: str) -> dict:
+        priorities = {"high": [],"medium": [],"low": []}
+        current = None
+        for line in text.splitlines():
+            line = line.strip()
+            # Detect priority headers
+            if re.match(r"\d+\.\s*\*\*High Priority\*\*", line):
+                current = "high"
+                continue
+            if re.match(r"\d+\.\s*\*\*Medium Priority\*\*", line):
+                current = "medium"
+                continue
+            if re.match(r"\d+\.\s*\*\*Low Priority\*\*", line):
+                current = "low"
+                continue
+            # Capture bullet points
+            if current and line.startswith("-"):
+                priorities[current].append(line.lstrip("- ").strip())
+
+        return priorities
+    
+    def _parse_list_section(self, text: str) -> list[str]:
+        items = []
+        for line in text.splitlines():
+            line = line.strip()
+            # Ignore separators and empty lines
+            if not line or line == "---":
+                continue
+            # Remove bullet if present
+            if line.startswith("-"):
+                line = line.lstrip("- ").strip()
+            items.append(line)
+        return items
+
+    def _run(self, markdown_report: str) -> Dict[str, Any]:
         sections = {}
         current = None
         buffer = []
@@ -24,13 +58,21 @@ class PlannerDivideTool(BaseTool):
             header = re.match(r"^##\s+(.*)", line) #If a title is detected
             if header:
                 if current: #Saves the last section if exists
-                    sections[current] = "\n".join(buffer).strip()
+                    content = "\n".join(buffer).strip()
+                    if current == "mission priorities":
+                        sections[current] = self._parse_priorities(content)
+                    else:
+                        sections[current] = self._parse_list_section(content)
                 current = header.group(1).lower()
                 buffer = []
             else:
                 buffer.append(line) #Add the goals, priorities and hazards
         if current: #Save the last section
-            sections[current] = "\n".join(buffer).strip()
+            content = "\n".join(buffer).strip()
+            if current == "mission priorities":
+                sections[current] = self._parse_priorities(content)
+            else:
+                sections[current] = self._parse_list_section(content)
 
         return sections
 
@@ -46,7 +88,7 @@ class PlannerEnrichTool(BaseTool):
     description: str = ("Extracts relevant information from provided URLs and integrates it into structured mission data.")
     args_schema: Type[BaseModel] = PlannerEnrichInput
 
-    def _fetch_url_text(self, url: str, max_chars: int = 3000) -> str:
+    def _fetch_url_text(self, url: str, max_chars: int=30000) -> str:
         response = requests.get(url, timeout=10)
         response.raise_for_status()
         soup = BeautifulSoup(response.text, "html.parser")
@@ -55,32 +97,30 @@ class PlannerEnrichTool(BaseTool):
         text = soup.get_text(separator=" ", strip=True)
         return text[:max_chars]
 
-        html = requests.get(url, timeout=5).text
-        soup = BeautifulSoup(html, "html.parser")
-        return soup.get_text()[:1000]
-
     def _run(self, structured_data: Dict, urls: list[str]) -> Dict:
         extracted_info = []
         for url in urls:
-            extracted_info.append({"source": url, "summary": f"Relevant mission-related information extracted from {url}."})
-        structured_data["external_sources"] = urls
-        structured_data["enrichment_status"] = "simulated"
+            text = self._fetch_url_text(url)
+            extracted_info.append(text)
+        structured_data["external_sources"] = extracted_info
         return structured_data
 
 
-class MyCustomToolInput(BaseModel):
-    """Input schema for MyCustomTool."""
-
-    argument: str = Field(..., description="Description of the argument.")
 
 
-class MyCustomTool(BaseTool):
-    name: str = "Name of my tool"
-    description: str = (
-        "Clear description for what this tool is useful for, your agent will need this information to use it."
-    )
-    args_schema: Type[BaseModel] = MyCustomToolInput
+# class MyCustomToolInput(BaseModel):
+#     """Input schema for MyCustomTool."""
 
-    def _run(self, argument: str) -> str:
-        # Implementation goes here
-        return "this is an example of a tool output, ignore it and move along."
+#     argument: str = Field(..., description="Description of the argument.")
+
+
+# class MyCustomTool(BaseTool):
+#     name: str = "Name of my tool"
+#     description: str = (
+#         "Clear description for what this tool is useful for, your agent will need this information to use it."
+#     )
+#     args_schema: Type[BaseModel] = MyCustomToolInput
+
+#     def _run(self, argument: str) -> str:
+#         # Implementation goes here
+#         return "this is an example of a tool output, ignore it and move along."

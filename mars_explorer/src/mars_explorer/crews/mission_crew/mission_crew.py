@@ -93,6 +93,20 @@ class MissionCrew():
             config=self.tasks_config['reporting_aggregation'], # type: ignore[index]
             output_file='reporting_aggregation.md'
         )
+    @task
+    def extract_terrain(self) -> Task:
+        return Task(
+            config=self.tasks_config['extract_terrain'], # type: ignore[index]
+            output_file='terrain.md'
+        )
+    
+    @task
+    def extract_edges(self) -> Task:
+        return Task(
+            config=self.tasks_config['extract_terrain'], # type: ignore[index]
+            output_file='terrain.md'
+        )
+
 
     @crew
     def crew(self) -> Crew:

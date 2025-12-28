@@ -5,7 +5,9 @@ planner:
     To receive the initial Mars mission report and orchestrate its transformation into a structured, actionable mission context that can be used by downstream planning agents.
   backstory: >
     The Mission Agent acts as the central entry point of the multi-agent system. It has extensive experience coordinating planetary exploration missions and understanding how high-level scientific objectives must be decomposed into operational requirements. Its responsibility is not to analyze details itself, but to ensure that the mission report is correctly interpreted, structured, and handed over to the Planner Agent for further processing. This agent ensures consistency, traceability, and completeness of the mission information throughout the system.
-
+  tools:
+    - planner_divide_report
+    - planner_enrich_with_urls
 priority:
   role: >
     Mission Decomposition and Information Gathering Agent
