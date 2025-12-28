@@ -1,4 +1,5 @@
 from pydantic import BaseModel
+from pathlib import Path
 from crewai.flow import Flow, start, listen, and_, or_ , router
 from crews.mission_crew.mission_crew import MissionCrew
 from crews.rover_crew.rover_crew import RoverCrew
@@ -23,9 +24,9 @@ class MarsFlow(Flow):
         self.integration_crew = integration_crew
     #mission analysis
     @start()
-    def run_mission_analysis(self, mission_report: str):
+    def run_mission_analysis(self, mission_report: str, mars_graph, urls):
         print("Mission analysis")
-        result = self.mission_crew.crew().kickoff(inputs={"mission_report": mission_report})
+        result = self.mission_crew.crew().kickoff(inputs={"mission_report": mission_report, "mars_graph":mars_graph, "urls":urls})
         self.state["mission"] = result
         self.state["retries"] = 0
         return result
@@ -103,7 +104,25 @@ class MarsFlow(Flow):
             })
         self.state["final_plan"] = final
         return final
+def kickoff():
+    """
+    Entry point for the Mars multi-agent system.
+    Executes the full MarsFlow.
+    """
 
+    # -------- Load inputs --------
+    mission_report = Path("inputs/mission_report.md").read_text(encoding="utf-8")
+    mars_graph = Path("inputs/mars_terrain_graph.graphml").read_text(encoding="utf-8")
+    urls = ["https://science.nasa.gov/mars/facts/"]
+
+    flow = MarsFlow(mission_crew=MissionCrew(),rover_crew=RoverCrew(),drone_crew=DronesCrew(),satellite_crew=SatelliteCrew(),integration_crew=IntegrationCrew())
+
+    result = flow.run(mission_report=mission_report,mars_graph=mars_graph,urls=urls)
+
+    print("\n=== FINAL MISSION PLAN ===\n")
+    print(result)
+
+    return result
 def plot():
     flow = MarsFlow(
         mission_crew=MissionCrew(),

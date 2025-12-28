@@ -101,14 +101,62 @@ class MissionCrew():
     def extract_terrain(self) -> Task:
         return Task(
             config=self.tasks_config['extract_terrain'], # type: ignore[index]
-            output_file='terrain.md'
+            output_file='terrain.json'
         )
     
     @task
-    def extract_edges(self) -> Task:
+    def extract_is_base(self) -> Task:
         return Task(
-            config=self.tasks_config['extract_terrain'], # type: ignore[index]
-            output_file='terrain.md'
+            config=self.tasks_config['extract_is_base'], # type: ignore[index]
+            output_file='base.json'
+        )
+    
+    @task
+    def extract_communication_loss(self) -> Task:
+        return Task(
+            config=self.tasks_config['extract_communication_loss'], # type: ignore[index]
+            output_file='communication.json'
+        )
+    @task
+    def extract_high_radiation(self) -> Task:
+        return Task(
+            config=self.tasks_config['extract_high_radiation'], # type: ignore[index]
+            output_file='radiation.json'
+        )
+    
+    @task
+    def extract_unstable(self) -> Task:
+        return Task(
+            config=self.tasks_config['extract_unstable'], # type: ignore[index]
+            output_file='unstable.json'
+        )
+    
+    @task
+    def extract_dust_storms(self) -> Task:
+        return Task(
+            config=self.tasks_config['extract_dust_storms'], # type: ignore[index]
+            output_file='dust_storms.json'
+        )
+    
+    @task
+    def extract_wind(self) -> Task:
+        return Task(
+            config=self.tasks_config['extract_wind'], # type: ignore[index]
+            output_file='wind.json'
+        )
+    
+    @task
+    def extract_temperature(self) -> Task:
+        return Task(
+            config=self.tasks_config['extract_temperature'], # type: ignore[index]
+            output_file='temperature.json'
+        )
+    
+    @task
+    def extract_edge_lengths(self) -> Task:
+        return Task(
+            config=self.tasks_config['extract_edge_lengths'], # type: ignore[index]
+            output_file='edges.json'
         )
 
 

@@ -6,12 +6,14 @@ authors = [{ name = "Your Name", email = "you@example.com" }]
 requires-python = ">=3.10,<3.14"
 dependencies = [
     "crewai[tools]>=0.165.1,<1.0.0",
+    "requests>=2.0.0",
+    "beautifulsoup4>=4.0.0",
 ]
 
 [project.scripts]
-kickoff = "mars_explorer.main:kickoff"
-run_crew = "mars_explorer.main:kickoff"
-plot = "mars_explorer.main:plot"
+kickoff = "main:kickoff"
+run_crew = "main:kickoff"
+plot = "main:plot"
 
 [build-system]
 requires = ["hatchling"]

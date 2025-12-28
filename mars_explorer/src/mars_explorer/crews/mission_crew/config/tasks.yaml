@@ -64,14 +64,14 @@ extract_temperature:
     You are given a GraphML document representing a terrain graph. Each node has an id (e.g., N0, N1, ...)
     and a numeric temperature value stored in <data key='d8'>.</data>.
     Your task is to extract the temperature value for EACH node. Do NOT summarize, infer or guess.
-    Return ALL nodes.
+    Return ALL nodes. GraphML document: {{mars_graph}}
   expected_output: >
     A JSON dictionary where each key is a node ID (e.g., N0) and each value is the temperature as a number.
   agent: planner
 
 extract_edge_lengths:
   description: >
-    You are given a GraphML document representing a terrain graph. Each edge connects two nodes and has a numeric length stored in <data key='d1'>.</data>. Your task is to extract ALL edges with their source node, target node, and length. Do NOT summarize, infer or guess. Return ALL edges.
+    You are given a GraphML document representing a terrain graph. Each edge connects two nodes and has a numeric length stored in <data key='d1'>.</data>. Your task is to extract ALL edges with their source node, target node, and length. Do NOT summarize, infer or guess. Return ALL edges. GraphML document: {{mars_graph}}
   expected_output: >
     A JSON list where each element contains: source: node ID, target: node ID and length: numeric edge length
   agent: planner
@@ -125,6 +125,10 @@ reporting_aggregation:
     An aggregated mission report containing: a rover-specific briefing, a drone-specific briefing, a satellite-specific briefing
     Each briefing should include priorities, hazards, and constraints relevant
     to the corresponding crew.
+    Return a JSON object with exactly these keys:
+    - rovers: "...markdown..."
+    - drones: "...markdown..."
+    - satellites: "...markdown..."
   agent: aggregator
 
 
