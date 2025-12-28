@@ -5,56 +5,56 @@ additional_information:
     and, when necessary, gather additional relevant data (e.g., environmental conditions,
     mission constraints, or scientific requirements). Divide the mission information
     into structured subreports tailored for priority assessment, hazard analysis,
-    and weather evaluation.
+    and weather evaluation. Mission report: {{mission_report}}. Additionally, enrich the mission information using relevant facts extracted from the following URLs (if necessary): {{urls}}
   expected_output: >
     A structured mission decomposition including: a subreport for task prioritization, a subreport for hazard and constraint analysis, a subreport for weather and environmental analysis and each subreport should contain only the information relevant to its target agent.
   agent: planner
 
 extract_terrain:
   description: >
-    You are given a GraphML document representing a terrain graph. Each node has an id (e.g., N0, N1, ...) and a terrain type stored in <data key='d0'>.</data>. Your task is to extract the terrain type for EACH node. Do NOT summarize, infer or guess. Return ALL nodes
+    You are given a GraphML document representing a terrain graph. Each node has an id (e.g., N0, N1, ...) and a terrain type stored in <data key='d0'>.</data>. Your task is to extract the terrain type for EACH node. Do NOT summarize, infer or guess. Return ALL nodes. GraphML document: {{mars_graph}}
   expected_output: >
     A JSON dictionary where each key is a node ID (e.g., N0) and each value is the corresponding terrain type
   agent: planner
 
 extract_is_base:
   description: >
-    You are given a GraphML document representing a terrain graph. Each node has an id (e.g., N0, N1, ...) and a boolean flag indicating whether the node is a mission base stored in <data key='d2'>.</data>. Your task is to extract the is_base value for EACH node. Do NOT summarize, infer or guess. Return ALL nodes.
+    You are given a GraphML document representing a terrain graph. Each node has an id (e.g., N0, N1, ...) and a boolean flag indicating whether the node is a mission base stored in <data key='d2'>.</data>. Your task is to extract the is_base value for EACH node. Do NOT summarize, infer or guess. Return ALL nodes. GraphML document: {{mars_graph}}
   expected_output: >
     A JSON dictionary where each key is a node ID (e.g., N0) and each value is a boolean indicating whether the node is a base (true or false).
   agent: planner
 
 extract_communication_loss:
   description: >
-    You are given a GraphML document representing a terrain graph. Each node has an id (e.g., N0, N1, ...) and a boolean flag indicating communication loss stored in <data key='d3'>.</data>. Your task is to extract the communication_loss value for EACH node. Do NOT summarize, infer or guess. Return ALL nodes.
+    You are given a GraphML document representing a terrain graph. Each node has an id (e.g., N0, N1, ...) and a boolean flag indicating communication loss stored in <data key='d3'>.</data>. Your task is to extract the communication_loss value for EACH node. Do NOT summarize, infer or guess. Return ALL nodes. GraphML document: {{mars_graph}}
   expected_output: >
     A JSON dictionary where each key is a node ID (e.g., N0) and each value is a boolean indicating whether communication loss is present.
   agent: planner
 
 extract_high_radiation:
   description: >
-    You are given a GraphML document representing a terrain graph. Each node has an id (e.g., N0, N1, ...) and a boolean flag indicating high radiation stored in <data key='d4'>.</data>. Your task is to extract the high_radiation value for EACH node. Do NOT summarize, infer or guess. Return ALL nodes.
+    You are given a GraphML document representing a terrain graph. Each node has an id (e.g., N0, N1, ...) and a boolean flag indicating high radiation stored in <data key='d4'>.</data>. Your task is to extract the high_radiation value for EACH node. Do NOT summarize, infer or guess. Return ALL nodes. GraphML document: {{mars_graph}}
   expected_output: >
     A JSON dictionary where each key is a node ID (e.g., N0) and each value is a boolean indicating whether high radiation is present.
   agent: planner
 
 extract_unstable:
   description: >
-    You are given a GraphML document representing a terrain graph. Each node has an id (e.g., N0, N1, ...) and a boolean flag indicating unstable terrain stored in <data key='d5'>.</data>. Your task is to extract the unstable value for EACH node. Do NOT summarize, infer or guess. Return ALL nodes.
+    You are given a GraphML document representing a terrain graph. Each node has an id (e.g., N0, N1, ...) and a boolean flag indicating unstable terrain stored in <data key='d5'>.</data>. Your task is to extract the unstable value for EACH node. Do NOT summarize, infer or guess. Return ALL nodes. GraphML document: {{mars_graph}}
   expected_output: >
     A JSON dictionary where each key is a node ID (e.g., N0) and each value is a boolean indicating whether the terrain is unstable.
   agent: planner
 
 extract_dust_storms:
   description: >
-    You are given a GraphML document representing a terrain graph. Each node has an id (e.g., N0, N1, ...) and a boolean flag indicating dust storms stored in <data key='d6'>.</data>. Your task is to extract the dust_storms value for EACH node. Do NOT summarize, infer or guess. Return ALL nodes.
+    You are given a GraphML document representing a terrain graph. Each node has an id (e.g., N0, N1, ...) and a boolean flag indicating dust storms stored in <data key='d6'>.</data>. Your task is to extract the dust_storms value for EACH node. Do NOT summarize, infer or guess. Return ALL nodes. GraphML document: {{mars_graph}}
   expected_output: >
     A JSON dictionary where each key is a node ID (e.g., N0) and each value is a boolean indicating whether dust storms are present.
   agent: planner
 
 extract_wind:
   description: >
-    You are given a GraphML document representing a terrain graph. Each node has an id (e.g., N0, N1, ...) and a numeric wind value stored in <data key='d7'>.</data>. Your task is to extract the wind value for EACH node. Do NOT summarize, infer or guess. Return ALL nodes.
+    You are given a GraphML document representing a terrain graph. Each node has an id (e.g., N0, N1, ...) and a numeric wind value stored in <data key='d7'>.</data>. Your task is to extract the wind value for EACH node. Do NOT summarize, infer or guess. Return ALL nodes. GraphML document: {{mars_graph}}
   expected_output: >
     A JSON dictionary where each key is a node ID (e.g., N0) and each value is the wind intensity as a number.
   agent: planner
