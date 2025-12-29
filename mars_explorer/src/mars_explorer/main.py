@@ -49,42 +49,44 @@ class MarsFlow(Flow):
     #     return self.state["mission"]
 
     #planning (parallel)
+    def extract_json_object(self, text: str) -> dict:
+        # Prefer fenced json blocks if present
+        m = re.search(r"```json\s*([\s\S]*?)\s*```", text, re.IGNORECASE)
+        if m:
+            return json.loads(m.group(1))
+
+        # Fallback: first {...} object found
+        m = re.search(r"(\{[\s\S]*\})", text)
+        if not m:
+            raise ValueError("No JSON object found in text")
+        return json.loads(m.group(1))
+
     @listen(run_mission_analysis)
     def run_rover_planning(self):
-        mission = self.state["mission"]
-        raw_text = mission.raw
-        json_match = re.search(r"\{[\s\S]*\}", raw_text)
-        if not json_match:
-            raise ValueError("No JSON found in mission output")
-        mission_data = json.loads(json_match.group())
+        mars_graph = self.state.get('mars_graph')
+        raw_text = Path("reporting_aggregation.md").read_text(encoding="utf-8", errors="ignore")
+        mission_data = self.extract_json_object(raw_text)
         rovers = mission_data["rovers"]
         print("Rover planning")
-        result = self.rover_crew.crew().kickoff(inputs={"mission_report": rovers})
+        result = self.rover_crew.crew().kickoff(inputs={"mission_report": rovers, "mars_graph":mars_graph})
         self.state["rover_plan"] = result
         return result
 
     @listen(run_mission_analysis)
     def run_drone_planning(self):
-        mission = self.state["mission"]
-        raw_text = mission.raw
-        json_match = re.search(r"\{[\s\S]*\}", raw_text)
-        if not json_match:
-            raise ValueError("No JSON found in mission output")
-        mission_data = json.loads(json_match.group())
+        mars_graph = self.state.get('mars_graph')
+        raw_text = Path("reporting_aggregation.md").read_text(encoding="utf-8", errors="ignore")
+        mission_data = self.extract_json_object(raw_text)
         drones = mission_data["drones"]
         print("Drone planning")
-        result = self.drone_crew.crew().kickoff(inputs={"mission_report": drones})
+        result = self.drone_crew.crew().kickoff(inputs={"mission_report": drones, "mars_graph":mars_graph})
         self.state["drone_plan"] = result
         return result
 
     @listen(run_mission_analysis)
     def run_satellite_planning(self):
-        mission = self.state["mission"]
-        raw_text = mission.raw
-        json_match = re.search(r"\{[\s\S]*\}", raw_text)
-        if not json_match:
-            raise ValueError("No JSON found in mission output")
-        mission_data = json.loads(json_match.group())
+        raw_text = Path("reporting_aggregation.md").read_text(encoding="utf-8", errors="ignore")
+        mission_data = self.extract_json_object(raw_text)
         satellites = mission_data["satellites"]
         print("Satellite planning")
         result = self.satellite_crew.crew().kickoff(inputs={"mission_report": satellites})
