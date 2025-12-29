@@ -121,14 +121,16 @@ reporting_aggregation:
     a unified mission context. Filter and tailor the information so that each
     specialized crew (rovers, drones, satellites) receives only the data relevant
     to its capabilities and responsibilities.
-  expected_output: >
-    An aggregated mission report containing: a rover-specific briefing, a drone-specific briefing, a satellite-specific briefing
-    Each briefing should include priorities, hazards, and constraints relevant
-    to the corresponding crew.
-    Return a JSON object with exactly these keys:
-    - rovers: "...markdown..."
-    - drones: "...markdown..."
-    - satellites: "...markdown..."
+    You MUST return ONLY valid JSON.
+    Do NOT include markdown code fences.
+    Do NOT include explanations or extra text.
+
+    The JSON object MUST have EXACTLY these keys:
+    - rovers
+    - drones
+    - satellites
+    Each value MUST be a string containing a markdown-formatted briefing tailored
+    to that crew (priorities, hazards, constraints).
   agent: aggregator
 
 

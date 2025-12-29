@@ -1,58 +1,23 @@
-Hazard Report: Mission Safety Assessment  
+### Hazard Report
 
-**1. Introduction**  
-This hazard report is generated based on the latest mission parameters and environmental data. However, critical mission-specific data (including current radiation levels, terrain maps, weather conditions, and equipment status) was not provided in the user query. As a result, this report is a *template for standard hazards* with explicit placeholders for mission-specific data. **All crews must verify and replace placeholders with real-time data before proceeding.** Failure to do so violates operational constraints and risks mission failure or crew damage.  
+#### Dangerous Zones:
+1. **Terrain Instability:** Areas with loose soil or steep slopes, recent seismic activity zones, regions near radioactive materials.
+2. **Radiation Exposure:** High-altitude areas with increased cosmic radiation exposure.
+3. **Extreme Temperatures:** Regions experiencing temperatures beyond equipment and human tolerance limits.
+4. **Weather-Related Risks:** Zones prone to severe weather events such as hurricanes, tornadoes, or blizzards.
 
-**2. Identified Hazards and Operational Constraints**  
+#### Forbidden Nodes:
+1. **Radiation Exposure:** Areas exceeding safe radiation thresholds without protective gear.
+2. **Extreme Temperatures:** Locations with no feasible thermal protection for personnel or equipment.
+3. **Weather-Related Risks:** Areas forecasted to experience extreme weather conditions during mission operations.
 
-*   **Environmental Hazards**  
-    - **Radiation Exposure Zones**:  
-      *   **Placeholder**: [Specify radiation levels (e.g., > 100 mSv/h) and affected coordinates]  
-      *   *Constraint*: No crew may enter radiation zones without real-time monitoring, radiation-shielded suits, and backup power. Maximum allowable exposure per shift: 50 mSv.  
-    - **Temperature Extremes**:  
-      *   **Placeholder**: [Specify temperature ranges (e.g., -50°C to 50°C) and affected zones]  
-      *   *Constraint*: Operations must be limited to 15°C–35°C. Extreme cold (> -30°C) requires thermal suits and heated shelters; extreme heat (> 40°C) mandates cooling systems and 15-minute rest intervals per shift.  
-    - **Terrain Instability**:  
-      *   **Placeholder**: [Specify unstable terrain areas (e.g., active landslides, slopes > 15°, loose soil)]  
-      *   *Constraint*: Avoid all "Active Landslide" zones (see map). Maximum slope for movement: 15°. Stabilization equipment (e.g., anchors, soil-compaction units) required in unstable zones.  
-    - **Weather-Related Risks**:  
-      *   **Placeholder**: [Specify weather events (e.g., sandstorms, heavy rain)]  
-      *   *Constraint*: No operations during sandstorms (wind speed > 40 m/s) or heavy rain (rainfall > 50 mm/h). Emergency shelters must be within 200m of crew locations.  
+#### Operational Constraints:
+1. **Terrain Instability:** Restriction on heavy machinery in unstable terrains; mandatory ground-penetrating radar use.
+2. **Radiation Exposure:** Continuous radiation monitoring and dosimeter usage; time limits in high-radiation zones.
+3. **Extreme Temperatures:** Requirement of insulated suits and climate-controlled habitats for extreme temperatures.
+4. **Weather-Related Risks:** Mission planning around weather forecasts with real-time updates and evacuation plans.
 
-*   **Forbidden Nodes**  
-    - **Radiation Hazard Nodes**: [List coordinates or areas with radiation > 100 mSv/h]  
-    - **Extreme Temperature Nodes**: [List coordinates or areas outside 15°C–35°C]  
-    - **Terrain Instability Nodes**: [List coordinates or zones with active landslides/slopes > 15°]  
-    - **Weather Hazard Nodes**: [List coordinates or areas affected by sandstorms/heavy rain]  
-
-*   **Operational Constraints**  
-    - **Minimum Safety Buffer**: 50m clearance from all forbidden nodes.  
-    - **Maximum Exposure Time**: 1 hour per shift in non-hazardous zones without rest.  
-    - **Equipment Limitations**:  
-        *   Radiation shielding must maintain >90% effectiveness (tested pre-deployment).  
-        *   Thermal suits require integrity checks every 2 hours.  
-        *   All vehicles must have terrain stability sensors and emergency braking.  
-    - **Mandatory Pre-Operation Checks**:  
-        1. Real-time radiation mapping.  
-        2. Temperature verification at all operational zones.  
-        3. Terrain stability survey (slope analysis).  
-        4. Weather forecast validation (12-hour window).  
-
-**3. Critical Warnings**  
-- **This report is NOT actionable without mission-specific data**. Placeholders must be replaced with live data from the mission’s environmental sensors and weather agent.  
-- **Do not proceed** if any placeholder remains unverified. Ignoring this step caused 3 preventable mission failures in post-mission investigations (2023–2024).  
-- **Violations of constraints** will trigger immediate mission termination and crew evacuation per protocol.  
-- **Redundancy Requirement**: At least 2 crew members must independently verify hazard data before entering operational zones.  
-
-**4. Conclusion**  
-To ensure crew safety and mission success, **all crews must complete the following before any movement**:  
-1. Obtain real-time radiation maps from the radiation sensor array.  
-2. Validate temperature conditions at all planned zones using thermal probes.  
-3. Confirm terrain stability via the stability survey drone.  
-4. Update weather forecasts using the weather agent’s latest data.  
-**Without these steps, the mission is at critical risk of failure due to unmitigated hazards**. The Hazard Agent emphasizes: *“No crew enters conditions they cannot survive.”*  
-
-**Final Directive**: Mission must be paused until all placeholders are replaced with verified data. This report is valid only when mission-specific data is integrated. Failure to comply is a preventable failure.  
-
----  
-*This report was generated by The Hazard Agent (v3.1) following post-mission failure analysis protocols. Last updated: [Current Timestamp].*
+#### Final Recommendations:
+- Implement redundant safety systems to ensure mission success despite identified hazards.
+- Conduct thorough pre-mission training focused on hazard recognition and response.
+- Establish clear communication protocols for reporting hazardous conditions in real-time.

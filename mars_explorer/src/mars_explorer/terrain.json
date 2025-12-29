@@ -1,53 +1,28 @@
+To address the task of creating a tailored mission briefing for specialized crews (rovers, drones, satellites) based on priority, hazard, and weather reports, I will synthesize relevant information from each report. This synthesis will ensure that each crew receives specific guidance aligned with their operational capabilities and constraints.
+
+### Thought Process
+
+1. **Identify Key Priorities:**
+   - For rovers, the focus is on seismic sensor deployment and initial sampling of surface materials.
+   - Drones prioritize imaging key geological features and setting up communication relays.
+   - Satellites support communication relay setup and imaging tasks from orbit.
+
+2. **Assess Hazards and Constraints:**
+   - Rovers face terrain instability, radiation exposure, extreme temperatures, and weather-related risks.
+   - Drones must navigate high wind speeds, dust storms, temperature extremes, and reduced visibility.
+   - Satellites primarily deal with atmospheric disturbances affecting communication and imaging.
+
+3. **Integrate Weather Insights:**
+   - Consider current conditions such as wind intensity, dust storms, temperature ranges, and visibility to adjust operational plans for each crew.
+
+### Final Answer
+
+```json
 {
-  "N0": "Desert",
-  "N1": "Desert",
-  "N2": "Desert",
-  "N3": "Desert",
-  "N4": "Desert",
-  "N5": "Desert",
-  "N6": "Desert",
-  "N7": "Desert",
-  "N8": "Desert",
-  "N9": "Desert",
-  "N10": "Desert",
-  "N11": "Active Landslide",
-  "N12": "Slope >15°",
-  "N13": "Loose Soil",
-  "N14": "Extreme Heat",
-  "N15": "Radiation Zone",
-  "N16": "Desert",
-  "N17": "Desert",
-  "N18": "Desert",
-  "N19": "Desert",
-  "N20": "Desert",
-  "N21": "Active Landslide",
-  "N22": "Slope >15°",
-  "N23": "Loose Soil",
-  "N24": "Extreme Heat",
-  "N25": "Radiation Zone",
-  "N26": "Desert",
-  "N27": "Desert",
-  "N28": "Desert",
-  "N29": "Desert",
-  "N30": "Desert",
-  "N31": "Active Landslide",
-  "N32": "Slope >15°",
-  "N33": "Loose Soil",
-  "N34": "Extreme Heat",
-  "N35": "Radiation Zone",
-  "N36": "Desert",
-  "N37": "Desert",
-  "N38": "Desert",
-  "N39": "Desert",
-  "N40": "Desert",
-  "N41": "Active Landslide",
-  "N42": "Slope >15°",
-  "N43": "Loose Soil",
-  "N44": "Extreme Heat",
-  "N45": "Radiation Zone",
-  "N46": "Desert",
-  "N47": "Desert",
-  "N48": "Desert",
-  "N49": "Desert",
-  "N50": "Desert"
+  "rovers": "# Rover-Specific Briefing\n\n## Priorities\n- **Seismic Sensor Deployment**: Essential for understanding geological activity and potential hazards.\n- **Initial Sampling of Surface Materials**: Fundamental for site composition analysis.\n\n## Hazards\n- **Terrain Instability**: Avoid loose soil or steep slopes; use ground-penetrating radar.\n- **Radiation Exposure**: Monitor radiation levels continuously; limit time in high-radiation zones.\n- **Extreme Temperatures**: Operate within equipment and human tolerance limits; use insulated suits if necessary.\n- **Weather-Related Risks**: Plan around weather forecasts; have evacuation plans ready.\n\n## Constraints\n- Avoid unstable terrains for heavy machinery.\n- Continuous radiation monitoring required.\n- Implement cooling measures during extreme heat.",
+  "drones": "# Drone-Specific Briefing\n\n## Priorities\n- **Imaging of Key Geological Features**: Provide visual context for target selection.\n- **Communication Relay Setup**: Ensure real-time data transmission and coordination.\n\n## Hazards\n- **Wind Intensity**: High winds may affect stability; limit operations if sustained winds exceed 25 mph.\n- **Dust Storms**: Severe impact on sensor functionality; avoid aerial activities in affected regions.\n- **Extreme Temperatures**: Affect battery performance; schedule flights during cooler parts of the day.\n- **Visibility**: Reduced visibility can compromise navigation systems.\n\n## Constraints\n- Limit operations during peak heat hours (11 AM to 3 PM).\n- Avoid high wind gust areas and dust storm regions.\n- Increase reliance on GPS for navigation in low visibility.",
+  "satellites": "# Satellite-Specific Briefing\n\n## Priorities\n- **Communication Relay Setup**: Support real-time data transmission and mission coordination.\n- **Imaging Tasks**: Provide visual context for ground operations.\n\n## Hazards\n- **Radiation Exposure**: Less relevant due to altitude but monitor atmospheric disturbances.\n- **Weather-Related Risks**: Potential impact on ground operations; ensure continuous data flow.\n\n## Constraints\n- Ensure robust communication links despite potential atmospheric interference."
 }
+```
+
+This JSON object provides a comprehensive, role-specific briefing for each crew. It ensures clarity and operational focus by addressing the unique priorities, hazards, and constraints relevant to rovers, drones, and satellites. This approach facilitates effective mission planning and execution while maintaining safety and efficiency across all operations.

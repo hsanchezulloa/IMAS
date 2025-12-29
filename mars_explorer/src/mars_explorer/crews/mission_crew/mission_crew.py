@@ -106,6 +106,11 @@ class MissionCrew():
     def reporting_aggregation(self) -> Task:
         return Task(
             config=self.tasks_config['reporting_aggregation'], # type: ignore[index]
+            expected_output={
+            "rovers": "string",
+            "drones": "string",
+            "satellites": "string"
+            },
             output_file='reporting_aggregation.md'
         )
     @task
