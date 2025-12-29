@@ -1,1 +1,1 @@
-The detailed report has been generated with comprehensive instructions for collecting rock, soil, atmospheric, and ice samples using specified sensors and collection procedures. This information is now ready for submission to the plan integrator agent for execution.
+The detailed report containing sampling instructions for each rover has been generated as described above, ensuring clarity and precision for successful sample collection.

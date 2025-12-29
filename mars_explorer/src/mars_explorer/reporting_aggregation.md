@@ -1,30 +1,9 @@
-To create a unified mission context tailored specifically for each crew (rovers, drones, satellites), I will synthesize information from the priority, hazard, and weather reports. The goal is to ensure that each crew receives only relevant data aligned with their capabilities and responsibilities.
-
-### Thought Process
-
-1. **Rovers:**
-   - Focus on tasks involving ground operations such as sensor deployment and sampling.
-   - Highlight hazards related to terrain instability, radiation zones, temperature extremes, and dust storms.
-   - Consider weather impacts like wind intensity and temperature fluctuations affecting rover mobility and equipment functionality.
-
-2. **Drones:**
-   - Emphasize imaging and data relay tasks that drones can perform efficiently.
-   - Address hazards such as high winds, dust storms, and visibility issues impacting drone stability and sensor accuracy.
-   - Include weather considerations like wind speeds and temperature extremes affecting battery life and flight performance.
-
-3. **Satellites:**
-   - Concentrate on communication relay setup and broad-area imaging tasks.
-   - Discuss operational constraints related to radiation exposure limits and the need for continuous monitoring of environmental conditions from orbit.
-   - Consider weather impacts primarily in terms of data transmission reliability and visibility for imaging purposes.
-
-### Final Answer
-
 ```json
 {
-  "rovers": "- **High-Priority Tasks:** \n  - Critical Sensor Deployment: Essential for real-time data acquisition. Immediate action required.\n  - Communication Relay Setup: Vital for operational coordination and safety.\n- **Hazards to Consider:**\n  - Terrain instability, elevated radiation levels, extreme temperatures, dust storms.\n- **Weather Impacts:**\n  - High winds may affect mobility; temperature extremes can impact equipment functionality. Ensure cooling measures are in place.",
+  "rovers": "- **High-Priority Tasks:**\n  - Critical Sensor Deployment: Essential for foundational data collection.\n  - Communication Relay Setup: Vital for maintaining real-time communication.\n  - Emergency Response Preparedness: Crucial for risk mitigation and safety.\n\n- **Hazards to Avoid:**\n  - Unstable terrain, high-radiation areas, extreme temperatures.\n\n- **Weather Considerations:**\n  - Moderate winds (15-20 mph) with gusts up to 30 mph in open areas. Use stabilizing platforms.\n  - Dust storm developing over the eastern sector; avoid this area due to reduced visibility and sensor effectiveness.\n  - High temperatures (35°C during day, 20°C at night); use thermal management systems.\n\n- **Operational Recommendations:**\n  - Avoid eastern sector due to dust storm. Monitor central areas as storm moves westward.\n  - Schedule operations during cooler periods of the day to mitigate temperature effects.",
   
-  "drones": "- **High-Priority Tasks:** \n  - Imaging: Provides valuable visual data for mission analysis.\n  - Data Relay Support: Assists in maintaining communication links.\n- **Hazards to Consider:**\n  - High winds and dust storms can affect stability and sensor functionality. Limit operations during peak storm activity.\n- **Weather Impacts:**\n  - Wind speeds above 25 mph pose risks; temperature extremes impact battery life. Schedule flights during cooler parts of the day.",
+  "drones": "- **High-Priority Tasks:**\n  - Critical Sensor Deployment: Support with aerial data collection where feasible.\n  - Communication Relay Setup: Ensure drones are equipped for relay tasks if needed.\n\n- **Hazards to Avoid:**\n  - High winds and gusts (up to 40 mph forecasted), especially in open areas.\n  - Dust storm affecting visibility and sensor effectiveness; avoid eastern sector and monitor central area.\n  - Extreme temperatures impacting battery life and electronics; ensure adequate cooling systems are used.\n\n- **Weather Considerations:**\n  - Moderate winds with potential gusts up to 40 mph. Limit flights in exposed regions during peak wind periods.\n  - Dust storm reducing visibility below 500 meters in eastern sector, moving westward.\n  - High temperatures (35°C daytime) affecting performance; schedule flights during cooler times.\n\n- **Operational Recommendations:**\n  - Avoid operations in dust-affected zones and high-wind areas. Schedule flights early morning or late evening for optimal conditions.",
   
-  "satellites": "- **High-Priority Tasks:** \n  - Communication Relay Setup: Ensures continuous data transmission and operational integrity.\n  - Broad-Area Imaging: Supports mission analysis from orbit.\n- **Hazards to Consider:**\n  - Radiation exposure limits; ensure monitoring systems are calibrated for environmental conditions.\n- **Weather Impacts:**\n  - Visibility issues during dust storms may affect imaging quality. Maintain data transmission reliability."
+  "satellites": "- **High-Priority Tasks:**\n  - Critical Sensor Deployment: Provide support through remote sensing data.\n  - Communication Relay Setup: Ensure satellite communication channels are operational.\n\n- **Hazards to Avoid:**\n  - Monitor high-radiation areas and extreme temperatures for potential impacts on satellite operations.\n\n- **Weather Considerations:**\n  - Moderate winds and dust storm affecting ground operations; ensure data collection accounts for these conditions.\n  - High temperatures may affect ground-based equipment but not directly impacting satellites.\n\n- **Operational Recommendations:**\n  - Focus on remote sensing to monitor weather changes, especially the movement of the dust storm. Provide real-time updates to support ground crew decisions."
 }
 ```
