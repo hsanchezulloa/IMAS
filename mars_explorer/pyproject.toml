@@ -8,6 +8,9 @@ dependencies = [
     "crewai[tools]>=0.165.1,<1.0.0",
     "requests>=2.0.0",
     "beautifulsoup4>=4.0.0",
+    "pydantic>=2.0.0",
+    "networkx>=3.0",
+    "matplotlib>=3.7",
 ]
 
 [project.scripts]

@@ -2,8 +2,8 @@ reporting_route:
   description: >
     Generates a detailed report of the planned rover routes.
     Includes all necessary information for executing the route, 
-    computing the optimal path whether for collecting samples or deploying sensors. 
-    Sends the report to the plan integrator agent.
+    computing the optimal path whether for collecting samples or deploying sensors based on the GraphML document. 
+    Sends the report to the plan integrator agent. GraphML document: {{mars_graph}}
   expected_output: >
     A detailed report containing the optimal route for each rover.
   agent: route_planner

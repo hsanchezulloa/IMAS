@@ -1,13 +1,16 @@
-from crewai import Agent, Crew, Process, Task
+from crewai import Agent, Crew, Process, Task, LLM
 from crewai.project import CrewBase, agent, crew, task
 from crewai.agents.agent_builder.base_agent import BaseAgent
 from typing import List
-from crews.rover_crew.tools.custom_tool import DroneFlightCheckTool
+from crews.drone_crew.tools.custom_tool import DroneFlightCheckTool
 
 # If you want to run a snippet of code before or after the crew starts,
 # you can use the @before_kickoff and @after_kickoff decorators
 # https://docs.crewai.com/concepts/crews#example-crew-class-with-decorators
-
+ollama_llm = LLM(
+    model="ollama/qwen3:4b", 
+    base_url="http://localhost:11434"
+)
 @CrewBase
 class DronesCrew():
     """DronesCrew crew"""
@@ -25,13 +28,16 @@ class DronesCrew():
     def flight_planner_agent(self) -> Agent:
         return Agent(
             config=self.agents_config['flight_planner_agent'], # type: ignore[index]
-            verbose=True
+            verbose=True,
+            llm=ollama_llm,
+            tools = [DroneFlightCheckTool()]
         )
 
     @agent
     def drone_sample_collector(self) -> Agent:
         return Agent(
             config=self.agents_config['drone_sample_collector'], # type: ignore[index]
+            llm=ollama_llm,
             verbose=True
         )
 

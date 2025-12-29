@@ -25,7 +25,13 @@ class MarsFlow(Flow):
     
     #mission analysis
     @start()
-    def run_mission_analysis(self, mission_report: str, mars_graph, urls):
+    def run_mission_analysis(self):
+        mission_report = self.state.get('mission_report')
+        mars_graph = self.state.get('mars_graph')
+        urls = self.state.get('urls')
+        # mission_report= inputs['mission_report']
+        # mars_graph = inputs['mars_graph']
+        # urls = inputs["urls"]
         print("Mission analysis")
         result = self.mission_crew.crew().kickoff(inputs={"mission_report": mission_report, "mars_graph":mars_graph, "urls":urls})
         self.state["mission"] = result
@@ -41,22 +47,25 @@ class MarsFlow(Flow):
     #     return self.state["mission"]
 
     #planning (parallel)
-    @listen(or_(run_mission_analysis, "replan"))
-    def run_rover_planning(self, mission):
+    @listen(run_mission_analysis)
+    def run_rover_planning(self):
+        mission = self.state["mission"]
         print("Rover planning")
         result = self.rover_crew.crew().kickoff(inputs={"mission_report": mission["rovers"]})
         self.state["rover_plan"] = result
         return result
 
-    @listen(or_(run_mission_analysis, "replan"))
-    def run_drone_planning(self, mission):
+    @listen(run_mission_analysis)
+    def run_drone_planning(self):
+        mission = self.state["mission"]
         print("Drone planning")
         result = self.drone_crew.crew().kickoff(inputs={"mission_report": mission["drones"]})
         self.state["drone_plan"] = result
         return result
 
-    @listen(or_(run_mission_analysis, "replan"))
-    def run_satellite_planning(self, mission):
+    @listen(run_mission_analysis)
+    def run_satellite_planning(self):
+        mission = self.state['mission']
         print("Satellite planning")
         result = self.satellite_crew.crew().kickoff(inputs={"mission_report": mission["satellites"]})
         self.state["satellite_plan"] = result
@@ -118,8 +127,10 @@ def kickoff():
     urls = ["https://science.nasa.gov/mars/facts/"]
 
     flow = MarsFlow(mission_crew=MissionCrew(),rover_crew=RoverCrew(),drone_crew=DronesCrew(),satellite_crew=SatelliteCrew(),integration_crew=IntegrationCrew())
-
-    result = flow.run(mission_report=mission_report,mars_graph=mars_graph,urls=urls)
+    flow.state["mission_report"] = mission_report
+    flow.state["mars_graph"] = mars_graph
+    flow.state["urls"] = urls
+    result = flow.kickoff()
 
     print("\n=== FINAL MISSION PLAN ===\n")
     print(result)
@@ -136,4 +147,5 @@ def plot():
     flow.plot()
 
 if __name__ == "__main__":
-    plot()
+    # plot()
+    kickoff()

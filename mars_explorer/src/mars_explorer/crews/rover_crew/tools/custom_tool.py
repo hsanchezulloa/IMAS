@@ -6,8 +6,8 @@ from tools.mars_environment import MarsEnvironment
 class RoverRouteInput(BaseModel):
     start_node: str = Field(..., description  = "Starting node ID.")
     end_node: str = Field(..., description = "Target node ID.")
-    rover_max_energy: float = Field(100.0, description = "Total battery capacity.")
     current_energy: float = Field(..., description = "Current battery level.")
+    hazards: bool = Field(..., description = "Take hazards into account.")
 
 class RoverPathfindingTool(BaseTool):
     name: str = "Rover_Route_Calculator"

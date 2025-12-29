@@ -1,11 +1,14 @@
-from crewai import Agent, Crew, Process, Task
+from crewai import Agent, Crew, Process, Task, LLM
 from crewai.project import CrewBase, agent, crew, task
 from crewai.agents.agent_builder.base_agent import BaseAgent
 from typing import List
 # If you want to run a snippet of code before or after the crew starts,
 # you can use the @before_kickoff and @after_kickoff decorators
 # https://docs.crewai.com/concepts/crews#example-crew-class-with-decorators
-
+ollama_llm = LLM(
+    model="ollama/qwen3:4b", 
+    base_url="http://localhost:11434"
+)
 @CrewBase
 class SatelliteCrew():
     """Satellites crew"""
@@ -23,14 +26,16 @@ class SatelliteCrew():
     def orbit_planner(self) -> Agent:
         return Agent(
             config=self.agents_config['orbit_planner'], # type: ignore[index]
-            verbose=True
+            verbose=True,
+            llm = ollama_llm
         )
 
     @agent
     def satellite_planner(self) -> Agent:
         return Agent(
             config=self.agents_config['satellite_planner'], # type: ignore[index]
-            verbose=True
+            verbose=True,
+            llm = ollama_llm
         )
 
     # To learn more about structured task outputs,

@@ -6,6 +6,9 @@ from tools.mars_environment import MarsEnvironment
 class DroneFlightInput(BaseModel):
     start_node: str = Field(..., description="Takeoff node ID (Base Station).")
     target_nodes: list[str] = Field(..., description="List of node IDs to visit.")
+    current_energy: float = Field(..., description = "Current battery level.")
+    hazards: bool = Field(..., description = "Take hazards into account.")
+
 
 class DroneFlightCheckTool(BaseTool):
     name: str = "Drone_Flight_Feasibility"
