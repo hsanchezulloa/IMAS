@@ -1,5 +1,7 @@
 from pydantic import BaseModel
 from pathlib import Path
+import json
+import re
 from crewai.flow import Flow, start, listen, and_, or_ , router
 from crews.mission_crew.mission_crew import MissionCrew
 from crews.rover_crew.rover_crew import RoverCrew
@@ -50,24 +52,42 @@ class MarsFlow(Flow):
     @listen(run_mission_analysis)
     def run_rover_planning(self):
         mission = self.state["mission"]
+        raw_text = mission.raw
+        json_match = re.search(r"\{[\s\S]*\}", raw_text)
+        if not json_match:
+            raise ValueError("No JSON found in mission output")
+        mission_data = json.loads(json_match.group())
+        rovers = mission_data["rovers"]
         print("Rover planning")
-        result = self.rover_crew.crew().kickoff(inputs={"mission_report": mission["rovers"]})
+        result = self.rover_crew.crew().kickoff(inputs={"mission_report": rovers})
         self.state["rover_plan"] = result
         return result
 
     @listen(run_mission_analysis)
     def run_drone_planning(self):
         mission = self.state["mission"]
+        raw_text = mission.raw
+        json_match = re.search(r"\{[\s\S]*\}", raw_text)
+        if not json_match:
+            raise ValueError("No JSON found in mission output")
+        mission_data = json.loads(json_match.group())
+        drones = mission_data["drones"]
         print("Drone planning")
-        result = self.drone_crew.crew().kickoff(inputs={"mission_report": mission["drones"]})
+        result = self.drone_crew.crew().kickoff(inputs={"mission_report": drones})
         self.state["drone_plan"] = result
         return result
 
     @listen(run_mission_analysis)
     def run_satellite_planning(self):
-        mission = self.state['mission']
+        mission = self.state["mission"]
+        raw_text = mission.raw
+        json_match = re.search(r"\{[\s\S]*\}", raw_text)
+        if not json_match:
+            raise ValueError("No JSON found in mission output")
+        mission_data = json.loads(json_match.group())
+        satellites = mission_data["satellites"]
         print("Satellite planning")
-        result = self.satellite_crew.crew().kickoff(inputs={"mission_report": mission["satellites"]})
+        result = self.satellite_crew.crew().kickoff(inputs={"mission_report": satellites})
         self.state["satellite_plan"] = result
         return result
 

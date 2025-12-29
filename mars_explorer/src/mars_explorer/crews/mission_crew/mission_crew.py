@@ -106,11 +106,13 @@ class MissionCrew():
     def reporting_aggregation(self) -> Task:
         return Task(
             config=self.tasks_config['reporting_aggregation'], # type: ignore[index]
-            expected_output={
-            "rovers": "string",
-            "drones": "string",
-            "satellites": "string"
-            },
+            expected_output="""
+            A JSON object with the following keys:
+            - rovers
+            - drones
+            - satellites
+            Each value must be a string.
+            """,
             output_file='reporting_aggregation.md'
         )
     @task
