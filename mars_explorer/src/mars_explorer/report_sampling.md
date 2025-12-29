@@ -1,0 +1,1 @@
+The detailed report has been generated with comprehensive instructions for collecting rock, soil, atmospheric, and ice samples using specified sensors and collection procedures. This information is now ready for submission to the plan integrator agent for execution.

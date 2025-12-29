@@ -1,22 +1,5 @@
 **
 
-The mission hazard report identifies several key environmental hazards and operational constraints that must be respected to ensure crew safety:
+The mission faces several environmental hazards and operational constraints that must be carefully managed to ensure crew safety. Dangerous zones include areas with terrain instability, elevated radiation levels, extreme temperatures, and severe weather conditions. Forbidden nodes are identified as high-risk terrain near cliffs and unstable formations, regions exceeding safe radiation exposure limits, areas with rapid temperature fluctuations beyond equipment tolerance, and locations forecasted for extreme weather events.
 
-1. **Terrain Instability:** Dangerous zones include areas with a history of geological disturbances such as landslides or sinkholes. Operations should avoid these unless reinforced structures are used, and terrain stability monitoring tools are employed.
-
-2. **Radiation Exposure:** Establish safe radiation exposure limits for all personnel, equipped with personal dosimeters. Avoid operations in high-radiation zones unless protective measures are implemented.
-
-3. **Extreme Temperatures:** Define operational temperature thresholds and ensure all personnel have appropriate thermal protection clothing. Equipment must be rated for the expected temperature range.
-
-4. **Weather-Related Risks:** Utilize real-time weather data to avoid adverse conditions. Establish rapid evacuation protocols for sudden weather changes.
-
-**Dangerous Zones and Forbidden Nodes:**
-- Dangerous zones include areas with geological instability or high radiation levels.
-- Forbidden nodes are locations prone to severe weather events, such as storm paths or flood-prone areas.
-
-**Operational Constraints:**
-- Adhere to established radiation exposure limits and temperature thresholds.
-- Implement real-time monitoring of terrain stability and weather conditions.
-- Ensure redundant safety systems for all critical equipment and personnel gear. 
-
-By respecting these guidelines, the mission can proceed with minimized risk to crew members and equipment.
+Operational constraints necessitate minimizing movement through unstable terrain using specialized equipment, limiting time in radiation zones while equipping crews with dosimeters and protective gear, scheduling operations during moderate temperatures with appropriate thermal protection, and maintaining vigilant monitoring of weather updates with established communication and evacuation protocols. Adhering to these guidelines will help mitigate risks and ensure mission success.

@@ -5,7 +5,7 @@ generating_route:
     A detailed report containing the optimal route for each drone
   agent: flight_planner_agent
 
-reporting_task:
+generate_sampling:
   description: >
     Plan and coordinate drone-based sampling operations based on mission objectives and environmental data. Ensure sampling plans are efficient, safe, and aligned with drone capabilities and mission priorities.
   expected_output: >
