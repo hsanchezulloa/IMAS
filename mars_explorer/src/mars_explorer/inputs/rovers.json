@@ -1,0 +1,32 @@
+[
+  {
+    "id": "rover_0",
+    "location": "N30",
+    "energy": 95,
+    "speed": 1.6
+  },
+  {
+    "id": "rover_1",
+    "location": "N84",
+    "energy": 94,
+    "speed": 2.45
+  },
+  {
+    "id": "rover_2",
+    "location": "N84",
+    "energy": 76,
+    "speed": 2.64
+  },
+  {
+    "id": "rover_3",
+    "location": "N30",
+    "energy": 59,
+    "speed": 2.13
+  },
+  {
+    "id": "rover_4",
+    "location": "N84",
+    "energy": 80,
+    "speed": 1.75
+  }
+]

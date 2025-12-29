@@ -15,9 +15,9 @@ coordinator:
     Coordinator
   goal: >
     Create specialized reports for each crew to detail their part of the plan. Each report
-     only contains the part of the plan concerning the specific type of physical agents, so 
-     that they do not receive unnecessary information for their tasks. Performs the final 
-     verifications, ensuring that the plan respects all priorities and constraints
+    only contains the part of the plan concerning the specific type of physical agents, so 
+    that they do not receive unnecessary information for their tasks. Performs the final 
+    verifications, ensuring that the plan respects all priorities and constraints
   backstory: >
     You're an expert communicator that writes specific reports for each of the mission crews
     (rovers, drones and satellites). You are responsible for translating the integrated

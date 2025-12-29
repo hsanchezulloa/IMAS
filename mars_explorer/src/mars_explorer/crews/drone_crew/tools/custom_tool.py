@@ -17,7 +17,7 @@ class DroneFlightCheckTool(BaseTool):
     args_schema: type[BaseModel] = DroneFlightInput 
 
 
-    def _run(self, start_node: str, current_energy: float, target_nodes: list[str]) -> str:
+    def _run(self, start_node: str, current_energy: float, target_nodes: list[str], hazards: bool) -> str:
         '''
         Example of output:
         (path, total_distance, total_energy, remaining_battery, energy_msg) -> (['N60', 'N62', 'N63', 'N60'], 9.0, 0.225, 99.775, 'BATERY OK')
@@ -32,7 +32,7 @@ class DroneFlightCheckTool(BaseTool):
         total_distance = 0.0
         max_wind = 0.0
         
-        # Assumption: Drone Speed = 40 km/h
+        # Assumption
         DRONE_SPEED = 40
 
         path = []
@@ -51,7 +51,7 @@ class DroneFlightCheckTool(BaseTool):
                     node_data = graph.nodes[node]
                     
                     # Storm
-                    if node_data.get('dust_storms', False):
+                    if node_data.get('dust_storms', False) and hazards:
                         return f"ABORT: Active dust storm detected at {node}."
                     
                     # Wind

@@ -1,0 +1,27 @@
+[
+  {
+    "id": "drone_0",
+    "location": "N30",
+    "battery": 85
+  },
+  {
+    "id": "drone_1",
+    "location": "N84",
+    "battery": 90
+  },
+  {
+    "id": "drone_2",
+    "location": "N30",
+    "battery": 76
+  },
+  {
+    "id": "drone_3",
+    "location": "N84",
+    "battery": 82
+  },
+  {
+    "id": "drone_4",
+    "location": "N30",
+    "battery": 90
+  }
+]

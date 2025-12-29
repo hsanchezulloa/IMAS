@@ -4,7 +4,7 @@ import networkx as nx
 from tools.mars_environment import MarsEnvironment
 
 class RoverRouteInput(BaseModel):
-    start_node: str = Field(..., description  = "Starting node ID (e.g., 'N30').")
+    start_node: str = Field(..., description  = "Starting node ID.")
     end_node: str = Field(..., description = "Target node ID.")
     rover_max_energy: float = Field(100.0, description = "Total battery capacity.")
     current_energy: float = Field(..., description = "Current battery level.")
@@ -20,7 +20,7 @@ class RoverPathfindingTool(BaseTool):
     args_schema: type[BaseModel] = RoverRouteInput
 
 
-    def _run(self, start_node: str, end_node: str, current_energy: float) -> str:
+    def _run(self, start_node: str, end_node: str, current_energy: float, hazards: bool) -> str:
         '''
         Example of output:
         (path, distance, energy, remaining_battery, batery_status) -> (['N60', 'N65', 'N66'], 9.0, 9.45, 70.55, 'BATERY OK')
@@ -45,9 +45,10 @@ class RoverPathfindingTool(BaseTool):
             
             # HAZARD CHECK: avoid dangerous nodes
             temperature = float(d.get('temperature', -50))
-            if node_data.get('unstable', False) or node_data.get('high_radiation', False) or temperature < -80:
+            if (node_data.get('unstable', False) or node_data.get('high_radiation', False)) and hazards:
                 return float('inf')
-
+            if temperature < -80:
+                return float('inf')
             # TERRAIN MODIFIERS
             # Get real distance (edge length) and the terrain
             distance = float(d.get('length'))

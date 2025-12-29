@@ -22,6 +22,7 @@ class MarsFlow(Flow):
         self.drone_crew = drone_crew
         self.satellite_crew = satellite_crew
         self.integration_crew = integration_crew
+    
     #mission analysis
     @start()
     def run_mission_analysis(self, mission_report: str, mars_graph, urls):
@@ -104,6 +105,7 @@ class MarsFlow(Flow):
             })
         self.state["final_plan"] = final
         return final
+    
 def kickoff():
     """
     Entry point for the Mars multi-agent system.
@@ -123,6 +125,7 @@ def kickoff():
     print(result)
 
     return result
+
 def plot():
     flow = MarsFlow(
         mission_crew=MissionCrew(),

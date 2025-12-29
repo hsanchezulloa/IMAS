@@ -1,0 +1,32 @@
+[
+  {
+    "id": "satellite_0",
+    "location": "N5",
+    "communication_window": "5h"
+  },
+  {
+    "id": "satellite_1",
+    "location": "N73",
+    "communication_window": "5h"
+  },
+  {
+    "id": "satellite_2",
+    "location": "N121",
+    "communication_window": "5h"
+  },
+  {
+    "id": "satellite_3",
+    "location": "N150",
+    "communication_window": "5h"
+  },
+  {
+    "id": "satellite_4",
+    "location": "N56",
+    "communication_window": "5h"
+  },
+  {
+    "id": "satellite_5",
+    "location": "N112",
+    "communication_window": "5h"
+  }
+]
