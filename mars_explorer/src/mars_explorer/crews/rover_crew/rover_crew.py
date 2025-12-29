@@ -8,8 +8,9 @@ from crews.rover_crew.tools.custom_tool import RoverPathfindingTool
 # you can use the @before_kickoff and @after_kickoff decorators
 # https://docs.crewai.com/concepts/crews#example-crew-class-with-decorators
 ollama_llm = LLM(
-    model="ollama/qwen3:4b", 
-    base_url="http://localhost:11434"
+    model='ollama/phi4',
+    base_url='http://localhost:11434',
+    temperature=0.1
 )
 
 @CrewBase
@@ -50,7 +51,6 @@ class RoverCrew:
         return Task(
             config=self.tasks_config["reporting_route"],  # type: ignore[index]
             output_file='report_route.md',
-            async_execution=True
         )
 
     @task

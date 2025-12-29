@@ -1,0 +1,5 @@
+{
+  "rover": "Priority: Mission tasks not provided. Hazard: Dust storm (80% in 12 hours) with wind up to 40 km/h and visibility <1 km. Weather: Current: 35°C, 40% humidity, 15 km/h wind, 10 km visibility. Forecast: 6h: 25 km/h wind, 5 km visibility; 12h: 80% dust storm; 24h: clears.",
+  "drone": "Priority: Mission tasks not provided. Hazard: Dust storm (80% in 12 hours) with wind up to 40 km/h and visibility <1 km (may impact drone operations). Weather: Current: 35°C, 40% humidity, 15 km/h wind, 10 km visibility. Forecast: 6h: 25 km/h wind, 5 km visibility; 12h: 80% dust storm; 24h: clears.",
+  "satellite": "Priority: Mission tasks not provided. Hazard: Dust storm (80% in 12 hours) with wind up to 40 km/h and visibility <1 km (may affect ground stations). Weather: Current: 35°C, 40% humidity, 15 km/h wind, 10 km visibility. Forecast: 6h: 25 km/h wind, 5 km visibility; 12h: 80% dust storm; 24h: clears."
+}

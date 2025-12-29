@@ -8,9 +8,11 @@ from crews.drone_crew.tools.custom_tool import DroneFlightCheckTool
 # you can use the @before_kickoff and @after_kickoff decorators
 # https://docs.crewai.com/concepts/crews#example-crew-class-with-decorators
 ollama_llm = LLM(
-    model="ollama/qwen3:4b", 
-    base_url="http://localhost:11434"
+    model="ollama/phi4", 
+    base_url="http://localhost:11434",
+    temperature=0.1
 )
+
 @CrewBase
 class DronesCrew():
     """DronesCrew crew"""
@@ -49,7 +51,6 @@ class DronesCrew():
         return Task(
             config=self.tasks_config['generating_route'], # type: ignore[index]
             output_file='generate_route_drone.md',
-            async_execution=True
         )
 
     @task
