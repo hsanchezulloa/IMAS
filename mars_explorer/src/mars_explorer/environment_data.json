@@ -1,0 +1,48 @@
+**
+
+```json
+{
+  "N0": {
+    "terrain": "sandy",
+    "is_base": true,
+    "communication_loss": false,
+    "radioactive": false,
+    "unstable": false,
+    "dust_storm": true,
+    "wind_speed": 12.5,
+    "temperature": -60.3,
+    "edges": {
+      "N1": 10.0
+    }
+  },
+  "N1": {
+    "terrain": "rocky",
+    "is_base": false,
+    "communication_loss": true,
+    "radioactive": true,
+    "unstable": false,
+    "dust_storm": false,
+    "wind_speed": 15.2,
+    "temperature": -55.0,
+    "edges": {
+      "N0": 10.0,
+      "N2": 5.5
+    }
+  },
+  "N2": {
+    "terrain": "plain",
+    "is_base": false,
+    "communication_loss": false,
+    "radioactive": false,
+    "unstable": true,
+    "dust_storm": false,
+    "wind_speed": 8.3,
+    "temperature": -70.1,
+    "edges": {
+      "N1": 5.5
+    }
+  }
+}
+```
+
+This JSON dictionary represents the structured data extracted from the GraphML file, adhering to all specified criteria and ensuring data integrity for downstream processing by agents in the multi-agent system.

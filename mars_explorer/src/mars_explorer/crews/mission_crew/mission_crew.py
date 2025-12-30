@@ -28,19 +28,28 @@ class MissionCrew():
     
     # If you would like to add tools to your agents, you can learn more about it here:
     # https://docs.crewai.com/concepts/agents#agent-tools
+    
+    @agent
+    def extractor_graph(self) -> Agent:
+        return Agent(
+            config=self.agents_config['extractor_graph'],
+            verbose=True,
+            llm=ollama_llm
+        )
+        
     @agent
     def planner(self) -> Agent:
         return Agent(
-            config=self.agents_config['planner'], # type: ignore[index]
+            config=self.agents_config['planner'],
             verbose=True,
             llm=ollama_llm,
-            tasks = [PlannerDivideTool(), PlannerEnrichTool()]
+            tools = [PlannerDivideTool(), PlannerEnrichTool()]
         )
 
     @agent
     def priority(self) -> Agent:
         return Agent(
-            config=self.agents_config['priority'], # type: ignore[index]
+            config=self.agents_config['priority'],
             verbose=True,
             llm=ollama_llm
         )
@@ -48,7 +57,7 @@ class MissionCrew():
     @agent
     def hazard(self) -> Agent:
         return Agent(
-            config=self.agents_config['hazard'], # type: ignore[index]
+            config=self.agents_config['hazard'], 
             verbose=True,
             llm=ollama_llm
         )
@@ -56,7 +65,7 @@ class MissionCrew():
     @agent
     def weather(self) -> Agent:
         return Agent(
-            config=self.agents_config['weather'], # type: ignore[index]
+            config=self.agents_config['weather'], 
             verbose=True,
             llm=ollama_llm
         )
@@ -64,7 +73,7 @@ class MissionCrew():
     @agent
     def aggregator(self) -> Agent:
         return Agent(
-            config=self.agents_config['aggregator'], # type: ignore[index]
+            config=self.agents_config['aggregator'], 
             verbose=True,
             llm=ollama_llm
         )
@@ -75,13 +84,13 @@ class MissionCrew():
     @task
     def additional_information(self) -> Task:
         return Task(
-            config=self.tasks_config['additional_information'], # type: ignore[index]
+            config=self.tasks_config['additional_information'], 
         )
 
     @task
     def reporting_priority(self) -> Task:
         return Task(
-            config=self.tasks_config['reporting_priority'], # type: ignore[index]
+            config=self.tasks_config['reporting_priority'], 
             output_file='report_priority.md',
             async_execution=True
         )
@@ -89,7 +98,7 @@ class MissionCrew():
     @task
     def reporting_hazard(self) -> Task:
         return Task(
-            config=self.tasks_config['reporting_hazard'], # type: ignore[index]
+            config=self.tasks_config['reporting_hazard'], 
             output_file='report_hazard.md',
             async_execution=True
         )
@@ -97,7 +106,7 @@ class MissionCrew():
     @task
     def reporting_weather(self) -> Task:
         return Task(
-            config=self.tasks_config['reporting_weather'], # type: ignore[index]
+            config=self.tasks_config['reporting_weather'], 
             output_file='report_weather.md',
             async_execution=True
         )
@@ -105,7 +114,7 @@ class MissionCrew():
     @task
     def reporting_aggregation(self) -> Task:
         return Task(
-            config=self.tasks_config['reporting_aggregation'], # type: ignore[index]
+            config=self.tasks_config['reporting_aggregation'], 
             expected_output="""
             A JSON object with the following keys:
             - rovers
@@ -115,79 +124,93 @@ class MissionCrew():
             """,
             output_file='reporting_aggregation.md'
         )
-    @task
-    def extract_terrain(self) -> Task:
-        return Task(
-            config=self.tasks_config['extract_terrain'], # type: ignore[index]
-            output_file='terrain.json'
-        )
+    # @task
+    # def extract_terrain(self) -> Task:
+    #     return Task(
+    #         config=self.tasks_config['extract_terrain'], 
+    #         output_file='terrain.json'
+    #     )
     
-    @task
-    def extract_is_base(self) -> Task:
-        return Task(
-            config=self.tasks_config['extract_is_base'], # type: ignore[index]
-            output_file='base.json'
-        )
+    # @task
+    # def extract_is_base(self) -> Task:
+    #     return Task(
+    #         config=self.tasks_config['extract_is_base'], 
+    #         output_file='base.json'
+    #     )
     
-    @task
-    def extract_communication_loss(self) -> Task:
-        return Task(
-            config=self.tasks_config['extract_communication_loss'], # type: ignore[index]
-            output_file='communication.json'
-        )
-    @task
-    def extract_high_radiation(self) -> Task:
-        return Task(
-            config=self.tasks_config['extract_high_radiation'], # type: ignore[index]
-            output_file='radiation.json'
-        )
+    # @task
+    # def extract_communication_loss(self) -> Task:
+    #     return Task(
+    #         config=self.tasks_config['extract_communication_loss'], 
+    #         output_file='communication.json'
+    #     )
+    # @task
+    # def extract_high_radiation(self) -> Task:
+    #     return Task(
+    #         config=self.tasks_config['extract_high_radiation'], 
+    #         output_file='radiation.json'
+    #     )
     
-    @task
-    def extract_unstable(self) -> Task:
-        return Task(
-            config=self.tasks_config['extract_unstable'], # type: ignore[index]
-            output_file='unstable.json'
-        )
+    # @task
+    # def extract_unstable(self) -> Task:
+    #     return Task(
+    #         config=self.tasks_config['extract_unstable'], 
+    #         output_file='unstable.json'
+    #     )
     
-    @task
-    def extract_dust_storms(self) -> Task:
-        return Task(
-            config=self.tasks_config['extract_dust_storms'], # type: ignore[index]
-            output_file='dust_storms.json'
-        )
+    # @task
+    # def extract_dust_storms(self) -> Task:
+    #     return Task(
+    #         config=self.tasks_config['extract_dust_storms'], 
+    #         output_file='dust_storms.json'
+    #     )
     
-    @task
-    def extract_wind(self) -> Task:
-        return Task(
-            config=self.tasks_config['extract_wind'], # type: ignore[index]
-            output_file='wind.json'
-        )
+    # @task
+    # def extract_wind(self) -> Task:
+    #     return Task(
+    #         config=self.tasks_config['extract_wind'], 
+    #         output_file='wind.json'
+    #     )
     
-    @task
-    def extract_temperature(self) -> Task:
-        return Task(
-            config=self.tasks_config['extract_temperature'], # type: ignore[index]
-            output_file='temperature.json'
-        )
+    # @task
+    # def extract_temperature(self) -> Task:
+    #     return Task(
+    #         config=self.tasks_config['extract_temperature'], 
+    #         output_file='temperature.json'
+    #     )
     
-    @task
-    def extract_edge_lengths(self) -> Task:
-        return Task(
-            config=self.tasks_config['extract_edge_lengths'], # type: ignore[index]
-            output_file='edges.json'
-        )
+    # @task
+    # def extract_edge_lengths(self) -> Task:
+    #     return Task(
+    #         config=self.tasks_config['extract_edge_lengths'], 
+    #         output_file='edges.json'
+    #     )
 
-
+    @task
+    def extract_martian_environment_data(self) -> Task:
+        return Task(
+            config=self.tasks_config['extract_martian_environment_data'], 
+            output_file='environment_data.json',
+            expected_output="A JSON dictionary containing all nodes, edges, and attributes extracted from the GraphML file."
+        )
+    
     @crew
     def crew(self) -> Crew:
         """Creates the MissionCrew crew"""
         # To learn how to add knowledge sources to your crew, check out the documentation:
         # https://docs.crewai.com/concepts/knowledge#what-is-knowledge
+        return Crew(agents=[self.extractor_graph()], tasks = [self.extract_martian_environment_data()], process = Process.sequential, verbose=True)
+        # return Crew(
+        #     agents=self.agents, # Automatically created by the @agent decorator
+        #     tasks=self.tasks, # Automatically created by the @task decorator
+        #     process=Process.sequential,
+        #     verbose=True,
+        #     # process=Process.hierarchical, # In case you wanna use that instead https://docs.crewai.com/how-to/Hierarchical/
+        # )
 
-        return Crew(
-            agents=self.agents, # Automatically created by the @agent decorator
-            tasks=self.tasks, # Automatically created by the @task decorator
-            process=Process.sequential,
-            verbose=True,
-            # process=Process.hierarchical, # In case you wanna use that instead https://docs.crewai.com/how-to/Hierarchical/
-        )
+if __name__ == "__main__":
+    crew = MissionCrew().crew()
+    result = crew.kickoff()
+    print(result)
+
+    
