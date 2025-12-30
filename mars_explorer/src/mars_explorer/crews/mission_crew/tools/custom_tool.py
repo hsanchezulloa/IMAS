@@ -9,11 +9,11 @@ class PlannerDivideInput(BaseModel):
     """
     Input schema for dividing mission report.
     """
-    markdown_report: str = Field(..., description="Full Mars mission report in Markdown format.")
+    markdown_report: str = Field(..., description="The RAW markdown text. MUST contain the 'Scientific Goals', 'Operational Constraints', 'Mission Priorities' and 'Known Hazards' sections. DO NOT SPLIT INTO KEYS.")
 
 class PlannerDivideTool(BaseTool):
     name: str = "planner_divide_report"
-    description: str = ("Divides the Mars mission Markdown report into structured sections: priorities, hazards, weather, constraints, and goals.")
+    description: str = ("Divides the Mars mission Markdown report into structured sections: 'Scientific Goals', 'Operational Constraints', 'Mission Priorities' and 'Known Hazards'.")
     args_schema: Type[BaseModel] = PlannerDivideInput
 
     def _parse_priorities(self, text: str) -> dict:

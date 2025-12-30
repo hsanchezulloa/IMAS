@@ -2,6 +2,7 @@ from crewai import Agent, Crew, Process, Task, LLM
 from crewai.project import CrewBase, agent, crew, task
 from crewai.agents.agent_builder.base_agent import BaseAgent
 from typing import List
+from pathlib import Path
 from crews.mission_crew.tools.custom_tool import (
     PlannerDivideTool,
     PlannerEnrichTool,
@@ -29,13 +30,6 @@ class MissionCrew():
     # If you would like to add tools to your agents, you can learn more about it here:
     # https://docs.crewai.com/concepts/agents#agent-tools
     
-    @agent
-    def extractor_graph(self) -> Agent:
-        return Agent(
-            config=self.agents_config['extractor_graph'],
-            verbose=True,
-            llm=ollama_llm
-        )
         
     @agent
     def planner(self) -> Agent:
@@ -43,7 +37,7 @@ class MissionCrew():
             config=self.agents_config['planner'],
             verbose=True,
             llm=ollama_llm,
-            tools = [PlannerDivideTool(), PlannerEnrichTool()]
+            tools = [PlannerDivideTool()]
         )
 
     @agent
@@ -84,7 +78,8 @@ class MissionCrew():
     @task
     def additional_information(self) -> Task:
         return Task(
-            config=self.tasks_config['additional_information'], 
+            config=self.tasks_config['additional_information'],
+            output_file='extract_md.json',
         )
 
     @task
@@ -124,82 +119,13 @@ class MissionCrew():
             """,
             output_file='reporting_aggregation.md'
         )
-    # @task
-    # def extract_terrain(self) -> Task:
-    #     return Task(
-    #         config=self.tasks_config['extract_terrain'], 
-    #         output_file='terrain.json'
-    #     )
-    
-    # @task
-    # def extract_is_base(self) -> Task:
-    #     return Task(
-    #         config=self.tasks_config['extract_is_base'], 
-    #         output_file='base.json'
-    #     )
-    
-    # @task
-    # def extract_communication_loss(self) -> Task:
-    #     return Task(
-    #         config=self.tasks_config['extract_communication_loss'], 
-    #         output_file='communication.json'
-    #     )
-    # @task
-    # def extract_high_radiation(self) -> Task:
-    #     return Task(
-    #         config=self.tasks_config['extract_high_radiation'], 
-    #         output_file='radiation.json'
-    #     )
-    
-    # @task
-    # def extract_unstable(self) -> Task:
-    #     return Task(
-    #         config=self.tasks_config['extract_unstable'], 
-    #         output_file='unstable.json'
-    #     )
-    
-    # @task
-    # def extract_dust_storms(self) -> Task:
-    #     return Task(
-    #         config=self.tasks_config['extract_dust_storms'], 
-    #         output_file='dust_storms.json'
-    #     )
-    
-    # @task
-    # def extract_wind(self) -> Task:
-    #     return Task(
-    #         config=self.tasks_config['extract_wind'], 
-    #         output_file='wind.json'
-    #     )
-    
-    # @task
-    # def extract_temperature(self) -> Task:
-    #     return Task(
-    #         config=self.tasks_config['extract_temperature'], 
-    #         output_file='temperature.json'
-    #     )
-    
-    # @task
-    # def extract_edge_lengths(self) -> Task:
-    #     return Task(
-    #         config=self.tasks_config['extract_edge_lengths'], 
-    #         output_file='edges.json'
-    #     )
-
-    @task
-    def extract_martian_environment_data(self) -> Task:
-        return Task(
-            config=self.tasks_config['extract_martian_environment_data'], 
-            output_file='environment_data.json',
-            expected_output="A JSON dictionary containing all nodes, edges, and attributes extracted from the GraphML file."
-        )
     
     @crew
     def crew(self) -> Crew:
         """Creates the MissionCrew crew"""
         # To learn how to add knowledge sources to your crew, check out the documentation:
         # https://docs.crewai.com/concepts/knowledge#what-is-knowledge
-        return Crew(agents=[self.extractor_graph()], tasks = [self.extract_martian_environment_data()], process = Process.sequential, verbose=True)
+        return Crew(agents=[self.planner()], tasks = [self.additional_information()], process = Process.sequential, verbose=True)
         # return Crew(
         #     agents=self.agents, # Automatically created by the @agent decorator
         #     tasks=self.tasks, # Automatically created by the @task decorator
@@ -210,7 +136,7 @@ class MissionCrew():
 
 if __name__ == "__main__":
     crew = MissionCrew().crew()
-    result = crew.kickoff()
+    mission_report = Path("inputs/mission_report.md").read_text(encoding="utf-8")
+    print(mission_report)
+    result = crew.kickoff(inputs = {"mission_report": mission_report})
     print(result)
-
-    
