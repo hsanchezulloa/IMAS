@@ -130,9 +130,9 @@ class MarsFlow(Flow):
 
         final = self.integration_crew.crew().kickoff(
             inputs={
-                "rover_plan": self.state["rover_plan"],
-                "drone_plan": self.state["drone_plan"],
-                "satellite_plan": self.state["satellite_plan"],
+                "rover_plan": self.state["rover_plan"].raw if hasattr(self.state["rover_plan"], "raw") else str(self.state["rover_plan"]),
+                "drone_plan": self.state["drone_plan"].raw if hasattr(self.state["drone_plan"], "raw") else str(self.state["drone_plan"]),
+                "satellite_plan": self.state["satellite_plan"].raw if hasattr(self.state["satellite_plan"], "raw") else str(self.state["satellite_plan"]),
             })
         self.state["final_plan"] = final
         return final
