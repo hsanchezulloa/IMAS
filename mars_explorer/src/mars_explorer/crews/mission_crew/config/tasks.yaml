@@ -100,7 +100,6 @@ additional_information:
 #   agent: extractor_graph
 
 
-
 reporting_priority:
   description: >
     Evaluate the mission objectives and tasks provided by the planner agent.
