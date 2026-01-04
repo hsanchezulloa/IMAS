@@ -37,7 +37,7 @@ class DroneFlightCheckTool(BaseTool):
         
         # Assumption
         DRONE_SPEED = 40
-
+        
         path = []
         for i in range(len(full_stops) - 1):
             u, v = full_stops[i], full_stops[i+1]
@@ -101,4 +101,4 @@ class DroneFlightCheckTool(BaseTool):
         if total_time > 25.0:
             return (f"INFEASIBLE: Total flight time {total_time:.2f} min exceeds 25 min limit. ")
     
-        return path, total_distance, total_energy, remaining_battery, energy_msg
+        return path, total_distance, total_energy, energy_msg

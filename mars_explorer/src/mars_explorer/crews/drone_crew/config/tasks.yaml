@@ -1,9 +1,23 @@
-generating_route:
+final_nodes:
   description: >
-    Analyze the aggregated mission report and the GraphML to compute optimal, safe, and energy-efficient flight routes for all drones. Consider environmental conditions, terrain elevation, airspace constraints, and mission objectives to ensure effective navigation and coverage. Compile detailed flight plans for each drone and prepare them for integration into the overall mission strategy. GraphML document: {{mars_graph}}
+    Based on the information inside the input file """ {{report_priority}} """, identify in which nodes drones need to perform their tasks.
   expected_output: >
-    A detailed report containing the optimal route for each drone
-  agent: flight_planner_agent
+    A Python list containing all the node IDs where drones need to perform their tasks.
+  agent: extractor
+
+reporting_route:
+  description: >
+    For each node in the provided list, choose 1 drone among the provided in the """ {{drones}} """ input file.
+    For each node-drone pair, you MUST use the tool DroneFlightCheckTool to calculate the path. Do NOT modify the path provided by such tool.
+    The routes are computed from the location of the drone (base) to the selected final node, and then back to the base. Don't modify this path, just store it!.
+    For each drone provide the paths returned by the tool.
+  expected_output: >
+    A JSON with this format:
+      {"drone_1": [[N30, N31, N32, N30], ["N30", "N2", "N5", "N9", "N4", "N30"]],
+         "drone_2": [[N84, N83, N82, N81, N84]]
+        }
+  agent: flight_planner
+
 
 generate_sampling:
   description: >
