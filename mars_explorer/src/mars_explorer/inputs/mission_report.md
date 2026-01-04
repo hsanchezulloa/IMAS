@@ -9,7 +9,7 @@
 - Capture panoramic images of **crater** terrain at nodes **N5**, **N73**, **N121** and **N150**. 
 - Measure radiation levels in **sandy** terrain at node **N12**, **N86** and **N1**. 
 - Deploy seismic sensors at the **rocky** node **N20**. 
-- Detect organic molecules in **icy** terrain between nand **N59**. 
+- Detect organic molecules in **icy** terrain at **N59**. 
 - Air **dust** sample collection during flight over **N33** crater. 
 - Map CO2 frost coverage in **icy** areas **N53**, **N63** and **N108**. 
 - Identification of thermal anomalies at **icy** nodes **N56** and **N112**. 

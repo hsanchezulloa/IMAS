@@ -1,7 +1,0 @@
-```json
-{
-  "rovers": "- **Priorities**: Focus on seismic sensor deployment and sampling tasks.\n- **Hazards**: Avoid dangerous zones with terrain instability or elevated radiation levels; be cautious of extreme temperature variations.\n- **Weather Constraints**: Operate during cooler parts of the day to avoid overheating, especially between 12 PM - 4 PM.",
-  "drones": "- **Priorities**: Support communication relay setup and imaging tasks where feasible, prioritizing safety due to weather conditions.\n- **Hazards**: Avoid flying in high wind areas or regions with dust storms. Limit operations during extreme heat to prevent battery issues.\n- **Weather Constraints**: Refrain from flights in the southern sector due to developing dust storms and high winds. Schedule flights for early morning or late afternoon.",
-  "satellites": "- **Priorities**: Focus on communication relay setup and imaging tasks, leveraging their ability to operate unaffected by ground conditions.\n- **Hazards**: Monitor areas with elevated radiation levels and adjust data collection strategies accordingly.\n- **Weather Constraints**: Utilize clear visibility periods for optimal imaging. Be aware of dust storms that may affect sensor functionality."
-}
-```

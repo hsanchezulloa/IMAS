@@ -86,7 +86,7 @@ class MissionCrew():
     def reporting_priority(self) -> Task:
         return Task(
             config=self.tasks_config['reporting_priority'], 
-            output_file='report_priority.md',
+            output_file='report_priority.json',
             async_execution=True
         )
 
@@ -94,15 +94,7 @@ class MissionCrew():
     def reporting_hazard(self) -> Task:
         return Task(
             config=self.tasks_config['reporting_hazard'], 
-            output_file='report_hazard.md',
-            async_execution=True
-        )
-
-    @task
-    def reporting_weather(self) -> Task:
-        return Task(
-            config=self.tasks_config['reporting_weather'], 
-            output_file='report_weather.md',
+            output_file='report_hazard_constraints.md',
             async_execution=True
         )
 
@@ -125,7 +117,7 @@ class MissionCrew():
         """Creates the MissionCrew crew"""
         # To learn how to add knowledge sources to your crew, check out the documentation:
         # https://docs.crewai.com/concepts/knowledge#what-is-knowledge
-        return Crew(agents=[self.planner()], tasks = [self.additional_information()], process = Process.sequential, verbose=True)
+        return Crew(agents=[self.priority()], tasks = [self.reporting_priority()], process = Process.sequential, verbose=True)
         # return Crew(
         #     agents=self.agents, # Automatically created by the @agent decorator
         #     tasks=self.tasks, # Automatically created by the @task decorator
@@ -136,7 +128,7 @@ class MissionCrew():
 
 if __name__ == "__main__":
     crew = MissionCrew().crew()
-    mission_report = Path("inputs/mission_report.md").read_text(encoding="utf-8")
-    print(mission_report)
-    result = crew.kickoff(inputs = {"mission_report": mission_report})
+    extract_md = Path("extract_md.json").read_text(encoding="utf-8")
+    print(extract_md)
+    result = crew.kickoff(inputs = {"extract_md": extract_md})
     print(result)

@@ -12,14 +12,9 @@ additional_information:
 
 reporting_priority:
   description: >
-    Evaluate the mission objectives and tasks provided by the planner agent.
-    Determine the relative priority of each task based on scientific value,
-    operational urgency, and mission goals. Clearly distinguish between
-    high-, medium-, and low-priority activities.
+    Transforms a raw mission JSON loaded as an str """ {{extract_md}} """ into a structured asset-based task list. It parses scientific goals and matches them to the correct explorer (Rover, Drone, or Satellite) based on strict keyword-based classification rules and priority levels. 
   expected_output: >
-    A priority report ranking mission tasks and explaining the rationale
-    behind each priority assignment (e.g., critical sensor deployment versus
-    optional imaging tasks).
+    A JSON object categorized by asset type (rover, drone, satellite), with each category containing sub-objects for 'high', 'medium', and 'low' priority tasks. Each task must include the exact text from the original goal and its related priority description.
   agent: priority
 
 reporting_hazard:

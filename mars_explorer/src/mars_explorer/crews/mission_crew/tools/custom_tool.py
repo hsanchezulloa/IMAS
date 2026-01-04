@@ -1,9 +1,11 @@
-from typing import Type, Dict, Any
+from typing import Any, Dict, List, Type
 from crewai.tools import BaseTool
 from pydantic import BaseModel, Field
 import re
 import requests
 from bs4 import BeautifulSoup
+import re
+
 
 class PlannerDivideInput(BaseModel):
     """
@@ -34,7 +36,6 @@ class PlannerDivideTool(BaseTool):
             # Capture bullet points
             if current and line.startswith("-"):
                 priorities[current].append(line.lstrip("- ").strip())
-
         return priorities
     
     def _parse_list_section(self, text: str) -> list[str]:
@@ -104,7 +105,6 @@ class PlannerEnrichTool(BaseTool):
             extracted_info.append(text)
         structured_data["external_sources"] = extracted_info
         return structured_data
-
 
 
 

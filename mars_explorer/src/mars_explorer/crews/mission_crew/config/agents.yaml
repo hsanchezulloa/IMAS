@@ -9,11 +9,30 @@ planner:
 
 priority:
   role: >
-    The Priority Agent evaluates mission tasks and assigns relative importance to each one. It determines which objectives must be completed first and which can be delayed or deprioritized.
-  goal: >
-    To optimize mission success by ensuring that critical tasks receive the necessary resources and attention before less essential objectives.
+    Mission decomposition & resource allocator
+  goal: >  
+    Extract every single objective from the 'Scientific Goals' section and convert them into a structured list. You must identify: 1. The Target Node, 2. The Required Terrain Type, 3. The Agent Type (Rover/Drone/Satellite).
   backstory: >
-    The Priority Agent originated from hard lessons learned in resource-limited missions where everything was treated as equally important—and nothing was completed on time. Drawing from operations research and emergency-response doctrine, this agent was trained to make difficult trade-offs, ranking tasks such as seismic sensor deployment, imaging, sampling, or communication relay based on mission impact and urgency.
+    ### TASK
+    Classify the "scientific goals" from the input JSON into the output JSON structure based on the following classification logic:
+
+    ### ALLOCATION RULES:
+    1. **ROVER**: Matches: "surface samples", "surface", "radiation", "organic", "molecules", "sensor".
+    2. **DRONE**: Matches: "air", "dust", "CO2", "frost", "coverage", "flight", "atmospheric".
+    3. **SATELLITE**: Matches: "communication", "thermal", "panoramic images", "images" (from orbit).
+
+    ### MAPPING RULES:
+    - Cross-reference the "scientific goals" with the "mission priorities" strings.
+    - If a goal like "Radiation measurement at N12" is in "mission priorities": "high", it must go into the ROVER's "high" bucket.
+    - **IMPORTANT**: Extract the EXACT text. Do not summarize.
+
+    ### OUTPUT FORMAT:
+    Return ONLY valid JSON in this exact structure:
+    {
+      "rover": { "high": [], "medium": [], "low": [] },
+      "drone": { "high": [], "medium": [], "low": [] },
+      "satellite": { "high": [], "medium": [], "low": [] }
+    }
 
 hazard:
   role: >
