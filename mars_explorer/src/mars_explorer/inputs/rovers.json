@@ -2,31 +2,26 @@
   {
     "id": "rover_0",
     "location": "N30",
-    "energy": 95,
-    "speed": 1.6
+    "energy": 95
   },
   {
     "id": "rover_1",
     "location": "N84",
-    "energy": 94,
-    "speed": 2.45
+    "energy": 94
   },
   {
     "id": "rover_2",
     "location": "N84",
-    "energy": 76,
-    "speed": 2.64
+    "energy": 76
   },
   {
     "id": "rover_3",
     "location": "N30",
-    "energy": 59,
-    "speed": 2.13
+    "energy": 59
   },
   {
     "id": "rover_4",
     "location": "N84",
-    "energy": 80,
-    "speed": 1.75
+    "energy": 80
   }
 ]

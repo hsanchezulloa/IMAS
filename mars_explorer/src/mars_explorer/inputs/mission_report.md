@@ -29,7 +29,8 @@
 - **Drone's** energy consumption is increased 15% if wind is higher than 30 km/h.
 - **Satellites** must maintain communication with the base station at N30 or N84 every 5 hours. 
 - **Satellites** cannot communicate in nodes with communication loss.
-- **No agent** may operate in terrain classified as unstable or radioactive.
+- **Drones** and **Rovers** may not operate in terrain classified as radioactive.
+- **Rovers** may not operate in terrain classified as unstable.
 
 ---
 

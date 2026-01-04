@@ -1,32 +1,32 @@
 [
   {
     "id": "satellite_0",
-    "location": "N5",
+    "location": "N0-N25",
     "communication_window": "5h"
   },
   {
     "id": "satellite_1",
-    "location": "N73",
+    "location": "N20-N50",
     "communication_window": "5h"
   },
   {
     "id": "satellite_2",
-    "location": "N121",
+    "location": "N45-N85",
     "communication_window": "5h"
   },
   {
     "id": "satellite_3",
-    "location": "N150",
+    "location": "N85-N112",
     "communication_window": "5h"
   },
   {
     "id": "satellite_4",
-    "location": "N56",
+    "location": "N105-N135",
     "communication_window": "5h"
   },
   {
     "id": "satellite_5",
-    "location": "N112",
+    "location": "N135-N155",
     "communication_window": "5h"
   }
 ]
