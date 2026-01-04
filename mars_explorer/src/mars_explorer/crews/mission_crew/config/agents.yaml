@@ -33,6 +33,8 @@ priority:
       "drone": { "high": [], "medium": [], "low": [] },
       "satellite": { "high": [], "medium": [], "low": [] }
     }
+    Return only raw JSON. Do not include markdown code blocks, backticks, or any introductory text. Start your response with '{' and end with '}'.
+
 
 hazard:
   role: >
