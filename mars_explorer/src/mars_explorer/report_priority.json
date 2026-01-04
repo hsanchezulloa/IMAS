@@ -1,29 +1,12 @@
 {
   "rover": {
-    "high": [
-      "Collect subsurface samples from **rocky** terrain near nodes **N70**, **N102**, and **N152**.",
-      "Measure radiation levels in **sandy** terrain at node **N12**, **N86** and **N1**.",
-      "Deploy seismic sensors at the **rocky** node **N20**."
-    ],
-    "medium": [
-      "Detect organic molecules in **icy** terrain at **N59**."
-    ],
-    "low": []
+    "high": ["Radiation measurement at N12", "Subsurface sample collection at coordinates M09", "Deployment of seismic sensors in the region Taurus"],
+    "medium": ["Detection of organic molecules in Crater A"]
   },
   "drone": {
-    "high": [],
-    "medium": [
-      "Air **dust** sample collection during flight over **N33** crater.",
-      "Map CO2 frost coverage in **icy** areas **N53**, **N63** and **N108**."
-    ],
-    "low": []
+    "medium": ["Analysis of dust distribution patterns", "Mapping CO2 frost layers"]
   },
   "satellite": {
-    "high": [],
-    "medium": [],
-    "low": [
-      "Capture panoramic images of **crater** terrain at nodes **N5**, **N73**, **N121** and **N150**.",
-      "Identification of thermal anomalies at **icy** nodes **N56** and **N112**."
-    ]
+    "low": ["Panoramic imaging of landing site", "Thermal anomaly monitoring"]
   }
 }

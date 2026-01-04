@@ -1,0 +1,45 @@
+{
+  "rovers": {
+    "priority": {
+      "high": ["Radiation measurement at N12", "Subsurface sample collection at coordinates M09", "Deployment of seismic sensors in the region Taurus"],
+      "medium": ["Detection of organic molecules in Crater A"],
+      "low": []
+    },
+    "operational constraints": [
+      "Rovers may not operate in terrain classified as unstable",
+      "Rover communication protocols must be followed during dust storms",
+      "Rovers require regular software updates to ensure functionality"
+    ],
+    "hazards": {
+      "Rovers may not operate in terrain classified as unstable": ["N4"]
+    }
+  },
+  "drones": {
+    "priority": {
+      "high": [],
+      "medium": ["Analysis of dust distribution patterns", "Mapping CO2 frost layers"],
+      "low": []
+    },
+    "operational constraints": [
+      "Drones must maintain communication protocols during dust storms",
+      "Drone battery life is limited by energy management systems",
+      "Drones require clear airspace for navigation"
+    ],
+    "hazards": {
+      "Drones must maintain communication protocols during dust storms": ["N6"]
+    }
+  },
+  "satellites": {
+    "priority": {
+      "high": [],
+      "medium": [],
+      "low": ["Panoramic imaging of landing site", "Thermal anomaly monitoring"]
+    },
+    "operational constraints": [
+      "Satellites must adhere to data transmission frequencies",
+      "Satellite operations are affected by radiation exposure limits",
+      "Satellite power conservation measures are critical"
+    ],
+    "hazards": {}
+  }
+}

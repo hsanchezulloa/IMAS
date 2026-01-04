@@ -1,0 +1,30 @@
+{
+  "rover": {
+    "operational constraints": [
+      "Rovers may not operate in terrain classified as unstable",
+      "Rover communication protocols must be followed during dust storms",
+      "Rovers require regular software updates to ensure functionality"
+    ],
+    "hazards": {
+      "Rovers may not operate in terrain classified as unstable": ["N4"]
+    }
+  },
+  "drone": {
+    "operational constraints": [
+      "Drones must maintain communication protocols during dust storms",
+      "Drone battery life is limited by energy management systems",
+      "Drones require clear airspace for navigation"
+    ],
+    "hazards": {
+      "Drones must maintain communication protocols during dust storms": ["N6"]
+    }
+  },
+  "satellite": {
+    "operational constraints": [
+      "Satellites must adhere to data transmission frequencies",
+      "Satellite operations are affected by radiation exposure limits",
+      "Satellite power conservation measures are critical"
+    ],
+    "hazards": {}
+  }
+}

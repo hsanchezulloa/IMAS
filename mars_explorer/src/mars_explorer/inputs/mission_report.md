@@ -24,12 +24,12 @@
 - **Rover's** speed is reduced by 10% in rocky, 30% in sandy, 50% in icy and 40% in crater terrains. 
 - **Rover's** energy consumption is different depending on the type of terrain: 5% in rocky, increased 10% in sandy, increased 20% in icy and increased 15% in crater terrains.
 - **Drones** must return to base after 25 minutes of flight.
-- **Drones** are disabled if there is a storm.
+- **Drones** are disabled if there is a dust storm.
 - **Drones** cannot operate if wind gusts are higher than 40 km/h.
 - **Drone's** energy consumption is increased 15% if wind is higher than 30 km/h.
 - **Satellites** must maintain communication with the base station at N30 or N84 every 5 hours. 
 - **Satellites** cannot communicate in nodes with communication loss.
-- **Drones** and **Rovers** may not operate in terrain classified as radioactive.
+- **Rovers** may not operate in terrain classified as radioactive.
 - **Rovers** may not operate in terrain classified as unstable.
 
 ---
@@ -55,7 +55,7 @@
 ## Known Hazards
 
 - **Nodes N4, N19, N128**: unstable rocky terrain  
-- **Nodes N51, N78, N118**: high radiation zone  
+- **Nodes N51, N78, N118**: nodes classified as radioactive 
 - **Node N33**: frequent dust storms
 
 ---

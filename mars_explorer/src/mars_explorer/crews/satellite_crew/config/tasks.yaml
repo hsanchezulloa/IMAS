@@ -1,26 +1,39 @@
-orbit_planning_task:
+task_communication_loss_extractor:
   description: >
-    Using all available mission data, compute the optimal orbital trajectories for
-    satellite coverage, communication windows, and data-relay efficiency.
-    Consider constraints such as line-of-sight visibility, energy usage, orbital
-    mechanics, ground station accessibility, and required imaging targets.
-    The orbit plan must be suitable for execution and clear enough for downstream
-    agents to use in satellite-level planning.
+    Your ONLY job is to take the entire GRAPHML path  """ {{graph_path}} """
+    and pass it UNCHANGED to the 'CommunicationLossTool' tool in the 'args_schema' argument.
+    
+    Do NOT try to extract nodes or terrains yourself. 
+    Do NOT summarize. 
+    Pass the entire GRAPHML path exactly as it is: """ {{graph_path}} """
   expected_output: >
-    A detailed orbital plan including:
-      - recommended orbital paths and maneuvers
-      - coverage analysis for required targets
-      - communication window predictions
-  agent: orbit_planner
+    A list of specific node IDs with communication loss.
+  agent: communication_loss_extractor
 
-satellite_planning_task:
+task_extractor:
   description: >
-    Based on the orbital plan and mission data, compute the detailed operational
-    plan for each satellite. Include thermal scanning schedules, panoramic imaging
-    sequences, communication operations, and any required calibrations or safety
-    considerations.
+    Based on the information inside the input file """ {{report_priority}} """, identify in which nodes rovers need to perform their tasks.
   expected_output: >
-    A complete satellite mission plan including:
-      - task timelines for each satellite
-      - imaging and scanning operations
-  agent: satellite_planner
+    A Python list containing all the node IDs where rovers need to perform their tasks.
+  agent: extractor
+
+task_planner:
+  description: >
+    TODO
+  expected_output: >
+    TODO
+  agent: planner
+
+task_image_capture:
+  description: >
+    TODO
+  expected_output: >
+    TODO
+  agent: image_capture
+
+task_thermal_scan:
+  description: >
+    TODO
+  expected_output: >
+    TODO
+  agent: thermal_scan

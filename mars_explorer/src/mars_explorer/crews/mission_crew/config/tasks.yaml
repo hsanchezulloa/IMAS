@@ -12,52 +12,39 @@ additional_information:
 
 reporting_priority:
   description: >
-    Transforms a raw mission JSON loaded as an str """ {{extract_md}} """ into a structured asset-based task list. It parses scientific goals and matches them to the correct explorer (Rover, Drone, or Satellite) based on strict keyword-based classification rules and priority levels. 
+    Transforms a raw mission JSON loaded as an str """ {{context.additional_information}} """ into a structured asset-based task list. It parses scientific goals and matches them to the correct explorer (Rover, Drone, or Satellite) based on strict keyword-based classification rules and priority levels. 
   expected_output: >
     A JSON object categorized by asset type (rover, drone, satellite), with each category containing sub-objects for 'high', 'medium', and 'low' priority tasks. Each task must include the exact text from the original goal and its related priority description.
   agent: priority
 
 reporting_hazard:
   description: >
-    Identify environmental hazards and operational constraints affecting the mission,
-    including terrain instability, radiation exposure, extreme temperatures,
-    and weather-related risks provided by the weather agent. Consolidate all
-    identified hazards into a coherent risk assessment.
+    Task Description:
+      1. Extract: Isolate the operational constraints from the provided input """ {{context.additional_information}} """.
+      2. Classify: Categorize each constraint into rovers, drones, or satellites. If a constraint applies to multiple (e.g., "Drones and Rovers..."), include it in both.
+      3. Hazard Mapping: For each constraint, check the known hazards list. If a hazard (like "unstable rocky terrain") directly triggers or relates to a constraint (like "Rovers may not operate in terrain classified as unstable"), you must map the specific Nodes from the hazard list to that constraint. Moreover, remove the constraint if it maps to a hazard.
+    Format: Output the final result as a valid JSON object following the provided structure.
   expected_output: >
-    A hazard report describing dangerous zones, forbidden nodes, and operational
-    constraints that must be respected by all crews to ensure mission safety.
+    A single JSON object with the following keys: rovers, drones, and satellites. Each category must contain:
+    - operational constraints: A list of strings.
+    - hazards: An object where the key is the full text of the operational constraint and the value is a list of node IDs (e.g., ["N4", "N19", "N128"]) affected by that specific hazard.
   agent: hazard
-
-reporting_weather:
-  description: >
-    Analyze the weather and environmental conditions relevant to the mission area,
-    including wind intensity, dust storms, temperature extremes, and visibility.
-    Identify conditions that may affect mission operations, especially aerial
-    activities such as drone flights. Communicate any weather-related constraints
-    to the hazard agent.
-  expected_output: >
-    A weather report detailing current and potential environmental conditions,
-    specifying which areas or operations should be avoided or limited due to
-    weather risks.
-  agent: weather
 
 
 reporting_aggregation:
   description: >
-    Combine the reports produced by the priority, hazard, and weather agents into
-    a unified mission context. Filter and tailor the information so that each
-    specialized crew (rovers, drones, satellites) receives only the data relevant
-    to its capabilities and responsibilities.
-    You MUST return ONLY valid JSON.
-    Do NOT include markdown code fences.
-    Do NOT include explanations or extra text.
-
-    The JSON object MUST have EXACTLY these keys:
-    - rovers
-    - drones
-    - satellites
-    Each value MUST be a string containing a markdown-formatted briefing tailored
-    to that crew (priorities, hazards, constraints).
+    Task Description:
+      1. Fetch Data: Retrieve the scientific priorities from """ {{context.reporting_priority}} """ and the hazard mappings from """ {{context.reporting_hazard}} """.
+      2. Align Assets: Match the "rover", "drone", and "satellite" data from both sources.
+      3. Nest Priorities: Place the high, medium, and low priority scientific goals inside a new "priority" key for each asset.
+      4. Append Constraints: Add the "operational constraints" and the mapped "hazards" directly under the asset level.
+    Format: Output the final result as a valid, deeply nested JSON object.
+  expected_output: >
+    A single JSON object with top-level keys for rovers, drones, and satellites. 
+    Each asset must have:
+    - priority: { high: [], medium: [], low: [] }
+    - operational constraints: []
+    - hazards: {}
   agent: aggregator
 
 

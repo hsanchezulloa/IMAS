@@ -25,17 +25,41 @@ class SatelliteCrew():
     # If you would like to add tools to your agents, you can learn more about it here:
     # https://docs.crewai.com/concepts/agents#agent-tools
     @agent
-    def orbit_planner(self) -> Agent:
+    def communication_loss_extractor(self) -> Agent:
         return Agent(
-            config=self.agents_config['orbit_planner'], # type: ignore[index]
+            config=self.agents_config['communication_loss_extractor'],
             verbose=True,
             llm = ollama_llm
         )
 
     @agent
-    def satellite_planner(self) -> Agent:
+    def extractor(self) -> Agent:
         return Agent(
-            config=self.agents_config['satellite_planner'], # type: ignore[index]
+            config=self.agents_config['extractor'],
+            verbose=True,
+            llm = ollama_llm
+        )
+    
+    @agent
+    def planner(self) -> Agent:
+        return Agent(
+            config=self.agents_config['planner'],
+            verbose=True,
+            llm = ollama_llm
+        )
+    
+    @agent
+    def image_capture(self) -> Agent:
+        return Agent(
+            config=self.agents_config['image_capture'],
+            verbose=True,
+            llm = ollama_llm
+        )
+    
+    @agent
+    def thermal_scan(self) -> Agent:
+        return Agent(
+            config=self.agents_config['thermal_scan'],
             verbose=True,
             llm = ollama_llm
         )
@@ -44,24 +68,51 @@ class SatelliteCrew():
     # task dependencies, and task callbacks, check out the documentation:
     # https://docs.crewai.com/concepts/tasks#overview-of-a-task
     @task
-    def orbit_planning_task(self) -> Task:
+    def task_communication_loss_extractor(self) -> Task:
         return Task(
-            config=self.tasks_config['orbit_planning_task'] # type: ignore[index]
-        )
-
-    @task
-    def satellite_planning_task(self) -> Task:
-        return Task(
-            config=self.tasks_config['satellite_planning_task'], # type: ignore[index]
+            config=self.tasks_config['task_communication_loss_extractor'], 
             async_execution=True
         )
-
+    
+    @task
+    def task_extractor(self) -> Task:
+        return Task(
+            config=self.tasks_config['task_extractor'], 
+            async_execution=True
+        )
+    
+    @task
+    def task_image_capture(self) -> Task:
+        return Task(
+            config=self.tasks_config['task_image_capture'], 
+            output_file='image_capture_satellite.md',
+            async_execution=True
+        )
+    
+    @task
+    def task_thermal_scan(self) -> Task:
+        return Task(
+            config=self.tasks_config['task_thermal_scan'], 
+            output_file='thermal_scan_satellite.md',
+            async_execution=True
+        )
+    
+    @task
+    def task_planner(self) -> Task:
+        return Task(
+            config=self.tasks_config['task_planner'], 
+            # context = [],
+            output_file='satellite_route.json'
+        )
+    
+    
+    
     @crew
     def crew(self) -> Crew:
         """Creates the Satellites crew"""
         # To learn how to add knowledge sources to your crew, check out the documentation:
         # https://docs.crewai.com/concepts/knowledge#what-is-knowledge
-
+        # return Crew(agents=[self.aggregator()], tasks = [self.reporting_aggregation()], process = Process.sequential, verbose=True)
         return Crew(
             agents=self.agents, # Automatically created by the @agent decorator
             tasks=self.tasks, # Automatically created by the @task decorator

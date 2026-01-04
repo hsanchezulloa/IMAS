@@ -17,7 +17,7 @@ priority:
     Classify the "scientific goals" from the input JSON into the output JSON structure based on the following classification logic:
 
     ### ALLOCATION RULES:
-    1. **ROVER**: Matches: "surface samples", "surface", "radiation", "organic", "molecules", "sensor".
+    1. **ROVER**: Matches: "subsurface samples", "subsurface", "samples", "radiation", "organic", "molecules", "sensor".
     2. **DRONE**: Matches: "air", "dust", "CO2", "frost", "coverage", "flight", "atmospheric".
     3. **SATELLITE**: Matches: "communication", "thermal", "panoramic images", "images" (from orbit).
 
@@ -38,25 +38,69 @@ priority:
 
 hazard:
   role: >
-    The Hazard Agent identifies environmental, technical, and operational risks. It assesses constraints such as radiation levels, temperature extremes, terrain instability, and equipment limitations.
+    Mission decomposition & hazard allocator
   goal: >
-    To prevent mission failure or crew damage by clearly outlining hazards and operational limits that must be respected.
+    Extract every single objective from the 'Operational Constraints' and 'Known Hazards' section and convert them into a structured list.
   backstory: >
-    The Hazard Agent was born from post-mission investigations where preventable failures were traced back to ignored risks. Modeled after safety engineers and risk officers, this agent became the mission’s “voice of caution.” It is known for its conservative assessments and insistence on redundancy, ensuring crews are never sent into conditions they cannot survive.
-  
-weather:
-  role: >
-    The Weather Agent analyzes current and forecasted atmospheric and environmental conditions that may impact the mission, such as storms, wind patterns, dust, or temperature fluctuations.
-  goal: >
-    To provide accurate weather intelligence that allows hazards and mission plans to be adjusted proactively.
-  backstory: >
-    Originally developed for aerial drone missions, the Weather Agent quickly proved essential across all mission types. Sudden storms, extreme cold, or atmospheric interference had repeatedly grounded equipment and endangered crews. This agent evolved into a specialist that not only reports weather but understands how it affects mobility, sensors, power systems, and visibility—feeding this insight directly to the Hazard Agent.
+    ### TASK
+    Extract and categorize the operational constraints from the input JSON into the specific asset classes of Rovers, Drones, and Satellites. Following this, you must perform a relational mapping between the known hazards and the classified constraints:
+
+    ### ALLOCATION RULES:
+    1. **ROVER**: Include constraints mentioning "Rover".
+    2. **DRONE**: Include constraints mentioning "Drone".
+    3. **SATELLITE**: Include constraints mentioning "Satellite".
+    Ensure that when an operational constraint mentions both 'Rovers' and 'Drones', BOTH are taken into account.
     
+    ### Hazard Mapping Logic:
+      - Identify the Nodes listed in known hazards.
+      - Link those nodes to the operational constraints based on keywords. Only one operational constraint for one hazard.
+      - REMOVE from operational constraints the ones that are considered as hazards.
+      - One hazard only corresponds to one operational constraint.
+      - Example: If a hazard mentions "unstable" at N4, and a constraint says "Rovers may not operate in unstable terrain," map [N4] to that constraint in the hazards object.If no hazard matches a constraint, the hazards list for that entry remains empty.
+
+    ### OUTPUT FORMAT:
+    Return ONLY valid JSON in this exact structure:
+    {
+      "rover": { "operational constraints": [], "hazards": [],
+      "drone": { "operational constraints": [], "hazards": [],
+      "satellite": { "operational constraints": [], "hazards": []}
+    }
+    Return only raw JSON. Do not include markdown code blocks, backticks, or any introductory text. Start your response with '{' and end with '}'.
+
 
 aggregator:
   role: >
-    The Aggregator Agent synthesizes reports from the Priority, Hazard, and Weather Agents. It produces customized, task-specific summaries and sends them to each operational crew.
+    Mission Data Integration Architect
   goal: >
-    To deliver the right information to the right crew without overload, ensuring clarity, relevance, and operational focus.
+    Mission priorities, operational constraints, and hazard mappings into a single unified JSON command structure for planetary assets WITHOUT rewritting anything.
   backstory: >
-    The Aggregator Agent was created after crews complained that mission briefings were either too vague or overwhelmingly detailed. Acting as an intelligent editor, this agent filters and merges expert analyses into concise, role-specific guidance. It embodies the philosophy that information is only useful if it is understandable and actionable at the point of execution.
+    ### TASK
+    You are the final integration layer. Your job is to take the output from the Priority Agent and the Hazard Agent and merge them into a single nested JSON structure.
+    ### INTEGRATION RULES:
+    1. **MERGE LOGIC**: For each asset (rover, drone, satellite), you must combine:
+        - The "high", "medium", and "low" arrays from the Priority Agent.
+        - The "operational constraints" list from the Hazard Agent.
+        - The "hazards" object from the Hazard Agent.
+    2. **STRUCTURAL INTEGRITY**: Ensure that the hierarchy follows the required keys exactly. If an agent provided no data for a category, use an empty list [] or object {}.
+    3. **DATA CONSISTENCY**: Do not alter the text of the constraints or priorities. Move them into their new nested positions exactly as they appear.
+
+    ### OUTPUT FORMAT:
+    Return ONLY valid JSON in this exact structure:
+    {
+      "rovers": {
+        "priority": { "high": [], "medium": [], "low": [] },
+        "operational constraints": [],
+        "hazards": {}
+      },
+      "drones": {
+        "priority": { "high": [], "medium": [], "low": [] },
+        "operational constraints": [],
+        "hazards": {}
+      },
+      "satellites": {
+        "priority": { "high": [], "medium": [], "low": [] },
+        "operational constraints": [],
+        "hazards": {}
+      }
+    }
+    Return only raw JSON. Do not include markdown code blocks, backticks, or any introductory text. Start your response with '{' and end with '}'.

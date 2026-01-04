@@ -57,14 +57,6 @@ class MissionCrew():
         )
 
     @agent
-    def weather(self) -> Agent:
-        return Agent(
-            config=self.agents_config['weather'], 
-            verbose=True,
-            llm=ollama_llm
-        )
-
-    @agent
     def aggregator(self) -> Agent:
         return Agent(
             config=self.agents_config['aggregator'], 
@@ -87,6 +79,7 @@ class MissionCrew():
         return Task(
             config=self.tasks_config['reporting_priority'], 
             output_file='report_priority.json',
+            context=[self.additional_information()],
             async_execution=True
         )
 
@@ -94,14 +87,16 @@ class MissionCrew():
     def reporting_hazard(self) -> Task:
         return Task(
             config=self.tasks_config['reporting_hazard'], 
-            output_file='report_hazard_constraints.md',
+            output_file='report_hazard_constraints.json',
+            context=[self.additional_information()],
             async_execution=True
         )
 
     @task
     def reporting_aggregation(self) -> Task:
         return Task(
-            config=self.tasks_config['reporting_aggregation'], 
+            config=self.tasks_config['reporting_aggregation'],
+            context=[self.reporting_priority(), self.reporting_hazard()], 
             expected_output="""
             A JSON object with the following keys:
             - rovers
@@ -109,7 +104,7 @@ class MissionCrew():
             - satellites
             Each value must be a string.
             """,
-            output_file='reporting_aggregation.md'
+            output_file='reporting_aggregation.json'
         )
     
     @crew
@@ -117,18 +112,16 @@ class MissionCrew():
         """Creates the MissionCrew crew"""
         # To learn how to add knowledge sources to your crew, check out the documentation:
         # https://docs.crewai.com/concepts/knowledge#what-is-knowledge
-        return Crew(agents=[self.priority()], tasks = [self.reporting_priority()], process = Process.sequential, verbose=True)
-        # return Crew(
-        #     agents=self.agents, # Automatically created by the @agent decorator
-        #     tasks=self.tasks, # Automatically created by the @task decorator
-        #     process=Process.sequential,
-        #     verbose=True,
-        #     # process=Process.hierarchical, # In case you wanna use that instead https://docs.crewai.com/how-to/Hierarchical/
-        # )
+        # return Crew(agents=[self.aggregator()], tasks = [self.reporting_aggregation()], process = Process.sequential, verbose=True)
+        return Crew(
+            agents=self.agents, # Automatically created by the @agent decorator
+            tasks=self.tasks, # Automatically created by the @task decorator
+            process=Process.sequential,
+            verbose=True,
+            # process=Process.hierarchical, # In case you wanna use that instead https://docs.crewai.com/how-to/Hierarchical/
+        )
 
 if __name__ == "__main__":
     crew = MissionCrew().crew()
-    extract_md = Path("extract_md.json").read_text(encoding="utf-8")
-    print(extract_md)
-    result = crew.kickoff(inputs = {"extract_md": extract_md})
-    print(result)
+    mission_report = Path("inputs/mission_report.md").read_text(encoding="utf-8")
+    result = crew.kickoff(inputs = {"mission_report": mission_report})
