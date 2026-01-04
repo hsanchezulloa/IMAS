@@ -30,7 +30,7 @@ class CommunicationLossTool(BaseTool):
             
             if not lost_comm_nodes:
                 return "Analysis complete: No nodes with communication loss detected."
-            
+            print('LOST COMM NODES', lost_comm_nodes)
             return f"Nodes with Communication Loss: {', '.join(lost_comm_nodes)}"
         
         except Exception as e:

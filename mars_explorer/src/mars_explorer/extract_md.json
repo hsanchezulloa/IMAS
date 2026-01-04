@@ -1,12 +1,46 @@
-The structured Mars mission report includes:
-
-- **Scientific Goals**: A list of eight objectives detailing sample collection, imaging, radiation measurement, seismic sensor deployment, and analysis of environmental features.
-
-- **Operational Constraints**: A comprehensive set of 14 guidelines covering rover and drone operations, energy management, satellite communication protocols, and terrain restrictions.
-
-- **Mission Priorities**: Categorized into High, Medium, and Low priorities:
-  - **High Priority**: Includes critical tasks like radiation measurement, subsurface sample collection, and seismic sensor deployment.
-  - **Medium Priority**: Focuses on air sample collection, organic molecule detection, and CO2 frost mapping.
-  - **Low Priority**: Encompasses panoramic imaging and thermal anomaly monitoring.
-
-- **Known Hazards**: Highlights three significant risks: unstable rocky terrain at specific nodes, radioactive contamination, and frequent dust storms affecting operations.
+{
+  "Scientific Goals": [
+    "Collect subsurface samples from rocky terrain near nodes N70, N102, and N152.",
+    "Capture panoramic images of crater terrain at nodes N5, N58, N121, and N150.",
+    "Measure radiation levels in sandy terrain at node N12, N86, and N1.",
+    "Deploy seismic sensors at the rocky node N20.",
+    "Detect organic molecules in icy terrain at N59.",
+    "Air dust sample collection during flight over N33 crater.",
+    "Map CO2 frost coverage in icy areas N53, N63, and N108.",
+    "Identification of thermal anomalies at icy nodes N56 and N112."
+  ],
+  "Operational Constraints": [
+    "Rovers and drones must recharge if energy drops below 30%.",
+    "Rovers must enter a heat shelter during 20 minutes if surface temperature is below -60°C.",
+    "Rovers cannot operate if node temperature is below -80°C.",
+    "Rover's speed is reduced by 10% in rocky, 30% in sandy, 50% in icy, and 40% in crater terrains.",
+    "Rover's energy consumption varies: 5% in rocky, increased 10% in sandy, increased 20% in icy, and increased 15% in crater terrains.",
+    "Drones must return to base after 25 minutes of flight.",
+    "Drones are disabled if there is a dust storm.",
+    "Drones cannot operate if wind gusts exceed 40 km/h.",
+    "Satellites must maintain communication with the base station at N30 or N84 every 5 hours if they have to identify thermal anomalies.",
+    "Satellites cannot communicate in nodes with communication loss.",
+    "Rovers may not operate in radioactive or unstable rocky terrain."
+  ],
+  "Mission Priorities": {
+    "High Priority": [
+      "Radiation measurement at N12, N86, and N1.",
+      "Subsurface sample collection at N70, N102, and N152.",
+      "Deploy seismic sensors at node N20."
+    ],
+    "Medium Priority": [
+      "Air sample collection at N33.",
+      "Organic sample collection at N59.",
+      "Co2 analysis at N53, N63, and N108."
+    ],
+    "Low Priority": [
+      "Panoramic imaging at N5, N58, N121, and N150.",
+      "Thermal anomalies at nodes N56 and N112."
+    ]
+  },
+  "Known Hazards": [
+    "Nodes N4, N19, N128: unstable rocky terrain.",
+    "Nodes N51, N78, N118: radioactive classification.",
+    "Node N33: frequent dust storms."
+  ]
+}

@@ -2,6 +2,10 @@ from crewai import Agent, Crew, Process, Task, LLM
 from crewai.project import CrewBase, agent, crew, task
 from crewai.agents.agent_builder.base_agent import BaseAgent
 from typing import List
+from pathlib import Path
+from crews.satellite_crew.tools.custom_tool import (
+    CommunicationLossTool,
+)
 # If you want to run a snippet of code before or after the crew starts,
 # you can use the @before_kickoff and @after_kickoff decorators
 # https://docs.crewai.com/concepts/crews#example-crew-class-with-decorators
@@ -29,7 +33,8 @@ class SatelliteCrew():
         return Agent(
             config=self.agents_config['communication_loss_extractor'],
             verbose=True,
-            llm = ollama_llm
+            llm = ollama_llm,
+            tools = [CommunicationLossTool()]
         )
 
     @agent
@@ -52,14 +57,6 @@ class SatelliteCrew():
     def image_capture(self) -> Agent:
         return Agent(
             config=self.agents_config['image_capture'],
-            verbose=True,
-            llm = ollama_llm
-        )
-    
-    @agent
-    def thermal_scan(self) -> Agent:
-        return Agent(
-            config=self.agents_config['thermal_scan'],
             verbose=True,
             llm = ollama_llm
         )
@@ -90,29 +87,19 @@ class SatelliteCrew():
         )
     
     @task
-    def task_thermal_scan(self) -> Task:
-        return Task(
-            config=self.tasks_config['task_thermal_scan'], 
-            output_file='thermal_scan_satellite.md',
-            async_execution=True
-        )
-    
-    @task
     def task_planner(self) -> Task:
         return Task(
             config=self.tasks_config['task_planner'], 
-            # context = [],
+            context=[self.task_communication_loss_extractor(), self.task_extractor()],
             output_file='satellite_route.json'
         )
-    
-    
     
     @crew
     def crew(self) -> Crew:
         """Creates the Satellites crew"""
         # To learn how to add knowledge sources to your crew, check out the documentation:
         # https://docs.crewai.com/concepts/knowledge#what-is-knowledge
-        # return Crew(agents=[self.aggregator()], tasks = [self.reporting_aggregation()], process = Process.sequential, verbose=True)
+        # return Crew(agents=[self.planner()], tasks = [self.task_planner()], process = Process.sequential, verbose=True)
         return Crew(
             agents=self.agents, # Automatically created by the @agent decorator
             tasks=self.tasks, # Automatically created by the @task decorator
@@ -120,3 +107,14 @@ class SatelliteCrew():
             verbose=True,
             # process=Process.hierarchical, # In case you wanna use that instead https://docs.crewai.com/how-to/Hierarchical/
         )
+
+if __name__ == "__main__":
+    crew = SatelliteCrew().crew()
+    
+    # report_priority = "inputs/mars_terrain_graph.graphml"
+    graph_path = Path("inputs/mars_terrain_graph.graphml").read_text(encoding="utf-8")
+    report_priority = Path("report_priority.json").read_text(encoding="utf-8")
+    report_hazard_constraints = Path("report_hazard_constraints.json").read_text(encoding="utf-8")
+    satellite_json = Path("inputs/satellites.json").read_text(encoding="utf-8")
+    result = crew.kickoff(inputs = {'graph_path': graph_path, 'report_priority': report_priority, 'report_hazard_constraints': report_hazard_constraints, 'satellite_json': satellite_json})
+

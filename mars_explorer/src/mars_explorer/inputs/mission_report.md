@@ -6,7 +6,7 @@
 ## Scientific Goals
 
 - Collect subsurface samples from **rocky** terrain near nodes **N70**, **N102**, and **N152**. 
-- Capture panoramic images of **crater** terrain at nodes **N5**, **N73**, **N121** and **N150**. 
+- Capture panoramic images of **crater** terrain at nodes **N5**, **N58**, **N121** and **N150**. 
 - Measure radiation levels in **sandy** terrain at node **N12**, **N86** and **N1**. 
 - Deploy seismic sensors at the **rocky** node **N20**. 
 - Detect organic molecules in **icy** terrain at **N59**. 
@@ -27,7 +27,7 @@
 - **Drones** are disabled if there is a dust storm.
 - **Drones** cannot operate if wind gusts are higher than 40 km/h.
 - **Drone's** energy consumption is increased 15% if wind is higher than 30 km/h.
-- **Satellites** must maintain communication with the base station at N30 or N84 every 5 hours. 
+- **Satellites** must maintain communication with the base station at N30 or N84 every 5 hours if they have to identify thermal anomalies. 
 - **Satellites** cannot communicate in nodes with communication loss.
 - **Rovers** may not operate in terrain classified as radioactive.
 - **Rovers** may not operate in terrain classified as unstable.
@@ -47,7 +47,7 @@
    - Co2 analysis **N53**, **N63** and **N108**.
 
 3. **Low Priority**  
-   - Panoramic imaging at **N5**, **N73**, **N121** and **N150**.
+   - Panoramic imaging at **N5**, **N58**, **N121** and **N150**.
    - Thermal anomalies at nodes **N56** and **N112**.
 
 ---

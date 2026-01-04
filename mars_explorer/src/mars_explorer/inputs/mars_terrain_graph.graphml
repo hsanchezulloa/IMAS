@@ -21,7 +21,7 @@
 
 <!-- Sandy Region 1 -->
 <node id="N6"><data key="d0">sandy</data><data key="d2">false</data><data key="d3">false</data><data key="d4">false</data><data key="d5">false</data><data key="d6">false</data><data key="d7">21</data><data key="d8">-12</data></node>
-<node id="N7"><data key="d0">crater</data><data key="d2">false</data><data key="d3">false</data><data key="d4">false</data><data key="d5">false</data><data key="d6">false</data><data key="d7">25</data><data key="d8">-13</data></node>
+<node id="N7"><data key="d0">crater</data><data key="d2">false</data><data key="d3">true</data><data key="d4">false</data><data key="d5">false</data><data key="d6">false</data><data key="d7">25</data><data key="d8">-13</data></node>
 <node id="N8"><data key="d0">sandy</data><data key="d2">false</data><data key="d3">false</data><data key="d4">false</data><data key="d5">false</data><data key="d6">false</data><data key="d7">45</data><data key="d8">-15</data></node>
 <node id="N9"><data key="d0">sandy</data><data key="d2">false</data><data key="d3">false</data><data key="d4">false</data><data key="d5">false</data><data key="d6">false</data><data key="d7">29</data><data key="d8">1</data></node>
 <node id="N10"><data key="d0">sandy</data><data key="d2">false</data><data key="d3">false</data><data key="d4">false</data><data key="d5">false</data><data key="d6">false</data><data key="d7">32</data><data key="d8">4</data></node>
@@ -108,7 +108,7 @@
 <node id="N77"><data key="d0">plain</data><data key="d2">false</data><data key="d3">false</data><data key="d4">false</data><data key="d5">false</data><data key="d6">false</data><data key="d7">23</data><data key="d8">8</data></node>
 
 <!-- Plain Region 2 -->
-<node id="N78"><data key="d0">crater</data><data key="d2">false</data><data key="d3">false</data><data key="d4">true</data><data key="d5">false</data><data key="d6">false</data><data key="d7">28</data><data key="d8">9</data></node>
+<node id="N78"><data key="d0">crater</data><data key="d2">false</data><data key="d3">true</data><data key="d4">true</data><data key="d5">false</data><data key="d6">false</data><data key="d7">28</data><data key="d8">9</data></node>
 <node id="N79"><data key="d0">plain</data><data key="d2">false</data><data key="d3">false</data><data key="d4">false</data><data key="d5">false</data><data key="d6">false</data><data key="d7">29</data><data key="d8">8</data></node>
 <node id="N80"><data key="d0">crater</data><data key="d2">false</data><data key="d3">false</data><data key="d4">false</data><data key="d5">false</data><data key="d6">false</data><data key="d7">27</data><data key="d8">20</data></node>
 <node id="N81"><data key="d0">plain</data><data key="d2">false</data><data key="d3">false</data><data key="d4">false</data><data key="d5">false</data><data key="d6">false</data><data key="d7">25</data><data key="d8">14</data></node>
@@ -197,10 +197,10 @@
 
 <!-- Isolated Nodes -->
 <node id="N150"><data key="d0">crater</data><data key="d2">false</data><data key="d3">true</data><data key="d4">false</data><data key="d5">false</data><data key="d6">false</data><data key="d7">29</data><data key="d8">-50.5</data></node>
-<node id="N151"><data key="d0">icy</data><data key="d2">false</data><data key="d3">true</data><data key="d4">false</data><data key="d5">false</data><data key="d6">false</data><data key="d7">28</data><data key="d8">-53.5</data></node>
-<node id="N152"><data key="d0">rocky</data><data key="d2">false</data><data key="d3">true</data><data key="d4">false</data><data key="d5">false</data><data key="d6">false</data><data key="d7">27</data><data key="d8">-52.5</data></node>
-<node id="N153"><data key="d0">sandy</data><data key="d2">false</data><data key="d3">true</data><data key="d4">false</data><data key="d5">false</data><data key="d6">false</data><data key="d7">28</data><data key="d8">-54.5</data></node>
-<node id="N154"><data key="d0">plain</data><data key="d2">false</data><data key="d3">true</data><data key="d4">false</data><data key="d5">false</data><data key="d6">false</data><data key="d7">28</data><data key="d8">-55</data></node>
+<node id="N151"><data key="d0">icy</data><data key="d2">false</data><data key="d3">false</data><data key="d4">false</data><data key="d5">false</data><data key="d6">false</data><data key="d7">28</data><data key="d8">-53.5</data></node>
+<node id="N152"><data key="d0">rocky</data><data key="d2">false</data><data key="d3">false</data><data key="d4">false</data><data key="d5">false</data><data key="d6">false</data><data key="d7">27</data><data key="d8">-52.5</data></node>
+<node id="N153"><data key="d0">sandy</data><data key="d2">false</data><data key="d3">false</data><data key="d4">false</data><data key="d5">false</data><data key="d6">false</data><data key="d7">28</data><data key="d8">-54.5</data></node>
+<node id="N154"><data key="d0">plain</data><data key="d2">false</data><data key="d3">false</data><data key="d4">false</data><data key="d5">false</data><data key="d6">false</data><data key="d7">28</data><data key="d8">-55</data></node>
 
 
 <edge source="N0" target="N1"><data key="d1">1.5</data></edge>

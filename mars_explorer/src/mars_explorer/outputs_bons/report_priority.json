@@ -1,20 +1,20 @@
 {
   "rover": {
     "high": [
-      "Collect subsurface samples from **rocky** terrain near nodes **N70**, **N102**, and **N152**.",
-      "Measure radiation levels in **sandy** terrain at node **N12**, **N86** and **N1**.",
-      "Deploy seismic sensors at the **rocky** node **N20**."
+      "Collect subsurface samples from rocky terrain near nodes N70, N102, and N152.",
+      "Measure radiation levels in sandy terrain at node N12, N86, and N1.",
+      "Deploy seismic sensors at the rocky node N20."
     ],
     "medium": [
-      "Detect organic molecules in **icy** terrain at **N59**."
+      "Detect organic molecules in icy terrain at N59."
     ],
     "low": []
   },
   "drone": {
     "high": [],
     "medium": [
-      "Air **dust** sample collection during flight over **N33** crater.",
-      "Map CO2 frost coverage in **icy** areas **N53**, **N63** and **N108**."
+      "Air dust sample collection during flight over N33 crater.",
+      "Map CO2 frost coverage in icy areas N53, N63, and N108."
     ],
     "low": []
   },
@@ -22,8 +22,8 @@
     "high": [],
     "medium": [],
     "low": [
-      "Capture panoramic images of **crater** terrain at nodes **N5**, **N73**, **N121** and **N150**.",
-      "Identification of thermal anomalies at **icy** nodes **N56** and **N112**."
+      "Capture panoramic images of crater terrain at nodes N5, N58, N121, N150.",
+      "Identification of thermal anomalies at icy nodes N56 and N112."
     ]
   }
 }

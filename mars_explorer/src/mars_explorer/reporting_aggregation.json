@@ -1,45 +1,60 @@
 {
   "rovers": {
     "priority": {
-      "high": ["Radiation measurement at N12", "Subsurface sample collection at coordinates M09", "Deployment of seismic sensors in the region Taurus"],
-      "medium": ["Detection of organic molecules in Crater A"],
+      "high": [
+        "Collect subsurface samples from rocky terrain near nodes N70, N102, and N152.",
+        "Measure radiation levels in sandy terrain at node N12, N86, and N1.",
+        "Deploy seismic sensors at the rocky node N20."
+      ],
+      "medium": [
+        "Detect organic molecules in icy terrain at N59."
+      ],
       "low": []
     },
     "operational constraints": [
-      "Rovers may not operate in terrain classified as unstable",
-      "Rover communication protocols must be followed during dust storms",
-      "Rovers require regular software updates to ensure functionality"
+      "Rovers and drones must recharge if energy drops below 30%",
+      "Rovers must enter a heat shelter during 20 minutes if surface temperature is below -60°C.",
+      "Rovers cannot operate if node temperature is below -80°C.",
+      "Rover's speed is reduced by 10% in rocky, 30% in sandy, 50% in icy, and 40% in crater terrains.",
+      "Rover's energy consumption varies: 5% in rocky, increased 10% in sandy, increased 20% in icy, and increased 15% in crater terrains.",
+      "Rovers may not operate in radioactive or unstable rocky terrain."
     ],
     "hazards": {
-      "Rovers may not operate in terrain classified as unstable": ["N4"]
+      "Rovers may not operate in radioactive or unstable rocky terrain.": ["N4", "N19", "N128", "N51", "N78", "N118"]
     }
   },
   "drones": {
     "priority": {
       "high": [],
-      "medium": ["Analysis of dust distribution patterns", "Mapping CO2 frost layers"],
+      "medium": [
+        "Air dust sample collection during flight over N33 crater.",
+        "Map CO2 frost coverage in icy areas N53, N63, and N108."
+      ],
       "low": []
     },
     "operational constraints": [
-      "Drones must maintain communication protocols during dust storms",
-      "Drone battery life is limited by energy management systems",
-      "Drones require clear airspace for navigation"
+      "Rovers and drones must recharge if energy drops below 30%",
+      "Drones must return to base after 25 minutes of flight.",
+      "Drones are disabled if there is a dust storm.",
+      "Drones cannot operate if wind gusts exceed 40 km/h."
     ],
     "hazards": {
-      "Drones must maintain communication protocols during dust storms": ["N6"]
+      "Drones are disabled if there is a dust storm.": ["N33"]
     }
   },
   "satellites": {
     "priority": {
       "high": [],
       "medium": [],
-      "low": ["Panoramic imaging of landing site", "Thermal anomaly monitoring"]
+      "low": [
+        "Capture panoramic images of crater terrain at nodes N5, N58, N121, and N150.",
+        "Identification of thermal anomalies at icy nodes N56 and N112."
+      ]
     },
     "operational constraints": [
-      "Satellites must adhere to data transmission frequencies",
-      "Satellite operations are affected by radiation exposure limits",
-      "Satellite power conservation measures are critical"
+      "Satellites must maintain communication with the base station at N30 or N84 every 5 hours if they have to identify thermal anomalies.",
+      "Satellites cannot communicate in nodes with communication loss."
     ],
-    "hazards": {}
+    "hazards": []
   }
 }
