@@ -48,7 +48,7 @@ class MarsFlow(Flow):
         )
 
         self.state["mission"] = result
-        self.state["retries"] = 0  # ✅ reset retries once
+        self.state["retries"] = 0 
 
         return result
 
@@ -175,19 +175,31 @@ class MarsFlow(Flow):
 
 
     # Replanning
+    # @listen("replan_rover")
+    # def retry_rover(self, _):
+    #     print("Replanning rover")
+    #     return self.run_rover_planning()
+
+    # @listen("replan_drone")
+    # def retry_drone(self, _):
+    #     print("Replanning drone")
+    #     return self.run_drone_planning()
+
+    # @listen("replan_satellite")
+    # def retry_satellite(self, _):
+    #     print("Replanning satellite")
+    #     return self.run_satellite_planning()
+
     @listen("replan_rover")
     def retry_rover(self, _):
-        print("Replanning rover")
         return self.run_rover_planning()
 
     @listen("replan_drone")
     def retry_drone(self, _):
-        print("Replanning drone")
         return self.run_drone_planning()
 
     @listen("replan_satellite")
     def retry_satellite(self, _):
-        print("Replanning satellite")
         return self.run_satellite_planning()
 
     # Validation again
