@@ -66,7 +66,7 @@ class MarsFlow(Flow):
 
 
     # Planning (parallel)
-    @listen(run_mission_analysis)
+    @listen(or_(run_mission_analysis, "replan_rover"))
     def run_rover_planning(self):
         print("Rover planning")
 
@@ -84,7 +84,7 @@ class MarsFlow(Flow):
         self.state["rover_plan"] = result
         return result
 
-    @listen(run_mission_analysis)
+    @listen(or_(run_mission_analysis, "replan_drone"))
     def run_drone_planning(self):
         print("Drone planning")
 
@@ -102,7 +102,7 @@ class MarsFlow(Flow):
         self.state["drone_plan"] = result
         return result
 
-    @listen(run_mission_analysis)
+    @listen(or_(run_mission_analysis, "replan_satellite"))
     def run_satellite_planning(self):
         print("Satellite planning")
 
@@ -190,22 +190,11 @@ class MarsFlow(Flow):
     #     print("Replanning satellite")
     #     return self.run_satellite_planning()
 
-    @listen("replan_rover")
-    def retry_rover(self, _):
-        return self.run_rover_planning()
 
-    @listen("replan_drone")
-    def retry_drone(self, _):
-        return self.run_drone_planning()
-
-    @listen("replan_satellite")
-    def retry_satellite(self, _):
-        return self.run_satellite_planning()
-
-    # Validation again
-    @listen(or_("replan_rover", "replan_drone", "replan_satellite"))
-    def revalidate(self, _):
-        return "revalidate"
+    # # Validation again
+    # @listen(or_("replan_rover", "replan_drone", "replan_satellite"))
+    # def revalidate(self, _):
+    #     return "revalidate"
 
 
 
