@@ -91,7 +91,7 @@ class SatelliteCrew():
         return Task(
             config=self.tasks_config['task_planner'], 
             context=[self.task_communication_loss_extractor(), self.task_extractor()],
-            output_file='satellite_route.json'
+            output_file='routes_satellite.json'
         )
     
     @crew

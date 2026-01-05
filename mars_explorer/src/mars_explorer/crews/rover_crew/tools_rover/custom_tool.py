@@ -1,193 +1,219 @@
-import json
-import random
-import networkx as nx
-from typing import List, Dict, Any
+from typing import List, Dict, Any, Optional, Set
 from crewai.tools import BaseTool
 from pydantic import BaseModel, Field
-from tools.mars_environment import MarsEnvironment 
+import networkx as nx
+from tools.mars_environment import MarsEnvironment
+import random
+import itertools
 
-class BatchRouteInput(BaseModel):
-    targets_list: str = Field(..., description="JSON string list of target nodes (e.g. \"['N70', 'N102']\")")
-    rovers_data: str = Field(..., description="JSON string of rovers list (e.g. \"[{'id':'rover_0', 'location':'N30', 'energy': 100}]\")")
 
-class BatchRoverRouteTool(BaseTool):
-    name: str = "Batch_Route_Calculator"
+class MultiRoverRouteInput(BaseModel):
+    rovers: List[Dict[str, Any]] = Field(description="List of rovers with keys: id, location, energy")
+    target_nodes: List[str] = Field(description="List of target node IDs")
+
+
+class RoverPathfindingTool(BaseTool):
+    name: str = "Multi_Rover_Route_Calculator"
     description: str = (
-        "Calculates FULL routes for multiple targets in one go. "
-        "Input: targets list and rovers list. "
-        "Logic: Assigns the closest rover by Node ID number. If tie, selects random. "
-        "Output: Final JSON string with assigned routes."
+        "Computes feasible round-trip distances and energy costs from multiple rovers "
+        "to multiple target nodes. Considers hazards, terrain penalties, temperature, "
+        "and battery constraints. Searches alternative paths if needed."
     )
-    args_schema: type[BaseModel] = BatchRouteInput
+    args_schema: type[BaseModel] = MultiRoverRouteInput
 
-    def _run(self, targets_list: str, rovers_data: str) -> str:
-        # 1. PARSE INPUTS
-        try:
-            # Fix common LLM quote issues
-            targets = json.loads(targets_list.replace("'", '"'))
-            rovers = json.loads(rovers_data.replace("'", '"'))
-            
-            # Ensure rovers is a list of dicts
-            if isinstance(rovers, dict):
-                rovers = [{"id": k, **v} for k, v in rovers.items()]
-                
-        except Exception as e:
-            return f"Error parsing JSON inputs: {str(e)}"
-
+    def _run(self, rovers: List[Dict], target_nodes: List[str]) -> Dict[str, Any]:
         env = MarsEnvironment()
         graph = env.get_graph()
-        
-        final_output = {}
-        
-        # Helper: Extract number from "N30" -> 30
-        def get_node_number(node_str):
-            try:
-                return int(str(node_str).upper().replace("N", ""))
-            except:
-                return 99999
+        results = {}
 
-        # 2. ITERATE OVER TARGETS
-        for target_node in targets:
-            target_num = get_node_number(target_node)
-            rover_candidates = []
-            
-            # Calculate distance for all valid rovers
-            for rover in rovers:
-                rover_loc = rover.get('location', 'N0')
-                # Safety check: does rover have enough energy
-                if float(rover.get('energy', 0)) < 30.0:
-                    continue
-                    
-                rover_num = get_node_number(rover_loc)
-                diff = abs(target_num - rover_num)
-                rover_candidates.append({'rover': rover, 'diff': diff})
-            
-            # Fallback if all rovers are dead
-            if not rover_candidates:
-                # Use the first one even if low battery, just to produce a path
-                best_rover = rovers[0]
-            else:
-                # Sort by difference (closest first)
-                rover_candidates.sort(key=lambda x: x['diff'])
-                # Find minimum difference
-                min_diff = rover_candidates[0]['diff']
-                # Filter all rovers that share the minimum difference (Ties)
-                best_ties = [item['rover'] for item in rover_candidates if item['diff'] == min_diff]
-                # Random selection among ties
-                best_rover = random.choice(best_ties)
+        hazards = random.random() >= 0.5
+        MAX_CANDIDATE_PATHS = 10
 
-            rover_id = best_rover['id']
-            start_node = best_rover['location']
-            current_energy = float(best_rover.get('energy', 100.0))
 
-            if start_node not in graph or target_node not in graph:
-                # Log error in output but continue
-                if rover_id not in final_output: final_output[rover_id] = []
-                final_output[rover_id].append([f"ERROR: Node {target_node} not in graph"])
+        # Weight function (time-based)
+        def weight_function(u, v, d):
+            node_data = graph.nodes[v]
+            temperature = float(d.get("temperature", -50))
+
+            if (node_data.get("unstable", False) or node_data.get("high_radiation", False)) and hazards:
+                return float("inf")
+            if temperature < -80:
+                return float("inf")
+
+            distance = float(d.get("length"))
+            terrain = node_data.get("terrain", "").lower()
+
+            multiplier = {"rocky": 1.1,"sandy": 1.3,"crater": 1.4,"icy": 2.0}.get(terrain, 1.0)
+
+            cost = distance * multiplier
+            if temperature < -60:
+                cost += 20
+
+            return cost
+
+
+        # Energy + distance computation
+        def compute_energy_and_distance(path):
+            total_distance = 0.0
+            total_energy = 0.0
+
+            for i in range(len(path) - 1):
+                u, v = path[i], path[i + 1]
+                edge_data = graph[u][v]
+                distance = float(edge_data.get("length", 0))
+                total_distance += distance
+
+                terrain = graph.nodes[v].get("terrain", "").lower()
+                energy_factor = {"rocky": 1.05,"sandy": 1.10,"crater": 1.15,"icy": 1.20}.get(terrain, 1.0)
+
+                total_energy += distance * energy_factor
+
+            return total_distance, total_energy
+
+        # Main loop
+        for rover in rovers:
+            rover_id = rover.get("id")
+            start_node = rover.get("location")
+            current_energy = rover.get("energy")
+
+            rover_result = {
+                "location": start_node,
+                "energy": current_energy,
+                "output_nodes": {}
+            }
+
+            if start_node not in graph:
+                results[rover_id] = rover_result
                 continue
 
-            # Hazards determination (50% chance)
-            hazards = random.random() >= 0.5
+            for target in target_nodes:
+                node_result = {
+                    "distance": None,
+                    "energy": None,
+                    "feasible": False,
+                    "warning": "NO PATH"
+                }
 
-            def weight_function(u, v, d):
-                '''
-                Weight function to find the path
-                Determines the cost of moving from u to v
-                - u: source node
-                - v: target node
-                - d: edge data (dictionary with the attributes of the edge between u and v)
-                '''
-                node_data = graph.nodes[v]
-                
-                # HAZARD CHECK: avoid dangerous nodes
-                temperature = float(d.get('temperature', -50))
-                if (node_data.get('unstable', False) or node_data.get('high_radiation', False)) and hazards:
-                    return float('inf')
-                if temperature < -80:
-                    return float('inf')
-                # TERRAIN MODIFIERS
-                # Get real distance (edge length) and the terrain
-                distance = float(d.get('length'))
-                terrain = node_data.get('terrain').lower()
-                
-                # Incremented cost
-                time_cost = 0
-                if terrain == 'rocky':
-                    time_cost = distance * 1.1 # 10% increment
-                elif terrain == 'sandy':
-                    time_cost = distance * 1.3
-                elif terrain == 'crater':
-                    time_cost = distance * 1.4
-                elif terrain == 'icy':
-                    time_cost = distance * 2
-                
-                # Rovers must enter a heat shelter during 20min if the surface temperature is below -60C
-                if temperature < -60: 
-                    # Time increased by 20 minutes
-                    time_cost += 20
-
-                return time_cost
-
-            # CALCULATE PATH
-            try:
-                # SHORTEST PATH
-                # from base to target node
-                path_go = nx.shortest_path(graph, source = start_node, target = target_node, weight = weight_function)
-                # from target node to base
-                path_back = nx.shortest_path(graph, source = target_node, target = start_node, weight = weight_function)  
-                # full path
-                path = path_go + path_back[1:]
-
-                # COMPUTE TOTAL DISTANCE AND ENERGY OF THE SHORT
-                total_distance = 0.0
-                total_energy = 0.0
-                
-                # Iterate over the shortest path
-                for i in range(len(path) - 1):
-                    u, v = path[i], path[i+1]
-                    
-                    # Distance
-                    edge_data = graph[u][v]
-                    distance = float(edge_data.get('length'))
-                    total_distance += distance
-                    
-                    # Energy
-                    terrain = graph.nodes[v].get('terrain').lower()
-                    if terrain == 'rocky':
-                        total_energy += distance * 1.05
-                    elif terrain == 'sandy':
-                        total_energy += distance * 1.1
-                    elif terrain == 'crater':
-                        total_energy += distance * 1.15
-                    elif terrain == 'icy':
-                        total_energy += distance * 1.2
-
-                # ENERGY CHECK
-                if total_energy > current_energy:
-                    print(f"SKIPPING TARGET {target_node} for {rover_id}: Needs {total_energy:.2f} energy, has {current_energy:.2f}.")
+                if target not in graph:
+                    rover_result["output_nodes"][target] = node_result
                     continue
-                
-                remaining_battery = current_energy - total_energy
-                min_reserve = 100 * 0.30  # 30% of the total capacity
-                
-                warning_msg = "BATERY OK"
-                if remaining_battery < min_reserve:
-                    # Return a string that the LLM will interpret as an alter
-                    warning_msg = (f"WARNING: This route leaves battery at {remaining_battery:.2f}. Consider using another rover!")
-                print(warning_msg)
 
-                # SAVE RESULT
-                if rover_id not in final_output:
-                    final_output[rover_id] = []
-                
-                final_output[rover_id].append(path)
+                try:
+                    go_paths = itertools.islice(nx.shortest_simple_paths(graph, start_node, target, weight=weight_function),MAX_CANDIDATE_PATHS)
+                    feasible_found = False
+                    for path_go in go_paths:
+                        try:
+                            path_back = nx.shortest_path(graph, target, start_node, weight=weight_function)
+                        except nx.NetworkXNoPath:
+                            continue
 
-            except nx.NetworkXNoPath:
-                if rover_id not in final_output: final_output[rover_id] = []
-                final_output[rover_id].append(["NO_PATH_FOUND"])
-            except Exception as e:
-                if rover_id not in final_output: final_output[rover_id] = []
-                final_output[rover_id].append([f"ERROR: {str(e)}"])
-    
-        # 3. RETURN FINAL JSON
-        return json.dumps(final_output)
+                        full_path = path_go + path_back[1:]
+                        total_distance, total_energy = compute_energy_and_distance(full_path)
+
+                        if total_energy <= current_energy:
+                            remaining = current_energy - total_energy
+                            min_reserve = 100 * 0.30
+
+                            warning = "BATTERY OK"
+                            if remaining < min_reserve:
+                                warning = f"WARNING: Low battery remaining ({remaining:.2f})"
+                            node_result = {
+                                "distance": round(total_distance, 2),
+                                "energy": round(remaining, 2),
+                                "feasible": True,
+                                "warning": warning
+                            }
+                            feasible_found = True
+                            break
+
+                    if not feasible_found:
+                        node_result["warning"] = "NO FEASIBLE PATH (BATTERY)"
+
+                except nx.NetworkXNoPath:
+                    node_result["warning"] = "NO PATH"
+                except Exception as e:
+                    node_result["warning"] = f"ERROR: {str(e)}"
+
+                rover_result["output_nodes"][target] = node_result
+
+            results[rover_id] = rover_result
+
+        return results
+
+
+class NodeAssignmentInput(BaseModel):
+    rover_results: Dict[str, Any] = Field(description="The dictionary of rover route results")
+
+
+class MultiRoverNodeAssignerTool(BaseTool):
+    name: str = "Multi_Rover_Node_Assigner"
+    description: str = (
+        "Assigns target nodes to rovers using only feasible paths. "
+        "Minimizes distance and uses remaining energy as tie-breaker. "
+        "Ensures (when possible) that each rover gets at least one node."
+    )
+    args_schema: type[BaseModel] = NodeAssignmentInput
+
+    def _run(self, rover_results, enforce_min_one_per_rover=True):
+
+        # List of rover IDs
+        rovers = list(rover_results.keys())
+
+        # Store only feasible paths
+        feasible = {}
+        all_nodes = set()
+
+        for rover, data in rover_results.items():
+            for node, info in data.get("output_nodes", {}).items():
+                if info.get("feasible"):
+                    if rover not in feasible:
+                        feasible[rover] = {}
+                    feasible[rover][node] = {"distance": float(info["distance"]),"energy": float(info["energy"])}
+                    all_nodes.add(node)
+
+        assignments = {rover: [] for rover in rovers}
+        used_nodes = set()
+
+        # choose best rover for node
+        def best_rover_for_node(node):
+            candidates = []
+            for rover, nodes in feasible.items():
+                if node in nodes:
+                    info = nodes[node]
+                    candidates.append((rover, info["distance"], info["energy"]))
+            if not candidates:
+                return None
+            # shortest distance, then highest energy
+            return min(candidates, key=lambda x: (x[1], -x[2]))[0]
+
+
+        # ensure each rover gets ≥1 node
+        if enforce_min_one_per_rover:
+            for rover in rovers:
+                if rover not in feasible:
+                    continue
+                candidates = []
+                for node, info in feasible[rover].items():
+                    if node not in used_nodes:
+                        candidates.append((node, info["distance"], info["energy"]))
+                if not candidates:
+                    continue
+                best_node = min(candidates, key=lambda x: (x[1], -x[2]))[0]
+                assignments[rover].append(best_node)
+                used_nodes.add(best_node)
+
+
+        # assign remaining nodes
+        for node in sorted(all_nodes):
+            if node in used_nodes:
+                continue
+            rover = best_rover_for_node(node)
+            if rover:
+                assignments[rover].append(node)
+                used_nodes.add(node)
+
+        return assignments
+
+
+
+

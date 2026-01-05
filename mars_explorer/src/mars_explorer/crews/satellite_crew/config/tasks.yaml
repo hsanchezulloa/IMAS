@@ -60,7 +60,7 @@ task_planner:
 
     3. For each target node:
       - Assign it to exactly one satellite whose location list includes that node.
-      - Enforce all relevant constraints described in the Satellite section of """ {{report_hazard_constraints}} """ are taken into account when assigning the satellite as THEY HAVE TO HAVE A PROPER COMMUNICATION WINDOW.
+      - Enforce all relevant constraints described in the Satellite section of """ {{report_hazard_constraints}} """ are taken into account when assigning the satellite as THEY HAVE TO HAVE A PROPER COMMUNICATION WINDOW IN THERMAL ANOMALIES NODES.
 
     4. Ensure strict one-to-one assignment:
       - Each target node must be assigned to only one satellite.

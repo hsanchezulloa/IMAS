@@ -1,10 +1,74 @@
-reporting_inconsistencies:
+task_validation_rover:
   description: >
-    Analyze the individual plans produced by each crew (rover, drone and satellite).
-    Identify any temporal or spatial conflict between them, for instance trying to perform
-    incompatible actions simultaneously or actions that vulnerate mission constraints.
-    If a conflict is detected, apply the necessary and minimal changes to solve it.
+    Inputs:
+      - Mission Data: """ {reporting_aggregation} """
+      - Actual Routes: """ {routes_rover} """
+    1. Extract all 'N' nodes mentioned in the "priority" section of the rovers mission report.
+    2. Analyze the 'routes_rover' input to see if those specific nodes appear in any of the rover routes.
+    3. Check for mission completeness: Are all nodes visited?
+    
   expected_output: >
-    A unified plan free of conflicts, together with a detailed explanation of what
-    inconsistencies were identified and how they were solved.
+    A JSON object containing:
+    - 'rover_ok': (boolean) true if all mission nodes are visited and no hazards are hit, false otherwise.
+    - 'feedback_rover': (string) A clear explanation. If false, list the specific nodes that were missed.
   agent: validation_rover
+
+task_validation_drone:
+  description: >
+    Inputs:
+      - Mission Data: """ {reporting_aggregation} """
+      - Actual Routes: """ {routes_drone} """
+    1. Extract all 'N' nodes mentioned in the "priority" section of the drones mission report.
+    2. Analyze the 'routes_drone' input to see if those specific nodes appear in any of the drone routes.
+    3. Check for mission completeness: Are all nodes visited?
+    
+  expected_output: >
+    A JSON object containing:
+    - 'drone_ok': (boolean) true if all mission nodes are visited and no hazards are hit, false otherwise.
+    - 'feedback_drone': (string) A clear explanation. If false, list the specific nodes that were missed.
+  
+  agent: validation_drone
+
+task_validation_satellite:
+  description: >
+    Inputs:
+      - Mission Report: """ {reporting_aggregation} """
+      - Satellite Route: """ {routes_satellite} """
+    1. Extract all 'N' nodes mentioned in the satellite "priority" section of the reporting aggregation.
+    2. Cross-reference these with the 'satellite_route.json':
+        - Check if the extracted 'N' nodes actually matches the 'goal' for each required node.
+        - Identify if any 'goal' from the priorities is missing from the route.
+    3. Verify Communication Constraints:
+        - Identify tasks related to "thermal anomalies".
+        - For these specific nodes, check THAT THE 'communication_window' DOES NOT EXCEED THE TIME
+        - Other nodes do NOT need to meet this constraint.
+  expected_output: >
+    A JSON object containing:
+    - 'satellite_ok': (boolean) true only if ALL nodes are visited AND thermal anomaly 
+      nodes meet the communication constraint.
+    - 'feedback_satellite': (string) Detailed explanation. If false, specify if it was 
+      due to a missing node (e.g., "N150 location mismatch") or a communication 
+      violation (e.g., "N56 window is 8h, exceeding 5h limit").
+  agent: validation_satellite
+
+task_combine_validations:
+  description: >
+    Inputs:
+      - The Rover validation agent """ {{context.task_validation_rover}} """
+      - The Drone validation agent """ {{context.task_validation_drone}} """
+      - The Satellite validation agent """ {{context.task_validation_satellite}} """
+
+    1. Collect the individual JSON results from:
+      - The Rover validation agent """ {{context.task_validation_rover}} """
+      - The Drone validation agent """ {{context.task_validation_drone}} """
+      - The Satellite validation agent """ {{context.task_validation_satellite}} """
+    2. Extract the boolean value (true/false) for each specific domain.
+    3. Format the final output into a single JSON object.
+  expected_output: >
+    A JSON object with exactly these keys:
+    {
+      "rover_ok": boolean,
+      "drone_ok": boolean,
+      "satellite_ok": boolean
+    }
+  agent: combine_validations

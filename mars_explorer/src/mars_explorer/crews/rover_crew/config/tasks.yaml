@@ -7,30 +7,63 @@ final_nodes:
 
 reporting_route:
   description: >
-    CALL THE TOOL Batch_Route_Calculator NOW.
+    Using the list of rovers provided in the input """ {{rovers}} """,
+    and the list of target nodes provided in """ {{target_nodes}} """,
+    you MUST call the tool Multi_Rover_Route_Calculator exactly once.
 
-    Tool name: Batch_Route_Calculator
+    The tool will automatically extract each rover's location and energy
+    and compute the shortest distance from each rover to every target node.
 
-    Tool arguments (use EXACTLY these variable names):
-    - targets_list: final nodes recieved from the extractor agent
-    - rovers_data: {{rovers}}
-
-    AFTER THE TOOL RETURNS:
-    - Output EXACTLY the tool output.
-    - Do NOT add text.
-    - Do NOT modify JSON.
-
-    FAILURE CONDITIONS:
-    - If you output paths without calling the tool,  FAIL.
-    - If you shorten or invent paths, FAIL.
+    Do NOT recompute paths manually.
+    Do NOT modify, filter, or reinterpret the tool output.
+    Simply return the result exactly as produced by the tool.
 
   expected_output: >
-    A JSON file contaioning the EXACT output of Batch_Route_Calculator
-    Example:
-    {"rover_1": [["N90", "N95", "N100", "N102", "N100", "N95", "N90"]],
-     "rover_0": [["N30", "N40", "N55", "N70", "N55", "N40", "N30"]]}
+    A JSON dictionary indexed by rover ID.
+    Each rover ID maps to an object containing:
+      - the rover location
+      - the rover energy
+      - a dictionary with distances to all target nodes
+
+    Output format:
+    {
+      "rover_0": {
+        "location": "N30",
+        "energy": 95,
+        "output_nodes_length": {
+          "N70": 48.3,
+          "N10": 12.1
+        }
+      },
+      "rover_1": {
+        "location": "N84",
+        "energy": 94,
+        "output_nodes_length": {
+          "N70": 9.7,
+          "N10": null
+        }
+      }
+    }
 
   agent: route_planner
+
+task_ranking:
+  description: >
+    Input Data: {{routes_rover}}
+
+    ACTION REQUIRED:
+      1. Extract the JSON/Dictionary from the input.
+      2. Call 'Multi_Rover_Node_Assigner' tool using that data as the 'rover_results' parameter.
+
+    STRICT RESTRICTIONS:
+      DO NOT summarize the data.,
+      DO NOT explain why you are calling the tool.,
+      DO NOT attempt to assign rovers to nodes manually.,
+      If the input is empty, return an empty dictionary through the tool.
+  expected_output: >
+    The raw JSON output from the Multi_Rover_Node_Assigner tool without any preamble.
+  agent: ranking
+
 
 
 reporting_sampling:

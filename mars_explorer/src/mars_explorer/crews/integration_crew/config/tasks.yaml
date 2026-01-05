@@ -1,42 +1,87 @@
-reporting_inconsistencies:
+task_integrator_rover:
   description: >
-    Analyze the individual plans produced by each crew (rover, drone and satellite).
-    Identify any temporal or spatial conflict between them, for instance trying to perform
-    incompatible actions simultaneously or actions that vulnerate mission constraints.
-    If a conflict is detected, apply the necessary and minimal changes to solve it.
+    Inputs:
+      - Trajectories: """ {routes_rover} """
+      - Procedures: """ {sample_collector_rover} """
+
+    1. Trajectory documentation: Review 'routes_rover.json'. For each asset (rover_0 through rover_4), 
+      list their specific node-to-node trajectories.
+    2. Protocol synthesis: Review 'sample_collector_rover'. Map the procedures to the 
+      trajectories based on the nodes mentioned (e.g., if Procedure 1 involves N70 and N102, 
+      identify which rover paths include those nodes).
+    3. Executive summary: Provide a high-level summary of the required scientific equipment 
+      (Coring drill, GPR, Radiation detection, etc.) and the overarching mission objectives.
+    4. Scientific formatting: The final document must be titled 'INTEGRATED MARS SURFACE OPERATIONS REPORT'. 
+      Use formal language (e.g., 'The asset shall navigate to...' instead of 'The rover goes to...').
   expected_output: >
-    A unified plan free of conflicts, together with a detailed explanation of what
-    inconsistencies were identified and how they were solved.
+    A formal Markdown document (integrated_rover) containing:
+    - Section 1: Asset trajectory logs (by Rover ID).
+    - Section 2: Integrated scientific protocols (mapping nodes to procedures).
+    - Section 3: Instrumentation & hardware summary.
   agent: integrator_rover
 
-verify_plan:
+task_integrator_drone:
   description: >
-    Perform a final verification of the unified mission plan, in order to ensure that all
-    mission priorities, constraints and dependencies are respected.
-  expected_output: >
-    A validated mission plan, together with a brief explanation of the aspects analyzed.
-  agent: coordinator
+    Inputs:
+    - Trajectories: """ {routes_drone} """
+    - Procedures: """ {sample_collector_drone} """
 
-report_rovers:
-  description: >
-    Produce a clear and detailed report containing only the tasks and considerations
-    relevant for the rover crew.
+    1. Aerial trajectory mapping: Analyze 'drone_route.json'. Identify the specific 
+      nodes visited by drone_3 and drone_4.
+    2. Protocol synthesis: Review the 'Drone Sampling Operational Procedures'. 
+      Map these to the trajectories:
+      - Associate drone_X with the 'Air dust sample collection' task at NXX.
+      - Associate drone_X and drone_3 with the 'CO2 Frost Mapping' at NXX, NXX, and NXX.
+    3. Operational summary: Detail the specific environmental monitoring requirements 
+      (wind speed, temperature, humidity) and imaging systems used.
+    4. Scientific formatting: The document must be titled 'INTEGRATED MARS AERIAL OPERATIONS REPORT'. 
+      Maintain a formal, scientific tone throughout.
   expected_output: >
-    A mission report specific for the rover crew.
-  agent: coordinator
+    A formal Markdown document (integrated_drone) containing:
+    - Section 1: Flight trajectory logs (by Drone ID).
+    - Section 2: Aerial scientific protocols (mapping nodes to procedures).
+    - Section 3: Sensor & Instrumentation Overview.
+  agent: integrator_drone
 
-report_drones:
+task_integrator_satellite:
   description: >
-    Produce a clear and detailed report containing only the tasks and considerations
-    relevant for the drones crew.
-  expected_output: >
-    A mission report specific for the drones crew.
-  agent: coordinator
+    Inputs:
+      - Routes: """ {routes_satellite} """
+      - Protocols: """ {sample_collector_satellite} """
 
-report_satellites:
-  description: >
-    Produce a clear and detailed report containing only the tasks and considerations
-    relevant for the satellites crew.
+    1. Orbital telemetry analysis: Review 'routes_satellite.json'. List each satellite 
+      assignment (ID 0-5), its target goal, and the allocated communication window.
+    2. Scientific protocol mapping: Cross-reference the routes with the 
+      'Satellite Mission Execution Protocols'. 
+      - Map Protocol 1 (Panoramic) to crater nodes: N5, N58, N121, N150.
+      - Map Protocol 2 (Thermal) to icy nodes: N56, N112.
+    3. Window reliability assessment: Explicitly mention the 'communication_window' 
+      values for each protocol execution to verify if the 5-step transmission 
+      process is logistically feasible within the allotted time.
+    4. Scientific formatting: The final document must be titled 'INTEGRATED MARS ORBITAL OPERATIONS REPORT'. 
+      Use high-level technical terminology (e.g., 'Sensor Initialization', 'Capture Sequence Execution').
   expected_output: >
-    A mission report specific for the satellites crew.
-  agent: coordinator
+    A formal Markdown document (integrated_satellite.md) containing:
+    - Section 1: Orbital window & assignment logs.
+    - Section 2: Sensor execution protocols (mapping satellite IDs to specific 5-step procedures).
+    - Section 3: Data transmission & validation metrics.
+  agent: integrator_satellite
+
+
+task_writer:
+  description: >
+    Inputs:
+    - Rover report: """{integrator_rover}"""
+    - Drone report: """{integrator_drone}"""
+    - Satellite report: """{integrator_satellite}"""
+
+    Consolidate the outputs from the Rover, Drone, and Satellite integration tasks.
+    1. Set the title to 'MARS JOINT OPERATIONS: FINAL MISSION CONFIGURATION'.
+    2. Generate a Table of Contents.
+    3. Copy the content WITHOUT MODIFYING ANYTHING of integrator_rover.md to the rover_section.
+    4. Copy the content WITHOUT MODIFYING ANYTHING of integrator_drone.md to the drone_section.
+    5. Copy the content WITHOUT MODIFYING ANYTHING of integrator_satellite.md to the satellite_section.
+    6. Write a final conclusion confirming all systems are ready for deployment.
+  expected_output: >
+    A single, comprehensive Markdown file named 'RESULT.md' that contains the concatenated and structured data from all three mission segments.
+  agent: writer

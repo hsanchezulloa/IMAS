@@ -2,6 +2,9 @@ from crewai import Agent, Crew, Process, Task, LLM
 from crewai.project import CrewBase, agent, crew, task
 from crewai.agents.agent_builder.base_agent import BaseAgent
 from typing import List
+from pathlib import Path
+from pydantic import BaseModel, Field
+from typing import List
 # If you want to run a snippet of code before or after the crew starts,
 # you can use the @before_kickoff and @after_kickoff decorators
 # https://docs.crewai.com/concepts/crews#example-crew-class-with-decorators
@@ -10,7 +13,13 @@ ollama_llm = LLM(
     base_url="http://localhost:11434",
     temperature=0.1
 )
-
+class FinalMissionReport(BaseModel):
+    title: str = Field(..., description="The main title of the mission report.")
+    table_of_contents: str = Field(..., description="A markdown list of clickable links to sections.")
+    rover_section: str = Field(..., description="The complete integrated_rover.md content.")
+    drone_section: str = Field(..., description="The complete integrated_drone.md content.")
+    satellite_section: str = Field(..., description="The complete integrated_satellite.md content.")
+    conclusion: str = Field(..., description="A brief scientific summary of the joint mission readiness.")
 @CrewBase
 class IntegrationCrew():
     """Integration Crew"""
@@ -33,50 +42,63 @@ class IntegrationCrew():
             verbose=True,
             llm=ollama_llm,
         )
-
+    
     @agent
-    def coordinator(self) -> Agent:
+    def integrator_drone(self) -> Agent:
         return Agent(
-            config=self.agents_config['coordinator'], # type: ignore[index]
+            config=self.agents_config['integrator_drone'], # type: ignore[index]
             verbose=True,
             llm=ollama_llm,
+        )
+    
+    @agent
+    def integrator_satellite(self) -> Agent:
+        return Agent(
+            config=self.agents_config['integrator_satellite'], # type: ignore[index]
+            verbose=True,
+            llm=ollama_llm,
+        )
+    
+    @agent
+    def writer(self) -> Agent:
+        return Agent(
+            config=self.agents_config['writer'], # type: ignore[index]
+            verbose=True,
+            llm=ollama_llm,
+            
         )
 
     # To learn more about structured task outputs,
     # task dependencies, and task callbacks, check out the documentation:
     # https://docs.crewai.com/concepts/tasks#overview-of-a-task
     @task
-    def reporting_inconsistencies(self) -> Task:
+    def task_integrator_rover(self) -> Task:
         return Task(
-            config=self.tasks_config['reporting_inconsistencies'], # type: ignore[index]
+            config=self.tasks_config['task_integrator_rover'], # type: ignore[index]
+            output_file = 'integrator_rover.md',
         )
 
     @task
-    def verify_plan(self) -> Task:
+    def task_integrator_drone(self) -> Task:
         return Task(
-            config=self.tasks_config['verify_plan'], # type: ignore[index]
-            output_file='report.md'
+            config=self.tasks_config['task_integrator_drone'], # type: ignore[index]
+            output_file = 'integrator_drone.md',
+        )
+    
+    @task
+    def task_integrator_satellite(self) -> Task:
+        return Task(
+            config=self.tasks_config['task_integrator_satellite'], # type: ignore[index]
+            output_file = 'integrator_satellite.md',
         )
 
-    @task
-    def report_rovers(self) -> Task:
-        return Task(
-            config=self.tasks_config['report_rovers'], # type: ignore[index]
-            output_file='report.md'
-        )
     
     @task
-    def report_drones(self) -> Task:
+    def task_writer(self) -> Task:
         return Task(
-            config=self.tasks_config['report_drones'], # type: ignore[index]
-            output_file='report.md'
-        )
-    
-    @task
-    def report_satellites(self) -> Task:
-        return Task(
-            config=self.tasks_config['report_satellites'], # type: ignore[index]
-            output_file='report.md'
+            config=self.tasks_config['task_writer'], # type: ignore[index]
+            output_file='final_report.md',
+            output_pydantic=FinalMissionReport
         )
 
 
@@ -86,10 +108,49 @@ class IntegrationCrew():
         # To learn how to add knowledge sources to your crew, check out the documentation:
         # https://docs.crewai.com/concepts/knowledge#what-is-knowledge
 
+        # return Crew(
+        #     agents = [self.integrator_drone()],
+        #     tasks = [self.task_integrator_drone()],
+        #     process=Process.sequential,
+        #     verbose=True,
+        # )
+    
+        # return Crew(
+        #     agents = [self.integrator_satellite()],
+        #     tasks = [self.task_integrator_satellite()],
+        #     process=Process.sequential,
+        #     verbose=True,
+        # )
+    
         return Crew(
-            agents=self.agents, # Automatically created by the @agent decorator
-            tasks=self.tasks, # Automatically created by the @task decorator
+            agents = [self.writer()],
+            tasks = [self.task_writer()],
             process=Process.sequential,
             verbose=True,
-            # process=Process.hierarchical, # In case you wanna use that instead https://docs.crewai.com/how-to/Hierarchical/
         )
+        
+        # return Crew(
+        #     agents=self.agents, # Automatically created by the @agent decorator
+        #     tasks=self.tasks, # Automatically created by the @task decorator
+        #     process=Process.sequential,
+        #     verbose=True,
+        #     # process=Process.hierarchical, # In case you wanna use that instead https://docs.crewai.com/how-to/Hierarchical/
+        # )
+
+if __name__ == "__main__":
+    crew = IntegrationCrew().crew()
+
+    # sample_collector_drone = Path("sample_collector_drone.md").read_text(encoding="utf-8")
+    # routes_drone = Path("routes_drone.json").read_text(encoding="utf-8")
+    # result = crew.kickoff(inputs = {'routes_drone': routes_drone, 'sample_collector_drone': sample_collector_drone})
+
+    # sample_collector_satellite = Path("image_capture_satellite.md").read_text(encoding="utf-8")
+    # routes_satellite= Path("routes_satellite.json").read_text(encoding="utf-8")
+    # result = crew.kickoff(inputs = {'routes_satellite': routes_satellite, 'sample_collector_satellite': sample_collector_satellite})
+
+    integrator_rover = Path("integrator_rover.md").read_text(encoding="utf-8")
+    integrator_drone = Path("integrator_drone.md").read_text(encoding="utf-8")
+    integrator_satellite = Path("integrator_satellite.md").read_text(encoding="utf-8")
+    result = crew.kickoff(inputs = {'integrator_rover': integrator_rover, 'integrator_drone': integrator_drone, 'integrator_satellite': integrator_satellite})
+    # report_data = result.pydantic
+    # report_data.satellite_section

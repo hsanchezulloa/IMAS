@@ -160,6 +160,7 @@ class BatchDroneFlightTool(BaseTool):
             if drone_id not in final_output:
                 final_output[drone_id] = []
             
+            # final_output[drone_id].append(path)
             final_output[drone_id].append(path)
 
         return json.dumps(final_output)
