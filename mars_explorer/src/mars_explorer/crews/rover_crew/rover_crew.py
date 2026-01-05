@@ -66,6 +66,7 @@ class RoverCrew:
     def reporting_route(self) -> Task:
         return Task(
             config=self.tasks_config["reporting_route"],
+            context=[self.final_nodes()],
             output_file='possible_routes_rover.json',
         )
     
@@ -73,6 +74,7 @@ class RoverCrew:
     def task_ranking(self) -> Task:
         return Task(
             config=self.tasks_config["task_ranking"],
+            context=[self.reporting_route()],
             output_file='routes_rover.json',
         )
     
@@ -94,26 +96,26 @@ class RoverCrew:
     @crew
     def crew(self) -> Crew:
         """Creates the Research Crew"""
-        return Crew(
-            agents=[self.ranking()],
-            tasks=[self.task_ranking()],
-            process=Process.sequential,
-            verbose=True
-        )
         # return Crew(
-        #     agents=self.agents,
-        #     tasks=self.tasks,
+        #     agents=[self.ranking()],
+        #     tasks=[self.task_ranking()],
         #     process=Process.sequential,
-        #     verbose=True,
+        #     verbose=True
         # )
+        return Crew(
+            agents=self.agents,
+            tasks=self.tasks,
+            process=Process.sequential,
+            verbose=True,
+        )
 
 
 if __name__ == '__main__':
     crew = RoverCrew().crew()
     # routes_rover = json.loads(Path("possible_routes_rover.json").read_text(encoding="utf-8"))
-    routes_rover = Path("possible_routes_rover.json").read_text(encoding="utf-8")
-    print(routes_rover)
-    result = crew.kickoff(inputs={'routes_rover': routes_rover})
+    report_priority = Path("report_priority.json").read_text(encoding="utf-8")
+    rovers = Path("inputs/rovers.json").read_text(encoding="utf-8")
+    result = crew.kickoff(inputs={'report_priority': report_priority, 'rovers': rovers})
     # report_priority = Path("report_priority.json").read_text(encoding="utf-8")
     # rovers = Path("inputs/rovers.json").read_text(encoding="utf-8")
     # result = crew.kickoff(inputs={'report_priority': report_priority, 'rovers':rovers})

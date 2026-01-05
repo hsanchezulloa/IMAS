@@ -12,7 +12,7 @@ reporting_route:
     Tool name: Batch_Fligth_Calculator
 
     Tool arguments (use EXACTLY these variable names):
-    - targets_list: final nodes recieved from the extractor agent
+    - targets_list: final nodes recieved from the extractor agent """ {{context.final_nodes()}} """
     - drones_data: {{drones}}
 
     AFTER THE TOOL RETURNS:
@@ -32,12 +32,12 @@ reporting_route:
 
   agent: flight_planner
 
-generate_sampling:
-  description: >
-    Plan and coordinate drone-based sampling operations based on mission objectives and environmental data. Ensure sampling plans are efficient, safe, and aligned with drone capabilities and mission priorities.
-  expected_output: >
-    A detailed report containing the sampling instructions for each drone.
-  agent: sample_collector
+# generate_sampling:
+#   description: >
+#     Plan and coordinate drone-based sampling operations based on mission objectives and environmental data. Ensure sampling plans are efficient, safe, and aligned with drone capabilities and mission priorities.
+#   expected_output: >
+#     A detailed report containing the sampling instructions for each drone.
+#   agent: sample_collector
 
 
 generate_sampling:

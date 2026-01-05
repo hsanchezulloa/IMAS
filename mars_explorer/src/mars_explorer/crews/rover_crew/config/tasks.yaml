@@ -8,7 +8,7 @@ final_nodes:
 reporting_route:
   description: >
     Using the list of rovers provided in the input """ {{rovers}} """,
-    and the list of target nodes provided in """ {{target_nodes}} """,
+    and the list of target nodes provided in """ {{context.final_nodes}} """,
     you MUST call the tool Multi_Rover_Route_Calculator exactly once.
 
     The tool will automatically extract each rover's location and energy
@@ -74,7 +74,7 @@ task_ranking:
     
     Do NOT attempt to process, summarize, or manually assign the rovers yourself. 
     The tool handles all calculations.
-    The input routes_rover is in """ {{routes_rover}} """"
+    The input routes_rover is in """ {{context.reporting_route}} """"
   expected_output: >
     The final assignments dictionary produced by the tool.
   agent: ranking

@@ -71,9 +71,9 @@ task_integrator_satellite:
 task_writer:
   description: >
     Inputs:
-    - Rover report: """{integrator_rover}"""
-    - Drone report: """{integrator_drone}"""
-    - Satellite report: """{integrator_satellite}"""
+    - Rover report: """{context.task_integrator_rover()}"""
+    - Drone report: """{context.task_integrator_drone()}"""
+    - Satellite report: """{context.task_integrator_satellite()}"""
 
     Consolidate the outputs from the Rover, Drone, and Satellite integration tasks.
     1. Set the title to 'MARS JOINT OPERATIONS: FINAL MISSION CONFIGURATION'.

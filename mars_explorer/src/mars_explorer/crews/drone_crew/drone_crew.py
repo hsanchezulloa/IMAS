@@ -52,6 +52,7 @@ class DronesCrew():
     def reporting_route(self) -> Task:
         return Task(
             config=self.tasks_config['reporting_route'],
+            context=[self.final_nodes()],
             output_file='routes_drone.json',
         )
 
@@ -79,5 +80,5 @@ if __name__ == '__main__':
     crew = DronesCrew().crew()
     report_priority = Path("report_priority.json").read_text(encoding="utf-8")
     drones = Path("inputs/drones.json").read_text(encoding="utf-8")
-    result = crew.kickoff(inputs={'report_priority': report_priority, 'drones':drones})
-    print(result.raw)
+    result = crew.kickoff(inputs={'report_priority': report_priority, 'drones': drones})
+
