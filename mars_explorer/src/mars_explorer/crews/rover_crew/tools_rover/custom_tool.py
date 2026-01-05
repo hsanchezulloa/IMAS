@@ -142,7 +142,7 @@ class RoverPathfindingTool(BaseTool):
 
 
 class NodeAssignmentInput(BaseModel):
-    rover_results: Dict[str, Any] = Field(description="The dictionary of rover route results")
+    rover_results: Dict[str, Any] = Field(description="The dictionary containing rover locations and distances")
 
 
 class MultiRoverNodeAssignerTool(BaseTool):

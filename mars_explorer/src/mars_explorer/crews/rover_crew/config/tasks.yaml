@@ -47,21 +47,36 @@ reporting_route:
 
   agent: route_planner
 
+# task_ranking:
+#   description: >
+#     Input Data: {{routes_rover}}
+
+#     ACTION REQUIRED:
+#       1. Extract the JSON/Dictionary from the input.
+#       2. Call 'Multi_Rover_Node_Assigner' tool using that data as the 'rover_results' parameter.
+
+#     STRICT RESTRICTIONS:
+#       DO NOT summarize the data.,
+#       DO NOT explain why you are calling the tool.,
+#       DO NOT attempt to assign rovers to nodes manually.,
+#       If the input is empty, return an empty dictionary through the tool.
+#   expected_output: >
+#     The raw JSON output from the Multi_Rover_Node_Assigner tool without any preamble.
+#   agent: ranking
+
 task_ranking:
   description: >
-    Input Data: {{routes_rover}}
-
-    ACTION REQUIRED:
-      1. Extract the JSON/Dictionary from the input.
-      2. Call 'Multi_Rover_Node_Assigner' tool using that data as the 'rover_results' parameter.
-
-    STRICT RESTRICTIONS:
-      DO NOT summarize the data.,
-      DO NOT explain why you are calling the tool.,
-      DO NOT attempt to assign rovers to nodes manually.,
-      If the input is empty, return an empty dictionary through the tool.
+    You have been provided with rover route and energy data (found in the routes_rover input).
+    
+    Your SOLE task is to:
+    1. Take the provided 'routes_rover' dictionary.
+    2. Pass it DIRECTLY into the 'Multi_Rover_Node_Assigner' tool as the 'rover_results' argument.
+    
+    Do NOT attempt to process, summarize, or manually assign the rovers yourself. 
+    The tool handles all calculations.
+    The input routes_rover is in """ {{routes_rover}} """"
   expected_output: >
-    The raw JSON output from the Multi_Rover_Node_Assigner tool without any preamble.
+    The final assignments dictionary produced by the tool.
   agent: ranking
 
 
