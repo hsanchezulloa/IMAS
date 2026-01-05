@@ -82,7 +82,7 @@ class MarsFlow(Flow):
         )
 
         self.state["rover_plan"] = result
-        return result
+        return "rover_ready"
 
     @listen(or_(run_mission_analysis, "replan_drone"))
     def run_drone_planning(self):
@@ -100,7 +100,7 @@ class MarsFlow(Flow):
         )
 
         self.state["drone_plan"] = result
-        return result
+        return "drone_ready"
 
     @listen(or_(run_mission_analysis, "replan_satellite"))
     def run_satellite_planning(self):
@@ -114,15 +114,16 @@ class MarsFlow(Flow):
         )
 
         self.state["satellite_plan"] = result
-        return result
+        return "satellite_ready"
 
-    # =========================
+
     # Validation
 
-    @listen(and_(run_rover_planning, run_drone_planning, run_satellite_planning))
+    @listen(or_(run_rover_planning, run_drone_planning, run_satellite_planning))
     def validate_plans(self, _) -> ValidationResult:
         print("Integration Crew is validating individual routes...")
-
+        if not all([self.state.get("rover_plan"), self.state.get("drone_plan"), self.state.get("satellite_plan")]):
+            return
         # We call the validation_crew specifically for validation
         # Tip: You can use a specific task name if your crew has multiple tasks
         validation_output = self.validation_crew.crew().kickoff(
@@ -161,7 +162,7 @@ class MarsFlow(Flow):
             print("All plans valid")
             return "integrate"
 
-        self.state["retries"] += 1
+        self.state["retries"] = self.state.get("retries", 0) + 1
         print(f"Validation failed (attempt {self.state['retries']}/{self.MAX_RETRIES})")
 
         if self.state["retries"] >= self.MAX_RETRIES:
@@ -172,31 +173,6 @@ class MarsFlow(Flow):
         if not validation.drone_ok:
             return "replan_drone"
         return "replan_satellite"
-
-
-    # Replanning
-    # @listen("replan_rover")
-    # def retry_rover(self, _):
-    #     print("Replanning rover")
-    #     return self.run_rover_planning()
-
-    # @listen("replan_drone")
-    # def retry_drone(self, _):
-    #     print("Replanning drone")
-    #     return self.run_drone_planning()
-
-    # @listen("replan_satellite")
-    # def retry_satellite(self, _):
-    #     print("Replanning satellite")
-    #     return self.run_satellite_planning()
-
-
-    # # Validation again
-    # @listen(or_("replan_rover", "replan_drone", "replan_satellite"))
-    # def revalidate(self, _):
-    #     return "revalidate"
-
-
 
     # Integration
 
