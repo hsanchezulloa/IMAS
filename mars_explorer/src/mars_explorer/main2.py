@@ -119,7 +119,7 @@ class MarsFlow(Flow):
     # =========================
     # Validation
 
-    @listen(or_(and_(run_rover_planning, run_drone_planning, run_satellite_planning), "revalidate"))
+    @listen(and_(run_rover_planning, run_drone_planning, run_satellite_planning))
     def validate_plans(self, _) -> ValidationResult:
         print("Integration Crew is validating individual routes...")
 
