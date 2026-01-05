@@ -2,7 +2,7 @@ from crewai import Agent, Crew, Process, Task, LLM
 from crewai.project import CrewBase, agent, crew, task
 from crewai.agents.agent_builder.base_agent import BaseAgent
 from typing import List
-from crews.drone_crew.tools_drone.custom_tool import DroneFlightCheckTool
+from crews.drone_crew.tools_drone.custom_tool import BatchDroneFlightTool
 from pathlib import Path
 
 ollama_llm = LLM(
@@ -31,13 +31,13 @@ class DronesCrew():
             config=self.agents_config['flight_planner'],
             verbose=True,
             llm=ollama_llm,
-            tools = [DroneFlightCheckTool()]
+            tools = [BatchDroneFlightTool()]
         )
 
     @agent
-    def drone_sample_collector(self) -> Agent:
+    def sample_collector(self) -> Agent:
         return Agent(
-            config=self.agents_config['drone_sample_collector'],
+            config=self.agents_config['sample_collector'],
             llm=ollama_llm,
             verbose=True
         )
@@ -52,14 +52,14 @@ class DronesCrew():
     def reporting_route(self) -> Task:
         return Task(
             config=self.tasks_config['reporting_route'],
-            output_file='routes_drone.md',
+            output_file='routes_drone.json',
         )
 
     @task
     def generate_sampling(self) -> Task:
         return Task(
             config=self.tasks_config['generate_sampling'],
-            output_file='generate_sampling_drone.md',
+            output_file='sample_collector_drone.md',
             async_execution=True
         )
 

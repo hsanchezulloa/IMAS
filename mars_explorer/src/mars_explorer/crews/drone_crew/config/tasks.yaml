@@ -7,21 +7,44 @@ final_nodes:
 
 reporting_route:
   description: >
-    For each node in the provided list, choose 1 drone among the provided in the """ {{drones}} """ input file.
-    For each node-drone pair, you MUST use the tool DroneFlightCheckTool to calculate the path. Do NOT modify the path provided by such tool.
-    The routes are computed from the location of the drone (base) to the selected final node, and then back to the base. Don't modify this path, just store it!.
-    For each drone provide the paths returned by the tool.
-  expected_output: >
-    A JSON with this format:
-      {"drone_1": [[N30, N31, N32, N30], ["N30", "N2", "N5", "N9", "N4", "N30"]],
-         "drone_2": [[N84, N83, N82, N81, N84]]
-        }
-  agent: flight_planner
+    CALL THE TOOL Batch_Fligth_Calculator NOW.
 
+    Tool name: Batch_Fligth_Calculator
+
+    Tool arguments (use EXACTLY these variable names):
+    - targets_list: final nodes recieved from the extractor agent
+    - drones_data: {{drones}}
+
+    AFTER THE TOOL RETURNS:
+    - Output EXACTLY the tool output.
+    - Do NOT add text.
+    - Do NOT modify JSON.
+
+    FAILURE CONDITIONS:
+    - If you output paths without calling the tool,  FAIL.
+    - If you shorten or invent paths, FAIL.
+
+  expected_output: >
+    A JSON file contaioning the EXACT output of Batch_Fligth_Calculator
+    Example:
+    {"drone_1": [["N90", "N95", "N100", "N102", "N100", "N95", "N90"]],
+     "drone_0": [["N30", "N40", "N55", "N70", "N55", "N40", "N30"]]}
+
+  agent: flight_planner
 
 generate_sampling:
   description: >
     Plan and coordinate drone-based sampling operations based on mission objectives and environmental data. Ensure sampling plans are efficient, safe, and aligned with drone capabilities and mission priorities.
   expected_output: >
     A detailed report containing the sampling instructions for each drone.
-  agent: drone_sample_collector
+  agent: sample_collector
+
+
+generate_sampling:
+  description: >
+    Analyze the goals in """ {{report_priority}} """ for the drones.
+    For each unique goal found in the file, write a detailed procedure in Markdown.
+    Generates a detailed report of all samples to be collected, including the type of sample, collection procedure, and any relevant observations.
+  expected_output: >
+    A Markdown file ('sample_collector_drone.md') containing the 10-step procedures for the identified targets.
+  agent: sample_collector

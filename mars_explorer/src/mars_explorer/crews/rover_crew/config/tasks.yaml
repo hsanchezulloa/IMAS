@@ -5,28 +5,39 @@ final_nodes:
     A Python list containing all the node IDs where rovers need to perform their tasks.
   agent: extractor
 
-
 reporting_route:
   description: >
-    For each node in the provided list, choose 1 rover among the provided in the """ {{rovers}} """ input file.
-    For each node-rover pair, you MUST use the tool RoverPathfindingTool to calculate the path. Do NOT modify the path provided by such tool.
-    The routes are computed from the location of the rover (base) to the selected final node, and then back to the base. Don't modify this path, just store it!.
-    For each rover provide the paths returned by the tool.
+    CALL THE TOOL Batch_Route_Calculator NOW.
+
+    Tool name: Batch_Route_Calculator
+
+    Tool arguments (use EXACTLY these variable names):
+    - targets_list: final nodes recieved from the extractor agent
+    - rovers_data: {{rovers}}
+
+    AFTER THE TOOL RETURNS:
+    - Output EXACTLY the tool output.
+    - Do NOT add text.
+    - Do NOT modify JSON.
+
+    FAILURE CONDITIONS:
+    - If you output paths without calling the tool,  FAIL.
+    - If you shorten or invent paths, FAIL.
+
   expected_output: >
-    A JSON with this format:
-      {"rover_1": [[N30, N31, N32, N30], ["N30", "N2", "N5", "N9", "N4", "N30"]],
-         "rover_2": [[N84, N83, N82, N81, N84]]
-        }
+    A JSON file contaioning the EXACT output of Batch_Route_Calculator
+    Example:
+    {"rover_1": [["N90", "N95", "N100", "N102", "N100", "N95", "N90"]],
+     "rover_0": [["N30", "N40", "N55", "N70", "N55", "N40", "N30"]]}
+
   agent: route_planner
-
-
 
 
 reporting_sampling:
   description: >
-    Generates a detailed report of all samples to be collected, including the type of
-    sample, sensors used, collection procedure, and any relevant observations.
-    Sends the report to the plan integrator agent.
+    Analyze the goals in """ {{report_priority}} """ for the rovers.
+    For each unique goal/terrain combination found in the file, write a detailed procedure in Markdown.
+    Generates a detailed report of all samples to be collected, including the type of sample, sensors used, collection procedure, and any relevant observations.
   expected_output: >
-    A detailed report containing the sampling instructions for each rover.
+    A Markdown file ('sample_collector_drone.md') containing the 10-step procedures for the identified targets.
   agent: sample_collector

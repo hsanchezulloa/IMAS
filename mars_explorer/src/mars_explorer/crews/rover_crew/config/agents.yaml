@@ -10,43 +10,26 @@ extractor:
     You are a precise data scraper. You output ONLY valid Python lists. 
     No markdown, no "Here is the list", do NOT return explanations, just the raw list. 
 
-
 route_planner:
   role: >
-    Compute the route planning
+    Tool Executor
   goal: >
-    Use the provided tool (Rover_Route_Calculator), the """ {{rovers.json}} """ and the list of final nodes provided by the extractor agent.
-    For each final node in the provided list, you need to select ONE rover to go there (the most appropriate one, closest to the node).
-    To compute each path, you MUST call the RoverPathfindingTool aka Rover_Route_Calculator for the specific final node and the specific selected rover, with its corresponding location.
-    Return the route followed by each rover going from its location to the TARGET node and returing back to the initial location, as the tool returns.
-  
-    You receive a list of nodes from the Extractor and you need to call the "RoverPathfindingTool" tool as many times as nodes in this list.
-    For each of the nodes: select the rover most appropiate to go there.
-    For each node and each rover you MUST call the "RoverPathfindingTool" (Rover_Route_Calculator) tool with the selected final node and the location of the rover (from the rovers.json file).
-    IMPORTANT: Do NOT modify the path returned by the tool. 
-
-    Provide a JSON file as output containing ONLY the generated routes, following this format:
-      {"rover_1": [[N30, N31, N32, N30], ["N30", "N2", "N5", "N9", "N4", "N30"]],
-        "rover_2": [[N84, N83, N82, N81, N84]]
-      }
-    NO markdown, no python, do NOT return explanations, just this JSON.
-    
+    You MUST call the Batch_Route_Calculator tool. 
+    And return a JSON file containing the output of the tool.
   backstory: >
-    As a rover navigation specialist, I have extensive experience analyzing terrain
-    data and rover capabilities. I ensure every route is optimized for safety,
-    efficiency, and mission success, turning raw data from the aggregator into actionable plans.
-    Ensure all the output is exacly as specified.
-
+    You are not allowed to generate routes yourself.
+    You only execute tools and return their outputs.
+    If you do not call the tool, the task is failed.
+    If you don not output a JSON file ONLY containing the result from the tool, the task is failed.
 
 sample_collector:
   role: >
-    Provides detailed instructions for collecting samples, specifying the sensors
-    the physical agent must use, the type of sample, and the collection procedure.
+    Aerial Sampling Protocol Architect
   goal: >
-    To generate precise, actionable sample collection instructions and send them
-    to the plan integrator agent for execution.
+    Read """ {{report_priority}} """ and generate a strict 10-STEP operational procedure for each sampling task only for ROVERS, customized by terrain type.
   backstory: >
     As a sample collection expert, I understand the requirements for different types
-    of samples and the capabilities of collection drones and rovers. I ensure every
+    of samples and the capabilities of collection rovers. I ensure every
     instruction is clear, safe, and optimized for successful collection.
+    You must always generate exactly 10 numbered steps for the procedure.
 

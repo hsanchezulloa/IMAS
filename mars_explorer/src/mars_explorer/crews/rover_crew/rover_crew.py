@@ -2,7 +2,7 @@ from crewai import Agent, Crew, Process, Task, LLM
 from crewai.project import CrewBase, agent, crew, task
 from crewai.agents.agent_builder.base_agent import BaseAgent
 from typing import List
-from crews.rover_crew.tools_rover.custom_tool import RoverPathfindingTool
+from crews.rover_crew.tools_rover.custom_tool import BatchRoverRouteTool
 from pathlib import Path
 
 ollama_llm = LLM(
@@ -33,7 +33,7 @@ class RoverCrew:
     def route_planner(self) -> Agent:
         return Agent(
             config=self.agents_config["route_planner"],
-            tools = [RoverPathfindingTool()],
+            tools = [BatchRoverRouteTool()],
             llm = ollama_llm
         )
 
@@ -69,20 +69,13 @@ class RoverCrew:
     def crew(self) -> Crew:
         """Creates the Research Crew"""
        
-        # return Crew(
-        #     agents=self.agents,
-        #     tasks=self.tasks,
-        #     process=Process.sequential,
-        #     verbose=True,
-        # )
-
-   
         return Crew(
-            agents=[self.extractor(), self.route_planner()],
-            tasks=[self.final_nodes(), self.reporting_route()],
+            agents=self.agents,
+            tasks=self.tasks,
             process=Process.sequential,
-            verbose=True
+            verbose=True,
         )
+
 
 if __name__ == '__main__':
     crew = RoverCrew().crew()
