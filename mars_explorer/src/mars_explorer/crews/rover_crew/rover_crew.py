@@ -66,6 +66,20 @@ class RoverCrew:
     def reporting_route(self) -> Task:
         return Task(
             config=self.tasks_config["reporting_route"],
+            output_file='possible_routes_rover.json',
+        )
+    
+    @task
+    def task_ranking(self) -> Task:
+        return Task(
+            config=self.tasks_config["task_ranking"],
+            output_file='routes_rover.json',
+        )
+    
+    @task
+    def reporting_route(self) -> Task:
+        return Task(
+            config=self.tasks_config["reporting_route"],
             output_file='routes_rover.json',
         )
 
@@ -96,7 +110,8 @@ class RoverCrew:
 
 if __name__ == '__main__':
     crew = RoverCrew().crew()
-    routes_rover = json.loads(Path("routes_rover.json").read_text(encoding="utf-8"))
+    # routes_rover = json.loads(Path("possible_routes_rover.json").read_text(encoding="utf-8"))
+    routes_rover = Path("possible_routes_rover.json").read_text(encoding="utf-8")
     print(routes_rover)
     result = crew.kickoff(inputs={'routes_rover': routes_rover})
     # report_priority = Path("report_priority.json").read_text(encoding="utf-8")

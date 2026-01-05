@@ -13,13 +13,39 @@ ollama_llm = LLM(
     base_url="http://localhost:11434",
     temperature=0.1
 )
+# class FinalMissionReport(BaseModel):
+#     title: str = Field(..., description="The main title of the mission report.")
+#     table_of_contents: str = Field(..., description="A markdown list of clickable links to sections.")
+#     rover_section: str = Field(..., description="The complete integrated_rover.md content.")
+#     drone_section: str = Field(..., description="The complete integrated_drone.md content.")
+#     satellite_section: str = Field(..., description="The complete integrated_satellite.md content.")
+#     conclusion: str = Field(..., description="A brief scientific summary of the joint mission readiness.")
+
 class FinalMissionReport(BaseModel):
-    title: str = Field(..., description="The main title of the mission report.")
-    table_of_contents: str = Field(..., description="A markdown list of clickable links to sections.")
-    rover_section: str = Field(..., description="The complete integrated_rover.md content.")
-    drone_section: str = Field(..., description="The complete integrated_drone.md content.")
-    satellite_section: str = Field(..., description="The complete integrated_satellite.md content.")
-    conclusion: str = Field(..., description="A brief scientific summary of the joint mission readiness.")
+    title: str = Field(
+        ..., description="The main title of the mission report."
+    )
+
+    table_of_contents: List[str] = Field(
+        ..., description="List of section titles in order."
+    )
+
+    rover_section: str = Field(
+        ..., description="The complete integrated_rover.md content."
+    )
+
+    drone_section: str = Field(
+        ..., description="The complete integrated_drone.md content."
+    )
+
+    satellite_section: str = Field(
+        ..., description="The complete integrated_satellite.md content."
+    )
+
+    conclusion: str = Field(
+        ..., description="A brief scientific summary of the joint mission readiness."
+    )
+
 @CrewBase
 class IntegrationCrew():
     """Integration Crew"""
