@@ -2,12 +2,12 @@ from pydantic import BaseModel
 from pathlib import Path
 import json
 import re
-
 from crewai.flow import Flow, start, listen, and_, or_, router
 from crews.mission_crew.mission_crew import MissionCrew
 from crews.rover_crew.rover_crew import RoverCrew
 from crews.drone_crew.drone_crew import DronesCrew
 from crews.satellite_crew.satellite_crew import SatelliteCrew
+from crews.validation_crew.validation_crew import ValidationCrew
 from crews.integration_crew.integration_crew import IntegrationCrew
 
 
@@ -19,12 +19,13 @@ class ValidationResult(BaseModel):
 class MarsFlow(Flow):
     MAX_RETRIES = 3
 
-    def __init__(self, mission_crew, rover_crew, drone_crew, satellite_crew, integration_crew):
+    def __init__(self, mission_crew, rover_crew, drone_crew, satellite_crew, validation_crew, integration_crew):
         super().__init__()
         self.mission_crew = mission_crew
         self.rover_crew = rover_crew
         self.drone_crew = drone_crew
         self.satellite_crew = satellite_crew
+        self.validation_crew = validation_crew
         self.integration_crew = integration_crew
 
 
@@ -118,23 +119,39 @@ class MarsFlow(Flow):
     # =========================
     # Validation
 
-    @listen(or_(and_(run_rover_planning, run_drone_planning, run_satellite_planning),"revalidate"))
+    @listen(or_(and_(run_rover_planning, run_drone_planning, run_satellite_planning), "revalidate"))
     def validate_plans(self, _) -> ValidationResult:
-        print("Validating plans")
+        print("Integration Crew is validating individual routes...")
 
-        rover_ok = len(str(self.state.get("rover_plan", ""))) > 20
-        drone_ok = len(str(self.state.get("drone_plan", ""))) > 20
-        satellite_ok = len(str(self.state.get("satellite_plan", ""))) > 20
-
-        validation = ValidationResult(
-            rover_ok=rover_ok,
-            drone_ok=drone_ok,
-            satellite_ok=satellite_ok,
+        # We call the validation_crew specifically for validation
+        # Tip: You can use a specific task name if your crew has multiple tasks
+        validation_output = self.validation_crew.crew().kickoff(
+            inputs={
+                "rover_plan": str(self.state.get("rover_plan")),
+                "drone_plan": str(self.state.get("drone_plan")),
+                "satellite_plan": str(self.state.get("satellite_plan")),
+                "mars_graph": self.state.get("mars_graph"),
+                "context": "VALIDATION_MODE" # Helper flag for your agents
+            }
         )
+
+        # Extract the JSON results from the validation agents
+        try:
+            res = self.extract_json_object(validation_output.raw)
+            validation = ValidationResult(
+                rover_ok=res.get("rover_ok", False),
+                drone_ok=res.get("drone_ok", False),
+                satellite_ok=res.get("satellite_ok", False)
+            )
+            # Store feedback in state so the replanning agents know what went wrong
+            self.state["feedback"] = res.get("feedback", "No specific feedback provided.")
+        except Exception as e:
+            print(f"Validation parsing failed: {e}")
+            # Default to False if parsing fails to force a retry
+            validation = ValidationResult(rover_ok=False, drone_ok=False, satellite_ok=False)
 
         self.state["validation"] = validation
         return validation
-
 
     # Decision (router)
     @router(validate_plans)
@@ -214,6 +231,7 @@ def kickoff():
         rover_crew=RoverCrew(),
         drone_crew=DronesCrew(),
         satellite_crew=SatelliteCrew(),
+        validation_crew = ValidationCrew(),
         integration_crew=IntegrationCrew(),
     )
 
@@ -227,7 +245,16 @@ def kickoff():
     print(result)
 
     return result
-
+def plot():
+    flow = MarsFlow(
+        mission_crew=MissionCrew(),
+        rover_crew=RoverCrew(),
+        drone_crew=DronesCrew(),
+        satellite_crew=SatelliteCrew(),
+        validation_crew = ValidationCrew(),
+        integration_crew=IntegrationCrew())
+    flow.plot()
 
 if __name__ == "__main__":
-    kickoff()
+    # kickoff()
+    plot()

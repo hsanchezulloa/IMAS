@@ -7,7 +7,7 @@ reporting_inconsistencies:
   expected_output: >
     A unified plan free of conflicts, together with a detailed explanation of what
     inconsistencies were identified and how they were solved.
-  agent: integrator
+  agent: integrator_rover
 
 verify_plan:
   description: >

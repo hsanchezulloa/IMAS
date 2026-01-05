@@ -1,0 +1,10 @@
+reporting_inconsistencies:
+  description: >
+    Analyze the individual plans produced by each crew (rover, drone and satellite).
+    Identify any temporal or spatial conflict between them, for instance trying to perform
+    incompatible actions simultaneously or actions that vulnerate mission constraints.
+    If a conflict is detected, apply the necessary and minimal changes to solve it.
+  expected_output: >
+    A unified plan free of conflicts, together with a detailed explanation of what
+    inconsistencies were identified and how they were solved.
+  agent: validation_rover

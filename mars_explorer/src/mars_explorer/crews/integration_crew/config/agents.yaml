@@ -1,4 +1,4 @@
-integrator:
+integrator_rover:
   role: >
     Plan integrator
   goal: >

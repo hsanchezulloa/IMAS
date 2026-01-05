@@ -12,8 +12,8 @@ ollama_llm = LLM(
 )
 
 @CrewBase
-class IntegrationCrew():
-    """Integration Crew"""
+class ValidationCrew():
+    """Validation Crew"""
 
     agents: List[BaseAgent]
     tasks: List[Task]
@@ -27,20 +27,13 @@ class IntegrationCrew():
     # If you would like to add tools to your agents, you can learn more about it here:
     # https://docs.crewai.com/concepts/agents#agent-tools
     @agent
-    def integrator_rover(self) -> Agent:
+    def validation_rover(self) -> Agent:
         return Agent(
-            config=self.agents_config['integrator_rover'], # type: ignore[index]
+            config=self.agents_config['validation_rover'], # type: ignore[index]
             verbose=True,
             llm=ollama_llm,
         )
 
-    @agent
-    def coordinator(self) -> Agent:
-        return Agent(
-            config=self.agents_config['coordinator'], # type: ignore[index]
-            verbose=True,
-            llm=ollama_llm,
-        )
 
     # To learn more about structured task outputs,
     # task dependencies, and task callbacks, check out the documentation:
@@ -51,38 +44,11 @@ class IntegrationCrew():
             config=self.tasks_config['reporting_inconsistencies'], # type: ignore[index]
         )
 
-    @task
-    def verify_plan(self) -> Task:
-        return Task(
-            config=self.tasks_config['verify_plan'], # type: ignore[index]
-            output_file='report.md'
-        )
-
-    @task
-    def report_rovers(self) -> Task:
-        return Task(
-            config=self.tasks_config['report_rovers'], # type: ignore[index]
-            output_file='report.md'
-        )
-    
-    @task
-    def report_drones(self) -> Task:
-        return Task(
-            config=self.tasks_config['report_drones'], # type: ignore[index]
-            output_file='report.md'
-        )
-    
-    @task
-    def report_satellites(self) -> Task:
-        return Task(
-            config=self.tasks_config['report_satellites'], # type: ignore[index]
-            output_file='report.md'
-        )
 
 
     @crew
     def crew(self) -> Crew:
-        """Creates the IntegrationCrew crew"""
+        """Creates the ValidationCrew crew"""
         # To learn how to add knowledge sources to your crew, check out the documentation:
         # https://docs.crewai.com/concepts/knowledge#what-is-knowledge
 
