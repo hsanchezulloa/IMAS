@@ -1,37 +1,42 @@
+from typing import List
 from crewai.tools import BaseTool
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, PrivateAttr
 import networkx as nx
 from tools.mars_environment import MarsEnvironment
+import random
 
 class RoverRouteInput(BaseModel):
+    start_node: str = Field("Base", description="Starting Base Station.")
     start_node: str = Field(..., description  = "Starting node ID.")
-    end_node: str = Field(..., description = "Target node ID.")
+    target_node: str = Field(..., description = "Target node ID (e.g., 'N70').")
     current_energy: float = Field(..., description = "Current battery level.")
-    hazards: bool = Field(..., description = "Take hazards into account.")
 
 class RoverPathfindingTool(BaseTool):
     name: str = "Rover_Route_Calculator"
     description: str = (
-        "Calculates the optimal path for a rover based on real graph distances. "
+        "Calculates the optimal round path for a rover based on real graph distances. "
         "Considers terrain penalties (icy terrain is slower). "
         "Strictly avoid 'unstable' terrain and 'high_radiation' zones. "
-        "Returns the path list, total distance estimate, energy cost, remaining battery, battery status."
+        "Saves the path list, total distance estimate, energy cost, remaining battery, battery status."
     )
     args_schema: type[BaseModel] = RoverRouteInput
 
-
-    def _run(self, start_node: str, end_node: str, current_energy: float, hazards: bool) -> str:
+    def _run(self, start_node: str, target_node: str, current_energy: float) -> str:
         '''
         Example of output:
-        (path, distance, energy, remaining_battery, batery_status) -> (['N60', 'N65', 'N66'], 9.0, 9.45, 70.55, 'BATERY OK')
+        (path, distance, energy, batery_status) -> (['N60', 'N65', 'N66'], 9.0, 9.45, 'BATERY OK')
         '''
         env = MarsEnvironment()
         graph = env.get_graph()
 
-        # Ensure that the start node exists
-        if start_node not in graph or end_node not in graph:
-            return f"Error: Nodes {start_node} or {end_node} do not exist in the map."
+        print(f"route_planner (inside RoverPathfindingTool): target_node = {target_node}")
 
+        # Ensure that the start node exists
+        if start_node not in graph or target_node not in graph:
+            return f"Error: Nodes {start_node} or {target_node} do not exist in the map."
+
+        # Determine if hazards are considered or not (50% probability each)
+        hazards = random.random() >= 0.5
 
         def weight_function(u, v, d):
             '''
@@ -75,7 +80,12 @@ class RoverPathfindingTool(BaseTool):
 
         try:
             # SHORTEST PATH
-            path = nx.shortest_path(graph, source = start_node, target = end_node, weight = weight_function)
+            # from base to target node
+            path_go = nx.shortest_path(graph, source = start_node, target = target_node, weight = weight_function)
+            # from target node to base
+            path_back = nx.shortest_path(graph, source = target_node, target = start_node, weight = weight_function)  
+            # full path
+            path = path_go + path_back[1:]
 
             # COMPUTE TOTAL DISTANCE AND ENERGY OF THE SHORT
             total_distance = 0.0
@@ -111,9 +121,9 @@ class RoverPathfindingTool(BaseTool):
             warning_msg = "BATERY OK"
             if remaining_battery < min_reserve:
                 # Return a string that the LLM will interpret as an alter
-                warning_msg = (f"WARNING: This route leaves battery at {remaining_battery:.2f}. Plan a route to a Base Station first!")
+                warning_msg = (f"WARNING: This route leaves battery at {remaining_battery:.2f}. Consider using another rover!")
 
-            return path, total_distance, total_energy, remaining_battery, warning_msg
+            return path, total_distance, total_energy, warning_msg
 
         except nx.NetworkXNoPath:
             return "No path found"

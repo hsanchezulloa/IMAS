@@ -63,6 +63,12 @@ class MarsFlow(Flow):
 
     @listen(run_mission_analysis)
     def run_rover_planning(self):
+        report_priority = Path("report_priority.json").read_text(encoding="utf-8")
+        rovers = Path("inputs/rovers.json").read_text(encoding="utf-8")
+        result = self.rover_crew.crew().kickoff(inputs={'report_priority': report_priority, 'rovers':rovers})
+        self.state["rover_plan"] = result
+
+        '''
         mars_graph = self.state.get('mars_graph')
         raw_text = Path("reporting_aggregation.md").read_text(encoding="utf-8", errors="ignore")
         mission_data = self.extract_json_object(raw_text)
@@ -70,10 +76,17 @@ class MarsFlow(Flow):
         print("Rover planning")
         result = self.rover_crew.crew().kickoff(inputs={"mission_report": rovers, "mars_graph":mars_graph})
         self.state["rover_plan"] = result
+        '''
         return result
 
     @listen(run_mission_analysis)
     def run_drone_planning(self):
+        report_priority = Path("report_priority.json").read_text(encoding="utf-8")
+        drones = Path("inputs/drones.json").read_text(encoding="utf-8")
+        result = self.drone_crew.crew().kickoff(inputs={'report_priority': report_priority, 'drones':drones})
+        self.state["drone_plan"] = result
+
+        '''
         mars_graph = self.state.get('mars_graph')
         raw_text = Path("reporting_aggregation.md").read_text(encoding="utf-8", errors="ignore")
         mission_data = self.extract_json_object(raw_text)
@@ -81,6 +94,7 @@ class MarsFlow(Flow):
         print("Drone planning")
         result = self.drone_crew.crew().kickoff(inputs={"mission_report": drones, "mars_graph":mars_graph})
         self.state["drone_plan"] = result
+        '''
         return result
 
     @listen(run_mission_analysis)
