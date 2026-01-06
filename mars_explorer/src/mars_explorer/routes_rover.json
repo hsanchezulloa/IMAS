@@ -1,6 +1,11 @@
+```json
 {
-  "Rover 1 (N30)": [],
-  "Rover 2 (N84)": [],
-  "Rover 3 (N30)": [],
-  "Rover 4 (N84)": []
+  "assignments": {
+    "rover_0": "N20",
+    "rover_1": "N86",
+    "rover_2": "N12",
+    "rover_3": "N70",
+    "rover_4": "N1"
+  }
 }
+```

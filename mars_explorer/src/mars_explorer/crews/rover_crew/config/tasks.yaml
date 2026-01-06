@@ -72,22 +72,32 @@ reporting_route:
 #     The raw JSON output from the Multi_Rover_Node_Assigner tool without any preamble.
 #   agent: ranking
 
+# task_ranking:
+#   description: >
+#     You have been provided with rover route and energy data (found in the routes_rover input).
+    
+#     Your SOLE task is to:
+#     1. Take the provided 'routes_rover' dictionary.
+#     2. Pass it DIRECTLY into the 'Multi_Rover_Node_Assigner' tool as the 'rover_results' argument.
+    
+#     Do NOT attempt to process, summarize, or manually assign the rovers yourself. 
+#     The tool handles all calculations.
+#     The input routes_rover is in """ {{context.reporting_route}} """"
+#   expected_output: >
+#     The final assignments dictionary produced by the tool.
+#   agent: ranking
+
 task_ranking:
   description: >
-    You have been provided with rover route and energy data (found in the routes_rover input).
+    Assign the best rovers to target nodes based on the route and energy data 
+    provided in the context. 
     
-    Your SOLE task is to:
-    1. Take the provided 'routes_rover' dictionary.
-    2. Pass it DIRECTLY into the 'Multi_Rover_Node_Assigner' tool as the 'rover_results' argument.
-    
-    Do NOT attempt to process, summarize, or manually assign the rovers yourself. 
-    The tool handles all calculations.
-    The input routes_rover is in """ {{context.reporting_route}} """"
+    YOU MUST USE the 'Multi_Rover_Node_Assigner' tool WITH THE DICTIONARY FROM THE PREVIOUS AGENT AS INPUT to perform this calculation.
+    Pass the entire context dictionary to the tool's 'rover_results' argument.
+    Do not attempt to create the assignments yourself or repeat the input data.
   expected_output: >
-    The final assignments dictionary produced by the tool.
+    The output from the Multi_Rover_Node_Assigner tool. DO NOT MODIFY THE OUTPUT.
   agent: ranking
-
-
 
 reporting_sampling:
   description: >

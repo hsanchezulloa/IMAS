@@ -2,6 +2,7 @@ from crewai import Agent, Crew, Process, Task, LLM
 from crewai.project import CrewBase, agent, crew, task
 from crewai.agents.agent_builder.base_agent import BaseAgent
 from typing import List
+from pydantic import BaseModel
 from crews.rover_crew.tools_rover.custom_tool import RoverPathfindingTool, MultiRoverNodeAssignerTool
 from pathlib import Path
 
@@ -11,7 +12,10 @@ ollama_llm = LLM(
     temperature=0.1,
     timeout=3600
 )
-
+class RouteOutput(BaseModel):
+    # Since the tool returns a Dict[str, Any], we can use a generic dict 
+    # or define it more strictly.
+    results: dict
 @CrewBase
 class RoverCrew:
     """Rover Crew"""
@@ -35,7 +39,7 @@ class RoverCrew:
             config=self.agents_config["route_planner"],
             tools = [RoverPathfindingTool()],
             llm = ollama_llm,
-            max_iter=1,
+            max_iter=3,
             cache=False,
             verbose=False
         )
@@ -46,6 +50,7 @@ class RoverCrew:
             config=self.agents_config["ranking"],
             tools = [MultiRoverNodeAssignerTool()],
             llm = ollama_llm,
+            max_iter=3,
             allow_delegation=False,
             cache=False,
             verbose=True
@@ -69,6 +74,7 @@ class RoverCrew:
         return Task(
             config=self.tasks_config["reporting_route"],
             context=[self.final_nodes()],
+            output_json=RouteOutput,
             output_file='possible_routes_rover.json',
         )
     
@@ -91,18 +97,18 @@ class RoverCrew:
     @crew
     def crew(self) -> Crew:
         """Creates the Research Crew"""
-        # return Crew(
-        #     agents=[self.extractor(), self.route_planner(), self.ranking()],
-        #     tasks=[self.final_nodes(), self.reporting_route(), self.task_ranking()],
-        #     process=Process.sequential,
-        #     verbose=True
-        # )
         return Crew(
-            agents=self.agents,
-            tasks=self.tasks,
+            agents=[self.extractor(), self.route_planner(), self.ranking()],
+            tasks=[self.final_nodes(), self.reporting_route(), self.task_ranking()],
             process=Process.sequential,
-            verbose=True,
+            verbose=True
         )
+        # return Crew(
+        #     agents=self.agents,
+        #     tasks=self.tasks,
+        #     process=Process.sequential,
+        #     verbose=True,
+        # )
 
 
 if __name__ == '__main__':

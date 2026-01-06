@@ -1,51 +1,55 @@
 ### Satellite Mission Execution Protocols
 
-#### **Mission Type: Panoramic Terrain Capture**
+#### 1. Panoramic Terrain Capture at Crater Nodes (N5, N58, N121, N150)
 
 **Step 1: Sensor Initialization**
-- **Action**: Power on and initialize the multispectral imaging sensor suite.
-- **Details**: Ensure all cameras are calibrated and operational. Check spectral filters for optimal terrain coverage.
+- **Action**: Activate the multispectral camera suite, ensuring all bands are operational.
+- **Details**: Set exposure parameters for optimal image capture in crater terrain. Adjust white balance and focus settings to account for varying lighting conditions.
 
-**Step 2: Positioning Over Target Nodes**
-- **Action**: Adjust satellite trajectory to position over nodes N5, N58, N121, and N150.
-- **Details**: Use thrusters to maintain stable orbit at an altitude of 30 km above the target crater terrain.
+**Step 2: Positioning**
+- **Action**: Manually adjust satellite orbit to align with target nodes N5, N58, N121, and N150.
+- **Details**: Ensure altitude is set between 150-200 km for high-resolution imaging. Orient the camera nadir towards the terrain.
 
-**Step 3: Capture Sequence Execution**
+**Step 3: Capture Sequence**
 - **Action**: Initiate panoramic image capture sequence.
-- **Details**: Program the camera system to take high-resolution images in RGB and infrared spectra, ensuring full coverage of each node's surface features.
+- **Details**: Capture a series of overlapping images in RGB, near-infrared, and thermal bands. Use panning commands to cover all nodes within a 10-minute window.
 
 **Step 4: Data Validation**
 - **Action**: Review captured data for completeness and quality.
-- **Details**: Check for missing frames or artifacts. Apply automated filters to remove atmospheric distortion.
+- **Details**: Check image alignment, coverage, and clarity. Compare against predefined criteria for acceptable resolution and contrast.
 
-**Step 5: Secure Data Transmission**
-- **Action**: Transmit validated images to ground control via encrypted uplink.
-- **Details**: Ensure data packets are correctly routed with priority tags for immediate processing.
+**Step 5: Transmission**
+- **Action**: Transmit validated images to ground control via secure communication channel.
+- **Details**: Prioritize transmission based on mission criticality. Include metadata such as timestamp, node coordinates, and sensor settings.
 
 ---
 
-#### **Mission Type: Thermal Anomaly Identification**
+#### 2. Thermal Anomaly Identification at Icy Nodes (N56, N112)
 
 **Step 1: Sensor Initialization**
-- **Action**: Activate thermal imaging sensors and radiometric instruments.
-- **Details**: Calibrate sensors to detect temperature variations across the icy terrain.
+- **Action**: Activate the thermal infrared sensor.
+- **Details**: Set sensitivity to detect temperature variations in icy terrain. Adjust gain and offset parameters for optimal signal capture.
 
-**Step 2: Positioning Over Target Nodes**
-- **Action**: Navigate satellite to nodes N56 and N112, positioning at an altitude of 20 km.
-- **Details**: Ensure optimal thermal data collection over the icy surface.
+**Step 2: Positioning**
+- **Action**: Fine-tune satellite orbit for precise alignment with target nodes N56 and N112.
+- **Details**: Maintain altitude between 100-150 km to achieve sufficient resolution for thermal analysis. Adjust orientation for nadir viewing.
 
-**Step 3: Capture Sequence Execution**
+**Step 3: Capture Sequence**
 - **Action**: Begin thermal anomaly detection sequence.
-- **Details**: Use sensors to capture temperature gradients during local midday hours for maximum contrast.
+- **Details**: Capture high-resolution thermal images during both day and night cycles. Use automated tracking to focus on target areas.
 
 **Step 4: Data Validation**
-- **Action**: Analyze thermal data for anomalies and patterns.
-- **Details**: Apply algorithms to identify significant temperature fluctuations indicative of geological activity.
+- **Action**: Analyze thermal data for anomalies.
+- **Details**: Compare captured temperatures against baseline data. Identify deviations indicative of thermal anomalies, such as hotspots or unusual patterns.
 
-**Step 5: Secure Data Transmission**
-- **Action**: Transmit validated thermal data to ground control via secure downlink.
-- **Details**: Package data with metadata for immediate processing by scientific teams.
+**Step 5: Transmission**
+- **Action**: Transmit identified anomalies and supporting data to ground control.
+- **Details**: Include coordinates, temperature readings, and timestamped images. Prioritize transmission based on anomaly severity.
 
 ---
 
-This manual provides detailed, step-by-step protocols for executing satellite missions focused on panoramic terrain capture and thermal anomaly identification. Each protocol is designed to ensure mission success by addressing specific operational requirements and environmental factors.
+### Notes:
+- **Terrain Considerations**: Adjust sensor parameters based on terrain type (e.g., crater vs. icy) to optimize image quality and anomaly detection.
+- **Time Window**: Capture sequences should be scheduled during optimal lighting conditions for panoramic imaging and during thermal activity peaks for anomaly detection.
+
+This protocol ensures precise execution of satellite missions, maximizing data quality and mission success.
