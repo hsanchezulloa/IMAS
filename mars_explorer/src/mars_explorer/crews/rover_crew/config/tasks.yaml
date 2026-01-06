@@ -5,47 +5,55 @@ final_nodes:
     A Python list containing all the node IDs where rovers need to perform their tasks.
   agent: extractor
 
+# reporting_route:
+#   description: >
+#     Using the list of rovers provided in the input """ {{rovers}} """,
+#     and the list of target nodes provided in """ {{context.final_nodes}} """,
+#     you MUST call the tool Multi_Rover_Route_Calculator exactly once.
+
+#     The tool will automatically extract each rover's location and energy
+#     and compute the shortest distance from each rover to every target node.
+
+#     Do NOT recompute paths manually.
+#     Do NOT modify, filter, or reinterpret the tool output.
+#     Simply return the result exactly as produced by the tool.
+
+#   expected_output: >
+#     The raw dictionary output from the Multi_Rover_Route_Calculator tool. DO NOT MODIFY THE OUTPUT. Just copy it.
+#     The raw, unmodified dictionary/JSON output from the Multi_Rover_Route_Calculator tool containing rover IDs, locations, energy, and path feasibility data.
+
+#   agent: route_planner
+
+# reporting_route:
+#   description: >
+#     1. You MUST call Multi_Rover_Route_Calculator tool USING AS INPUTS THE """ {{rovers}} """ and """ {{context.final_nodes}} """
+#     2. You MUST provide AS OUTPUT the tool's OUTPUT WITHOUT ANY MODIFICATIONS.
+
+#   expected_output: >
+#     The output from the Multi_Rover_Route_Calculator tool. DO NOT MODIFY THE OUTPUT.
+
+#   agent: route_planner
+
 reporting_route:
   description: >
-    Using the list of rovers provided in the input """ {{rovers}} """,
-    and the list of target nodes provided in """ {{context.final_nodes}} """,
-    you MUST call the tool Multi_Rover_Route_Calculator exactly once.
-
-    The tool will automatically extract each rover's location and energy
-    and compute the shortest distance from each rover to every target node.
-
-    Do NOT recompute paths manually.
-    Do NOT modify, filter, or reinterpret the tool output.
-    Simply return the result exactly as produced by the tool.
+    You MUST do exactly these steps:
+    Step 1) Call Multi_Rover_Route_Calculator with:
+      - rovers = """ {{rovers}} """
+      - final_nodes = """ {{context.final_nodes}} """
+    Step 2) Return EXACTLY the tool output bytes as JSON.
+    Rules:
+      - Do NOT add keys
+      - Do NOT remove keys
+      - Do NOT reformat
+      - Do NOT summarize
+      - Do NOT explain
+      - Output must be valid JSON and nothing else.
 
   expected_output: >
-    A JSON dictionary indexed by rover ID.
-    Each rover ID maps to an object containing:
-      - the rover location
-      - the rover energy
-      - a dictionary with distances to all target nodes
-
-    Output format:
-    {
-      "rover_0": {
-        "location": "N30",
-        "energy": 95,
-        "output_nodes_length": {
-          "N70": 48.3,
-          "N10": 12.1
-        }
-      },
-      "rover_1": {
-        "location": "N84",
-        "energy": 94,
-        "output_nodes_length": {
-          "N70": 9.7,
-          "N10": null
-        }
-      }
-    }
+    The output from the Multi_Rover_Route_Calculator tool. DO NOT MODIFY THE OUTPUT.
 
   agent: route_planner
+
 
 # task_ranking:
 #   description: >

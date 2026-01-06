@@ -1,11 +1,6 @@
-The final assignments dictionary produced by the Multi_Rover_Node_Assigner tool is as follows:
-
-```json
 {
-  "rover_0": ["N20", "N1"],
-  "rover_1": ["N86", "N59"],
-  "rover_2": ["N70"],
-  "rover_3": ["N12"],
-  "rover_4": ["N102"]
+  "Rover 1 (N30)": [],
+  "Rover 2 (N84)": [],
+  "Rover 3 (N30)": [],
+  "Rover 4 (N84)": []
 }
-```

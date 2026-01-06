@@ -4,7 +4,6 @@ from crewai.agents.agent_builder.base_agent import BaseAgent
 from typing import List
 from crews.rover_crew.tools_rover.custom_tool import RoverPathfindingTool, MultiRoverNodeAssignerTool
 from pathlib import Path
-import json
 
 ollama_llm = LLM(
     model='ollama/deepseek-r1:14b',
@@ -35,7 +34,10 @@ class RoverCrew:
         return Agent(
             config=self.agents_config["route_planner"],
             tools = [RoverPathfindingTool()],
-            llm = ollama_llm
+            llm = ollama_llm,
+            max_iter=1,
+            cache=False,
+            verbose=False
         )
     
     @agent
@@ -77,13 +79,6 @@ class RoverCrew:
             context=[self.reporting_route()],
             output_file='routes_rover.json',
         )
-    
-    @task
-    def reporting_route(self) -> Task:
-        return Task(
-            config=self.tasks_config["reporting_route"],
-            output_file='routes_rover.json',
-        )
 
     @task
     def reporting_sampling(self) -> Task:
@@ -97,8 +92,8 @@ class RoverCrew:
     def crew(self) -> Crew:
         """Creates the Research Crew"""
         # return Crew(
-        #     agents=[self.ranking()],
-        #     tasks=[self.task_ranking()],
+        #     agents=[self.extractor(), self.route_planner(), self.ranking()],
+        #     tasks=[self.final_nodes(), self.reporting_route(), self.task_ranking()],
         #     process=Process.sequential,
         #     verbose=True
         # )
@@ -113,10 +108,11 @@ class RoverCrew:
 if __name__ == '__main__':
     crew = RoverCrew().crew()
     # routes_rover = json.loads(Path("possible_routes_rover.json").read_text(encoding="utf-8"))
+    # report_priority = Path("report_priority.json").read_text(encoding="utf-8")
+    # rovers = Path("inputs/rovers.json").read_text(encoding="utf-8")
+    # result = crew.kickoff(inputs={'report_priority': report_priority, 'rovers': rovers})
+
     report_priority = Path("report_priority.json").read_text(encoding="utf-8")
     rovers = Path("inputs/rovers.json").read_text(encoding="utf-8")
     result = crew.kickoff(inputs={'report_priority': report_priority, 'rovers': rovers})
-    # report_priority = Path("report_priority.json").read_text(encoding="utf-8")
-    # rovers = Path("inputs/rovers.json").read_text(encoding="utf-8")
-    # result = crew.kickoff(inputs={'report_priority': report_priority, 'rovers':rovers})
     # print(result.raw)

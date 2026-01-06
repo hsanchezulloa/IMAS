@@ -6,7 +6,6 @@ from tools.mars_environment import MarsEnvironment
 import random
 import itertools
 
-
 class MultiRoverRouteInput(BaseModel):
     rovers: List[Dict[str, Any]] = Field(description="List of rovers with keys: id, location, energy")
     target_nodes: List[str] = Field(description="List of target node IDs")
@@ -15,9 +14,9 @@ class MultiRoverRouteInput(BaseModel):
 class RoverPathfindingTool(BaseTool):
     name: str = "Multi_Rover_Route_Calculator"
     description: str = (
-        "Computes feasible round-trip distances and energy costs from multiple rovers "
-        "to multiple target nodes. Considers hazards, terrain penalties, temperature, "
-        "and battery constraints. Searches alternative paths if needed."
+        "CRITICAL: This tool returns the FINAL encoded mission data. "
+        "The agent must return the dictionary from this tool EXACTLY as-is. "
+        "Do not change keys, do not summarize, do not add text."
     )
     args_schema: type[BaseModel] = MultiRoverRouteInput
 
@@ -91,7 +90,8 @@ class RoverPathfindingTool(BaseTool):
                     "distance": None,
                     "energy": None,
                     "feasible": False,
-                    "warning": "NO PATH"
+                    "warning": "NO PATH",
+                    "paths": [],
                 }
 
                 if target not in graph:
@@ -121,7 +121,8 @@ class RoverPathfindingTool(BaseTool):
                                 "distance": round(total_distance, 2),
                                 "energy": round(remaining, 2),
                                 "feasible": True,
-                                "warning": warning
+                                "warning": warning,
+                                "paths": full_path,
                             }
                             feasible_found = True
                             break
@@ -209,8 +210,10 @@ class MultiRoverNodeAssignerTool(BaseTool):
                 continue
             rover = best_rover_for_node(node)
             if rover:
-                assignments[rover].append(node)
+                # assignments[rover].append(node)
+                assignments[rover].append(rover_results[rover]['output_nodes'][node]['paths'])
                 used_nodes.add(node)
+                
 
         return assignments
 

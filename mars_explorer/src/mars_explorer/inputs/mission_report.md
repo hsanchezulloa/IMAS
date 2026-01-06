@@ -5,7 +5,7 @@
 
 ## Scientific Goals
 
-- Collect subsurface samples from **rocky** terrain near nodes **N70**, **N102**, and **N152**. 
+- Collect subsurface samples from **rocky** terrain near nodes **N70** and **N102**. 
 - Capture panoramic images of **crater** terrain at nodes **N5**, **N58**, **N121** and **N150**. 
 - Measure radiation levels in **sandy** terrain at node **N12**, **N86** and **N1**. 
 - Deploy seismic sensors at the **rocky** node **N20**. 
@@ -18,10 +18,9 @@
 
 ## Operational Constraints
 
-- **Rovers** and **drones** must recharge if energy drops below 30%.
+- **Rovers** and **drones** should recharge if energy drops below 30%.
 - **Rovers** must enter a heat shelter during 20 minutes if the surface temperature is below -60ºC.
 - **Rovers** cannot operate if node temperature is below -80ºC.
-- **Rover's** speed is reduced by 10% in rocky, 30% in sandy, 50% in icy and 40% in crater terrains. 
 - **Rover's** energy consumption is different depending on the type of terrain: 5% in rocky, increased 10% in sandy, increased 20% in icy and increased 15% in crater terrains.
 - **Drones** must return to base after 25 minutes of flight.
 - **Drones** are disabled if there is a dust storm.
