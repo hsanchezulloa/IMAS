@@ -1,54 +1,35 @@
-```markdown
-# Drone Sampling Operational Procedures
+# Drone Sampling Operational Procedure
 
-## 1. Air Dust Sample Collection Over N33 Crater
+## 10-Step Procedure for Drone Sampling Tasks
 
-### Step-by-Step Procedure:
+### Step 1: Pre-Flight System Check
+- Conduct a thorough inspection of the drone's systems, including propellers, battery levels, communication links, and payload readiness.
 
-1. **Pre-Flight Check**: Ensure drone is fully charged, sensors are calibrated, and all systems are operational.
-2. **Take Off**: Launch drone from designated launch pad at coordinates (N/A).
-3. **Navigate to N33 Crater**: Fly drone directly to N33 crater using GPS navigation.
-4. **Initiate Sampling Mode**: Activate air sampling system upon arrival at N33.
-5. **Collect Dust Samples**: Hover at 100m altitude and collect dust samples for 5 minutes.
-6. **Log Data**: Record environmental parameters (temperature, humidity, wind speed).
-7. **Return to Launch Pad**: After collection, fly back to launch pad.
-8. **Store Samples**: Securely store collected samples in airtight containers.
-9. **Data Analysis**: Transfer data to base station for review.
-10. **Post-Flight Check**: Inspect drone and sensors for any damage or issues.
+### Step 2: Launch Drone from Base Station
+- Initiate launch sequence from designated base station to ensure optimal altitude and stability for sample collection.
 
----
+### Step 3: Navigate to N33 Crater for Dust Sample Collection
+- Fly drone to coordinates of N33 crater, ensuring safe passage avoiding obstacles.
 
-## 2. Map CO2 Frost Coverage in Icy Areas (N53, N63, N108)
+### Step 4: Airborne Dust Sample Collection Over N33 Crater
+- Deploy dust sampling equipment during flight, capturing samples in designated collection pods.
 
-### Step-by-Step Procedure:
+### Step 5: Transition to Mapping CO2 Frost Coverage
+- After completing dust collection, adjust drone's altitude and sensors for mapping CO2 frost.
 
-1. **Pre-Flight Planning**: Review mission parameters and weather conditions.
-2. **Take Off**: Launch drone from designated launch pad at coordinates (N/A).
-3. **Navigate to N53**: Fly drone to N53 using GPS navigation.
-4. **Initiate Mapping Mode**: Activate CO2 frost sensors upon arrival.
-5. **Map CO2 Frost**: Conduct low-altitude scan (10m) and record frost coverage.
-6. **Log Data**: Capture high-resolution images and thermal data.
-7. **Proceed to N63**: Fly drone to N63 and repeat steps 4-6.
-8. **Proceed to N108**: Fly drone to N108 and repeat steps 4-6.
-9. **Return to Launch Pad**: After completing all nodes, fly back to launch pad.
-10. **Data Analysis**: Transfer data to base station for review.
+### Step 6: Map CO2 Frost at N53, N63, and N108
+- Use imaging sensors to capture data on CO2 frost distribution across specified nodes.
 
----
+### Step 7: Real-Time Data Analysis
+- Monitor collected data for anomalies or patterns indicative of environmental changes.
 
-## Final Report
+### Step 8: Return Drone to Base Station
+- Execute return flight plan, ensuring safe landing and maintaining data integrity.
 
-### Samples Collected:
-- **Type**: Air dust samples from N33 crater.
-- **Procedure**: Collected during a 5-minute hover at 100m altitude.
-- **Observations**: Environmental parameters logged, including temperature and wind speed.
+### Step 9: Download and Review Collected Data
+- Transfer data from drone's storage to base station for analysis and verification.
 
-### Mapping Results:
-- **Nodes Mapped**: N53, N63, N108.
-- **Type**: CO2 frost coverage in icy terrain.
-- **Procedure**: Conducted low-altitude scans (10m) with thermal imaging and high-resolution photography.
-- **Observations**: Data captured for further analysis of frost patterns.
+### Step 10: Prepare Comprehensive Report
+- Compile findings into a detailed report, including sample types, procedures, and observations.
 
-### Notes:
-- All samples and data securely stored and transferred to base station.
-- No issues encountered during operations.
-```
+This procedure ensures both dust collection and CO2 frost mapping are efficiently executed within a single mission framework.

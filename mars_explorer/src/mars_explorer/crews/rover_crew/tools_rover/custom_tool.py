@@ -91,7 +91,6 @@ class RoverPathfindingTool(BaseTool):
                     "energy": None,
                     "feasible": False,
                     "warning": "NO PATH",
-                    "paths": [],
                 }
 
                 if target not in graph:
@@ -122,7 +121,6 @@ class RoverPathfindingTool(BaseTool):
                                 "energy": round(remaining, 2),
                                 "feasible": True,
                                 "warning": warning,
-                                "paths": full_path,
                             }
                             feasible_found = True
                             break
@@ -155,8 +153,10 @@ class MultiRoverNodeAssignerTool(BaseTool):
     )
     args_schema: type[BaseModel] = NodeAssignmentInput
 
-    def _run(self, rover_results, enforce_min_one_per_rover=True):
-
+    def _run(self, rover_results):
+        env = MarsEnvironment()
+        graph = env.get_graph()
+        enforce_min_one_per_rover=True
         # List of rover IDs
         rovers = list(rover_results.keys())
 
@@ -167,13 +167,24 @@ class MultiRoverNodeAssignerTool(BaseTool):
         for rover, data in rover_results.items():
             for node, info in data.get("output_nodes", {}).items():
                 if info.get("feasible"):
-                    if rover not in feasible:
-                        feasible[rover] = {}
-                    feasible[rover][node] = {"distance": float(info["distance"]),"energy": float(info["energy"])}
+                    feasible.setdefault(rover, {})[node] = info
                     all_nodes.add(node)
 
         assignments = {rover: [] for rover in rovers}
         used_nodes = set()
+
+        def weight_function(u, v, d):
+            node_data = graph.nodes[v]
+            distance = float(d.get("length", 0))
+            terrain = node_data.get("terrain", "").lower()
+            multiplier = {
+                "rocky": 1.1,
+                "sandy": 1.3,
+                "crater": 1.4,
+                "icy": 2.0,
+            }.get(terrain, 1.0)
+
+            return distance * multiplier
 
         # choose best rover for node
         def best_rover_for_node(node):
@@ -193,10 +204,7 @@ class MultiRoverNodeAssignerTool(BaseTool):
             for rover in rovers:
                 if rover not in feasible:
                     continue
-                candidates = []
-                for node, info in feasible[rover].items():
-                    if node not in used_nodes:
-                        candidates.append((node, info["distance"], info["energy"]))
+                candidates = [(node,float(info["distance"]),float(info["energy"])) for node, info in feasible[rover].items() if node not in used_nodes]
                 if not candidates:
                     continue
                 best_node = min(candidates, key=lambda x: (x[1], -x[2]))[0]
@@ -211,11 +219,25 @@ class MultiRoverNodeAssignerTool(BaseTool):
             rover = best_rover_for_node(node)
             if rover:
                 # assignments[rover].append(node)
-                assignments[rover].append(rover_results[rover]['output_nodes'][node]['paths'])
+                assignments[rover].append(node)
                 used_nodes.add(node)
                 
+        final_paths = {}
 
-        return assignments
+        for rover, nodes in assignments.items():
+            start = rover_results[rover]["location"]
+            final_paths[rover] = []
+
+            for target in nodes:
+                try:
+                    path_go = nx.shortest_path(graph, start, target, weight=weight_function)
+                    path_back = nx.shortest_path(graph, target, start, weight=weight_function)
+                    full_path = path_go + path_back[1:]
+                    final_paths[rover].append(full_path)
+                except nx.NetworkXNoPath:
+                    continue
+
+        return final_paths
 
 
 

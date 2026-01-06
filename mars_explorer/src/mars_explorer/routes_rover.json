@@ -1,11 +1,48 @@
+To allocate nodes to rovers using the Multi_Rover_Node_Assigner tool, we structure the input as follows:
+
 ```json
 {
-  "assignments": {
-    "rover_0": "N20",
-    "rover_1": "N86",
-    "rover_2": "N12",
-    "rover_3": "N70",
-    "rover_4": "N1"
+  "rover_0": {
+    "loc": "N30",
+    "energy": 59,
+    "targets": ["N12", "N20"]
+  },
+  "rover_1": {
+    "loc": "N84",
+    "energy": 76,
+    "targets": ["N59", "N70", "N86", "N102"]
+  },
+  "rover_2": {
+    "loc": "N30",
+    "energy": 59,
+    "targets": ["N12", "N20"]
+  },
+  "rover_3": {
+    "loc": "N84",
+    "energy": 76,
+    "targets": ["N59", "N70", "N86", "N102"]
+  },
+  "rover_4": {
+    "loc": "N30",
+    "energy": 59,
+    "targets": ["N12", "N20"]
+  },
+  "rover_5": {
+    "loc": "N84",
+    "energy": 76,
+    "targets": ["N59", "N70", "N86", "N102"]
   }
 }
 ```
+
+**Step-by-Step Explanation:**
+
+1. **Extract Rover Data:** For each rover (rover_0 to rover_5), extract their location, energy level, and feasible target nodes from the provided context.
+
+2. **Identify Feasible Targets:** Check each node in a rover's output_nodes to see if it is feasible ("feasible": true). Collect these nodes as targets for that rover.
+
+3. **Construct Input JSON:** Create an input object where each key is a rover ID, and the value includes their location, energy, and array of feasible target nodes.
+
+4. **Pass to Tool:** Feed this structured JSON into the Multi_Rover_Node_Assigner tool to perform the allocation based on distance and battery constraints.
+
+This approach ensures that each rover's capabilities are accurately represented for optimal node allocation.

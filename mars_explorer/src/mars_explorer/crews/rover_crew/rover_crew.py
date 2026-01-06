@@ -97,18 +97,18 @@ class RoverCrew:
     @crew
     def crew(self) -> Crew:
         """Creates the Research Crew"""
-        return Crew(
-            agents=[self.extractor(), self.route_planner(), self.ranking()],
-            tasks=[self.final_nodes(), self.reporting_route(), self.task_ranking()],
-            process=Process.sequential,
-            verbose=True
-        )
         # return Crew(
-        #     agents=self.agents,
-        #     tasks=self.tasks,
+        #     agents=[self.extractor(), self.route_planner(), self.ranking()],
+        #     tasks=[self.final_nodes(), self.reporting_route(), self.task_ranking()],
         #     process=Process.sequential,
-        #     verbose=True,
+        #     verbose=True
         # )
+        return Crew(
+            agents=self.agents,
+            tasks=self.tasks,
+            process=Process.sequential,
+            verbose=True,
+        )
 
 
 if __name__ == '__main__':

@@ -1,6 +1,7 @@
 {
   "rover": {
     "operational constraints": [
+      "Rovers and drones should recharge if energy drops below 30%",
       "Rovers must enter a heat shelter during 20 minutes if the surface temperature is below -60ºC.",
       "Rovers cannot operate if node temperature is below -80ºC.",
       "Rover's energy consumption is different depending on the type of terrain: 5% in rocky, increased 10% in sandy, increased 20% in icy and increased 15% in crater terrains.",
@@ -8,12 +9,14 @@
       "Rovers may not operate in terrain classified as unstable."
     ],
     "hazards": {
-      "Rovers may not operate in terrain classified as unstable.": ["N4", "N19", "N128"],
-      "Rovers may not operate in terrain classified as radioactive.": ["N51", "N78", "N118"]
+      "Drones are disabled if there is a dust storm.": [],
+      "Rovers may not operate in terrain classified as radioactive.": ["N51", "N78", "N118"],
+      "Rovers may not operate in terrain classified as unstable.": ["N4", "N19", "N128"]
     }
   },
   "drone": {
     "operational constraints": [
+      "Rovers and drones should recharge if energy drops below 30%",
       "Drones must return to base after 25 minutes of flight.",
       "Drones are disabled if there is a dust storm.",
       "Drones cannot operate if wind gusts are higher than 40 km/h.",

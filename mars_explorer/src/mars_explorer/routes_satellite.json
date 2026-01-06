@@ -1,16 +1,14 @@
-```json
 [
-    {
-        "id": "satellite_3",
-        "goal": "N18",
-        "location": "N18",
-        "communication_window": 5
-    },
-    {
-        "id": "satellite_2",
-        "goal": "N116",
-        "location": "N116",
-        "communication_window": 3
-    }
+  {
+    "id": "satellite_3",
+    "goal": "N18",
+    "location": "N18",
+    "communication_window": 5
+  },
+  {
+    "id": "satellite_2",
+    "goal": "N116",
+    "location": "N116",
+    "communication_window": 3
+  }
 ]
-```
