@@ -20,8 +20,8 @@
       "Rovers may not operate in terrain classified as unstable."
     ],
     "hazards": {
-      "Rovers may not operate in terrain classified as unstable.": ["N4", "N19", "N128"],
-      "Rovers may not operate in terrain classified as radioactive.": ["N51", "N78", "N118"]
+      "Rovers may not operate in terrain classified as radioactive.": ["N51", "N78", "N118"],
+      "Rovers may not operate in terrain classified as unstable.": ["N4", "N19", "N128"]
     }
   },
   "drones": {

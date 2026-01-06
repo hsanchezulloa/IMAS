@@ -1,25 +1,23 @@
-To fairly distribute the 35 nodes among the four rovers (rover_0, rover_1, rover_2, and rover_4), we can assign them as follows:
+Node Allocation Plan for Rovers**
 
-- **Rover_0**: N1, N2, N4, N6, N8, N9, N11, N20, N25, N30, N28, N23, N18, N13, N86 (15 nodes)
-- **Rover_1**: N72, N77, N82, N84, N85, N86 (6 nodes) [Note: N86 is already assigned to Rover_0]
-  
-  Correction: Assign N72, N77, N82, N84, N85 to Rover_1 (5 nodes)
-- **Rover_2**: N70, N82 (2 nodes) [Note: N82 is already assigned to Rover_1]
-  
-  Correction: Assign N70 to Rover_2 (1 node)
-- **Rover_3**: N12, N22, N21, N30, N28, N23, N18, N13 (8 nodes) [Note: N30, N28, etc., are already assigned to Rover_0]
-  
-  Correction: Assign N12, N22, N21 to Rover_3 (3 nodes)
-- **Rover_4**: All their nodes (N88, N90, N93, N94, N95, N96, N101, N102) (8 nodes)
+1. **Rover_0 (Location: N30, Energy: 95)**
+   - Assigned Nodes: N20
+     - Feasibility: Distance is optimal; energy sufficient without warnings.
 
-However, this approach leads to overlapping assignments. To resolve this, we need to ensure each node is assigned to only one rover.
+2. **Rover_1 (Location: N84, Energy: 94)**
+   - Assigned Nodes: N70 and N86
+     - Feasibility: Both nodes are feasible with adequate energy levels.
 
-**Final Assignment:**
+3. **Rover_2 (Location: N84, Energy: 76)**
+   - Assigned Nodes: N70 and N86
+     - Feasibility: Both nodes are feasible; energy sufficient for the tasks.
 
-- **Rover_0**: N1, N2, N4, N6, N8, N9, N11, N20, N25 (9 nodes)
-- **Rover_1**: N72, N77, N82, N84, N85, N86 (6 nodes)
-- **Rover_2**: N70 (1 node)
-- **Rover_3**: N12, N22, N21, N30, N28, N23, N18, N13 (8 nodes)
-- **Rover_4**: N88, N90, N93, N94, N95, N96, N101, N102 (8 nodes)
+4. **Rover_3 (Location: N30, Energy: 59)**
+   - Assigned Nodes: N20
+     - Feasibility: Node is feasible with enough energy to complete the task.
 
-This distribution ensures each node is assigned to exactly one rover, with Rover_0 having the most nodes due to its extensive path.
+5. **Rover_4 (Location: N84, Energy: 80)**
+   - Assigned Nodes: N70 and N86
+     - Feasibility: Both nodes are feasible; energy levels are adequate for the tasks.
+
+This allocation ensures each rover is assigned at least one node, optimizes distance, and considers remaining energy to prioritize feasibility.

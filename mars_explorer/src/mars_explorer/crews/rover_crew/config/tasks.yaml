@@ -119,22 +119,38 @@ reporting_route:
 #   agent: ranking
 
 
+# task_ranking:
+#   description: >
+#     You MUST do exactly these steps:
+#     Step 1) Call Multi_Rover_Node_Assigner with:
+#       - rover_results = """ {{context.reporting_route}} """
+#     Step 2) Return EXACTLY the tool output bytes as JSON.
+#     Rules:
+#       - Do NOT add keys
+#       - Do NOT remove keys
+#       - Do NOT reformat
+#       - Do NOT summarize
+#       - Do NOT explain
+#       - Output must be valid JSON and nothing else.
+
+#   expected_output: >
+#     The output from the Multi_Rover_Node_Assigner tool. DO NOT MODIFY THE OUTPUT.
+#   agent: ranking
+
 task_ranking:
   description: >
-    You MUST do exactly these steps:
-    Step 1) Call Multi_Rover_Node_Assigner with:
-      - rover_results = """ {{context.reporting_route}} """
-    Step 2) Return EXACTLY the tool output bytes as JSON.
+    1. Retrieve the JSON output from the 'reporting_route' task.
+    2. Access the 'results' dictionary within that data.
+    3. Call the Multi_Rover_Node_Assigner tool, passing that 'results' dictionary into the 'rover_results' argument.
+    4. Return the tool's output exactly as a JSON dictionary.
+
     Rules:
-      - Do NOT add keys
-      - Do NOT remove keys
-      - Do NOT reformat
-      - Do NOT summarize
-      - Do NOT explain
+      - Do NOT summarize or explain.
+      - Do NOT use markdown code blocks or backticks in the final answer.
       - Output must be valid JSON and nothing else.
 
   expected_output: >
-    The output from the Multi_Rover_Node_Assigner tool. DO NOT MODIFY THE OUTPUT.
+    The raw JSON output from the Multi_Rover_Node_Assigner tool.
   agent: ranking
 
 reporting_sampling:

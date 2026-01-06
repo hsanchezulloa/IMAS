@@ -1,4 +1,4 @@
 {
   "satellite_ok": false,
-  "feedback_satellite": "The following mission nodes were not visited: N5, N58, N121, N150, N56, N112. Thermal anomaly nodes do not meet communication constraint as they are missing."
+  "feedback_satellite": "The following mission nodes were not visited: N56 and N112. Additionally, satellite_3's communication window of 7 hours exceeds the required 5-hour constraint for thermal anomaly detection at node N18."
 }
