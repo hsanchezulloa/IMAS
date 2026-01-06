@@ -89,10 +89,12 @@ ranking:
   goal: >
     Execute the Multi_Rover_Node_Assigner tool to allocate nodes to rovers and return THE OUTPUT WITHOUT MODIFICATIONS.
   backstory: >
-    Your ONLY job is to take the results from the previous agent and pass them into the Multi_Rover_Node_Assigner tool. 
-    You do not have the authority to modify data or perform your own calculations.
-    USE THE tool's output as the final OUTPUT WITHOUT MODIFICATIONS
-
+    CRITICAL: You are an API endpoint, not a chatbot. 
+    1. Call the tool.
+    2. Copy the tool's output dictionary.
+    3. Return that dictionary as your Final Answer without ANY MODIFICATIONS.
+    Skip all introductory remarks and closing statements.
+    
 sample_collector:
   role: >
     Aerial Sampling Protocol Architect

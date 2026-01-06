@@ -1,63 +1,62 @@
-```json
 {
   "rovers": {
     "priority": {
       "high": [
-        "Collect subsurface samples from designated areas.",
-        "Extract and analyze soil samples for organic compounds.",
-        "Deploy sensors in specified regions."
+        "Collect subsurface samples from **rocky** terrain near nodes **N70** and **N102**.",
+        "Measure radiation levels in **sandy** terrain at node **N12**, **N86** and **N1**.",
+        "Deploy seismic sensors at the **rocky** node **N20**."
       ],
       "medium": [
-        "Detect organic molecules in Martian regolith."
+        "Detect organic molecules in **icy** terrain at **N59**."
       ],
       "low": []
     },
     "operational constraints": [
-      "Maintain communication with Earth station every 10 minutes.",
-      "Avoid obstacles within 50 meters radius.",
-      "Operate within power constraints of 75% battery life.",
-      "Conduct soil analysis only during daylight hours.",
-      "Return to base station at end of mission phase.",
-      "Prevent contamination of samples with Earth organisms."
+      "Rovers and drones should recharge if energy drops below 30%",
+      "Rovers must enter a heat shelter during 20 minutes if the surface temperature is below -60ºC.",
+      "Rovers cannot operate if node temperature is below -80ºC.",
+      "Rover's energy consumption is different depending on the type of terrain: 5% in rocky, increased 10% in sandy, increased 20% in icy and increased 15% in crater terrains.",
+      "Rovers may not operate in terrain classified as radioactive.",
+      "Rovers may not operate in terrain classified as unstable."
     ],
     "hazards": {
-      "Rovers may not operate in terrain classified as hazardous.": [],
-      "Rovers may not enter areas marked with radiation levels exceeding 200 µGy/hour.": [],
-      "Rovers may not operate in regions with slope greater than 30 degrees.": ["N12E45", "N15E47"]
+      "Rovers may not operate in terrain classified as unstable.": ["N4", "N19", "N128"],
+      "Rovers may not operate in terrain classified as radioactive.": ["N51", "N78", "N118"]
     }
   },
   "drones": {
     "priority": {
       "high": [],
       "medium": [
-        "Conduct high-resolution imaging of canyon walls.",
-        "Collect atmospheric samples at specified altitudes."
+        "Air **dust** sample collection during flight over **N33** crater.",
+        "Map CO2 frost coverage in **icy** areas **N53**, **N63** and **N108**."
       ],
       "low": []
     },
     "operational constraints": [
-      "Maintain altitude between 50 and 200 meters.",
-      "Avoid flying near other aerial vehicles within 100 meters radius.",
-      "Return to launch pad when signal strength drops below 70%.",
-      "Operate only during favorable weather conditions (wind speed < 10 m/s).",
-      "Conduct imaging missions in designated zones only."
+      "Rovers and drones should recharge if energy drops below 30%",
+      "Drones must return to base after 25 minutes of flight.",
+      "Drones are disabled if there is a dust storm.",
+      "Drones cannot operate if wind gusts are higher than 40 km/h.",
+      "Drone's energy consumption is increased 15% if wind is higher than 30 km/h."
     ],
     "hazards": {
-      "Drones may not fly near other aerial vehicles within 100 meters radius.": ["N33"]
+      "Drones are disabled if there is a dust storm.": ["N33"]
     }
   },
   "satellites": {
     "priority": {
       "high": [],
       "medium": [],
-      "low": []
+      "low": [
+        "Capture panoramic images of **crater** terrain at nodes **N5**, **N58**, **N121** and **N150**.",
+        "Identification of thermal anomalies at **icy** nodes **N56** and **N112**."
+      ]
     },
     "operational constraints": [
-      "Maintain orbit at 400 km altitude.",
-      "Transmit data packets every 15 minutes to ground station.",
-      "Adjust inclination if orbital decay detected."
+      "Satellites must maintain communication with the base station at N30 or N84 every 5 hours if they have to identify thermal anomalies.",
+      "Satellites cannot communicate in nodes with communication loss."
     ],
-    "hazards": {}
+    "hazards": []
   }
 }
-```

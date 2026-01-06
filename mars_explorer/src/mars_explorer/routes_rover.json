@@ -1,48 +1,25 @@
-To allocate nodes to rovers using the Multi_Rover_Node_Assigner tool, we structure the input as follows:
+To fairly distribute the 35 nodes among the four rovers (rover_0, rover_1, rover_2, and rover_4), we can assign them as follows:
 
-```json
-{
-  "rover_0": {
-    "loc": "N30",
-    "energy": 59,
-    "targets": ["N12", "N20"]
-  },
-  "rover_1": {
-    "loc": "N84",
-    "energy": 76,
-    "targets": ["N59", "N70", "N86", "N102"]
-  },
-  "rover_2": {
-    "loc": "N30",
-    "energy": 59,
-    "targets": ["N12", "N20"]
-  },
-  "rover_3": {
-    "loc": "N84",
-    "energy": 76,
-    "targets": ["N59", "N70", "N86", "N102"]
-  },
-  "rover_4": {
-    "loc": "N30",
-    "energy": 59,
-    "targets": ["N12", "N20"]
-  },
-  "rover_5": {
-    "loc": "N84",
-    "energy": 76,
-    "targets": ["N59", "N70", "N86", "N102"]
-  }
-}
-```
+- **Rover_0**: N1, N2, N4, N6, N8, N9, N11, N20, N25, N30, N28, N23, N18, N13, N86 (15 nodes)
+- **Rover_1**: N72, N77, N82, N84, N85, N86 (6 nodes) [Note: N86 is already assigned to Rover_0]
+  
+  Correction: Assign N72, N77, N82, N84, N85 to Rover_1 (5 nodes)
+- **Rover_2**: N70, N82 (2 nodes) [Note: N82 is already assigned to Rover_1]
+  
+  Correction: Assign N70 to Rover_2 (1 node)
+- **Rover_3**: N12, N22, N21, N30, N28, N23, N18, N13 (8 nodes) [Note: N30, N28, etc., are already assigned to Rover_0]
+  
+  Correction: Assign N12, N22, N21 to Rover_3 (3 nodes)
+- **Rover_4**: All their nodes (N88, N90, N93, N94, N95, N96, N101, N102) (8 nodes)
 
-**Step-by-Step Explanation:**
+However, this approach leads to overlapping assignments. To resolve this, we need to ensure each node is assigned to only one rover.
 
-1. **Extract Rover Data:** For each rover (rover_0 to rover_5), extract their location, energy level, and feasible target nodes from the provided context.
+**Final Assignment:**
 
-2. **Identify Feasible Targets:** Check each node in a rover's output_nodes to see if it is feasible ("feasible": true). Collect these nodes as targets for that rover.
+- **Rover_0**: N1, N2, N4, N6, N8, N9, N11, N20, N25 (9 nodes)
+- **Rover_1**: N72, N77, N82, N84, N85, N86 (6 nodes)
+- **Rover_2**: N70 (1 node)
+- **Rover_3**: N12, N22, N21, N30, N28, N23, N18, N13 (8 nodes)
+- **Rover_4**: N88, N90, N93, N94, N95, N96, N101, N102 (8 nodes)
 
-3. **Construct Input JSON:** Create an input object where each key is a rover ID, and the value includes their location, energy, and array of feasible target nodes.
-
-4. **Pass to Tool:** Feed this structured JSON into the Multi_Rover_Node_Assigner tool to perform the allocation based on distance and battery constraints.
-
-This approach ensures that each rover's capabilities are accurately represented for optimal node allocation.
+This distribution ensures each node is assigned to exactly one rover, with Rover_0 having the most nodes due to its extensive path.
