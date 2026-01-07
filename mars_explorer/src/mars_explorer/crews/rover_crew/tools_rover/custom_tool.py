@@ -5,6 +5,7 @@ import networkx as nx
 from tools.mars_environment import MarsEnvironment
 import random
 import itertools
+from typing import ClassVar
 
 class MultiRoverRouteInput(BaseModel):
     rovers: List[Dict[str, Any]] = Field(description="List of rovers with keys: id, location, energy")
@@ -146,6 +147,7 @@ class NodeAssignmentInput(BaseModel):
 
 class MultiRoverNodeAssignerTool(BaseTool):
     name: str = "Multi_Rover_Node_Assigner"
+    return_direct: ClassVar[bool] = True
     description: str = (
         "Assigns target nodes to rovers using only feasible paths. "
         "Minimizes distance and uses remaining energy as tie-breaker. "

@@ -13,13 +13,9 @@ ollama_llm = LLM(
     timeout=3600
 )
 class RouteOutput(BaseModel):
-    # Since the tool returns a Dict[str, Any], we can use a generic dict 
-    # or define it more strictly.
     results: dict
 
 class RoverRoutes(BaseModel):
-    # Since the tool returns a Dict[str, Any], we can use a generic dict 
-    # or define it more strictly.
     results: dict
 @CrewBase
 class RoverCrew:
@@ -88,7 +84,7 @@ class RoverCrew:
         return Task(
             config=self.tasks_config["task_ranking"],
             context=[self.reporting_route()],
-            output_json = RoverRoutes,
+            # output_json = RoverRoutes,
             output_file='routes_rover.json',
         )
 
@@ -103,18 +99,18 @@ class RoverCrew:
     @crew
     def crew(self) -> Crew:
         """Creates the Research Crew"""
-        # return Crew(
-        #     agents=[self.extractor(), self.route_planner(), self.ranking()],
-        #     tasks=[self.final_nodes(), self.reporting_route(), self.task_ranking()],
-        #     process=Process.sequential,
-        #     verbose=True
-        # )
         return Crew(
-            agents=self.agents,
-            tasks=self.tasks,
+            agents=[self.extractor(), self.route_planner(), self.ranking()],
+            tasks=[self.final_nodes(), self.reporting_route(), self.task_ranking()],
             process=Process.sequential,
-            verbose=True,
+            verbose=True
         )
+        # return Crew(
+        #     agents=self.agents,
+        #     tasks=self.tasks,
+        #     process=Process.sequential,
+        #     verbose=True,
+        # )
 
 
 if __name__ == '__main__':
