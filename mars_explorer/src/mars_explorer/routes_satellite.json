@@ -1,16 +1,14 @@
-```json
 [
   {
-    "satellite_id": "satellite_3",
-    "assigned_target": "N18",
-    "communication_window": "7"
+    "id": "satellite_3",
+    "goal": "N18",
+    "location": "N18",
+    "communication_window": 5
   },
   {
-    "satellite_id": "satellite_2",
-    "assigned_target": "N116",
-    "communication_window": "unknown"
+    "id": "satellite_2",
+    "goal": "N116",
+    "location": "N116",
+    "communication_window": 3
   }
 ]
-```
-
-Note: The targets N47, N83, and N139 cannot be assigned to any satellite based on the provided data.

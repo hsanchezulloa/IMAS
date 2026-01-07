@@ -1,4 +1,6 @@
+```json
 {
   "rover_ok": false,
-  "feedback_rover": "The following mission nodes were not visited: N102, N12, and N1."
+  "feedback_rover": "The following mission-critical nodes were not visited: N102, N20."
 }
+```

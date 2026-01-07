@@ -16,6 +16,11 @@ class RouteOutput(BaseModel):
     # Since the tool returns a Dict[str, Any], we can use a generic dict 
     # or define it more strictly.
     results: dict
+
+class RoverRoutes(BaseModel):
+    # Since the tool returns a Dict[str, Any], we can use a generic dict 
+    # or define it more strictly.
+    results: dict
 @CrewBase
 class RoverCrew:
     """Rover Crew"""
@@ -83,6 +88,7 @@ class RoverCrew:
         return Task(
             config=self.tasks_config["task_ranking"],
             context=[self.reporting_route()],
+            output_json = RoverRoutes,
             output_file='routes_rover.json',
         )
 

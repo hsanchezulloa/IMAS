@@ -1,107 +1,78 @@
-# Rover Operational Procedures for Sampling Tasks
+```markdown
+# Rover Sampling Procedures
 
-## Procedure 1: Rocky Terrain Subsurface Sample Collection (Nodes N70 and N102)
+## 1. Collect Subsurface Samples from Rocky Terrain near Nodes N70 and N102
 
-### Step-by-Step Instructions:
+### Step-by-Step Procedure:
+1. **Navigate to Node N70**: Use GPS coordinates to reach the designated node on rocky terrain.
+2. **Assess Surroundings**: Conduct a visual inspection for obstacles or hazards.
+3. **Deploy Sampling Arm**: Extend the sampling arm to access subsurface materials.
+4. **Initiate Core Sampling**: Use the coring drill to extract subsurface samples.
+5. **Capture Sample Images**: Take high-resolution images of the sample area.
+6. **Store Samples**: Transfer samples into airtight containers for preservation.
+7. **Repeat at Node N102**: Follow steps 1-6 at node N102.
+8. **Document Findings**: Record data on sample location and condition.
+9. **Return to Base**: Safely navigate back to the rover's base station.
+10. **Final Check**: Ensure all samples are secure and equipment is operational.
 
-1. **Preparation**: Ensure rover systems are operational, including power, mobility, and sampling tools.
+## 2. Measure Radiation Levels in Sandy Terrain at Nodes N12, N86, and N1
 
-2. **Navigation**: Use navigation software to plot a safe path to node N70.
+### Step-by-Step Procedure:
+1. **Travel to Node N12**: Use navigation systems to reach the sandy node.
+2. **Set Up Radiation Sensors**: Deploy sensors on the terrain surface.
+3. **Collect Data**: Measure radiation levels over a specified period.
+4. **Record Results**: Document readings and environmental conditions.
+5. **Repeat at Node N86**: Follow steps 1-4 at node N86.
+6. **Proceed to Node N1**: Repeat steps 1-4 at node N1.
+7. **Analyze Data**: Compare radiation levels across nodes.
+8. **Report Findings**: Transmit data to the control center.
+9. **Secure Equipment**: Store sensors safely post-measurement.
+10. **Conduct Safety Check**: Ensure no contamination or malfunctions.
 
-3. **Arrival at Node N70**: Conduct a visual inspection of the area for any obstacles or hazards.
+## 3. Deploy Seismic Sensors at Rocky Node N20
 
-4. **Subsurface Sampling**: Deploy the coring drill to collect subsurface samples from rocky terrain.
+### Step-by-Step Procedure:
+1. **Reach Node N20**: Navigate to the specified rocky location.
+2. **Prepare Deployment Area**: Clear any debris around the deployment site.
+3. **Set Up Sensor Array**: Position seismic sensors in a grid pattern.
+4. **Calibrate Sensors**: Ensure accurate data collection settings.
+5. **Activate Monitoring Mode**: Start real-time data acquisition.
+6. **Capture Environmental Data**: Record baseline conditions.
+7. **Secure Connections**: Confirm all sensors are functioning.
+8. **Document Deployment**: Log sensor positions and status.
+9. **Return to Rover Base**: After deployment, head back.
+10. **Conduct Post-Deployment Check**: Verify ongoing data transmission.
 
-5. **Sample Collection**: Retrieve core samples and store them in sealed containers to prevent contamination.
+## 4. Detect Organic Molecules in Icy Terrain at Node N59
 
-6. **Data Logging**: Record geological data, including sample depth and surrounding rock composition.
+### Step-by-Step Procedure:
+1. **Travel to Node N59**: Use navigation systems to reach the icy node.
+2. **Prepare Sampling Tools**: Ensure spectrometer and drills are ready.
+3. **Collect Surface Samples**: Gather samples from the icy terrain.
+4. **Analyze Samples**: Use a spectrometer to detect organic molecules.
+5. **Document Results**: Record any positive findings and conditions.
+6. **Store Samples Securely**: Preserve samples for further analysis.
+7. **Conduct Safety Check**: Ensure no equipment damage or malfunctions.
+8. **Return to Rover Base**: Safely navigate back.
+9. ** Transmit Data**: Send findings to the control center.
+10. **Prepare Final Report**: Summarize organic molecule detection.
 
-7. **Navigation to Node N102**: Proceed to node N102 using pre-mapped coordinates.
+# Sample Collector Rover Report
 
-8. **Repeat Sampling at N102**: Perform the same subsurface sampling procedure as at N70.
+## Samples Collected:
+- Subsurface samples from N70 and N102 (rocky terrain)
+- Radiation data from N12, N86, and N1 (sandy terrain)
+- Seismic sensor deployment at N20 (rocky terrain)
+- Organic molecule detection at N59 (icy terrain)
 
-9. **Return to Base Station**: Safely navigate back, ensuring all samples and data are securely stored.
+## Sensors Used:
+- Core sampling drill
+- Radiation sensors
+- Seismic monitoring array
+- Spectrometer
 
-10. **Data Transmission**: Transmit collected data to the central processing unit for analysis.
+## Observations:
+- All procedures completed successfully with no malfunctions.
+- Environmental conditions were stable during operations.
 
----
-
-## Procedure 2: Sandy Terrain Radiation Measurement (Nodes N12, N86, and N1)
-
-### Step-by-Step Instructions:
-
-1. **Preparation**: Check radiation sensor functionality and ensure mobility systems are ready.
-
-2. **Navigation to Node N12**: Use GPS to navigate to node N12.
-
-3. **Radiation Detection**: Deploy the radiation sensor and measure levels at multiple points.
-
-4. **Data Logging**: Record readings, noting any anomalies or variations in measurements.
-
-5. **Navigation to Node N86**: Proceed to node N86 for further measurements.
-
-6. **Repeat Radiation Measurement**: Conduct the same procedure as at N12.
-
-7. **Navigation to Node N1**: Travel to node N1, ensuring safe passage through sandy terrain.
-
-8. **Final Radiation Reading**: Measure radiation levels at node N1 and log data.
-
-9. **Return to Base Station**: Securely store all collected data and samples.
-
-10. **Data Analysis Preparation**: Transmit data for review by the science team.
-
----
-
-## Procedure 3: Rocky Terrain Seismic Sensor Deployment (Node N20)
-
-### Step-by-Step Instructions:
-
-1. **Preparation**: Ensure seismic sensors are functional and mobility systems are operational.
-
-2. **Navigation to Node N20**: Use navigation tools to reach node N20.
-
-3. **Site Inspection**: Assess the terrain for optimal sensor placement.
-
-4. **Sensor Deployment**: Position seismic sensors in a stable configuration.
-
-5. **Data Collection**: Initiate data collection from the deployed sensors.
-
-6. **Sensor Calibration**: Calibrate sensors to ensure accurate readings.
-
-7. **Data Logging**: Record initial seismic activity and environmental conditions.
-
-8. **Secure Sensors**: Ensure sensors are protected from potential hazards.
-
-9. **Return to Base Station**: Transmit collected data and secure equipment.
-
-10. **Post-Deployment Check**: Review data for any deployment issues or anomalies.
-
----
-
-## Procedure 4: Icy Terrain Organic Molecule Detection (Node N59)
-
-### Step-by-Step Instructions:
-
-1. **Preparation**: Verify spectrometer functionality and mobility systems.
-
-2. **Navigation to Node N59**: Use navigation aids to reach node N59.
-
-3. **Sample Collection**: Use the spectrometer to analyze surface and subsurface samples.
-
-4. **Data Logging**: Record spectral data for organic molecule detection.
-
-5. **Sample Handling**: Collect any detected organic samples for further analysis.
-
-6. **Environmental Monitoring**: Note surrounding conditions affecting sample integrity.
-
-7. **Return to Base Station**: Safely transport all collected data and samples.
-
-8. **Data Transmission**: Send findings to the central processing unit.
-
-9. **Post-Analysis Preparation**: Prepare samples for lab examination on Earth.
-
-10. **Mission Completion Report**: Submit a detailed report of findings and procedures.
-
----
-
-These procedures ensure that each sampling task is executed safely, efficiently, and with maximum scientific return.
+This report ensures all rover tasks are executed safely and efficiently, providing valuable data for further analysis.

@@ -96,17 +96,28 @@ route_planner:
 #     Skip all introductory remarks and closing statements.
 
 
+# ranking:
+#   role: >
+#     Multi-Rover Task Allocation Specialist
+#   goal: >
+#     Process route data and execute the Multi_Rover_Node_Assigner tool to allocate nodes to rovers.
+#   backstory: >
+#     CRITICAL: You are an API endpoint, not a chatbot. 
+#     1. Call the tool.
+#     2. Copy the tool's output dictionary.
+#     3. Return that dictionary as your Final Answer without ANY MODIFICATIONS.
+#     Skip all introductory remarks and closing statements.
+
 ranking:
   role: >
-    Multi-Rover Task Allocation Specialist
+    Data Relay Protocol
   goal: >
-    Process route data and execute the Multi_Rover_Node_Assigner tool to allocate nodes to rovers.
+    Execute the Multi_Rover_Node_Assigner tool and return the output without modification.
   backstory: >
-    You are a data-driven logistics engine. Your sole responsibility is to take 
-    the 'results' dictionary from the previous task and pass it into the 
-    Multi_Rover_Node_Assigner tool. You must return the raw tool output 
-    without any conversational text or formatting.
-
+    CRITICAL: You are an API endpoint, not a chatbot. 
+    1. Call the tool.
+    2. Return that dictionary as your Final Answer without ANY MODIFICATIONS.
+    Skip all introductory remarks and closing statements.
 
 sample_collector:
   role: >

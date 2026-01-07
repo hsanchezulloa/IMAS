@@ -1,23 +1,24 @@
-Node Allocation Plan for Rovers**
-
-1. **Rover_0 (Location: N30, Energy: 95)**
-   - Assigned Nodes: N20
-     - Feasibility: Distance is optimal; energy sufficient without warnings.
-
-2. **Rover_1 (Location: N84, Energy: 94)**
-   - Assigned Nodes: N70 and N86
-     - Feasibility: Both nodes are feasible with adequate energy levels.
-
-3. **Rover_2 (Location: N84, Energy: 76)**
-   - Assigned Nodes: N70 and N86
-     - Feasibility: Both nodes are feasible; energy sufficient for the tasks.
-
-4. **Rover_3 (Location: N30, Energy: 59)**
-   - Assigned Nodes: N20
-     - Feasibility: Node is feasible with enough energy to complete the task.
-
-5. **Rover_4 (Location: N84, Energy: 80)**
-   - Assigned Nodes: N70 and N86
-     - Feasibility: Both nodes are feasible; energy levels are adequate for the tasks.
-
-This allocation ensures each rover is assigned at least one node, optimizes distance, and considers remaining energy to prioritize feasibility.
+{
+  "results": {
+    "rover_0": {
+      "assigned_node": "N20",
+      "distance": 30
+    },
+    "rover_1": {
+      "assigned_node": "N86",
+      "distance": 6
+    },
+    "rover_2": {
+      "assigned_node": "N70",
+      "distance": 42
+    },
+    "rover_3": {
+      "assigned_node": "N12",
+      "distance": 54
+    },
+    "rover_4": {
+      "assigned_node": "N59",
+      "distance": 75
+    }
+  }
+}

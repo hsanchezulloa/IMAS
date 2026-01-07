@@ -137,20 +137,32 @@ reporting_route:
 #     The output from the Multi_Rover_Node_Assigner tool. DO NOT MODIFY THE OUTPUT.
 #   agent: ranking
 
+# task_ranking:
+#   description: >
+#     1. Retrieve the COMPLETE JSON output from the 'reporting_route' task.
+#     2. Access the 'results' dictionary within that data.
+#     3. Call the Multi_Rover_Node_Assigner tool, passing that 'results' dictionary into the 'rover_results' argument.
+#     4. Return the tool's output exactly as a JSON dictionary.
+
+#     Rules:
+#       - Do NOT summarize or explain.
+#       - Do NOT use markdown code blocks or backticks in the final answer.
+#       - Output must be valid JSON and nothing else.
+
+#   expected_output: >
+#     ALL THE OUTPUT from the Multi_Rover_Node_Assigner tool. DO NOT MODIFY THE OUTPUT.
+#   agent: ranking
+
 task_ranking:
   description: >
-    1. Retrieve the JSON output from the 'reporting_route' task.
-    2. Access the 'results' dictionary within that data.
-    3. Call the Multi_Rover_Node_Assigner tool, passing that 'results' dictionary into the 'rover_results' argument.
-    4. Return the tool's output exactly as a JSON dictionary.
-
-    Rules:
-      - Do NOT summarize or explain.
-      - Do NOT use markdown code blocks or backticks in the final answer.
-      - Output must be valid JSON and nothing else.
-
+    1. Retrieve the COMPLETE output from the 'reporting_route' task.
+    2. Extract the 'results' dictionary from that data.
+    3. Execute the Multi_Rover_Node_Assigner tool using that 'results' dictionary as the 'rover_results' argument.
+    4. FORBIDDEN: Do not wrap the output in markdown code blocks (```json).
+    5. FORBIDDEN: Do not add any introductory text, explanations, or conclusions.
+    6. Return the tool's output dictionary WITHOUT MODIFICATIONS.
   expected_output: >
-    The raw JSON output from the Multi_Rover_Node_Assigner tool.
+    The output from the Multi_Rover_Node_Assigner tool. DO NOT MODIFY THE OUTPUT.
   agent: ranking
 
 reporting_sampling:

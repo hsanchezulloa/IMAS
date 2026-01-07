@@ -1,4 +1,4 @@
 {
   "satellite_ok": false,
-  "feedback_satellite": "The following mission nodes were not visited: N56 and N112. Additionally, satellite_3's communication window of 7 hours exceeds the required 5-hour constraint for thermal anomaly detection at node N18."
+  "feedback_satellite": "The following mission-critical nodes were not visited: N56, N112. Thermal anomaly nodes require a communication window of 5 hours, but none were specified in the route."
 }

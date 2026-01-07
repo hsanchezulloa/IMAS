@@ -1,4 +1,4 @@
 {
   "drone_ok": true,
-  "feedback_drone": "All required mission nodes (N33, N53, N63, and N108) have been visited by the drones."
+  "feedback_drone": "All mission-critical nodes (N33, N53, N63, N108) have been successfully visited by the drones. No hazards were encountered during their routes."
 }
