@@ -1,24 +1,19 @@
 {
   "results": {
-    "rover_0": {
-      "assigned_node": "N20",
-      "distance": 30
-    },
-    "rover_1": {
-      "assigned_node": "N86",
-      "distance": 6
-    },
-    "rover_2": {
-      "assigned_node": "N70",
-      "distance": 42
-    },
-    "rover_3": {
-      "assigned_node": "N12",
-      "distance": 54
-    },
-    "rover_4": {
-      "assigned_node": "N59",
-      "distance": 75
-    }
+    "rover_0": [
+      "N20"
+    ],
+    "rover_1": [
+      "N86"
+    ],
+    "rover_2": [
+      "N102"
+    ],
+    "rover_3": [
+      "N12"
+    ],
+    "rover_4": [
+      "N59"
+    ]
   }
 }

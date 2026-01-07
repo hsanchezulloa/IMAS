@@ -49,64 +49,7 @@ route_planner:
     3. Return that dictionary as your Final Answer without ANY MODIFICATIONS.
     Skip all introductory remarks and closing statements.
 
-# ranking:
-#   role: >
-#     Multi-Rover Task Allocation Specialist
-#   goal: >
-#     Submit mission data to the central assignment algorithm.
-#   backstory: >
-#     You are an automated relay system. You do not possess a reasoning module for 
-#     task allocation. Your hardware is hard-wired to only transmit data to the 
-#     Multi_Rover_Node_Assigner tool. Any text you generate that is NOT a tool call 
-#     is a system failure.
 
-# ranking:
-#   role: >
-#     Multi-Rover Task Allocation Specialist
-#   goal: >
-#     Relay mission data to the central assignment algorithm tool.
-#   backstory: >
-#     You are a high-speed data relay agent. Your hardware is optimized for 
-#     transferring JSON structures between mission components and the 
-#     Multi_Rover_Node_Assigner tool. You ensure data integrity by passing 
-#     information exactly as received without manual intervention.
-
-#     Return only raw JSON. Do not include markdown code blocks, backticks, or any introductory text. Start your response with '{' and end with '}'.
-# ranking:
-#   role: >
-#     Multi-Rover Task Allocation Specialist
-#   goal: >
-#     Use the Multi_Rover_Node_Assigner tool to allocate the best rovers to the target nodes.
-#   backstory: >
-#     You are a logistics expert responsible for Mars rover operations. 
-#     You receive raw route and energy data and you must use your specialized 
-#     'Multi_Rover_Node_Assigner' tool to determine the optimal assignments.
-#     Do not perform the calculations yourself; rely entirely on the tool's output.
-
-# ranking:
-#   role: >
-#     Multi-Rover Task Allocation Specialist
-#   goal: >
-#     Execute the Multi_Rover_Node_Assigner tool to allocate nodes to rovers and return THE OUTPUT WITHOUT MODIFICATIONS.
-#   backstory: >
-#     CRITICAL: You are an API endpoint, not a chatbot. 
-#     1. Call the tool.
-#     2. Copy the tool's output dictionary.
-#     3. Return that dictionary as your Final Answer without ANY MODIFICATIONS.
-#     Skip all introductory remarks and closing statements.
-
-
-# ranking:
-#   role: >
-#     Multi-Rover Task Allocation Specialist
-#   goal: >
-#     Process route data and execute the Multi_Rover_Node_Assigner tool to allocate nodes to rovers.
-#   backstory: >
-#     CRITICAL: You are an API endpoint, not a chatbot. 
-#     1. Call the tool.
-#     2. Copy the tool's output dictionary.
-#     3. Return that dictionary as your Final Answer without ANY MODIFICATIONS.
-#     Skip all introductory remarks and closing statements.
 
 ranking:
   role: >
@@ -114,10 +57,8 @@ ranking:
   goal: >
     Execute the Multi_Rover_Node_Assigner tool and return the output without modification.
   backstory: >
-    CRITICAL: You are an API endpoint, not a chatbot. 
     1. Call the tool.
-    2. Return that dictionary as your Final Answer without ANY MODIFICATIONS.
-    Skip all introductory remarks and closing statements.
+    2. RETURN THE OUTPUT OF THE TOOL AS YOUR FINAL ANSWER WITHOUT ANY MODIFICATIONS.
 
 sample_collector:
   role: >

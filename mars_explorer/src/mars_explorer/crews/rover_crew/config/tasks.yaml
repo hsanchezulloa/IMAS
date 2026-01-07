@@ -5,34 +5,6 @@ final_nodes:
     A Python list containing all the node IDs where rovers need to perform their tasks.
   agent: extractor
 
-# reporting_route:
-#   description: >
-#     Using the list of rovers provided in the input """ {{rovers}} """,
-#     and the list of target nodes provided in """ {{context.final_nodes}} """,
-#     you MUST call the tool Multi_Rover_Route_Calculator exactly once.
-
-#     The tool will automatically extract each rover's location and energy
-#     and compute the shortest distance from each rover to every target node.
-
-#     Do NOT recompute paths manually.
-#     Do NOT modify, filter, or reinterpret the tool output.
-#     Simply return the result exactly as produced by the tool.
-
-#   expected_output: >
-#     The raw dictionary output from the Multi_Rover_Route_Calculator tool. DO NOT MODIFY THE OUTPUT. Just copy it.
-#     The raw, unmodified dictionary/JSON output from the Multi_Rover_Route_Calculator tool containing rover IDs, locations, energy, and path feasibility data.
-
-#   agent: route_planner
-
-# reporting_route:
-#   description: >
-#     1. You MUST call Multi_Rover_Route_Calculator tool USING AS INPUTS THE """ {{rovers}} """ and """ {{context.final_nodes}} """
-#     2. You MUST provide AS OUTPUT the tool's OUTPUT WITHOUT ANY MODIFICATIONS.
-
-#   expected_output: >
-#     The output from the Multi_Rover_Route_Calculator tool. DO NOT MODIFY THE OUTPUT.
-
-#   agent: route_planner
 
 reporting_route:
   description: >
@@ -55,104 +27,6 @@ reporting_route:
   agent: route_planner
 
 
-# task_ranking:
-#   description: >
-#     Input Data: {{routes_rover}}
-
-#     ACTION REQUIRED:
-#       1. Extract the JSON/Dictionary from the input.
-#       2. Call 'Multi_Rover_Node_Assigner' tool using that data as the 'rover_results' parameter.
-
-#     STRICT RESTRICTIONS:
-#       DO NOT summarize the data.,
-#       DO NOT explain why you are calling the tool.,
-#       DO NOT attempt to assign rovers to nodes manually.,
-#       If the input is empty, return an empty dictionary through the tool.
-#   expected_output: >
-#     The raw JSON output from the Multi_Rover_Node_Assigner tool without any preamble.
-#   agent: ranking
-
-# task_ranking:
-#   description: >
-#     You have been provided with rover route and energy data (found in the routes_rover input).
-    
-#     Your SOLE task is to:
-#     1. Take the provided 'routes_rover' dictionary.
-#     2. Pass it DIRECTLY into the 'Multi_Rover_Node_Assigner' tool as the 'rover_results' argument.
-    
-#     Do NOT attempt to process, summarize, or manually assign the rovers yourself. 
-#     The tool handles all calculations.
-#     The input routes_rover is in """ {{context.reporting_route}} """"
-#   expected_output: >
-#     The final assignments dictionary produced by the tool.
-#   agent: ranking
-
-# task_ranking:
-#   description: >
-#     Assign the best rovers to target nodes based on the route and energy data 
-#     provided in the context. 
-    
-#     YOU MUST USE the 'Multi_Rover_Node_Assigner' tool WITH THE DICTIONARY FROM THE PREVIOUS AGENT AS INPUT to perform this calculation.
-#     Pass the entire context dictionary to the tool's 'rover_results' argument.
-#     Do not attempt to create the assignments yourself or repeat the input data.
-#   expected_output: >
-#     The output from the Multi_Rover_Node_Assigner tool. DO NOT MODIFY THE OUTPUT.
-#   agent: ranking
-
-# task_ranking:
-#   description: >
-#     1. Take the route data provided in the context from the route_planner.
-#     2. Call the 'Multi_Rover_Node_Assigner' tool.
-#     3. For the 'rover_results' argument, provide the JSON/dictionary data exactly as it was output by the previous agent.
-#   expected_output: >
-#     The final assignments produced by the tool. DO NOT MODIFY THE OUTPUT.
-#   agent: ranking
-
-# task_ranking:
-#   description: >
-#     1. Access the data from the previous task (reporting_route).
-#     2. Locate the 'results' dictionary within that output.
-#     3. Call the 'Multi_Rover_Node_Assigner' tool using that 'results' dictionary as the 'rover_results' argument.
-#     4. RETURN THE RESULT OF THE TOOL WITHOUT MODIFICATIONS.
-#   expected_output: >
-#     The OUTPUT returned by the Multi_Rover_Node_Assigner tool WITHOUT MODIFICATIONS. DO NOT ADD INFORMATION
-#   agent: ranking
-
-
-# task_ranking:
-#   description: >
-#     You MUST do exactly these steps:
-#     Step 1) Call Multi_Rover_Node_Assigner with:
-#       - rover_results = """ {{context.reporting_route}} """
-#     Step 2) Return EXACTLY the tool output bytes as JSON.
-#     Rules:
-#       - Do NOT add keys
-#       - Do NOT remove keys
-#       - Do NOT reformat
-#       - Do NOT summarize
-#       - Do NOT explain
-#       - Output must be valid JSON and nothing else.
-
-#   expected_output: >
-#     The output from the Multi_Rover_Node_Assigner tool. DO NOT MODIFY THE OUTPUT.
-#   agent: ranking
-
-# task_ranking:
-#   description: >
-#     1. Retrieve the COMPLETE JSON output from the 'reporting_route' task.
-#     2. Access the 'results' dictionary within that data.
-#     3. Call the Multi_Rover_Node_Assigner tool, passing that 'results' dictionary into the 'rover_results' argument.
-#     4. Return the tool's output exactly as a JSON dictionary.
-
-#     Rules:
-#       - Do NOT summarize or explain.
-#       - Do NOT use markdown code blocks or backticks in the final answer.
-#       - Output must be valid JSON and nothing else.
-
-#   expected_output: >
-#     ALL THE OUTPUT from the Multi_Rover_Node_Assigner tool. DO NOT MODIFY THE OUTPUT.
-#   agent: ranking
-
 task_ranking:
   description: >
     1. Retrieve the COMPLETE output from the 'reporting_route' task.
@@ -162,7 +36,7 @@ task_ranking:
     5. FORBIDDEN: Do not add any introductory text, explanations, or conclusions.
     6. Return the tool's output dictionary WITHOUT MODIFICATIONS.
   expected_output: >
-    The output from the Multi_Rover_Node_Assigner tool. DO NOT MODIFY THE OUTPUT.
+    RETURN THE OUTPUT OF THE Multi_Rover_Node_Assigner TOOL AS YOUR FINAL ANSWER WITHOUT ANY MODIFICATIONS.
   agent: ranking
 
 reporting_sampling:
