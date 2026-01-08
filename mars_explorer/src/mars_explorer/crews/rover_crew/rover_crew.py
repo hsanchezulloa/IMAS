@@ -38,7 +38,7 @@ class RoverCrew:
     def route_planner(self) -> Agent:
         return Agent(
             config=self.agents_config["route_planner"],
-            tools = [RoverPathfindingTool()],
+            tools = [RoverPathfindingTool(), MultiRoverNodeAssignerTool()],
             llm = ollama_llm,
             max_iter=3,
             cache=False,
@@ -100,11 +100,18 @@ class RoverCrew:
     def crew(self) -> Crew:
         """Creates the Research Crew"""
         return Crew(
-            agents=[self.extractor(), self.route_planner(), self.ranking()],
-            tasks=[self.final_nodes(), self.reporting_route(), self.task_ranking()],
+            agents=[self.extractor(), self.route_planner()],
+            tasks=[self.final_nodes(), self.reporting_route()],
             process=Process.sequential,
             verbose=True
         )
+
+        # return Crew(
+        #     agents=[self.extractor(), self.route_planner(), self.ranking()],
+        #     tasks=[self.final_nodes(), self.reporting_route(), self.task_ranking()],
+        #     process=Process.sequential,
+        #     verbose=True
+        # )
         # return Crew(
         #     agents=self.agents,
         #     tasks=self.tasks,
