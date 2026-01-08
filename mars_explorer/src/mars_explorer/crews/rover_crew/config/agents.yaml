@@ -62,7 +62,7 @@ ranking:
 
 sample_collector:
   role: >
-    Aerial Sampling Protocol Architect
+    Rover Sampling Protocol Architect
   goal: >
     Read """ {{report_priority}} """ and generate a strict 10-STEP operational procedure for each sampling task only for ROVERS, customized by terrain type.
   backstory: >

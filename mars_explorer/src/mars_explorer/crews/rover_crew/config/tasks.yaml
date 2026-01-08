@@ -66,5 +66,5 @@ reporting_sampling:
     For each unique goal/terrain combination found in the file, write a detailed procedure in Markdown.
     Generates a detailed report of all samples to be collected, including the type of sample, sensors used, collection procedure, and any relevant observations.
   expected_output: >
-    A Markdown file ('sample_collector_drone.md') containing the 10-step procedures for the identified targets.
+    A Markdown file ('sample_collector_rover.md') containing the 10-step procedures for the identified targets.
   agent: sample_collector

@@ -7,12 +7,12 @@ final_nodes:
 
 reporting_route:
   description: >
-    CALL THE TOOL Batch_Fligth_Calculator NOW.
+    CALL THE TOOL Batch_Flight_Calculator NOW.
 
-    Tool name: Batch_Fligth_Calculator
+    Tool name: Batch_Flight_Calculator
 
     Tool arguments (use EXACTLY these variable names):
-    - targets_list: final nodes recieved from the extractor agent """ {{context.final_nodes()}} """
+    - targets_list: final nodes received from the extractor agent """ {{context.final_nodes()}} """
     - drones_data: {{drones}}
 
     AFTER THE TOOL RETURNS:
@@ -25,10 +25,10 @@ reporting_route:
     - If you shorten or invent paths, FAIL.
 
   expected_output: >
-    A JSON file contaioning the EXACT output of Batch_Fligth_Calculator
+    A JSON file containing the EXACT output of Batch_Flight_Calculator
     Example:
     {"drone_1": [["N90", "N95", "N100", "N102", "N100", "N95", "N90"]],
-     "drone_0": [["N30", "N40", "N55", "N70", "N55", "N40", "N30"]]}
+    "drone_0": [["N30", "N40", "N55", "N70", "N55", "N40", "N30"]]}
 
   agent: flight_planner
 

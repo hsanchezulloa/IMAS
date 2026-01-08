@@ -46,6 +46,24 @@ class FinalMissionReport(BaseModel):
         ..., description="A brief scientific summary of the joint mission readiness."
     )
 
+    def to_markdown(self) -> str:
+        toc = "\n".join(f"- {item}" for item in self.table_of_contents)
+
+        return f"""# {self.title}
+    ## Table of Contents
+    {toc}
+
+    {self.rover_section}
+
+    {self.drone_section}
+
+    {self.satellite_section}
+
+    ## Conclusion
+    {self.conclusion}
+    """
+
+
 @CrewBase
 class IntegrationCrew():
     """Integration Crew"""
@@ -124,7 +142,7 @@ class IntegrationCrew():
         return Task(
             config=self.tasks_config['task_writer'], # type: ignore[index]
             context=[self.task_integrator_rover(), self.task_integrator_drone(), self.task_integrator_satellite()],
-            output_file='final_report.md',
+            output_file='final_report.json',
             output_pydantic=FinalMissionReport
         )
 

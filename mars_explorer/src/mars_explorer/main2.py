@@ -8,8 +8,8 @@ from crews.rover_crew.rover_crew import RoverCrew
 from crews.drone_crew.drone_crew import DronesCrew
 from crews.satellite_crew.satellite_crew import SatelliteCrew
 from crews.validation_crew.validation_crew import ValidationCrew
-from crews.integration_crew.integration_crew import IntegrationCrew
-
+from crews.integration_crew.integration_crew import IntegrationCrew, FinalMissionReport
+from rendering import to_markdown
 
 class ValidationResult(BaseModel):
     rover_ok: bool
@@ -130,7 +130,7 @@ class MarsFlow(Flow):
         if not validation.drone_ok:
             return "replan_drone"
         return "replan_satellite"
-
+    
     # Integration
     @listen(decision)
     def integrate_plans(self, decision):
@@ -145,7 +145,13 @@ class MarsFlow(Flow):
         print("Integrating plans")
         final = self.integration_crew.crew().kickoff(inputs={"sample_collector_rover": sample_collector_rover, "routes_rover": routes_rover, "sample_collector_drone": sample_collector_drone, "routes_drone": routes_drone, "sample_collector_satellite":sample_collector_satellite, "routes_satellite":routes_satellite})
         self.state["final_plan"] = final
-        return final
+        raw_output = final.raw if hasattr(final, "raw") else final
+        parsed = self.extract_json_object(raw_output)
+        report = FinalMissionReport(**parsed)
+        markdown = to_markdown(report)
+        with open("final_mission_report.md", "w", encoding="utf-8") as f:
+            f.write(markdown)
+        return markdown
 
 
 # Entry point
