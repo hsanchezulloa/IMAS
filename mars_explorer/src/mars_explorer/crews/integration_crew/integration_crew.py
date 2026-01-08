@@ -120,6 +120,7 @@ class IntegrationCrew():
         return Task(
             config=self.tasks_config['task_integrator_rover'], # type: ignore[index]
             output_file = 'integrator_rover.md',
+            async_execution=True
         )
 
     @task
@@ -127,6 +128,7 @@ class IntegrationCrew():
         return Task(
             config=self.tasks_config['task_integrator_drone'], # type: ignore[index]
             output_file = 'integrator_drone.md',
+            async_execution=True
         )
     
     @task
@@ -134,6 +136,7 @@ class IntegrationCrew():
         return Task(
             config=self.tasks_config['task_integrator_satellite'], # type: ignore[index]
             output_file = 'integrator_satellite.md',
+            async_execution=True
         )
 
     

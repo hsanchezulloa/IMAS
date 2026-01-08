@@ -68,6 +68,7 @@ class ValidationCrew():
         return Task(
             config=self.tasks_config['task_validation_rover'],
             output_file='validation_rover.json',
+            async_execution=True
         )
     
     @task
@@ -75,6 +76,7 @@ class ValidationCrew():
         return Task(
             config=self.tasks_config['task_validation_drone'], # type: ignore[index]
             output_file='validation_drone.json',
+            async_execution=True
         )
     
     @task
@@ -82,6 +84,7 @@ class ValidationCrew():
         return Task(
             config=self.tasks_config['task_validation_satellite'], # type: ignore[index]
             output_file='validation_satellite.json',
+            async_execution=True
         )
     
     @task
