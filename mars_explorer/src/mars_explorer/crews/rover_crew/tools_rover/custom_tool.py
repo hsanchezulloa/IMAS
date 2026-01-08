@@ -5,7 +5,7 @@ import networkx as nx
 from tools.mars_environment import MarsEnvironment
 import random
 import itertools
-from typing import ClassVar
+import json
 
 class MultiRoverRouteInput(BaseModel):
     rovers: List[Dict[str, Any]] = Field(description="List of rovers with keys: id, location, energy")
@@ -15,9 +15,10 @@ class MultiRoverRouteInput(BaseModel):
 class RoverPathfindingTool(BaseTool):
     name: str = "Multi_Rover_Route_Calculator"
     description: str = (
-        "CRITICAL: This tool returns the FINAL encoded mission data. "
-        "The agent must return the dictionary from this tool EXACTLY as-is. "
-        "Do not change keys, do not summarize, do not add text."
+        "Deterministic rover planner. "
+        "Computes feasible routes, assigns target nodes, "
+        "and returns final round-trip paths. "
+        "Returns ONLY a JSON dictionary."
     )
     args_schema: type[BaseModel] = MultiRoverRouteInput
 
@@ -137,42 +138,25 @@ class RoverPathfindingTool(BaseTool):
                 rover_result["output_nodes"][target] = node_result
 
             results[rover_id] = rover_result
+        with open(f"possible_paths_rovers.json", "w", encoding="utf-8") as f:
+            json.dump(rover_result, f, indent=2)
 
-        return results
-
-
-class NodeAssignmentInput(BaseModel):
-    rover_results: Dict[str, Any] = Field(description="The dictionary containing rover locations and distances")
-
-
-class MultiRoverNodeAssignerTool(BaseTool):
-    name: str = "Multi_Rover_Node_Assigner"
-    return_direct: ClassVar[bool] = True
-    description: str = (
-        "Assigns target nodes to rovers using only feasible paths. "
-        "Minimizes distance and uses remaining energy as tie-breaker. "
-        "Ensures (when possible) that each rover gets at least one node."
-    )
-    args_schema: type[BaseModel] = NodeAssignmentInput
-
-    def _run(self, rover_results):
-        env = MarsEnvironment()
-        graph = env.get_graph()
+        # NODE ASSIGNMENT
         enforce_min_one_per_rover=True
         # List of rover IDs
-        rovers = list(rover_results.keys())
+        rovers_id = list(results.keys())
 
         # Store only feasible paths
         feasible = {}
         all_nodes = set()
 
-        for rover, data in rover_results.items():
+        for rover, data in results.items():
             for node, info in data.get("output_nodes", {}).items():
                 if info.get("feasible"):
                     feasible.setdefault(rover, {})[node] = info
                     all_nodes.add(node)
 
-        assignments = {rover: [] for rover in rovers}
+        assignments = {rover: [] for rover in rovers_id}
         used_nodes = set()
 
         def weight_function(u, v, d):
@@ -203,7 +187,7 @@ class MultiRoverNodeAssignerTool(BaseTool):
 
         # ensure each rover gets ≥1 node
         if enforce_min_one_per_rover:
-            for rover in rovers:
+            for rover in rovers_id:
                 if rover not in feasible:
                     continue
                 candidates = [(node,float(info["distance"]),float(info["energy"])) for node, info in feasible[rover].items() if node not in used_nodes]
@@ -227,7 +211,7 @@ class MultiRoverNodeAssignerTool(BaseTool):
         final_paths = {}
 
         for rover, nodes in assignments.items():
-            start = rover_results[rover]["location"]
+            start = results[rover]["location"]
             final_paths[rover] = []
 
             for target in nodes:
@@ -240,6 +224,10 @@ class MultiRoverNodeAssignerTool(BaseTool):
                     continue
 
         return final_paths
+
+
+
+    
 
 
 

@@ -1,23 +1,35 @@
+```json
 {
   "rover": {
-    "operational constraints": ["Rovers may not operate in terrain classified as unstable", "Rover communication systems must maintain line-of-sight with ground control stations"],
+    "operational constraints": [
+      "Rovers must enter a heat shelter during 20 minutes if the surface temperature is below -60ºC.",
+      "Rovers cannot operate if node temperature is below -80ºC.",
+      "Rover's energy consumption is different depending on the type of terrain: 5% in rocky, increased 10% in sandy, increased 20% in icy and increased 15% in crater terrains.",
+      "Rovers may not operate in terrain classified as radioactive.",
+      "Rovers may not operate in terrain classified as unstable."
+    ],
     "hazards": {
-      "Rovers may not operate in terrain classified as unstable": ["N4"],
-      "Rover communication systems must maintain line-of-sight with ground control stations": []
+      "Rovers may not operate in terrain classified as unstable.": ["N4"],
+      "Rovers may not operate in terrain classified as radioactive.": ["N51"]
     }
   },
   "drone": {
-    "operational constraints": ["Drones must avoid flying through areas with high electromagnetic interference", "Drone batteries must last at least 30 minutes for critical missions"],
+    "operational constraints": [
+      "Drones must return to base after 25 minutes of flight.",
+      "Drones are disabled if there is a dust storm.",
+      "Drones cannot operate if wind gusts are higher than 40 km/h.",
+      "Drone's energy consumption is increased 15% if wind is higher than 30 km/h."
+    ],
     "hazards": {
-      "Drones must avoid flying through areas with high electromagnetic interference": [],
-      "Drone batteries must last at least 30 minutes for critical missions": []
+      "Drones are disabled if there is a dust storm.": ["N33"]
     }
   },
   "satellite": {
-    "operational constraints": ["Satellites must maintain a minimum altitude of 200 km to avoid atmospheric drag", "Satellite data transmission must be encrypted to prevent unauthorized access"],
-    "hazards": {
-      "Satellites must maintain a minimum altitude of 200 km to avoid atmospheric drag": [],
-      "Satellite data transmission must be encrypted to prevent unauthorized access": []
-    }
+    "operational constraints": [
+      "Satellites must maintain communication with the base station at N30 or N84 every 5 hours if they have to identify thermal anomalies.",
+      "Satellites cannot communicate in nodes with communication loss."
+    ],
+    "hazards": []
   }
 }
+```

@@ -1,133 +1,77 @@
-### Satellite Imaging Operations Manual
-
-This manual provides detailed 5-step procedural guides for satellite imaging missions based on the provided JSON structure. Each guide is tailored to specific mission types and terrain conditions, ensuring optimal image capture and data transmission.
+### Technical Manual: Satellite Imaging Operations Protocol
 
 ---
 
-#### **Mission Type: Panoramic Terrain Mapping**
+#### **Mission 1: Capture Panoramic Images of Crater Terrain**
 
-**Objective:** Capture wide-area images of planetary surfaces for geological analysis.
+**Objective:** Acquire high-resolution panoramic images of crater terrain at nodes N5, N58, N121, and N150.
+
+**Steps:**
 
 1. **Sensor Initialization:**
-   - Activate the multispectral camera array.
-   - Ensure all sensors are calibrated and operational.
-   - Verify communication link with ground control.
+   - Power up the multispectral imaging sensor.
+   - Ensure camera calibration is complete (focus, exposure, white balance).
+   - Verify communication link with ground station for real-time monitoring.
 
 2. **Positioning:**
-   - Adjust satellite altitude to 500 km for optimal coverage.
-   - Orient the satellite's nadir towards the target terrain.
-   - Lock onto GPS reference points for accurate positioning.
+   - Orbit adjustment to achieve an altitude of 50 km above the target node.
+   - Use star tracker and GPS for precise positioning over the designated crater locations.
+   - Ensure nadir (directly downward) alignment for accurate terrain mapping.
 
 3. **Capture Sequence:**
-   - Initiate panchromatic and multispectral image capture in a raster pattern.
-   - Capture overlapping images with 60% overlap to ensure complete coverage.
-   - Adjust exposure settings based on surface albedo (e.g., reduce ISO for reflective icy surfaces).
+   - Enable panoramic stitching mode to combine multiple images into a single mosaic.
+   - Capture 10 sequential images at intervals of 5 seconds, ensuring full coverage of the crater.
+   - Use a shutter speed of 1/1000 second and ISO setting of 800 for sharp details in varying lighting conditions.
 
 4. **Data Validation:**
-   - On-board software checks for image completeness and geometric accuracy.
-   - Verify that all required spectral bands are captured.
-   - Store validated data in the satellite's primary storage.
+   - Check image overlap (minimum 30%) and ensure no gaps in the mosaic.
+   - Verify that all images are georeferenced with latitude, longitude, and timestamp.
+   - Confirm that the final stitched image covers at least 95% of the target area.
 
 5. **Transmission:**
-   - Compress images using lossless compression algorithms.
-   - Transmit data to ground stations during optimal visibility windows (e.g., 30-minute passes).
-   - Confirm receipt with ground control and prepare for post-processing.
+   - Compress raw image files to reduce data size (lossless compression).
+   - Transmit data packets via X-band communication link to ground station within 30 minutes post-capture.
+   - Archive raw and processed images on-board for redundancy.
+
+**Time Window:** Capture during local noon (12:00–14:00) to minimize shadows and maximize solar illumination.
 
 ---
 
-#### **Mission Type: Thermal Anomaly Detection**
+#### **Mission 2: Identification of Thermal Anomalies at Icy Nodes**
 
-**Objective:** Identify thermal anomalies indicative of geological activity or hydrothermal vents.
+**Objective:** Detect thermal anomalies in icy terrain at nodes N56 and N112.
+
+**Steps:**
 
 1. **Sensor Initialization:**
-   - Activate the thermal infrared sensor suite.
-   - Ensure radiometric calibration is up-to-date.
-   - Confirm communication link stability.
+   - Activate the thermal infrared sensor (8–14 µm band).
+   - Calibrate the sensor using on-board blackbody emitters.
+   - Ensure data is being transmitted to the ground station for real-time analysis.
 
 2. **Positioning:**
-   - Position satellite at 300 km altitude for high-resolution thermal imaging.
-   - Focus on target areas with known or suspected anomalies (e.g., volcanic regions).
-   - Adjust pointing to track moving targets if necessary.
+   - Orbit adjustment to achieve an altitude of 30 km above the target node.
+   - Use thermal imaging to identify temperature gradients in the icy terrain.
+   - Maintain a stable platform to minimize jitter (maximum 0.1° roll, pitch, yaw).
 
 3. **Capture Sequence:**
-   - Capture thermal images during local night hours for enhanced contrast.
-   - Use high-spatial and high-temperature resolution modes.
-   - Apply filters to reduce noise from atmospheric interference.
+   - Acquire thermal data in raster scan mode, capturing 20x20 pixel grid over each node.
+   - Use a frame rate of 1 Hz for continuous monitoring.
+   - Apply gain settings of 40 dB to enhance sensitivity to temperature variations.
 
 4. **Data Validation:**
-   - Analyze images for consistent temperature gradients and anomaly signatures.
-   - Compare against historical data for validation.
-   - Store validated anomalies in the satellite's secondary storage.
+   - Check signal-to-noise ratio (SNR) ≥ 15 dB for all data points.
+   - Identify anomalies as regions with temperature deviations >2 K from baseline readings.
+   - Ensure georeferencing accuracy within ±50 m.
 
 5. **Transmission:**
-   - Encrypt sensitive thermal data for secure transmission.
-   - Transmit during designated windows to primary ground stations.
-   - Debrief with mission control on detected anomalies.
+   - Transmit raw thermal data packets via S-band link to ground station immediately after capture.
+   - Archive processed anomaly maps on-board for future reference.
+   - Provide real-time alerts to the science team if anomalies exceed predefined thresholds.
+
+**Time Window:** Capture during local midnight (23:00–01:00) when thermal contrast is maximized due to diurnal temperature variations.
 
 ---
 
-#### **Mission Type: High-Resolution Crater Imaging**
+### Final Answer
 
-**Objective:** Detailed imaging of cratered terrains for geological studies.
-
-1. **Sensor Initialization:**
-   - Activate the high-resolution panchromatic camera.
-   - Ensure focus and exposure settings are optimized for dark surfaces.
-   - Verify satellite stability for precise targeting.
-
-2. **Positioning:**
-   - Orbit adjust to 200 km altitude for maximum resolution.
-   - Center the field of view on the crater's center.
-   - Use star trackers for precise attitude control.
-
-3. **Capture Sequence:**
-   - Capture multi-angle images (nadir and oblique) to create a 3D model.
-   - Use long exposure times to capture details in shadowed areas.
-   - Adjust gain settings to avoid overexposure of bright crater rims.
-
-4. **Data Validation:**
-   - Stitch images into a composite using on-board software.
-   - Check for geometric distortions and correct if necessary.
-   - Validate against pre-mission simulations.
-
-5. **Transmission:**
-   - Segment large image files for efficient transmission.
-   - Send to designated ground stations in real-time.
-   - Confirm receipt and prepare for data analysis.
-
----
-
-#### **Mission Type: Icy Surface Monitoring**
-
-**Objective:** Monitor ice-covered surfaces for changes due to environmental factors.
-
-1. **Sensor Initialization:**
-   - Activate the hyperspectral imager focused on short wavelengths.
-   - Ensure polarization filters are engaged to reduce glare.
-   - Confirm satellite's thermal control is operational.
-
-2. **Positioning:**
-   - Orbit at 400 km altitude for optimal balance between resolution and coverage.
-   - Focus on areas with recent glacial movement or ice fractures.
-   - Use solar panels to avoid shading during capture.
-
-3. **Capture Sequence:**
-   - Capture images in RGB and near-infrared bands.
-   - Use rapid fire mode to minimize cloud cover interference.
-   - Apply de-haze algorithms pre-capture to enhance clarity.
-
-4. **Data Validation:**
-   - Check for consistent ice signatures across spectral bands.
-   - Compare against previous missions for change detection.
-   - Store validated data securely on-board.
-
-5. **Transmission:**
-   - Compress and encrypt hyperspectral data.
-   - Transmit during high-elevation passes for maximum bandwidth.
-   - Confirm transmission completion with ground control.
-
----
-
-### Conclusion
-
-This manual provides comprehensive 5-step protocols for various satellite imaging missions, ensuring optimal execution based on mission requirements and environmental conditions. Each guide is designed to be adaptable to different terrain types and priorities, facilitating efficient and accurate data acquisition.
+The above protocols provide a comprehensive 5-step execution plan for each satellite mission identified in the JSON file. Each protocol includes sensor initialization, positioning, capture sequence, data validation, and transmission steps, tailored to the specific terrain type (crater or icy) and mission requirements. The instructions are designed to ensure optimal image acquisition and data integrity while accounting for operational constraints such as altitude, timing, and communication protocols.

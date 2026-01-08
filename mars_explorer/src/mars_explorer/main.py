@@ -2,13 +2,14 @@ from pydantic import BaseModel
 from pathlib import Path
 import json
 import re
-from crewai.flow import Flow, start, listen, and_, or_ , router
+from crewai.flow import Flow, start, listen, and_, or_, router
 from crews.mission_crew.mission_crew import MissionCrew
 from crews.rover_crew.rover_crew import RoverCrew
 from crews.drone_crew.drone_crew import DronesCrew
 from crews.satellite_crew.satellite_crew import SatelliteCrew
-from crews.integration_crew.integration_crew import IntegrationCrew
-
+from crews.validation_crew.validation_crew import ValidationCrew
+from crews.integration_crew.integration_crew import IntegrationCrew, FinalMissionReport
+from rendering import to_markdown
 
 class ValidationResult(BaseModel):
     rover_ok: bool
@@ -16,192 +17,164 @@ class ValidationResult(BaseModel):
     satellite_ok: bool
 
 class MarsFlow(Flow):
-    MAX_RETRIES = 2
-    def __init__(self, mission_crew, rover_crew, drone_crew, satellite_crew, integration_crew):
+    MAX_RETRIES = 3
+
+    def __init__(self, mission_crew, rover_crew, drone_crew, satellite_crew, validation_crew, integration_crew):
         super().__init__()
         self.mission_crew = mission_crew
         self.rover_crew = rover_crew
         self.drone_crew = drone_crew
         self.satellite_crew = satellite_crew
+        self.validation_crew = validation_crew
         self.integration_crew = integration_crew
-    
-    #mission analysis
+
+
+    # Mission crew
     @start()
     def run_mission_analysis(self):
-        mission_report = self.state.get('mission_report')
-        mars_graph = self.state.get('mars_graph')
-        urls = self.state.get('urls')
-        # mission_report= inputs['mission_report']
-        # mars_graph = inputs['mars_graph']
-        # urls = inputs["urls"]
         print("Mission analysis")
-        result = self.mission_crew.crew().kickoff(inputs={"mission_report": mission_report, "mars_graph":mars_graph, "urls":urls})
+        mission_report = self.state.get("mission_report")
+        result = self.mission_crew.crew().kickoff(inputs={"mission_report": mission_report,})
         self.state["mission"] = result
-        self.state["retries"] = 0
+        self.state["retries"] = 0 
         return result
-    
-    # #replan
-    # @listen("decision") 
-    # def replan(self, decision):
-    #     if decision != "replan":
-    #         return
-    #     print(f"Replanning all crews (attempt {self.state['retries']}/{self.MAX_RETRIES})")
-    #     return self.state["mission"]
 
-    #planning (parallel)
+    # Utils
     def extract_json_object(self, text: str) -> dict:
-        # Prefer fenced json blocks if present
         m = re.search(r"```json\s*([\s\S]*?)\s*```", text, re.IGNORECASE)
         if m:
             return json.loads(m.group(1))
-
-        # Fallback: first {...} object found
         m = re.search(r"(\{[\s\S]*\})", text)
         if not m:
-            raise ValueError("No JSON object found in text")
+            raise ValueError("No JSON object found")
         return json.loads(m.group(1))
 
-    @listen(run_mission_analysis)
+
+    # Planning (parallel)
+    # Rover crew
+    @listen(or_(run_mission_analysis, "replan_rover"))
     def run_rover_planning(self):
-        report_priority = Path("report_priority.json").read_text(encoding="utf-8")
-        rovers = Path("inputs/rovers.json").read_text(encoding="utf-8")
-        result = self.rover_crew.crew().kickoff(inputs={'report_priority': report_priority, 'rovers':rovers})
-        self.state["rover_plan"] = result
-
-        '''
-        mars_graph = self.state.get('mars_graph')
-        raw_text = Path("reporting_aggregation.md").read_text(encoding="utf-8", errors="ignore")
-        mission_data = self.extract_json_object(raw_text)
-        rovers = mission_data["rovers"]
         print("Rover planning")
-        result = self.rover_crew.crew().kickoff(inputs={"mission_report": rovers, "mars_graph":mars_graph})
-        self.state["rover_plan"] = result
-        '''
-        return result
-
-    @listen(run_mission_analysis)
-    def run_drone_planning(self):
         report_priority = Path("report_priority.json").read_text(encoding="utf-8")
-        drones = Path("inputs/drones.json").read_text(encoding="utf-8")
-        result = self.drone_crew.crew().kickoff(inputs={'report_priority': report_priority, 'drones':drones})
-        self.state["drone_plan"] = result
-
-        '''
-        mars_graph = self.state.get('mars_graph')
-        raw_text = Path("reporting_aggregation.md").read_text(encoding="utf-8", errors="ignore")
-        mission_data = self.extract_json_object(raw_text)
-        drones = mission_data["drones"]
-        print("Drone planning")
-        result = self.drone_crew.crew().kickoff(inputs={"mission_report": drones, "mars_graph":mars_graph})
-        self.state["drone_plan"] = result
-        '''
-        return result
-
-    @listen(run_mission_analysis)
-    def run_satellite_planning(self):
-        raw_text = Path("reporting_aggregation.md").read_text(encoding="utf-8", errors="ignore")
-        mission_data = self.extract_json_object(raw_text)
-        satellites = mission_data["satellites"]
-        print("Satellite planning")
-        result = self.satellite_crew.crew().kickoff(inputs={"mission_report": satellites})
-        self.state["satellite_plan"] = result
-        return result
-
-    #validation 
-    @listen(and_(run_rover_planning, run_drone_planning, run_satellite_planning))
-    def validate_plans(self, _) -> ValidationResult:
-        print("Validating plans")
-        rover_ok = len(str(self.state["rover_plan"])) > 20
-        drone_ok = len(str(self.state["drone_plan"])) > 20
-        satellite_ok = len(str(self.state["satellite_plan"])) > 20
+        rovers = self.state.get("rovers")
         
-        validation = ValidationResult(
-            rover_ok=rover_ok,
-            drone_ok=drone_ok,
-            satellite_ok=satellite_ok)
+        result = self.rover_crew.crew().kickoff(inputs={"report_priority": report_priority, "rovers": rovers})
+        self.state["rover_plan"] = result
+        return "rover_ready"
+
+    # Drone crew
+    @listen(or_(run_mission_analysis, "replan_drone"))
+    def run_drone_planning(self):
+        print("Drone planning")
+        report_priority = Path("report_priority.json").read_text(encoding="utf-8")
+        drones = self.state.get("drones")
+
+        result = self.drone_crew.crew().kickoff(inputs={"report_priority": report_priority, "drones": drones})
+        self.state["drone_plan"] = result
+        return "drone_ready"
+
+    # Satellite crew
+    @listen(or_(run_mission_analysis, "replan_satellite"))
+    def run_satellite_planning(self):
+        print("Satellite planning")
+        report_priority = Path("report_priority.json").read_text(encoding="utf-8")
+        report_hazard_constraints = Path("report_hazard_constraints.json").read_text(encoding="utf-8")
+        graph_path = self.state.get("graph_path")
+        satellite_json = self.state.get("satellite_json")
+        result = self.satellite_crew.crew().kickoff(inputs={"report_priority": report_priority, "satellite_json": satellite_json, "graph_path": graph_path, 'report_hazard_constraints': report_hazard_constraints})
+
+        self.state["satellite_plan"] = result
+        return "satellite_ready"
+
+    # Validation
+    @listen(or_(and_(run_rover_planning, run_drone_planning, run_satellite_planning), and_("replan_rover", run_rover_planning), and_("replan_drone", run_drone_planning), and_("replan_satellite", run_satellite_planning)))
+    def validate_plans(self, _) -> ValidationResult:
+        print("Integration Crew is validating individual routes...")
+        # if not all([self.state.get("rover_plan"), self.state.get("drone_plan"), self.state.get("satellite_plan")]):
+        #     return
+        # We call the validation_crew specifically for validation
+        reporting_aggregation = Path("reporting_aggregation.json").read_text(encoding="utf-8")
+        routes_satellite = Path("routes_satellite.json").read_text(encoding="utf-8")
+        routes_drone = Path("routes_drone.json").read_text(encoding="utf-8")
+        routes_rover = Path("routes_rover.json").read_text(encoding="utf-8")
+        validation_output = self.validation_crew.crew().kickoff(inputs={"reporting_aggregation": reporting_aggregation, "routes_rover": routes_rover, "routes_satellite": routes_satellite, "routes_drone": routes_drone})
+
+        # Extract the JSON results from the validation agents
+        try:
+            res = self.extract_json_object(validation_output.raw)
+            validation = ValidationResult(rover_ok=res.get("rover_ok", False), drone_ok=res.get("drone_ok", False), satellite_ok=res.get("satellite_ok", False))
+            # Store feedback in state so the replanning agents know what went wrong
+            self.state["feedback"] = res.get("feedback", "No specific feedback provided.")
+        except Exception as e:
+            print(f"Validation parsing failed: {e}")
+            # Default to False if parsing fails to force a retry
+            validation = ValidationResult(rover_ok=False, drone_ok=False, satellite_ok=False)
         self.state["validation"] = validation
         return validation
 
-    #decision
-    # @router(validate_plans)
-    # def decision(self, validation: ValidationResult):
-    #     if (validation.rover_ok and validation.drone_ok and validation.satellite_ok):
-    #         print("All plans valid")
-    #         return "integrate"
-    #     self.state["retries"] += 1
-    #     print(f"Validation failed: retry {self.state['retries']}")
-
-    #     if self.state["retries"] >= self.MAX_RETRIES:
-    #         raise RuntimeError("Too many replanning attempts")
-    #     return "replan"
-
+    # Decision (router)
     @router(validate_plans)
     def decision(self, validation: ValidationResult):
-        self.state["retries"] += 1
-
         if validation.rover_ok and validation.drone_ok and validation.satellite_ok:
+            print("All plans valid")
             return "integrate"
+
+        self.state["retries"] = self.state.get("retries", 0) + 1
+        print(f"Validation failed (attempt {self.state['retries']}/{self.MAX_RETRIES})")
+
+        if self.state["retries"] >= self.MAX_RETRIES:
+            raise RuntimeError("Too many replanning attempts")
 
         if not validation.rover_ok:
             return "replan_rover"
-
         if not validation.drone_ok:
             return "replan_drone"
-
-        if not validation.satellite_ok:
-            return "replan_satellite"
+        return "replan_satellite"
     
-    @listen("replan_rover")
-    def retry_rover(self, _):
-        return self.run_rover_planning()
-
-    @listen("replan_drone")
-    def retry_drone(self, _):
-        return self.run_drone_planning()
-
-    @listen("replan_satellite")
-    def retry_satellite(self, _):
-        return self.run_satellite_planning()
-
-
-    
-    #integration 
+    # Integration
     @listen(decision)
     def integrate_plans(self, decision):
         if decision != "integrate":
             return
+        sample_collector_rover = Path("sample_collector_rover.md").read_text(encoding="utf-8")
+        routes_rover = Path("routes_rover.json").read_text(encoding="utf-8")
+        sample_collector_drone = Path("sample_collector_drone.md").read_text(encoding="utf-8")
+        routes_drone = Path("routes_drone.json").read_text(encoding="utf-8")
+        sample_collector_satellite = Path("image_capture_satellite.md").read_text(encoding="utf-8")
+        routes_satellite = Path("routes_satellite.json").read_text(encoding="utf-8")
         print("Integrating plans")
-
-        final = self.integration_crew.crew().kickoff(
-            inputs={
-                "rover_plan": self.state["rover_plan"].raw if hasattr(self.state["rover_plan"], "raw") else str(self.state["rover_plan"]),
-                "drone_plan": self.state["drone_plan"].raw if hasattr(self.state["drone_plan"], "raw") else str(self.state["drone_plan"]),
-                "satellite_plan": self.state["satellite_plan"].raw if hasattr(self.state["satellite_plan"], "raw") else str(self.state["satellite_plan"]),
-            })
+        final = self.integration_crew.crew().kickoff(inputs={"sample_collector_rover": sample_collector_rover, "routes_rover": routes_rover, "sample_collector_drone": sample_collector_drone, "routes_drone": routes_drone, "sample_collector_satellite":sample_collector_satellite, "routes_satellite":routes_satellite})
         self.state["final_plan"] = final
-        return final
-    
+        raw_output = final.raw if hasattr(final, "raw") else final
+        parsed = self.extract_json_object(raw_output)
+        report = FinalMissionReport(**parsed)
+        markdown = to_markdown(report)
+        with open("final_mission_report.md", "w", encoding="utf-8") as f:
+            f.write(markdown)
+        return markdown
+
+
+# Entry point
 def kickoff():
-    """
-    Entry point for the Mars multi-agent system.
-    Executes the full MarsFlow.
-    """
-
-    # -------- Load inputs --------
     mission_report = Path("inputs/mission_report.md").read_text(encoding="utf-8")
-    mars_graph = Path("inputs/mars_terrain_graph.graphml").read_text(encoding="utf-8")
-    urls = ["https://science.nasa.gov/mars/facts/"]
-
-    flow = MarsFlow(mission_crew=MissionCrew(),rover_crew=RoverCrew(),drone_crew=DronesCrew(),satellite_crew=SatelliteCrew(),integration_crew=IntegrationCrew())
+    rovers = Path("inputs/rovers.json").read_text(encoding="utf-8")
+    drones = Path("inputs/drones.json").read_text(encoding="utf-8")
+    satellite_json = Path("inputs/satellites.json").read_text(encoding="utf-8")
+    graph_path = Path("inputs/mars_terrain_graph.graphml").read_text(encoding="utf-8")
+    
+    flow = MarsFlow(mission_crew = MissionCrew(), rover_crew = RoverCrew(), drone_crew = DronesCrew(), satellite_crew = SatelliteCrew(), validation_crew = ValidationCrew(), integration_crew = IntegrationCrew(),)
     flow.state["mission_report"] = mission_report
-    flow.state["mars_graph"] = mars_graph
-    flow.state["urls"] = urls
+    flow.state["rovers"] = rovers
+    flow.state["drones"] = drones
+    flow.state["satellite_json"] = satellite_json
+    flow.state["graph_path"] = graph_path
+
     result = flow.kickoff()
 
     print("\n=== FINAL MISSION PLAN ===\n")
     print(result)
-
     return result
+
 
 def plot():
     flow = MarsFlow(
@@ -209,9 +182,11 @@ def plot():
         rover_crew=RoverCrew(),
         drone_crew=DronesCrew(),
         satellite_crew=SatelliteCrew(),
+        validation_crew = ValidationCrew(),
         integration_crew=IntegrationCrew())
     flow.plot()
 
+
 if __name__ == "__main__":
-    # plot()
     kickoff()
+    # plot()

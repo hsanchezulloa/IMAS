@@ -1,0 +1,48 @@
+{
+  "location": "N84",
+  "energy": 80,
+  "output_nodes": {
+    "N70": {
+      "distance": 42.0,
+      "energy": 37.33,
+      "feasible": true,
+      "warning": "BATTERY OK"
+    },
+    "N102": {
+      "distance": 54.0,
+      "energy": 23.98,
+      "feasible": true,
+      "warning": "WARNING: Low battery remaining (23.98)"
+    },
+    "N12": {
+      "distance": null,
+      "energy": null,
+      "feasible": false,
+      "warning": "NO FEASIBLE PATH (BATTERY)"
+    },
+    "N86": {
+      "distance": 6.0,
+      "energy": 73.85,
+      "feasible": true,
+      "warning": "BATTERY OK"
+    },
+    "N1": {
+      "distance": null,
+      "energy": null,
+      "feasible": false,
+      "warning": "NO FEASIBLE PATH (BATTERY)"
+    },
+    "N20": {
+      "distance": null,
+      "energy": null,
+      "feasible": false,
+      "warning": "NO FEASIBLE PATH (BATTERY)"
+    },
+    "N59": {
+      "distance": 75.0,
+      "energy": 2.45,
+      "feasible": true,
+      "warning": "WARNING: Low battery remaining (2.45)"
+    }
+  }
+}

@@ -11,7 +11,8 @@ from typing import List
 ollama_llm = LLM(
     model="ollama/deepseek-r1:14b", 
     base_url="http://localhost:11434",
-    temperature=0.1
+    temperature=0.1,
+    timeout=3600
 )
 # class FinalMissionReport(BaseModel):
 #     title: str = Field(..., description="The main title of the mission report.")

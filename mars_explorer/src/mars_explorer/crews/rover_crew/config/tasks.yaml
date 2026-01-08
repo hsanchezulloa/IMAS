@@ -6,121 +6,25 @@ final_nodes:
   agent: extractor
 
 
-# reporting_route:
-#   description: >
-#     You MUST do exactly these steps:
-#     Step 1) Call Multi_Rover_Route_Calculator with:
-#       - rovers = """ {{rovers}} """
-#       - target_nodes = """ {{context.final_nodes}} """
-#     Step 2) Return EXACTLY the tool output bytes as JSON.
-#     Rules:
-#       - Do NOT add keys
-#       - Do NOT remove keys
-#       - Do NOT reformat
-#       - Do NOT summarize
-#       - Do NOT explain
-#       - Output must be valid JSON and nothing else.
-
-#   expected_output: >
-#     The output from the Multi_Rover_Route_Calculator tool. DO NOT MODIFY THE OUTPUT.
-
-#   agent: route_planner
-
 reporting_route:
   description: >
-    DETERMINISTIC TOOL PIPELINE
+    You MUST do exactly these steps:
+    Step 1) Call Multi_Rover_Route_Calculator with:
+      - rovers = """ {{rovers}} """
+      - target_nodes = """ {{context.final_nodes}} """
+    Step 2) Return EXACTLY the tool output bytes as JSON.
+    Rules:
+      - Do NOT add keys
+      - Do NOT remove keys
+      - Do NOT reformat
+      - Do NOT summarize
+      - Do NOT explain
+      - Output must be valid JSON and nothing else.
 
-    STEP 1:
-      Execute Multi_Rover_Route_Calculator with:
-        - rovers = {{rovers}}
-        - target_nodes = {{context.final_nodes}}
-
-    STEP 2:
-      Use EXACTLY the output of STEP 1
-      as input for:
-        Multi_Rover_Node_Assigner
-
-    STEP 3:
-      Return EXACTLY the output of STEP 2
-
-    OUTPUT RULES:
-    - Do not modify any output
-    - Do not summarize
-    - Do not infer
-    - Do not explain
   expected_output: >
-    <exact output of Multi_Rover_Node_Assigner>
+    The output from the Multi_Rover_Route_Calculator tool. DO NOT MODIFY THE OUTPUT.
+
   agent: route_planner
-
-
-
-
-
-# task_ranking:
-#   description: >
-#     1. Retrieve the COMPLETE output from the 'reporting_route' task.
-#     2. Extract the 'results' dictionary from that data.
-#     3. Execute the Multi_Rover_Node_Assigner tool using that 'results' dictionary as the 'rover_results' argument.
-#     4. FORBIDDEN: Do not wrap the output in markdown code blocks (```json).
-#     5. FORBIDDEN: Do not add any introductory text, explanations, or conclusions.
-#     6. Return ONLY valid JSON in this exact format:
-#       {"results": <tool_output>}
-#     Rules:
-#       - No extra text
-#       - No markdown
-#       - Do not modify the tool output.
-#   expected_output: >
-#     A JSON object: {<Multi_Rover_Node_Assigner output>}
-#   agent: ranking
-
-# task_ranking:
-#   description: >
-#     1. Retrieve the COMPLETE output from the 'reporting_route' task.
-#     2. Extract the 'results' dictionary from that data.
-#     3. Execute the Multi_Rover_Node_Assigner tool using that dictionary as 'rover_results'.
-#     4. Return ONLY valid JSON in this exact format:
-#       {"results": <tool_output>}
-#     Rules:
-#       - No extra text
-#       - No markdown
-#       - Do not modify the tool output (only wrap it under "results").
-#   expected_output: >
-#     A JSON object: {"results": <Multi_Rover_Node_Assigner output>}
-#   agent: ranking
-
-task_ranking:
-  description: >
-    STRICT TOOL EXECUTION TASK
-
-    Step 1:
-      Call Multi_Rover_Node_Assigner with:
-        - rovers = """ {{rovers}} """
-        - target_nodes = """ {{context.final_nodes}} """
-
-    Step 2:
-      Return EXACTLY the tool output.
-
-    OUTPUT RULES (MANDATORY):
-    - Your response MUST be valid JSON
-    - Your response MUST be:
-        {"results": <tool_output>}
-    - <tool_output> MUST be byte-for-byte identical to the tool result
-    - Do NOT add, infer, summarize, or rename anything
-    - Do NOT include explanations, markdown, or comments
-    - Do NOT reformat values
-    - If the tool returns null, return null
-    - If the tool returns a number, return the number
-    - If the tool returns an object, return the object
-
-    FAILURE CONDITIONS:
-    - Any text outside the JSON object
-    - Any field not present in the tool output
-    - Any inferred or modified value
-
-  expected_output: >
-    {"results": <Multi_Rover_Node_Assigner output>}
-
-  agent: ranking
 
 
 

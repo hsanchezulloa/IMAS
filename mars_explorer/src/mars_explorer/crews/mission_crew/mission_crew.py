@@ -13,7 +13,8 @@ from crews.mission_crew.tools.custom_tool import (
 ollama_llm = LLM(
     model="ollama/deepseek-r1:14b", 
     base_url="http://localhost:11434",
-    temperature=0.1
+    temperature=0.1,
+    timeout=3600
 )
 
 @CrewBase
