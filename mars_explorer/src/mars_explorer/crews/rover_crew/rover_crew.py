@@ -84,7 +84,7 @@ class RoverCrew:
         return Task(
             config=self.tasks_config["task_ranking"],
             context=[self.reporting_route()],
-            # output_json = RoverRoutes,
+            output_json = RoverRoutes,
             output_file='routes_rover.json',
         )
 

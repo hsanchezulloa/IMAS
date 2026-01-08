@@ -1,4 +1,6 @@
+```json
 {
   "drone_ok": true,
-  "feedback_drone": "All mission-critical nodes (N33, N53, N63, N108) have been successfully visited by the drones. No hazards were encountered during their routes."
+  "feedback_drone": "All mission nodes are visited. No hazards encountered."
 }
+```

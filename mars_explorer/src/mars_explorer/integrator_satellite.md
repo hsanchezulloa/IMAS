@@ -1,100 +1,67 @@
 ```markdown
 # INTEGRATED MARS ORBITAL OPERATIONS REPORT
 
-## Section 1: Orbital Window & Assignment Logs
+## Section 1: Orbital Trajectory Logs (by Satellite ID)
 
-| Satellite ID | Target Goal | Communication Window (days) |
-|--------------|-------------|------------------------------|
-| Satellite_0  | N5          | 7                            |
-| Satellite_1  | N56         | 8                            |
-| Satellite_4  | N58         | 4                            |
-| Satellite_2  | N121        | 3                            |
-| Satellite_3  | N150        | 2                            |
-| Satellite_5  | N112        | 5                            |
+### Satellite_3:
+- **Target Node**: N18
+- **Objective**: Conduct panoramic terrain mapping and data transmission.
 
----
-
-## Section 2: Sensor Execution Protocols
-
-### Protocol Mapping & Execution Steps
-
-#### **Protocol 1: Panoramic Terrain Capture**
-- **Assigned Satellites**: Satellite_0 (N5), Satellite_4 (N58), Satellite_2 (N121), Satellite_3 (N150)
-
-**Execution Steps for Satellite_0 (N5)**:
-1. Sensor Initialization: Power on and initialize multispectral imaging sensor suite.
-   - Action: Calibrate cameras and spectral filters for optimal terrain coverage over N5.
-2. Positioning Over Target Node: Adjust trajectory to maintain stable orbit at 30 km altitude above N5 crater.
-3. Capture Sequence Execution: Initiate panoramic image capture in RGB and infrared spectra.
-4. Data Validation: Review images for completeness, applying automated filters to remove atmospheric distortion.
-5. Secure Data Transmission: Transmit validated images to ground control via encrypted uplink.
-
-**Execution Steps for Satellite_4 (N58)**:
-1. Sensor Initialization: Power on multispectral imaging sensors.
-   - Action: Calibrate cameras and spectral filters for N58 terrain.
-2. Positioning Over Target Node: Navigate to stable orbit at 30 km altitude above N58.
-3. Capture Sequence Execution: Program camera system for high-resolution RGB and infrared image capture.
-4. Data Validation: Analyze images for completeness, applying distortion removal algorithms.
-5. Secure Data Transmission: Transmit validated data packets with priority tags.
-
-**Execution Steps for Satellite_2 (N121)**:
-1. Sensor Initialization: Activate multispectral imaging suite.
-   - Action: Ensure cameras and spectral filters are operational for N121.
-2. Positioning Over Target Node: Adjust trajectory to maintain orbit at 30 km altitude above N121.
-3. Capture Sequence Execution: Begin panoramic image capture in RGB and infrared spectra.
-4. Data Validation: Check for missing frames or artifacts, applying automated filters.
-5. Secure Data Transmission: Transmit validated images via encrypted uplink.
-
-**Execution Steps for Satellite_3 (N150)**:
-1. Sensor Initialization: Power on multispectral imaging sensors.
-   - Action: Calibrate cameras and spectral filters for N150 terrain.
-2. Positioning Over Target Node: Navigate to stable orbit at 30 km altitude above N150.
-3. Capture Sequence Execution: Program camera system for high-resolution RGB and infrared image capture.
-4. Data Validation: Review images for completeness, applying distortion removal algorithms.
-5. Secure Data Transmission: Transmit validated data packets with priority tags.
+### Satellite_2:
+- **Target Node**: N116
+- **Objective**: Perform thermal anomaly detection and surface monitoring.
 
 ---
 
-#### **Protocol 2: Thermal Anomaly Identification**
-- **Assigned Satellites**: Satellite_1 (N56), Satellite_5 (N112)
+## Section 2: Sensor Execution Protocols (Mapping Nodes to Procedures)
 
-**Execution Steps for Satellite_1 (N56)**:
-1. Sensor Initialization: Activate thermal imaging sensors and radiometric instruments.
-   - Action: Calibrate sensors to detect temperature variations over N56 icy terrain.
-2. Positioning Over Target Node: Navigate satellite to stable orbit at 20 km altitude above N56.
-3. Capture Sequence Execution: Begin thermal anomaly detection sequence during local midday hours.
-4. Data Validation: Analyze thermal data for anomalies, applying algorithms to identify significant temperature fluctuations.
-5. Secure Data Transmission: Transmit validated thermal data to ground control via secure downlink.
+### Protocol 1: Panoramic Terrain Mapping
+- **Assigned Satellite**: Satellite_3
+- **Nodes Involved**: N18
+- **Objective**: Map terrain features at the specified node.
+- **Protocol**:
+  1. Conduct a pre-mission system check.
+  2. Navigate to Node N18 using GPS.
+  3. Deploy panoramic imaging sensors.
+  4. Record high-resolution terrain data.
+  5. Transmit data during the communication window (5 minutes).
+  6. Log all captured imagery and environmental conditions.
+  7. Conduct post-mission review of collected data.
 
-**Execution Steps for Satellite_5 (N112)**:
-1. Sensor Initialization: Power on thermal imaging sensors and radiometric instruments.
-   - Action: Calibrate sensors to detect temperature variations over N112 icy terrain.
-2. Positioning Over Target Node: Adjust trajectory to maintain orbit at 20 km altitude above N112.
-3. Capture Sequence Execution: Program sensors for thermal anomaly detection during local midday hours.
-4. Data Validation: Review thermal data for anomalies, applying automated filters to identify significant temperature fluctuations.
-5. Secure Data Transmission: Transmit validated data packets with metadata tags.
-
----
-
-## Section 3: Data Transmission & Validation Metrics
-
-### Communication Window Analysis
-- **Protocol 1 (Panoramic)**:
-  - Satellite_0: 7 days (feasible for 5-step transmission).
-  - Satellite_4: 4 days (feasible for 5-step transmission).
-  - Satellite_2: 3 days (feasible for 5-step transmission).
-  - Satellite_3: 2 days (feasible for 5-step transmission).
-
-- **Protocol 2 (Thermal)**:
-  - Satellite_1: 8 days (feasible for 5-step transmission).
-  - Satellite_5: 5 days (feasible for 5-step transmission).
-
-### Key Metrics
-- All satellites have sufficient communication windows to complete the 5-step protocols.
-- Data validation processes are optimized for automated filtering and anomaly detection.
-- Secure data transmission ensures priority tags and metadata integrity.
+### Protocol 2: Thermal Anomaly Detection
+- **Assigned Satellite**: Satellite_2
+- **Nodes Involved**: N116
+- **Objective**: Detect thermal anomalies at the specified node.
+- **Protocol**:
+  1. Conduct a pre-mission system check.
+  2. Navigate to Node N116 using GPS.
+  3. Deploy thermal imaging sensors.
+  4. Record temperature variations and surface conditions.
+  5. Transmit data during the communication window (3 minutes).
+  6. Log all captured thermal imagery and environmental conditions.
+  7. Conduct post-mission analysis of collected data.
 
 ---
 
-**End of Report**
+## Section 3: Instrumentation & Data Transmission Overview
+
+### Scientific Equipment Required:
+- **Panoramic imaging sensors**: For terrain mapping (Protocol 1).
+- **Thermal imaging sensors**: For anomaly detection (Protocol 2).
+- **GPS navigation system**: Common equipment for all procedures.
+- **Data transmission modules**: For real-time communication with ground stations.
+
+### Communication Window Feasibility:
+- **Satellite_3**: 5-minute window - Adequate for transmitting panoramic data.
+- **Satellite_2**: 3-minute window - Sufficient for thermal anomaly detection, though limited for extensive datasets.
+
+### Overarching Mission Objectives:
+1. Collect and transmit high-resolution terrain data at Node N18 (Protocol 1).
+2. Detect and analyze thermal anomalies at Node N116 (Protocol 2).
+3. Ensure data integrity and timely transmission during allocated communication windows.
+4. Provide comprehensive orbital imagery and thermal data for scientific analysis.
+
+---
+
+This report synthesizes the orbital trajectories, sensor protocols, and communication strategies into a unified operational document, ensuring clarity and alignment with mission objectives.
 ```
