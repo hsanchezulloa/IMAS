@@ -1,6 +1,6 @@
 ```json
 {
-  "drone_ok": true,
-  "feedback_drone": "All mission nodes are visited. No hazards encountered."
+  "drone_ok": false,
+  "feedback_drone": "Drone_0's route includes N33, which is listed as a hazard where drones are disabled due to dust storms. Although all required nodes (N33, N53, N63, N108) are visited, the presence in a hazardous node makes the mission non-compliant."
 }
 ```

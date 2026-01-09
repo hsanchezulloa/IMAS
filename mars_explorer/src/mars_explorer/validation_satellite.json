@@ -1,6 +1,4 @@
-```json
 {
-  "satellite_ok": true,
-  "feedback_satellite": "All mission nodes are visited. No hazards encountered."
+  "satellite_ok": false,
+  "feedback_satellite": "Missing required nodes: N5, N58, N121, N150, and N56. Although N112's communication window is within limit, other thermal anomaly node N56 is missing."
 }
-```
