@@ -1,77 +1,65 @@
-### Technical Manual: Satellite Imaging Operations Protocol
+---
+
+### Satellite Imaging Execution Protocol Manual  
+
+#### Mission Type 1: **Capture Panoramic Images of Crater Terrain**  
+**Target Nodes:** N5, N58, N121, N150  
+**Terrain Type:** Crater  
+**Priority Level:** Low  
+
+**Step 1: Sensor Initialization**  
+- Power up the satellite imaging system.  
+- Ensure the panoramic camera is operational and calibrated for crater terrain.  
+- Verify communication link stability with ground control.  
+
+**Step 2: Positioning**  
+- Manually or autonomously position the satellite over the target nodes (N5, N58, N121, N150).  
+- Adjust altitude to ensure optimal resolution for panoramic imaging (altitude range: 100–200 km).  
+
+**Step 3: Capture Sequence**  
+- Initiate panoramic image capture in a sequential manner: N5 → N58 → N121 → N150.  
+- Use a nadir-pointing camera with a wide field of view (FOV) to cover the entire crater terrain.  
+- Ensure images are captured during local solar noon for optimal lighting conditions.  
+
+**Step 4: Data Validation**  
+- Check image quality parameters (e.g., resolution, contrast, and sharpness).  
+- Verify that all target nodes are clearly visible in the captured images.  
+- Store raw data in onboard storage for transmission.  
+
+**Step 5: Transmission**  
+- Transmit panoramic images to ground control within 2 hours post-capture.  
+- Ensure data integrity by including checksums and metadata (e.g., timestamp, node coordinates).  
 
 ---
 
-#### **Mission 1: Capture Panoramic Images of Crater Terrain**
+#### Mission Type 2: **Identification of Thermal Anomalies in Icy Terrain**  
+**Target Nodes:** N56, N112  
+**Terrain Type:** Icy  
+**Priority Level:** Low  
 
-**Objective:** Acquire high-resolution panoramic images of crater terrain at nodes N5, N58, N121, and N150.
+**Step 1: Sensor Initialization**  
+- Power up the satellite imaging system.  
+- Activate thermal infrared sensors for anomaly detection.  
+- Verify communication link stability with ground control.  
 
-**Steps:**
+**Step 2: Positioning**  
+- Manually or autonomously position the satellite over the target nodes (N56, N112).  
+- Adjust altitude to ensure optimal resolution for thermal imaging (altitude range: 80–120 km).  
 
-1. **Sensor Initialization:**
-   - Power up the multispectral imaging sensor.
-   - Ensure camera calibration is complete (focus, exposure, white balance).
-   - Verify communication link with ground station for real-time monitoring.
+**Step 3: Capture Sequence**  
+- Initiate thermal anomaly detection in a sequential manner: N56 → N112.  
+- Use a thermal infrared camera with high sensitivity to detect temperature variations.  
+- Ensure images are captured during local nighttime for optimal thermal contrast.  
 
-2. **Positioning:**
-   - Orbit adjustment to achieve an altitude of 50 km above the target node.
-   - Use star tracker and GPS for precise positioning over the designated crater locations.
-   - Ensure nadir (directly downward) alignment for accurate terrain mapping.
+**Step 4: Data Validation**  
+- Analyze thermal images for anomalies (e.g., hotspots or irregular temperature patterns).  
+- Verify that all target nodes are clearly visible in the captured images.  
+- Store raw data in onboard storage for transmission.  
 
-3. **Capture Sequence:**
-   - Enable panoramic stitching mode to combine multiple images into a single mosaic.
-   - Capture 10 sequential images at intervals of 5 seconds, ensuring full coverage of the crater.
-   - Use a shutter speed of 1/1000 second and ISO setting of 800 for sharp details in varying lighting conditions.
-
-4. **Data Validation:**
-   - Check image overlap (minimum 30%) and ensure no gaps in the mosaic.
-   - Verify that all images are georeferenced with latitude, longitude, and timestamp.
-   - Confirm that the final stitched image covers at least 95% of the target area.
-
-5. **Transmission:**
-   - Compress raw image files to reduce data size (lossless compression).
-   - Transmit data packets via X-band communication link to ground station within 30 minutes post-capture.
-   - Archive raw and processed images on-board for redundancy.
-
-**Time Window:** Capture during local noon (12:00–14:00) to minimize shadows and maximize solar illumination.
+**Step 5: Transmission**  
+- Transmit thermal anomaly data to ground control within 2 hours post-capture.  
+- Include processed data (e.g., annotated anomalies) and metadata (e.g., timestamp, node coordinates).  
 
 ---
 
-#### **Mission 2: Identification of Thermal Anomalies at Icy Nodes**
-
-**Objective:** Detect thermal anomalies in icy terrain at nodes N56 and N112.
-
-**Steps:**
-
-1. **Sensor Initialization:**
-   - Activate the thermal infrared sensor (8–14 µm band).
-   - Calibrate the sensor using on-board blackbody emitters.
-   - Ensure data is being transmitted to the ground station for real-time analysis.
-
-2. **Positioning:**
-   - Orbit adjustment to achieve an altitude of 30 km above the target node.
-   - Use thermal imaging to identify temperature gradients in the icy terrain.
-   - Maintain a stable platform to minimize jitter (maximum 0.1° roll, pitch, yaw).
-
-3. **Capture Sequence:**
-   - Acquire thermal data in raster scan mode, capturing 20x20 pixel grid over each node.
-   - Use a frame rate of 1 Hz for continuous monitoring.
-   - Apply gain settings of 40 dB to enhance sensitivity to temperature variations.
-
-4. **Data Validation:**
-   - Check signal-to-noise ratio (SNR) ≥ 15 dB for all data points.
-   - Identify anomalies as regions with temperature deviations >2 K from baseline readings.
-   - Ensure georeferencing accuracy within ±50 m.
-
-5. **Transmission:**
-   - Transmit raw thermal data packets via S-band link to ground station immediately after capture.
-   - Archive processed anomaly maps on-board for future reference.
-   - Provide real-time alerts to the science team if anomalies exceed predefined thresholds.
-
-**Time Window:** Capture during local midnight (23:00–01:00) when thermal contrast is maximized due to diurnal temperature variations.
-
----
-
-### Final Answer
-
-The above protocols provide a comprehensive 5-step execution plan for each satellite mission identified in the JSON file. Each protocol includes sensor initialization, positioning, capture sequence, data validation, and transmission steps, tailored to the specific terrain type (crater or icy) and mission requirements. The instructions are designed to ensure optimal image acquisition and data integrity while accounting for operational constraints such as altitude, timing, and communication protocols.
+This manual provides a comprehensive guide for executing satellite imaging missions based on the provided JSON file. Each mission type is distinct and optimized for its specific terrain and operational requirements.

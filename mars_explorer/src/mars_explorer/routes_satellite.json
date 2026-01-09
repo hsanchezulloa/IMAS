@@ -1,10 +1,9 @@
-```json
-[
-  {
-    "id": "satellite_2",
-    "goal": "N112",
-    "location": "N116",
-    "communication_window": 3
-  }
-]
-```
+It is impossible to assign all target nodes under the given constraints. Specifically, node N150 cannot be assigned because its only covering satellite must be placed in a communication-loss node, which violates the rules. Therefore, the assignment is as follows, excluding N150:
+
+- **N5:** Assigned to Satellite_0 at location N5.
+- **N121:** Assigned to Satellite_2 at location N121.
+- **N112:** Assigned to Satellite_5 at location N112.
+- **N56:** Assigned to Satellite_4 at location N56.
+- **N58:** Assigned to Satellite_1 at location N58.
+
+**Note:** Node N150 remains unassigned due to constraints.

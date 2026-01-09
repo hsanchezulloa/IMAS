@@ -12,7 +12,7 @@ class GraphInput(BaseModel):
     file_path: str = Field(..., description="Path to the .graphml file to be analyzed.")
 
 class CommunicationLossTool(BaseTool):
-    name: str = "Communication Loss Detector"
+    name: str = "Communication_Loss_Detector"
     description: str = "Parses a GraphML file and returns a list of Node IDs where communication loss is active."
     args_schema: Type[BaseModel] = GraphInput
 

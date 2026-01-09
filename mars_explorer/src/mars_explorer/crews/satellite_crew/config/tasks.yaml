@@ -1,20 +1,20 @@
 task_communication_loss_extractor:
   description: >
     Your ONLY job is to take the entire GRAPHML path  """ {{graph_path}} """
-    and pass it UNCHANGED to the 'CommunicationLossTool' tool in the 'args_schema' argument.
+    and pass it UNCHANGED to the 'Communication_Loss_Detector' tool in the 'args_schema' argument.
     
     Do NOT try to extract nodes or terrains yourself. 
     Do NOT summarize. 
     Pass the entire GRAPHML path exactly as it is: """ {{graph_path}} """
   expected_output: >
-    A list of specific node IDs with communication loss.
+    The output from the "Communication_Loss_Detector" tool. DO NOT MODIFY THE OUTPUT.
   agent: communication_loss_extractor
 
 task_extractor:
   description: >
     Based on the information inside the input file """ {{report_priority}} """, identify in which nodes satellites need to perform their tasks. ONLY TAKE INTO ACCOUNT INFORMATION FROM THE SATELLITES KEY
   expected_output: >
-    A Python list containing all the node IDs where satellites need to perform their tasks.
+    A Python list containing all the node IDs where satellites need to perform their tasks. ONLY THE LIST NO MORE INFORMATION
   agent: extractor
 
 # task_planner:
@@ -89,8 +89,7 @@ task_planner:
     You are responsible for assigning target nodes to satellites in a safe, constrained, and conflict-free manner.
 
     IMPORTANT DEFINITIONS:
-      - Location: The satellite's physical orbital position.
-      - Goal: The mission target node assigned to the satellite for observation.
+      Goal: The mission target node assigned to the satellite for observation.
       - A satellite does NOT need to be physically located at its goal node as long as the node is within its coverage range.
 
     Inputs:
@@ -98,7 +97,7 @@ task_planner:
         """ {{report_hazard_constraints}} """
 
       2. Satellite Registry (JSON):
-        Contains satellite IDs, allowed physical locations, and communication windows.
+        Contains satellite IDs, covered nodes, and communication windows.
         """ {{satellite_json}} """
 
       3. Target Nodes (Mission Priorities):
@@ -110,7 +109,7 @@ task_planner:
     Planning Rules:
 
       1. Coverage Analysis:
-        - For each satellite, analyze its allowed locations.
+        - For each satellite, analyze its covered nodes.
         - Determine which target nodes each satellite can observe (REACH).
 
       2. Goal Assignment:
@@ -125,7 +124,7 @@ task_planner:
 
       4. Final Location Selection:
         - Each satellite used MUST have exactly ONE final physical location.
-        - Location MUST come from its allowed location list.
+        - Location MUST come from its allowed covered list.
         - Location MUST NOT appear in communication-loss nodes.
         - The goal node MAY appear in communication-loss nodes.
         - Goal and location may be DIFFERENT.

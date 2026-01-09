@@ -138,11 +138,11 @@ class MarsFlow(Flow):
     def integrate_plans(self, decision):
         if decision != "integrate":
             return
-        sample_collector_rover = self.extract_json_object(Path("sample_collector_rover.md").read_text(encoding="utf-8"))
+        sample_collector_rover = Path("sample_collector_rover.md").read_text(encoding="utf-8")
         routes_rover = self.extract_json_object(Path("routes_rover.json").read_text(encoding="utf-8"))
-        sample_collector_drone = self.extract_json_object(Path("sample_collector_drone.md").read_text(encoding="utf-8"))
+        sample_collector_drone = Path("sample_collector_drone.md").read_text(encoding="utf-8")
         routes_drone = self.extract_json_object(Path("routes_drone.json").read_text(encoding="utf-8"))
-        sample_collector_satellite = self.extract_json_object(Path("image_capture_satellite.md").read_text(encoding="utf-8"))
+        sample_collector_satellite = Path("image_capture_satellite.md").read_text(encoding="utf-8")
         routes_satellite = self.extract_json_object(Path("routes_satellite.json").read_text(encoding="utf-8"))
         print("Integrating plans")
         final = self.integration_crew.crew().kickoff(inputs={"sample_collector_rover": sample_collector_rover, "routes_rover": routes_rover, "sample_collector_drone": sample_collector_drone, "routes_drone": routes_drone, "sample_collector_satellite":sample_collector_satellite, "routes_satellite":routes_satellite})

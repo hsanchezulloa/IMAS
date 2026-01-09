@@ -2,14 +2,16 @@
   "rovers": {
     "priority": {
       "high": [
-        "Collect subsurface samples from **rocky** terrain near nodes **N70** and **N102**.",
         "Measure radiation levels in **sandy** terrain at node **N12**, **N86** and **N1**.",
         "Deploy seismic sensors at the **rocky** node **N20**."
       ],
       "medium": [
         "Detect organic molecules in **icy** terrain at **N59**."
       ],
-      "low": []
+      "low": [
+        "Collect subsurface samples from **rocky** terrain near nodes **N70** and **N102**.",
+        "Deploy seismic sensors at the **rocky** node **N20**."
+      ]
     },
     "operational constraints": [
       "Rovers must enter a heat shelter during 20 minutes if the surface temperature is below -60ºC.",
@@ -19,8 +21,8 @@
       "Rovers may not operate in terrain classified as unstable."
     ],
     "hazards": {
-      "Rovers may not operate in terrain classified as unstable.": ["N4", "N19", "N128"],
-      "Rovers may not operate in terrain classified as radioactive.": ["N51", "N78", "N118"]
+      "Rovers may not operate in terrain classified as radioactive.": ["N51", "N78", "N118"],
+      "Rovers may not operate in terrain classified as unstable.": ["N4", "N19", "N128"]
     }
   },
   "drones": {
@@ -55,6 +57,6 @@
       "Satellites must maintain communication with the base station at N30 or N84 every 5 hours if they have to identify thermal anomalies.",
       "Satellites cannot communicate in nodes with communication loss."
     ],
-    "hazards": []
+    "hazards": {}
   }
 }

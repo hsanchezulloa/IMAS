@@ -1,71 +1,71 @@
-# Drone Sampling Operational Procedures
+# Sample Collector Drone Operational Procedures
 
-## Procedure 1: Air Dust Sample Collection over N33 Crater
+## Procedure 1: Air Dust Sample Collection during Flight over N33 Crater
 
 ### Step 1: Pre-Flight System Check
-- Conduct a comprehensive pre-flight inspection of the drone, including battery levels, propeller function, and communication systems.
+- Conduct a thorough pre-flight inspection of the drone's systems, including battery levels, propellers, sensors, and communication links.
 
-### Step 2: Takeoff from Designated Launch Pad
-- Initiate takeoff using remote control or autonomous mode, ensuring stable ascent to the required altitude.
+### Step 2: Launch Drone
+- Initiate takeoff from designated launch pad at base station. Ensure stable ascent to altitude.
 
-### Step 3: Navigate to N33 Crater Coordinates
-- Use GPS navigation to fly the drone directly to the coordinates of N33 crater, maintaining a safe distance from obstacles.
+### Step 3: Navigate to N33 Crater
+- Use GPS navigation to fly to the coordinates of N33 crater, maintaining a safe distance from obstacles.
 
-### Step 4: Adjust Drone Altitude for Optimal Sampling
-- Set the drone's altitude to 50 meters above the crater surface to ensure effective dust collection without disturbance.
+### Step 4: Deploy Sampling Equipment
+- Activate the air sampling device to begin collecting dust particles as the drone hovers over the target area.
 
-### Step 5: Deploy Dust Collection Unit
-- Activate the dust sampling device, ensuring it is positioned correctly to capture airborne particles.
+### Step 5: Collect Dust Samples
+- Hover at specified altitude (e.g., 100 meters) for 30 minutes to gather sufficient dust samples. Monitor collection progress via telemetry.
 
-### Step 6: Fly Over Target Area in Grid Pattern
-- Program the drone to traverse a grid pattern over N33 crater, covering all specified coordinates methodically.
+### Step 6: Monitor Environmental Conditions
+- Continuously track weather conditions, including wind speed and direction, temperature, and humidity, to ensure optimal sample integrity.
 
-### Step 7: Collect Air Samples at Intervals
-- Automatically collect dust samples every 10 seconds along the flight path to ensure comprehensive data capture.
+### Step 7: Ensure Safety Protocols
+- Avoid flying over populated areas or other sensitive zones. Maintain a safe distance from the crater's edge to prevent accidents.
 
-### Step 8: Monitor Sampling Process via Telemetry
-- Continuously monitor the drone's status and sample collection through telemetry, adjusting parameters as needed.
+### Step 8: Log Data
+- Record all collected data, including timestamps, coordinates, and environmental parameters, for later analysis.
 
-### Step 9: Return to Launch Pad Upon Completion
-- After completing the sampling mission, direct the drone back to the launch pad for safe landing.
+### Step 9: Return to Launch Pad
+- After sample collection is complete, navigate back to the launch pad using GPS. Perform a controlled landing.
 
-### Step 10: Secure Samples and Transmit Data
-- Retrieve collected samples, store them securely, and transmit data to the control station for analysis.
+### Step 10: Post-Flight Analysis
+- Transfer collected samples to the lab for analysis. Review flight data for any anomalies or areas of interest.
 
 ---
 
-## Procedure 2: Mapping CO2 Frost Coverage in Icy Areas (N53, N63, N108)
+## Procedure 2: Map CO2 Frost Coverage in Icy Areas (N53, N63, N108)
 
-### Step 1: Pre-Flight System Check
-- Perform a detailed pre-flight inspection of the drone's systems, including camera and sensor functionality.
+### Step 1: Pre-Flight Planning
+- Download and upload mission parameters, including coordinates for N53, N63, and N108. Ensure the drone's mapping software is updated.
 
-### Step 2: Takeoff from Designated Location
-- Launch the drone using remote control or autonomous mode, ensuring smooth ascent to operational altitude.
+### Step 2: Launch Drone
+- Initiate takeoff from base station. Ascend to an altitude suitable for thermal imaging (e.g., 50 meters).
 
-### Step 3: Navigate to N53 Coordinates
-- Fly the drone to N53 using GPS, positioning it for optimal coverage of the target area.
+### Step 3: Set Up Thermal Imaging Equipment
+- Activate the thermal camera and CO2 sensor to begin capturing data as the drone approaches the target area.
 
-### Step 4: Deploy CO2 Frost Sensors
-- Activate sensors to begin data collection on CO2 frost presence and thickness in real-time.
+### Step 4: Capture Thermal Images
+- Fly over each node (N53, N63, N108) in sequence, pausing briefly at each location to capture high-resolution thermal images.
 
-### Step 5: Conduct Low-Pass Aerial Survey
-- Perform a low-altitude pass (10 meters) over N53, capturing high-resolution imagery with the onboard camera.
+### Step 5: Analyze Data During Flight
+- Monitor real-time data from the CO2 sensor and thermal camera. Look for patterns or anomalies indicative of frost coverage.
 
-### Step 6: Repeat Process for N63 and N108
-- After completing N53, fly to N63 and then N108, repeating steps 4-5 at each location.
+### Step 6: Ensure Equipment Functionality
+- Periodically check that all sensors are functioning correctly. If an issue arises, adjust the flight path accordingly.
 
-### Step 7: Monitor Environmental Conditions
-- Keep track of weather conditions (wind speed, temperature) to ensure accurate data collection.
+### Step 7: Maintain Safe Altitude
+- Keep the drone at a consistent altitude to ensure accurate data collection and avoid collisions with terrain features.
 
-### Step 8: Transmit Data During Flight
-- Send collected data in real-time to the control station for immediate analysis and decision-making.
+### Step 8: Document Findings
+- Note any significant thermal anomalies or areas of heavy CO2 frost coverage in the mission log for further investigation.
 
-### Step 9: Return to Base Upon Mission Completion
-- Land the drone safely at the base after all target areas have been surveyed.
+### Step 9: Return to Base Station
+- After completing all target nodes, navigate back to base station. Perform a safe landing.
 
-### Step 10: Analyze and Document Findings
-- Review collected data, create detailed maps of CO2 frost coverage, and prepare a comprehensive report for further study.
+### Step 10: Post-Mission Analysis
+- Transfer data from the drone's systems to the lab. Generate detailed maps of CO2 frost coverage and analyze thermal anomalies for scientific review.
 
 ---
 
-This operational plan ensures each task is executed methodically, maximizing efficiency and data accuracy.
+This operational procedure ensures that each sampling task is conducted safely, efficiently, and with optimal results, leveraging the capabilities of the drones assigned to these missions.

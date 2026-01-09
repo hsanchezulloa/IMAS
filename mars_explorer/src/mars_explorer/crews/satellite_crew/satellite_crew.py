@@ -69,14 +69,14 @@ class SatelliteCrew():
     def task_communication_loss_extractor(self) -> Task:
         return Task(
             config=self.tasks_config['task_communication_loss_extractor'], 
-            async_execution=True
+            async_execution=False
         )
     
     @task
     def task_extractor(self) -> Task:
         return Task(
             config=self.tasks_config['task_extractor'], 
-            async_execution=True
+            async_execution=False
         )
     
     @task
@@ -84,7 +84,7 @@ class SatelliteCrew():
         return Task(
             config=self.tasks_config['task_image_capture'], 
             output_file='image_capture_satellite.md',
-            async_execution=True
+            async_execution=False
         )
     
     @task

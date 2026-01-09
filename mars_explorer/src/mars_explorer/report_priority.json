@@ -1,14 +1,16 @@
 {
   "rover": {
     "high": [
-      "Collect subsurface samples from **rocky** terrain near nodes **N70** and **N102**.",
       "Measure radiation levels in **sandy** terrain at node **N12**, **N86** and **N1**.",
       "Deploy seismic sensors at the **rocky** node **N20**."
     ],
     "medium": [
       "Detect organic molecules in **icy** terrain at **N59**."
     ],
-    "low": []
+    "low": [
+      "Collect subsurface samples from **rocky** terrain near nodes **N70** and **N102**.",
+      "Deploy seismic sensors at the **rocky** node **N20**."
+    ]
   },
   "drone": {
     "high": [],

@@ -1,4 +1,4 @@
 {
-  "satellite_ok": false,
-  "feedback_satellite": "Missing required nodes: N5, N58, N121, N150, and N56. Although N112's communication window is within limit, other thermal anomaly node N56 is missing."
+  "satellite_ok": true,
+  "feedback_satellite": "All required imaging nodes (N5, N58, N121, N150) are visited. Thermal anomaly nodes (N56, N112) have communication windows within the 5-hour constraint."
 }
