@@ -3,9 +3,7 @@ from crewai.project import CrewBase, agent, crew, task
 from crewai.agents.agent_builder.base_agent import BaseAgent
 from typing import List
 from pathlib import Path
-from crews.satellite_crew.tools.custom_tool import (
-    CommunicationLossTool,
-)
+from crews.satellite_crew.tools.custom_tool import CommunicationLossTool
 # If you want to run a snippet of code before or after the crew starts,
 # you can use the @before_kickoff and @after_kickoff decorators
 # https://docs.crewai.com/concepts/crews#example-crew-class-with-decorators
@@ -105,8 +103,8 @@ class SatelliteCrew():
         # return Crew(agents=[self.planner()], tasks = [self.task_planner()], process = Process.sequential, verbose=True)
         
         return Crew(
-            agents=[self.communication_loss_extractor, self.extractor, self.planner], # Automatically created by the @agent decorator
-            tasks=[self.task_communication_loss_extractor, self.task_extractor, self.task_planner], # Automatically created by the @task decorator
+            agents=[self.communication_loss_extractor(), self.extractor(), self.planner()], # Automatically created by the @agent decorator
+            tasks=[self.task_communication_loss_extractor(), self.task_extractor(), self.task_planner()], # Automatically created by the @task decorator
             process=Process.sequential,
             verbose=True,
             # process=Process.hierarchical, # In case you wanna use that instead https://docs.crewai.com/how-to/Hierarchical/
@@ -123,9 +121,8 @@ if __name__ == "__main__":
     crew = SatelliteCrew().crew()
     
     # report_priority = "inputs/mars_terrain_graph.graphml"
-    graph_path = Path("inputs/mars_terrain_graph.graphml").read_text(encoding="utf-8")
     report_priority = Path("report_priority.json").read_text(encoding="utf-8")
     report_hazard_constraints = Path("report_hazard_constraints.json").read_text(encoding="utf-8")
     satellite_json = Path("inputs/satellites.json").read_text(encoding="utf-8")
-    result = crew.kickoff(inputs = {'graph_path': graph_path, 'report_priority': report_priority, 'report_hazard_constraints': report_hazard_constraints, 'satellite_json': satellite_json})
+    result = crew.kickoff(inputs = {'report_priority': report_priority, 'report_hazard_constraints': report_hazard_constraints, 'satellite_json': satellite_json})
 

@@ -1,13 +1,42 @@
+# task_communication_loss_extractor:
+#   description: >
+#     Your ONLY job is to take the entire GRAPHML path  """ {{graph_path}} """
+#     and pass it UNCHANGED to the 'Communication_Loss_Detector' tool in the 'args_schema' argument.
+    
+#     Do NOT try to extract nodes or terrains yourself. 
+#     Do NOT summarize. 
+#     Pass the entire GRAPHML path exactly as it is: """ {{graph_path}} """
+#   expected_output: >
+#     The output from the "Communication_Loss_Detector" tool. DO NOT MODIFY THE OUTPUT.
+#   agent: communication_loss_extractor
+
+# task_communication_loss_extractor:
+#   description: >
+#     Your ONLY job is to take the entire GRAPHML path """ {{graph_path}} """
+#     and pass it UNCHANGED to the 'Communication_Loss_Detector' tool
+#     in the 'args_schema' argument.
+
+#     Do NOT try to extract nodes or terrains.
+#     Do NOT summarize.
+#     Pass the entire GRAPHML path exactly as it is: """ {{graph_path}} """
+#   expected_output: >
+#     The output from the "Communication_Loss_Detector" tool. DO NOT MODIFY THE OUTPUT.
+#   agent: communication_loss_extractor
+
 task_communication_loss_extractor:
   description: >
-    Your ONLY job is to take the entire GRAPHML path  """ {{graph_path}} """
-    and pass it UNCHANGED to the 'Communication_Loss_Detector' tool in the 'args_schema' argument.
-    
-    Do NOT try to extract nodes or terrains yourself. 
-    Do NOT summarize. 
-    Pass the entire GRAPHML path exactly as it is: """ {{graph_path}} """
+    You MUST do exactly these steps:
+    Step 1) Call Communication_Loss_Detector with:
+    Step 2) Return EXACTLY the tool output bytes as JSON.
+    Rules:
+      - Do NOT add keys
+      - Do NOT remove keys
+      - Do NOT reformat
+      - Do NOT summarize
+      - Do NOT explain
+      - Output must be valid JSON and nothing else.
   expected_output: >
-    The output from the "Communication_Loss_Detector" tool. DO NOT MODIFY THE OUTPUT.
+    The output from the Communication_Loss_Detector tool. DO NOT MODIFY THE OUTPUT.
   agent: communication_loss_extractor
 
 task_extractor:
@@ -217,28 +246,26 @@ task_planner:
       - Inventing satellites, nodes, hazards, or windows
       - Guessing missing data
       - Skipping any constraint
+  expected_output: >
+    Return ONLY raw JSON (no markdown, no prose).
 
-expected_output: >
-  Return ONLY raw JSON (no markdown, no prose).
+    Format:
+    {
+      "assignments": [
+        {
+          "id": "<satellite_id>",
+          "goal": "<target_node>",
+          "location": "<physical_location>",
+          "communication_window": <value_from_satellite_json>
+        }
+      ]
+    }
 
-  Format:
-  {
-    "assignments": [
-      {
-        "id": "<satellite_id>",
-        "goal": "<target_node>",
-        "location": "<physical_location>",
-        "communication_window": <value_from_satellite_json>
-      }
-    ]
-  }
-
-  RULES:
-    - assignments must cover ALL target nodes exactly once
-    - No extra keys allowed
-    - Use ONLY provided values
-
-agent: planner
+    RULES:
+      - assignments must cover ALL target nodes exactly once
+      - No extra keys allowed
+      - Use ONLY provided values
+  agent: planner
 
 
 task_image_capture:

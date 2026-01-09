@@ -1,3 +1,4 @@
+from tools.mars_environment import MarsEnvironment
 from typing import Any, Dict, List, Type
 from crewai.tools import BaseTool
 from pydantic import BaseModel, Field
@@ -16,10 +17,11 @@ class CommunicationLossTool(BaseTool):
     description: str = "Parses a GraphML file and returns a list of Node IDs where communication loss is active."
     args_schema: Type[BaseModel] = GraphInput
 
-    def _run(self, file_path: str) -> str:
+    def _run(self) -> str:
         try:
             # Load the graph
-            G = nx.read_graphml(file_path)
+            env = MarsEnvironment()
+            G = env.get_graph()
             
             # Filter nodes where communication_loss is True
             # In GraphML, boolean data is often stored as strings 'true'/'false'
