@@ -1,32 +1,32 @@
 [
   {
     "id": "satellite_0",
-    "location": "N6, N7, N8, N10, N5, N2",
+    "coverage": "N6, N7, N8, N10, N5, N2",
     "communication_window": "7h"
   },
   {
     "id": "satellite_1",
-    "location": "N56, N51, N53, N57, N58",
+    "coverage": "N56, N51, N53, N57, N58",
     "communication_window": "8h"
   },
   {
     "id": "satellite_2",
-    "location": "N116, N118, N119, N120, N121, N122",
+    "coverage": "N116, N118, N119, N120, N121, N122",
     "communication_window": "3h"
   },
   {
     "id": "satellite_3",
-    "location": "N18, N150",
+    "coverage": "N18, N150",
     "communication_window": "5h"
   },
   {
     "id": "satellite_4",
-    "location": "N56, N51, N53, N57, N58",
+    "coverage": "N56, N51, N53, N57, N58",
     "communication_window": "4h"
   },
   {
     "id": "satellite_5",
-    "location": "N112, N113, N114, N115, N117, N107",
+    "coverage": "N112, N113, N114, N115, N117, N107",
     "communication_window": "2h"
   }
 ]

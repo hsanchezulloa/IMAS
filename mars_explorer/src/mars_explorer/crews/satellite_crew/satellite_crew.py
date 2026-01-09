@@ -78,6 +78,14 @@ class SatelliteCrew():
             config=self.tasks_config['task_extractor'], 
             async_execution=False
         )
+    @task
+    def task_planner(self) -> Task:
+        return Task(
+            config=self.tasks_config['task_planner'], 
+            context=[self.task_communication_loss_extractor(), self.task_extractor()],
+            output_file='routes_satellite.json',
+            async_execution=False
+        )
     
     @task
     def task_image_capture(self) -> Task:
@@ -87,13 +95,7 @@ class SatelliteCrew():
             async_execution=False
         )
     
-    @task
-    def task_planner(self) -> Task:
-        return Task(
-            config=self.tasks_config['task_planner'], 
-            context=[self.task_communication_loss_extractor(), self.task_extractor()],
-            output_file='routes_satellite.json'
-        )
+    
     
     @crew
     def crew(self) -> Crew:
@@ -101,13 +103,21 @@ class SatelliteCrew():
         # To learn how to add knowledge sources to your crew, check out the documentation:
         # https://docs.crewai.com/concepts/knowledge#what-is-knowledge
         # return Crew(agents=[self.planner()], tasks = [self.task_planner()], process = Process.sequential, verbose=True)
+        
         return Crew(
-            agents=self.agents, # Automatically created by the @agent decorator
-            tasks=self.tasks, # Automatically created by the @task decorator
+            agents=[self.communication_loss_extractor, self.extractor, self.planner], # Automatically created by the @agent decorator
+            tasks=[self.task_communication_loss_extractor, self.task_extractor, self.task_planner], # Automatically created by the @task decorator
             process=Process.sequential,
             verbose=True,
             # process=Process.hierarchical, # In case you wanna use that instead https://docs.crewai.com/how-to/Hierarchical/
         )
+        # return Crew(
+        #     agents=self.agents, # Automatically created by the @agent decorator
+        #     tasks=self.tasks, # Automatically created by the @task decorator
+        #     process=Process.sequential,
+        #     verbose=True,
+        #     # process=Process.hierarchical, # In case you wanna use that instead https://docs.crewai.com/how-to/Hierarchical/
+        # )
 
 if __name__ == "__main__":
     crew = SatelliteCrew().crew()
