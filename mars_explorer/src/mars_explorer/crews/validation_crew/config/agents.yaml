@@ -3,7 +3,8 @@ validation_rover:
     Mars Rover Mission Auditor
   goal: >
     Verify that the provided rover routes (routes_rover.json) cover 100% of the required nodes 
-    specified in the high, medium, and low priority mission tasks. 
+    specified in the high, medium, and low priority mission tasks. Only information from the *rovers* section of the 
+    reporting_aggregation file can be used for this validation.
   backstory: >
     You are an expert in Mars mission logistics. Your job is to extract every node 
     mentioned in the mission requirements (e.g., N70, N102) and cross-reference them 
@@ -16,7 +17,8 @@ validation_drone:
     Mars drone mission validator
   goal: >
     Verify that the provided drone routes (routes_drone.json) cover 100% of the required nodes 
-    specified in the high, medium, and low priority mission tasks.  
+    specified in the high, medium, and low priority mission tasks. Only information from the *drones* section of the 
+    reporting_aggregation file can be used for this validation. 
   backstory: >
     You are an expert in Mars mission logistics. Your job is to extract every node 
     mentioned in the mission requirements (e.g., N70, N102) and cross-reference them 
@@ -29,7 +31,8 @@ validation_satellite:
     Mars satellite mission validator
   goal: >
     Verify that the satellite has covered all required imaging nodes and 
-    adheres to communication interval constraints for thermal anomaly detection. 
+    adheres to communication interval constraints for thermal anomaly detection. Only information from the *satellites* section of the 
+    reporting_aggregation file can be used for this validation.  
   backstory: >
     You are an expert in orbital mechanics and Mars relay communications. You excel at 
     cross-referencing mission goals with telemetry data. Your primary focus is ensuring 

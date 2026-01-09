@@ -9,6 +9,7 @@ from tools.mars_environment import MarsEnvironment
 class BatchDroneInput(BaseModel):
     targets_list: str = Field(..., description="JSON string list of target nodes (e.g. \"['N33', 'N59']\")")
     drones_data: str = Field(..., description="JSON string of drones list (e.g. \"[{'id':'drone_0', 'location':'N30', 'energy': 100}]\")")
+    hazards: bool = Field(..., description="Indicates whether hazardous zones must be avoided")
 
 class BatchDroneFlightTool(BaseTool):
     name: str = "Batch_Flight_Calculator"
@@ -20,7 +21,7 @@ class BatchDroneFlightTool(BaseTool):
     )
     args_schema: type[BaseModel] = BatchDroneInput
 
-    def _run(self, targets_list: list, drones_data: str) -> str:
+    def _run(self, targets_list: list, drones_data: str, hazards) -> str:
         # PARSE INPUTS
         try:
             targets = json.loads(targets_list.replace("'", '"'))
@@ -80,7 +81,7 @@ class BatchDroneFlightTool(BaseTool):
                 continue
 
             # HAZARD (50% Chance)
-            hazards = random.random() >= 0.5
+            # hazards = random.random() >= 0.5
 
             # FLIGHT CALCULATION
             # Trip: Start -> Target -> Start

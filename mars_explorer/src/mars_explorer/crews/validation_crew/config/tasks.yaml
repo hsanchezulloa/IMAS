@@ -3,9 +3,12 @@ task_validation_rover:
     Inputs:
       - Mission Data: """ {reporting_aggregation} """
       - Actual Routes: """ {routes_rover} """
+      - Hazards: """ {hazards} """
     1. Extract all 'N' nodes mentioned in the "priority" section of the rovers mission report.
     2. Analyze the 'routes_rover' input to see if those specific nodes appear in any of the rover routes.
     3. Check for mission completeness: Are all nodes visited?
+    4. If hazards is True:
+          - Ensure that none of the rover paths pass through nodes marked as hazardous.
     
   expected_output: >
     A JSON object containing:
@@ -18,9 +21,13 @@ task_validation_drone:
     Inputs:
       - Mission Data: """ {reporting_aggregation} """
       - Actual Routes: """ {routes_drone} """
+      - Hazards: """ {hazards} """
     1. Extract all 'N' nodes mentioned in the "priority" section of the drones mission report.
     2. Analyze the 'routes_drone' input to see if those specific nodes appear in any of the drone routes.
     3. Check for mission completeness: Are all nodes visited?
+    4. If hazards is True:
+          - Ensure that none of the drone paths pass through nodes marked as hazardous.
+    
     
   expected_output: >
     A JSON object containing:

@@ -12,6 +12,7 @@ reporting_route:
     Step 1) Call Multi_Rover_Route_Calculator with:
       - rovers = """ {{rovers}} """
       - target_nodes = """ {{context.final_nodes}} """
+      - hazards = """ {{hazards}} """
     Step 2) Return EXACTLY the tool output bytes as JSON.
     Rules:
       - Do NOT add keys

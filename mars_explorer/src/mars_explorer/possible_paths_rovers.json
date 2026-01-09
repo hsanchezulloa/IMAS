@@ -32,12 +32,6 @@
       "feasible": false,
       "warning": "NO FEASIBLE PATH (BATTERY)"
     },
-    "N20": {
-      "distance": null,
-      "energy": null,
-      "feasible": false,
-      "warning": "NO FEASIBLE PATH (BATTERY)"
-    },
     "N59": {
       "distance": 75.0,
       "energy": 2.45,

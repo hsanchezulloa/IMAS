@@ -10,7 +10,7 @@ import json
 class MultiRoverRouteInput(BaseModel):
     rovers: List[Dict[str, Any]] = Field(description="List of rovers with keys: id, location, energy")
     target_nodes: List[str] = Field(description="List of target node IDs")
-
+    hazards: bool = Field(..., description="Indicates whether hazardous zones must be avoided")
 
 class RoverPathfindingTool(BaseTool):
     name: str = "Multi_Rover_Route_Calculator"
@@ -22,12 +22,12 @@ class RoverPathfindingTool(BaseTool):
     )
     args_schema: type[BaseModel] = MultiRoverRouteInput
 
-    def _run(self, rovers: List[Dict], target_nodes: List[str]) -> Dict[str, Any]:
+    def _run(self, rovers: List[Dict], target_nodes: List[str], hazards) -> Dict[str, Any]:
         env = MarsEnvironment()
         graph = env.get_graph()
         results = {}
 
-        hazards = random.random() >= 0.5
+        # hazards = random.random() >= 0.5
         MAX_CANDIDATE_PATHS = 10
 
 
@@ -138,8 +138,10 @@ class RoverPathfindingTool(BaseTool):
                 rover_result["output_nodes"][target] = node_result
 
             results[rover_id] = rover_result
+        
+        
         with open(f"possible_paths_rovers.json", "w", encoding="utf-8") as f:
-            json.dump(rover_result, f, indent=2)
+            json.dump(results, f, indent=2)
 
         # NODE ASSIGNMENT
         enforce_min_one_per_rover=True

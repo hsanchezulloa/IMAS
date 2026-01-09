@@ -44,45 +44,112 @@ task_extractor:
 #     chosen from the context for that assignment, return only ONE node taking into account that it CANNOT be one from the list """ {{communication_loss}} """, 'communication_window' assign a number saying WHEN that satellite has to communicate with the base, if there is no need of communciation assign zero to that.
 #   agent: planner
 
+# task_planner:
+#   description: >
+#     You are responsible for assigning target nodes to satellites in a safe, constrained, and conflict-free manner.
+    
+#     Distinction between Location and Goal: A satellite's 'location' is its physical position in orbit. A satellite's 'goal' is the target node it is assigned to observe. A satellite does NOT need to be physically located at the target node to cover it, as long as that target node is within its allowed coverage range.
+
+#     1. You will receive four inputs:
+#       - Hazard and operational constraints report: """ {{report_hazard_constraints}} """
+#       - Satellite Registry JSON, containing satellite IDs, their allowed locations (node lists), and their communication windows: """ {{satellite_json}} """
+#       - Target nodes to be covered, derived from mission priorities: """ {{context.task_extractor}} """
+#       - Nodes that must be strictly avoided due to communication loss: """ {{context.task_communication_loss_extractor}} """
+
+#     2. For each satellite, analyze its 'location' data to determine which nodes are within its REACH for observation.
+
+#     3. For each target node:
+#       - Assign it to exactly one satellite whose location list includes that node.
+#       - Enforce all relevant constraints described in the Satellite section of """ {{report_hazard_constraints}} """ are taken into account when assigning the satellite as THEY HAVE TO HAVE A PROPER COMMUNICATION WINDOW IN THERMAL ANOMALIES NODES.
+
+#     4. Ensure all target nodes are assigned:
+#       - Each target node must be assigned to only one satellite.
+      
+#     5. For each satellite included in the final plan:
+#       - Select exactly ONE final operating location (physical position).
+#       - The selected location MUST be chosen from that satellite's allowed 'location' list in """ {{satellite_json}} """.
+#       - The selected location MUST NOT appear in """ {{context.task_communication_loss_extractor}} """ , BUT THE GOAL CAN APPEAR IN  """ {{context.task_communication_loss_extractor}} """.
+#       - The 'goal' (target node) and 'location' (physical node) may be different.
+
+#     6. Assign a communication schedule:
+#       - Specify WHEN the satellite can communicate with the base. This is done by taking into account the operational constrains mentioned for satellites in """ {{report_hazard_constraints}} """.
+
+#     Follow all constraints strictly. Do not invent satellites, nodes, or capabilities.
+#   expected_output: >
+#     A JSON array of objects. Each object MUST contain:
+#       - 'id': the satellite identifier
+#       - 'goal': the assigned target node
+#       - 'location': the selected final node for that satellite
+#       - 'communication_window': a numeric value indicating the communication timing 
+#     Return only raw JSON. Do not include markdown code blocks, backticks, or any introductory text. Start your response with '{' and end with '}'.
+#   agent: planner
+
 task_planner:
   description: >
     You are responsible for assigning target nodes to satellites in a safe, constrained, and conflict-free manner.
-    
-    Distinction between Location and Goal: A satellite's 'location' is its physical position in orbit. A satellite's 'goal' is the target node it is assigned to observe. A satellite does NOT need to be physically located at the target node to cover it, as long as that target node is within its allowed coverage range.
 
-    1. You will receive four inputs:
-      - Hazard and operational constraints report: """ {{report_hazard_constraints}} """
-      - Satellite Registry JSON, containing satellite IDs, their allowed locations (node lists), and their communication windows: """ {{satellite_json}} """
-      - Target nodes to be covered, derived from mission priorities: """ {{context.task_extractor}} """
-      - Nodes that must be strictly avoided due to communication loss: """ {{context.task_communication_loss_extractor}} """
+    IMPORTANT DEFINITIONS:
+      - Location: The satellite's physical orbital position.
+      - Goal: The mission target node assigned to the satellite for observation.
+      - A satellite does NOT need to be physically located at its goal node as long as the node is within its coverage range.
 
-    2. For each satellite, analyze its 'location' data to determine which nodes are within its REACH for observation.
+    Inputs:
+      1. Hazard & Operational Constraints Report:
+        """ {{report_hazard_constraints}} """
 
-    3. For each target node:
-      - Assign it to exactly one satellite whose location list includes that node.
-      - Enforce all relevant constraints described in the Satellite section of """ {{report_hazard_constraints}} """ are taken into account when assigning the satellite as THEY HAVE TO HAVE A PROPER COMMUNICATION WINDOW IN THERMAL ANOMALIES NODES.
+      2. Satellite Registry (JSON):
+        Contains satellite IDs, allowed physical locations, and communication windows.
+        """ {{satellite_json}} """
 
-    4. Ensure strict one-to-one assignment:
-      - Each target node must be assigned to only one satellite.
-      
-    5. For each satellite included in the final plan:
-      - Select exactly ONE final operating location (physical position).
-      - The selected location MUST be chosen from that satellite's allowed 'location' list in """ {{satellite_json}} """.
-      - The selected location MUST NOT appear in """ {{context.task_communication_loss_extractor}} """ , BUT THE GOAL CAN APPEAR IN  """ {{context.task_communication_loss_extractor}} """.
-      - The 'goal' (target node) and 'location' (physical node) may be different.
+      3. Target Nodes (Mission Priorities):
+        """ {{context.task_extractor}} """
 
-    6. Assign a communication schedule:
-      - Specify a numeric value indicating WHEN the satellite must communicate with the base. This is done by taking into account the operational constrains mentioned for satellites in """ {{report_hazard_constraints}} """.
+      4. Communication Loss Nodes (STRICT AVOIDANCE):
+        """ {{context.task_communication_loss_extractor}} """
 
-    Follow all constraints strictly. Do not invent satellites, nodes, or capabilities.
+    Planning Rules:
+
+      1. Coverage Analysis:
+        - For each satellite, analyze its allowed locations.
+        - Determine which target nodes each satellite can observe (REACH).
+
+      2. Goal Assignment:
+        - Each target node MUST be assigned to EXACTLY ONE satellite.
+        - The assigned satellite MUST be capable of observing that node.
+        - Apply ALL constraints from the satellite section of the hazard report.
+        - Satellites assigned to nodes affected by thermal anomalies MUST have valid communication windows.
+
+      3. Completeness & Uniqueness:
+        - ALL target nodes must be assigned.
+        - No target node may be assigned to more than one satellite.
+
+      4. Final Location Selection:
+        - Each satellite used MUST have exactly ONE final physical location.
+        - Location MUST come from its allowed location list.
+        - Location MUST NOT appear in communication-loss nodes.
+        - The goal node MAY appear in communication-loss nodes.
+        - Goal and location may be DIFFERENT.
+
+    Strict Requirements:
+      - Follow all constraints without exception.
+      - Do NOT invent satellites, nodes, windows, or capabilities.
+      - Use ONLY provided data.
+
   expected_output: >
-    A JSON array of objects. Each object MUST contain:
-      - 'id': the satellite identifier
-      - 'goal': the assigned target node
-      - 'location': the selected final node for that satellite
-      - 'communication_window': a numeric value indicating the communication timing 
-    Return only raw JSON. Do not include markdown code blocks, backticks, or any introductory text. Start your response with '{' and end with '}'.
+    Return a JSON array of objects. Each object MUST contain:
+      - id: satellite identifier
+      - goal: assigned target node
+      - location: selected physical location
+      - communication_window: numeric communication timing for each satellite indicated in the satellite_json
+
+    Output format rules:
+      - Return ONLY raw JSON
+      - No markdown
+      - No explanations
+      - Must start with '{' and end with '}'
+
   agent: planner
+
 
 task_image_capture:
   description: >

@@ -14,6 +14,7 @@ reporting_route:
     Tool arguments (use EXACTLY these variable names):
     - targets_list: final nodes received from the extractor agent """ {{context.final_nodes()}} """
     - drones_data: {{drones}}
+    - hazards: {{hazards}}
 
     AFTER THE TOOL RETURNS:
     - Output EXACTLY the tool output.
