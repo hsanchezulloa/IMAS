@@ -9,8 +9,7 @@ import networkx as nx
 
         
 class GraphInput(BaseModel):
-    """Input schema for CommunicationLossTool."""
-    file_path: str = Field(..., description="Path to the .graphml file to be analyzed.")
+    pass
 
 class CommunicationLossTool(BaseTool):
     name: str = "Communication_Loss_Detector"

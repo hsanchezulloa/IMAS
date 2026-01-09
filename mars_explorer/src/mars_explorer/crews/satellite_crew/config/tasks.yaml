@@ -26,15 +26,14 @@
 task_communication_loss_extractor:
   description: >
     You MUST do exactly these steps:
-    Step 1) Call Communication_Loss_Detector with:
-    Step 2) Return EXACTLY the tool output bytes as JSON.
+    Step 1) Call Communication_Loss_Detector
+    Step 2) Return EXACTLY the tool output.
     Rules:
       - Do NOT add keys
       - Do NOT remove keys
       - Do NOT reformat
       - Do NOT summarize
       - Do NOT explain
-      - Output must be valid JSON and nothing else.
   expected_output: >
     The output from the Communication_Loss_Detector tool. DO NOT MODIFY THE OUTPUT.
   agent: communication_loss_extractor

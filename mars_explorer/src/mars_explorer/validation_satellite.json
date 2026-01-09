@@ -1,4 +1,4 @@
 {
-  "satellite_ok": true,
-  "feedback_satellite": "All required imaging nodes (N5, N58, N121, N150) are visited. Thermal anomaly nodes (N56, N112) have communication windows within the 5-hour constraint."
+  "satellite_ok": false,
+  "feedback_satellite": "Missing node N150, location mismatch at N18; N121 not assigned correctly. Communication window violation: N56 has 8h exceeding 5h limit."
 }

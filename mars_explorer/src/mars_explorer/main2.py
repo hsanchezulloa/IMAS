@@ -80,9 +80,8 @@ class MarsFlow(Flow):
         print("Satellite planning")
         report_priority = self.extract_json_object(Path("report_priority.json").read_text(encoding="utf-8"))
         report_hazard_constraints = self.extract_json_object(Path("report_hazard_constraints.json").read_text(encoding="utf-8"))
-        graph_path = self.state.get("graph_path")
         satellite_json = self.state.get("satellite_json")
-        result = self.satellite_crew.crew().kickoff(inputs={"report_priority": report_priority, "satellite_json": satellite_json, "graph_path": graph_path, 'report_hazard_constraints': report_hazard_constraints})
+        result = self.satellite_crew.crew().kickoff(inputs={"report_priority": report_priority, "satellite_json": satellite_json, 'report_hazard_constraints': report_hazard_constraints})
 
         self.state["satellite_plan"] = result
         return "satellite_ready"
@@ -162,14 +161,12 @@ def kickoff():
     rovers = Path("inputs/rovers.json").read_text(encoding="utf-8")
     drones = Path("inputs/drones.json").read_text(encoding="utf-8")
     satellite_json = Path("inputs/satellites.json").read_text(encoding="utf-8")
-    graph_path = Path("inputs/mars_terrain_graph.graphml").read_text(encoding="utf-8")
     
     flow = MarsFlow(mission_crew = MissionCrew(), rover_crew = RoverCrew(), drone_crew = DronesCrew(), satellite_crew = SatelliteCrew(), validation_crew = ValidationCrew(), integration_crew = IntegrationCrew(),)
     flow.state["mission_report"] = mission_report
     flow.state["rovers"] = rovers
     flow.state["drones"] = drones
     flow.state["satellite_json"] = satellite_json
-    flow.state["graph_path"] = graph_path
     flow.state["hazards"] = False
 
     result = flow.kickoff()

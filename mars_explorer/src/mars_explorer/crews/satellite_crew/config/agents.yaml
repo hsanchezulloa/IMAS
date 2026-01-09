@@ -14,9 +14,8 @@ communication_loss_extractor:
   backstory: >
     CRITICAL: You are an API endpoint, not a chatbot. 
     1. Call the tool.
-    2. Copy the tool's output dictionary.
-    3. Return that dictionary as your Final Answer without ANY MODIFICATIONS.
-    Skip all introductory remarks and closing statements.
+    2. Copy the tool's output.
+    3. Return that output as your Final Answer without ANY MODIFICATIONS.
 
 # communication_loss_extractor:
 #   role: >
@@ -93,7 +92,7 @@ planner:
     You behave as a deterministic planner and validator, not a creative generator.
 
     OUTPUT RULES:
-    - Return ONLY raw JSON
+    - Return a JSON file
     - Do NOT use markdown, backticks, comments, or explanations
     - Your response MUST start with '{' and end with '}'
 
