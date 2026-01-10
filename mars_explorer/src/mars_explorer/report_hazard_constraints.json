@@ -9,12 +9,14 @@
       "Rovers may not operate in terrain classified as unstable."
     ],
     "hazards": {
-      "Rovers may not operate in terrain classified as unstable.": ["N4", "N19", "N128"],
-      "Rovers may not operate in terrain classified as radioactive.": ["N51", "N78", "N118"]
+      "Rover's energy consumption is different depending on the type of terrain: 5% in rocky, increased 10% in sandy, increased 20% in icy and increased 15% in crater terrains.": ["N4", "N19", "N128"],
+      "Rovers may not operate in terrain classified as radioactive.": ["N51", "N78", "N118"],
+      "Rovers may not operate in terrain classified as unstable.": ["N4", "N19", "N128"]
     }
   },
   "drone": {
     "operational constraints": [
+      "Rovers and drones should recharge if energy drops below 30%",
       "Drones must return to base after 25 minutes of flight.",
       "Drones are disabled if there is a dust storm.",
       "Drones cannot operate if wind gusts are higher than 40 km/h.",
@@ -29,6 +31,6 @@
       "Satellites must maintain communication with the base station at N30 or N84 every 5 hours if they have to identify thermal anomalies.",
       "Satellites cannot communicate in nodes with communication loss."
     ],
-    "hazards": []
+    "hazards": {}
   }
 }

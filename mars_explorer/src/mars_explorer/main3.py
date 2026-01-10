@@ -67,6 +67,9 @@ class MarsFlow(Flow):
         self.state["satellite_plan"] = None
 
         # trigger initial planning explicitly
+    
+    @listen(run_mission_analysis)
+    def kickoff_planning(self, _):
         return "plan_all"
 
     # ---------- PLANNERS ----------
