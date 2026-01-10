@@ -2,9 +2,9 @@
   "rovers": {
     "priority": {
       "high": [
-        "Collect subsurface samples from **rocky** terrain near nodes **N70** and **N102**.",
-        "Measure radiation levels in **sandy** terrain at node **N12**, **N86** and **N1**.",
-        "Deploy seismic sensors at the **rocky** node **N20**."
+        "Radiation measurement at **N12**, **N86** and **N1**.",
+        "Subsurface sample collection at **N70**, **N102**, and **N152**.",
+        "Deploy seismic sensors at node **N20**."
       ],
       "medium": [
         "Detect organic molecules in **icy** terrain at **N59**."
@@ -20,25 +20,25 @@
       "Rovers may not operate in terrain classified as unstable."
     ],
     "hazards": {
-      "Rovers may not operate in terrain classified as radioactive.": ["N51", "N78", "N118"],
-      "Rovers may not operate in terrain classified as unstable.": ["N4", "N19", "N128"]
+      "Rovers may not operate in terrain classified as unstable.": ["N4", "N19", "N128"],
+      "Rovers may not operate in terrain classified as radioactive.": ["N51", "N78", "N118"]
     }
   },
   "drones": {
     "priority": {
       "high": [],
       "medium": [
-        "Air **dust** sample collection during flight over **N33** crater.",
-        "Map CO2 frost coverage in **icy** areas **N53**, **N63** and **N108**."
+        "Air sample collection at **N33**.",
+        "Co2 analysis **N53**, **N63** and **N108**."
       ],
       "low": []
     },
     "operational constraints": [
+      "Rovers and drones should recharge if energy drops below 30%",
       "Drones must return to base after 25 minutes of flight.",
       "Drones are disabled if there is a dust storm.",
       "Drones cannot operate if wind gusts are higher than 40 km/h.",
-      "Drone's energy consumption is increased 15% if wind is higher than 30 km/h.",
-      "Rovers and drones should recharge if energy drops below 30%"
+      "Drone's energy consumption is increased 15% if wind is higher than 30 km/h."
     ],
     "hazards": {
       "Drones are disabled if there is a dust storm.": ["N33"]
@@ -49,8 +49,8 @@
       "high": [],
       "medium": [],
       "low": [
-        "Capture panoramic images of **crater** terrain at nodes **N5**, **N58**, **N121** and **N150**.",
-        "Identification of thermal anomalies at **icy** nodes **N56** and **N112**."
+        "Panoramic imaging at **N5**, **N58**, **N121** and **N150**.",
+        "Thermal anomalies at nodes **N56** and **N112**."
       ]
     },
     "operational constraints": [

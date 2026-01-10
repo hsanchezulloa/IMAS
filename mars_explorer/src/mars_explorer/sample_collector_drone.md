@@ -1,77 +1,37 @@
-```markdown
-# Drone Sampling Operational Procedures
+# Sample Collector Drone Operations Manual
 
-## 1. Air Dust Sample Collection Over N33 Crater
+## Air Sample Collection at Node N33
 
 ### Step-by-Step Procedure:
 
-1. **Pre-Flight System Check**:  
-   - Inspect drone for damage or malfunctions.  
-   - Ensure all systems (propulsion, communication, sensors) are operational.
-
-2. **Mission Planning**:  
-   - Review flight path over N33 crater.  
-   - Set waypoints for sample collection points.
-
-3. **Launch Drone**:  
-   - Power on and lift off from designated launch area.
-
-4. **Navigate to Target Area**:  
-   - Fly to N33 crater at a safe altitude, avoiding obstacles.
-
-5. **Initiate Sample Collection**:  
-   - Deploy air sampling device at specified intervals over the crater.
-
-6. **Monitor Sampling Process**:  
-   - Ensure samples are collected correctly and log data.
-
-7. **Return to Base**:  
-   - Fly back to launch area, ensuring safe landing.
-
-8. **Post-Mission Check**:  
-   - Inspect drone for post-flight issues.
-
-9. **Data Transfer**:  
-   - Download collected data for analysis.
-
-10. **Documentation**:  
-    - Record all observations and actions taken during the mission.
+1. **Pre-Flight System Check**: Ensure all drone systems are operational, including battery levels, communication links, and sampling设备.
+2. **Launch Drone**: Initiate takeoff from designated launch area.
+3. **Navigate to N33**: Fly drone directly to Node N33 using GPS or visual navigation.
+4. **Conduct Visual Inspection**: Assess the area for any obstacles or environmental factors affecting sample collection.
+5. **Deploy Air Sampling Device**: Release the sampling device at the specified altitude above Node N33.
+6. **Collect Sample**: Ensure the device captures the required air volume as programmed.
+7. **Secure Sample**: Retrieve the collected sample and store it in a sealed container for analysis.
+8. **Return to Launch Point**: Fly drone back to the starting location.
+9. **Post-Flight Check**: Inspect drone for any damage or issues post-flight.
+10. **Documentation**: Record all data, including time, location, and conditions, into the mission log.
 
 ---
 
-## 2. Map CO2 Frost Coverage in Icy Areas (N53, N63, N108)
+## CO2 Analysis at Nodes N53, N63, and N108
 
 ### Step-by-Step Procedure:
 
-1. **Pre-Flight System Check**:  
-   - Inspect drone for damage or malfunctions.  
-   - Ensure all systems are operational.
+1. **Pre-Flight System Check**: Verify drone systems are operational for multiple missions.
+2. **Launch Drone**: Take off from designated area.
+3. **Navigate Sequentially**: Fly to Node N53, then proceed to N63, followed by N108.
+4. **Conduct Visual Inspections**: At each node, check surroundings for any anomalies or obstructions.
+5. **Deploy CO2 Analysis Devices**: Release analysis devices at each node as per protocol.
+6. **Collect Data**: Gather CO2 readings from each device and ensure data integrity.
+7. **Secure Data**: Store collected data securely on the drone's storage system.
+8. **Return to Launch Point**: After completing all nodes, fly back to the starting location.
+9. **Post-Flight Check**: Inspect drone for any operational issues after multiple missions.
+10. **Documentation**: Compile and log all mission data, including CO2 levels and conditions at each node.
 
-2. **Mission Planning**:  
-   - Review flight paths over N53, N63, and N108.  
-   - Set waypoints for imaging.
+---
 
-3. **Launch Drone**:  
-   - Power on and lift off from designated area.
-
-4. **Navigate to Target Areas**:  
-   - Fly to each node at a safe altitude.
-
-5. **Capture Images**:  
-   - Take high-resolution images of CO2 frost coverage.
-
-6. **Monitor Imaging Process**:  
-   - Ensure images are clear and cover the required areas.
-
-7. **Return to Base**:  
-   - Fly back to launch area, ensuring safe landing.
-
-8. **Post-Mission Check**:  
-   - Inspect drone for post-flight issues.
-
-9. **Data Processing**:  
-   - Analyze images to identify CO2 frost patterns.
-
-10. **Documentation**:  
-    - Record findings and actions taken during the mission.
-```
+This manual ensures efficient and safe execution of drone sampling tasks, adhering to operational standards and safety protocols.

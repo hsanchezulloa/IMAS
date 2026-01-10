@@ -87,12 +87,33 @@ class MarsFlow(Flow):
         return "satellite_ready"
 
     # Validation
-    @listen(or_(and_(run_rover_planning, run_drone_planning, run_satellite_planning), and_("replan_rover", run_rover_planning), and_("replan_drone", run_drone_planning), and_("replan_satellite", run_satellite_planning)))
+    # @listen(or_(and_(run_rover_planning, run_drone_planning, run_satellite_planning), and_("replan_rover", run_rover_planning), and_("replan_drone", run_drone_planning), and_("replan_satellite", run_satellite_planning)))
+    @listen(or_(
+    and_(run_rover_planning, run_drone_planning, run_satellite_planning),
+    run_rover_planning,
+    run_drone_planning,
+    run_satellite_planning
+))
+
     def validate_plans(self, _) -> ValidationResult:
         print("Integration Crew is validating individual routes...")
         # if not all([self.state.get("rover_plan"), self.state.get("drone_plan"), self.state.get("satellite_plan")]):
         #     return
         # We call the validation_crew specifically for validation
+        if self.state.get("validating"):
+            print("Validation already running, skipping duplicate call")
+            return
+
+        self.state["validating"] = True
+        if not all([
+            self.state.get("rover_plan"),
+            self.state.get("drone_plan"),
+            self.state.get("satellite_plan")
+        ]):
+            print("Waiting for all plans...")
+            self.state["validating"] = False
+            return
+
         reporting_aggregation = self.extract_json_object(Path("reporting_aggregation.json").read_text(encoding="utf-8"))
         routes_satellite = self.extract_json_object(Path("routes_satellite.json").read_text(encoding="utf-8"))
         routes_drone = self.extract_json_object(Path("routes_drone.json").read_text(encoding="utf-8"))
@@ -111,6 +132,7 @@ class MarsFlow(Flow):
             # Default to False if parsing fails to force a retry
             validation = ValidationResult(rover_ok=False, drone_ok=False, satellite_ok=False)
         self.state["validation"] = validation
+        self.state["validating"] = False
         return validation
 
     # Decision (router)
@@ -126,11 +148,22 @@ class MarsFlow(Flow):
         if self.state["retries"] >= self.MAX_RETRIES:
             raise RuntimeError("Too many replanning attempts")
 
+        # if not validation.rover_ok:
+        #     return "replan_rover"
+        # if not validation.drone_ok:
+        #     return "replan_drone"
+        # return "replan_satellite"
         if not validation.rover_ok:
+            self.state["rover_plan"] = None
             return "replan_rover"
+
         if not validation.drone_ok:
+            self.state["drone_plan"] = None
             return "replan_drone"
+
+        self.state["satellite_plan"] = None
         return "replan_satellite"
+
     
     # Integration
     @listen(decision)

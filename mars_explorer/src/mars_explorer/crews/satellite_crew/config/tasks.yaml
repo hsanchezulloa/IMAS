@@ -211,18 +211,23 @@ task_planner:
         - Compute reachable targets per satellite:
           reachable = targets ∩ satellite.covered_nodes
         - A satellite MAY ONLY be assigned a goal from its reachable set.
+      
+      2) Hazard & Operational Constraints (PRIORITY STEP):
+        - Apply ALL satellite-related constraints from the report_hazard_constraints report.
+        - Operational constraints ALWAYS take priority.
 
-      2) One-to-One Assignment:
+        - If a goal node has thermal anomalies:
+            - Only satellites with communication_window <= 5 are ALLOWED
+            - communication_window MUST match satellite_json exactly
+            - All satellites with window >5 are FORBIDDEN
+
+        - If any hazard rule forbids operation:
+            - That target MUST be removed from candidate pool
+      
+      3) One-to-One Assignment:
         - EACH target node MUST be assigned to EXACTLY ONE satellite.
         - NO target node may appear more than once.
         - Satellites may only receive ONE goal unless explicitly stated otherwise.
-
-      3) Hazard Enforcement:
-        - Apply ALL satellite-related constraints from the hazard report.
-        - If a goal node has thermal anomalies:
-            - Assigned satellite MUST have a valid communication window.
-        - If any hazard rule forbids operation:
-            - That node MUST NOT be assigned.
 
       4) Communication Constraints:
         - physical location MUST NOT be in communication-loss nodes.
