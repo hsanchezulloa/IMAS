@@ -15,7 +15,6 @@
   },
   "drone": {
     "operational constraints": [
-      "Rovers and drones should recharge if energy drops below 30%",
       "Drones must return to base after 25 minutes of flight.",
       "Drones are disabled if there is a dust storm.",
       "Drones cannot operate if wind gusts are higher than 40 km/h.",

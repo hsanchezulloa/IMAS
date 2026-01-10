@@ -250,10 +250,20 @@ task_planner:
       - Inventing satellites, nodes, hazards, or windows
       - Guessing missing data
       - Skipping any constraint
+    CRITICAL OUTPUT RULES:
+      - You MUST return ONLY valid JSON.
+      - Do NOT include explanations.
+      - Do NOT include markdown.
+      - Do NOT include LaTeX.
+      - Do NOT include tables.
+      - Do NOT include bullet points.
+      - Output MUST start with { and end with }
+      - Any extra text INVALIDATES the answer.
+    FAILURE CONDITIONS:
+      - If output is not pure JSON -> response is INVALID.
+      - INVALID responses are considered mission failure.
   expected_output: >
-    Return ONLY raw JSON (no markdown, no prose).
-
-    Format:
+    You MUST return EXACTLY this structure:
     {
       "assignments": [
         {
@@ -265,10 +275,11 @@ task_planner:
       ]
     }
 
-    RULES:
-      - assignments must cover ALL target nodes exactly once
-      - No extra keys allowed
-      - Use ONLY provided values
+    STRICT:
+      - No text before or after JSON
+      - No markdown
+      - No comments
+      - No explanations
   agent: planner
 
 

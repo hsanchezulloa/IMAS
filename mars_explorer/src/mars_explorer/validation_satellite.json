@@ -1,4 +1,4 @@
 {
   "satellite_ok": false,
-  "feedback_satellite": "Missing node N150, location mismatch at N18; N121 not assigned correctly. Communication window violation: N56 has 8h exceeding 5h limit."
+  "feedback_satellite": "N150 location mismatch; N56 window is 24h, exceeding 5h limit"
 }

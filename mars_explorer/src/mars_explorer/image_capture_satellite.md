@@ -1,56 +1,74 @@
-### Satellite Mission Execution Protocols
-
-#### **Mission Type: Panoramic Image Capture at Crater Nodes**
-
-**1. Sensor Initialization**
-   - Power on and initialize imaging sensors.
-   - Calibrate cameras for optimal clarity.
-
-**2. Positioning**
-   - Adjust satellite orientation to face the target node (N5, N58, N121, or N150).
-   - Ensure optimal angle for panoramic coverage.
-
-**3. Capture Sequence**
-   - Use wide-angle lens for comprehensive crater views.
-   - Capture multiple images to ensure full coverage.
-
-**4. Data Validation**
-   - Review each image for clarity and completeness.
-   - Retake if necessary to avoid missing any details.
-
-**5. Transmission**
-   - Transmit data within the specified communication window:
-     - N121: 3h
-     - N58: 4h
-     - N5: 7h
-     - N150: 5h (Note: Be prepared for potential retransmission due to node issues.)
+Satellite Mission Execution Protocols
 
 ---
 
-#### **Mission Type: Thermal Anomaly Detection at Icy Nodes**
+#### Protocol 1: Panoramic Image Capture of Crater Terrain
 
-**1. Sensor Initialization**
-   - Activate thermal imaging sensors.
-   - Set parameters for detecting temperature variations.
+**Objective:** Capture high-resolution panoramic images of crater terrain at designated nodes.
 
-**2. Positioning**
-   - Align satellite over the target node (N56 or N112).
-   - Adjust altitude to optimize thermal data capture.
+**Steps:**
 
-**3. Capture Sequence**
-   - Use infrared sensors to capture thermal data at specified intervals.
-   - Focus on identifying temperature anomalies indicative of thermal activity.
+1. **Sensor Initialization:**
+   - Power on the satellite's optical camera system.
+   - Ensure panoramic imaging mode is activated and configured for wide-angle capture.
 
-**4. Data Validation**
-   - Analyze thermal data for unusual hotspots or patterns.
-   - Repeat captures if anomalies are detected but unclear.
+2. **Positioning:**
+   - Adjust satellite orientation to ensure the camera faces the target crater area directly.
+   - Maintain stable altitude above the designated node (e.g., N5, N58, N121, N150) to ensure optimal image quality.
 
-**5. Transmission**
-   - Transmit data within the 7h communication window for both nodes.
-   - Ensure all thermal data is included in transmission.
+3. **Capture Sequence:**
+   - Initiate panoramic imaging sequence over the assigned node.
+   - Capture multiple high-resolution images, ensuring full coverage of the crater terrain.
+
+4. **Data Validation:**
+   - Review captured images for clarity and completeness.
+   - Adjust exposure settings if necessary to enhance image quality.
+
+5. **Transmission:**
+   - Compress and encrypt the image data.
+   - Transmit the validated images to Earth or the control center via designated communication channels.
 
 ---
 
-### Notes:
-- **Communication Loss Nodes:** Be aware of potential issues with N150 and ensure contingency plans for data retransmission if necessary.
-- **Terrain Considerations:** Adjust satellite positioning based on terrain type (crater vs. icy) to optimize sensor effectiveness.
+#### Protocol 2: Thermal Anomaly Identification on Icy Nodes
+
+**Objective:** Detect and monitor thermal anomalies at icy surface nodes.
+
+**Steps:**
+
+1. **Sensor Initialization:**
+   - Activate the satellite's thermal imaging sensor.
+   - Calibrate the sensor to account for extreme cold conditions on icy terrain.
+
+2. **Positioning:**
+   - Position the satellite directly above the assigned icy node (e.g., N56, N112).
+   - Ensure optimal altitude and orientation for accurate thermal data collection.
+
+3. **Capture Sequence:**
+   - Begin continuous thermal imaging over the target node.
+   - Collect temperature readings at regular intervals to monitor surface activity.
+
+4. **Data Validation:**
+   - Analyze thermal data for anomalies, such as unusual hotspots or temperature fluctuations.
+   - Cross-reference with historical data if necessary.
+
+5. **Transmission:**
+   - Format thermal data and coordinates for transmission.
+   - Send validated data to Earth or the control center via secure communication links.
+
+---
+
+### Assigned Satellite Targets:
+
+| Satellite | Assigned Target Node |
+|-----------|----------------------|
+| 0         | N5                   |
+| 1         | N56                  |
+| 2         | N121                 |
+| 3         | N150 (location N18) |
+| 4         | N58                  |
+| 5         | N112                 |
+
+---
+
+These protocols ensure that each satellite mission is executed efficiently, accounting for terrain types and specific operational requirements.

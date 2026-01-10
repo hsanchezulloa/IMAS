@@ -3,31 +3,7 @@
     "location": "N30",
     "energy": 95,
     "output_nodes": {
-      "N1": {
-        "distance": 87.0,
-        "energy": 3.42,
-        "feasible": true,
-        "warning": "WARNING: Low battery remaining (3.42)"
-      },
-      "N12": {
-        "distance": 54.0,
-        "energy": 39.65,
-        "feasible": true,
-        "warning": "BATTERY OK"
-      },
-      "N20": {
-        "distance": 30.0,
-        "energy": 64.78,
-        "feasible": true,
-        "warning": "BATTERY OK"
-      },
       "N70": {
-        "distance": null,
-        "energy": null,
-        "feasible": false,
-        "warning": "NO FEASIBLE PATH (BATTERY)"
-      },
-      "N86": {
         "distance": null,
         "energy": null,
         "feasible": false,
@@ -39,7 +15,31 @@
         "feasible": false,
         "warning": "NO FEASIBLE PATH (BATTERY)"
       },
-      "N152": {
+      "N12": {
+        "distance": 54.0,
+        "energy": 39.65,
+        "feasible": true,
+        "warning": "BATTERY OK"
+      },
+      "N86": {
+        "distance": null,
+        "energy": null,
+        "feasible": false,
+        "warning": "NO FEASIBLE PATH (BATTERY)"
+      },
+      "N1": {
+        "distance": 87.0,
+        "energy": 3.42,
+        "feasible": true,
+        "warning": "WARNING: Low battery remaining (3.42)"
+      },
+      "N20": {
+        "distance": 30.0,
+        "energy": 64.78,
+        "feasible": true,
+        "warning": "BATTERY OK"
+      },
+      "N59": {
         "distance": null,
         "energy": null,
         "feasible": false,
@@ -51,33 +51,9 @@
     "location": "N84",
     "energy": 94,
     "output_nodes": {
-      "N1": {
-        "distance": null,
-        "energy": null,
-        "feasible": false,
-        "warning": "NO FEASIBLE PATH (BATTERY)"
-      },
-      "N12": {
-        "distance": null,
-        "energy": null,
-        "feasible": false,
-        "warning": "NO FEASIBLE PATH (BATTERY)"
-      },
-      "N20": {
-        "distance": null,
-        "energy": null,
-        "feasible": false,
-        "warning": "NO FEASIBLE PATH (BATTERY)"
-      },
       "N70": {
         "distance": 42.0,
         "energy": 51.33,
-        "feasible": true,
-        "warning": "BATTERY OK"
-      },
-      "N86": {
-        "distance": 6.0,
-        "energy": 87.85,
         "feasible": true,
         "warning": "BATTERY OK"
       },
@@ -87,25 +63,19 @@
         "feasible": true,
         "warning": "BATTERY OK"
       },
-      "N152": {
-        "distance": null,
-        "energy": null,
-        "feasible": false,
-        "warning": "NO FEASIBLE PATH (BATTERY)"
-      }
-    }
-  },
-  "rover_2": {
-    "location": "N84",
-    "energy": 76,
-    "output_nodes": {
-      "N1": {
+      "N12": {
         "distance": null,
         "energy": null,
         "feasible": false,
         "warning": "NO FEASIBLE PATH (BATTERY)"
       },
-      "N12": {
+      "N86": {
+        "distance": 6.0,
+        "energy": 87.85,
+        "feasible": true,
+        "warning": "BATTERY OK"
+      },
+      "N1": {
         "distance": null,
         "energy": null,
         "feasible": false,
@@ -117,15 +87,21 @@
         "feasible": false,
         "warning": "NO FEASIBLE PATH (BATTERY)"
       },
+      "N59": {
+        "distance": 75.0,
+        "energy": 16.45,
+        "feasible": true,
+        "warning": "WARNING: Low battery remaining (16.45)"
+      }
+    }
+  },
+  "rover_2": {
+    "location": "N84",
+    "energy": 76,
+    "output_nodes": {
       "N70": {
         "distance": 42.0,
         "energy": 33.33,
-        "feasible": true,
-        "warning": "BATTERY OK"
-      },
-      "N86": {
-        "distance": 6.0,
-        "energy": 69.85,
         "feasible": true,
         "warning": "BATTERY OK"
       },
@@ -135,7 +111,31 @@
         "feasible": true,
         "warning": "WARNING: Low battery remaining (19.98)"
       },
-      "N152": {
+      "N12": {
+        "distance": null,
+        "energy": null,
+        "feasible": false,
+        "warning": "NO FEASIBLE PATH (BATTERY)"
+      },
+      "N86": {
+        "distance": 6.0,
+        "energy": 69.85,
+        "feasible": true,
+        "warning": "BATTERY OK"
+      },
+      "N1": {
+        "distance": null,
+        "energy": null,
+        "feasible": false,
+        "warning": "NO FEASIBLE PATH (BATTERY)"
+      },
+      "N20": {
+        "distance": null,
+        "energy": null,
+        "feasible": false,
+        "warning": "NO FEASIBLE PATH (BATTERY)"
+      },
+      "N59": {
         "distance": null,
         "energy": null,
         "feasible": false,
@@ -147,7 +147,13 @@
     "location": "N30",
     "energy": 59,
     "output_nodes": {
-      "N1": {
+      "N70": {
+        "distance": null,
+        "energy": null,
+        "feasible": false,
+        "warning": "NO FEASIBLE PATH (BATTERY)"
+      },
+      "N102": {
         "distance": null,
         "energy": null,
         "feasible": false,
@@ -159,31 +165,25 @@
         "feasible": true,
         "warning": "WARNING: Low battery remaining (3.65)"
       },
-      "N20": {
-        "distance": 30.0,
-        "energy": 28.77,
-        "feasible": true,
-        "warning": "WARNING: Low battery remaining (28.77)"
-      },
-      "N70": {
-        "distance": null,
-        "energy": null,
-        "feasible": false,
-        "warning": "NO FEASIBLE PATH (BATTERY)"
-      },
       "N86": {
         "distance": null,
         "energy": null,
         "feasible": false,
         "warning": "NO FEASIBLE PATH (BATTERY)"
       },
-      "N102": {
+      "N1": {
         "distance": null,
         "energy": null,
         "feasible": false,
         "warning": "NO FEASIBLE PATH (BATTERY)"
       },
-      "N152": {
+      "N20": {
+        "distance": 30.0,
+        "energy": 28.77,
+        "feasible": true,
+        "warning": "WARNING: Low battery remaining (28.77)"
+      },
+      "N59": {
         "distance": null,
         "energy": null,
         "feasible": false,
@@ -195,13 +195,31 @@
     "location": "N84",
     "energy": 80,
     "output_nodes": {
-      "N1": {
+      "N70": {
+        "distance": 42.0,
+        "energy": 37.33,
+        "feasible": true,
+        "warning": "BATTERY OK"
+      },
+      "N102": {
+        "distance": 54.0,
+        "energy": 23.98,
+        "feasible": true,
+        "warning": "WARNING: Low battery remaining (23.98)"
+      },
+      "N12": {
         "distance": null,
         "energy": null,
         "feasible": false,
         "warning": "NO FEASIBLE PATH (BATTERY)"
       },
-      "N12": {
+      "N86": {
+        "distance": 6.0,
+        "energy": 73.85,
+        "feasible": true,
+        "warning": "BATTERY OK"
+      },
+      "N1": {
         "distance": null,
         "energy": null,
         "feasible": false,
@@ -213,29 +231,11 @@
         "feasible": false,
         "warning": "NO FEASIBLE PATH (BATTERY)"
       },
-      "N70": {
-        "distance": 42.0,
-        "energy": 37.33,
+      "N59": {
+        "distance": 75.0,
+        "energy": 2.45,
         "feasible": true,
-        "warning": "BATTERY OK"
-      },
-      "N86": {
-        "distance": 6.0,
-        "energy": 73.85,
-        "feasible": true,
-        "warning": "BATTERY OK"
-      },
-      "N102": {
-        "distance": 54.0,
-        "energy": 23.98,
-        "feasible": true,
-        "warning": "WARNING: Low battery remaining (23.98)"
-      },
-      "N152": {
-        "distance": null,
-        "energy": null,
-        "feasible": false,
-        "warning": "NO FEASIBLE PATH (BATTERY)"
+        "warning": "WARNING: Low battery remaining (2.45)"
       }
     }
   }
