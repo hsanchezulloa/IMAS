@@ -49,9 +49,8 @@ task_planner:
     - No markdown
     - No explanations
 
-    --------------------------------------------------
+
     FOLLOW THE RULES BELOW EXACTLY
-    --------------------------------------------------
 
     DEFINITIONS (STRICT):
       - goal: target node assigned for observation.
