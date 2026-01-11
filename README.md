@@ -11,7 +11,7 @@ The system decomposes complex mission objectives into specialized agent crews th
 Clone the repository:
 ```bash
 git clone <https://github.com/hsanchezulloa/IMAS.git>
-cd IMAS/mars_explorer/src/mars_explorer 
+cd IMAS/mars_explorer/src/mars_explorer  
 ```
 Install dependencies:
 ```bash
