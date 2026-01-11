@@ -51,7 +51,7 @@ class MarsFlow(Flow):
         return json.loads(m.group(1))
 
 
-    # Planning (parallel)
+    # Planning (parallel execution of the crews)
     # Satellite crew
     @listen(or_(run_mission_analysis, "replan_satellite"))
     def run_satellite_planning(self):
