@@ -1,5 +1,5 @@
 from crews.integration_crew.integration_crew import FinalMissionReport
-
+# Render the generated final json into a markdown file
 def to_markdown(report: FinalMissionReport) -> str:
     toc = "\n".join(f"- {item}" for item in report.table_of_contents)
 
