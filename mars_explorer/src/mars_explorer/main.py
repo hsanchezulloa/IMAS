@@ -158,7 +158,7 @@ def kickoff():
     flow.state["rovers"] = rovers
     flow.state["drones"] = drones
     flow.state["satellite_json"] = satellite_json
-    flow.state["hazards"] = False
+    flow.state["hazards"] = True
 
     result = flow.kickoff()
 
@@ -179,5 +179,5 @@ def plot():
 
 
 if __name__ == "__main__":
-    # kickoff()
-    plot()
+    kickoff()
+    # plot()

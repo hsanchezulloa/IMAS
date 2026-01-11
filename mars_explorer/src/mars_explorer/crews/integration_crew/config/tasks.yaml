@@ -68,169 +68,23 @@ task_integrator_satellite:
   agent: integrator_satellite
 
 
-# task_writer:
-#   description: >
-#     Inputs:
-#     - Rover report: """{context.task_integrator_rover()}"""
-#     - Drone report: """{context.task_integrator_drone()}"""
-#     - Satellite report: """{context.task_integrator_satellite()}"""
-
-#     Consolidate the outputs from the Rover, Drone, and Satellite integration tasks.
-#     1. Set the title to 'MARS JOINT OPERATIONS: FINAL MISSION CONFIGURATION'.
-#     2. Generate a Table of Contents.
-#     3. Copy the content WITHOUT MODIFYING ANYTHING of integrator_rover.md to the rover_section.
-#     4. Copy the content WITHOUT MODIFYING ANYTHING of integrator_drone.md to the drone_section.
-#     5. Copy the content WITHOUT MODIFYING ANYTHING of integrator_satellite.md to the satellite_section.
-#     6. Write a final conclusion confirming all systems are ready for deployment.
-#   expected_output: >
-#     A single, comprehensive Markdown file named 'RESULT.md' that contains the concatenated and structured data from all three mission segments.
-#   agent: writer
-
-
-# task_writer:
-#   description: >
-#     Consolidate the outputs from the Rover, Drone, and Satellite integration tasks.
-
-#     CRITICAL RULES:
-#     - DO NOT invent paths, filenames, directories, or references.
-#     - ONLY use the exact inputs provided.
-#     - NEVER assume locations or generate fake paths.
-#     - Copy content EXACTLY as received. Zero modifications.
-
-#     Steps:
-#     1. Set the title to 'MARS JOINT OPERATIONS: FINAL MISSION CONFIGURATION'.
-#     2. Generate a Table of Contents.
-#     3. Copy the content WITHOUT MODIFYING ANYTHING from the Rover report 
-#       into the rover_section. (VERBATIM COPY)
-#     4. Copy the content WITHOUT MODIFYING ANYTHING from the Drone report 
-#       into the drone_section. (VERBATIM COPY)
-#     5. Copy the content WITHOUT MODIFYING ANYTHING from the Satellite report
-#       into the satellite_section. (VERBATIM COPY)
-#     6. Write a final conclusion confirming all systems are ready for deployment.
-
-#     Inputs:
-#     - Rover report: """{integrator_rover}"""
-#     - Drone report: """{integrator_drone}"""
-#     - Satellite report: """{integrator_satellite}"""
-#   expected_output: >
-#     A single, comprehensive json file that contains the concatenated and structured data from all three mission segments.
-#   agent: writer
-
-# task_writer:
-#   description: >
-#     Consolidate the outputs from the Rover, Drone, and Satellite integration tasks.
-
-#     CRITICAL RULES:
-#     - DO NOT invent paths.
-#     - ONLY use the exact inputs provided.
-#     - NEVER assume locations or generate fake paths.
-#     - DO NOT mix paths between sources. EVER.
-#     - Each section must contain ONLY its own original paths:
-#         * Rover paths → rover_section ONLY
-#         * Drone paths → drone_section ONLY
-#         * Satellite paths → satellite_section ONLY
-#     - Copy content EXACTLY as received. Zero modifications.
-
-#     Steps:
-#     1. Set the title to 'MARS JOINT OPERATIONS: FINAL MISSION CONFIGURATION'.
-#     2. Generate a Table of Contents.
-#     3. Copy the content WITHOUT MODIFYING ANYTHING from the Rover report 
-#       into the rover_section.
-#     4. Copy the content WITHOUT MODIFYING ANYTHING from the Drone report 
-#       into the drone_section.
-#     5. Copy the content WITHOUT MODIFYING ANYTHING from the Satellite report
-#       into the satellite_section.
-#     6. Write a final conclusion confirming all systems are ready for deployment.
-
-#     Inputs:
-#     - Rover report: """{integrator_rover}"""
-#     - Drone report: """{integrator_drone}"""
-#     - Satellite report: """{integrator_satellite}"""
-
-#   expected_output: >
-#     A single, comprehensive JSON file that contains the concatenated and structured data
-#     from all three mission segments, with NO mixed paths.
-
-  # agent: writer
-
-
 task_writer:
   description: >
-    You must create a FinalMissionReport object that EXACTLY matches the Pydantic schema.
-
-    INPUT FILES (RAW TEXT):
-    - integrator_rover (markdown)
-    - integrator_drone (markdown)
-    - integrator_satellite (markdown)
-
-    STRICT RULES (NO EXCEPTIONS):
-    - DO NOT rewrite ANY text.
-    - DO NOT summarize.
-    - DO NOT fix grammar.
-    - DO NOT remove emojis, symbols, spacing, or formatting.
-    - DO NOT change markdown.
-    - DO NOT reorder content inside sections.
-    - DO NOT invent nodes, paths, procedures, or comments.
-    - DO NOT merge information across sources.
-    - DO NOT add explanations.
-    - DO NOT add headings.
-    - DO NOT remove headings.
-    - COPY AND PASTE VERBATIM.
-
-    FIELD MAPPING (MANDATORY):
-    - title:
-        MUST be exactly:
-        "MARS JOINT OPERATIONS: FINAL MISSION CONFIGURATION"
-
-    - table_of_contents:
-        MUST be a list of EXACT section titles in this order:
-        1. "Rover Operations"
-        2. "Drone Operations"
-        3. "Satellite Operations"
-
-    - rover_section:
-        MUST contain the FULL raw content of integrator_rover
-        EXACTLY as received (including markdown headers)
-
-    - drone_section:
-        MUST contain the FULL raw content of integrator_drone
-        EXACTLY as received (including markdown headers)
-
-    - satellite_section:
-        MUST contain the FULL raw content of integrator_satellite
-        EXACTLY as received (including markdown headers)
-
-    - conclusion:
-        Write ONLY this sentence:
-        "All rover, drone, and satellite systems are verified and ready for deployment."
-
-    VALIDATION RULES:
-    - If ANY character differs from the input → FAIL.
-    - If content appears in the wrong section → FAIL.
-    - If anything is invented → FAIL.
-    - If a section is missing → FAIL.
-    - If markdown formatting changes → FAIL.
-
     Inputs:
-    - integrator_rover: """{integrator_rover}"""
-    - integrator_drone: """{integrator_drone}"""
-    - integrator_satellite: """{integrator_satellite}"""
+    - Rover report: """{context.task_integrator_rover()}"""
+    - Drone report: """{context.task_integrator_drone()}"""
+    - Satellite report: """{context.task_integrator_satellite()}"""
 
+    Consolidate the outputs from the Rover, Drone, and Satellite integration tasks.
+    1. Set the title to 'MARS JOINT OPERATIONS: FINAL MISSION CONFIGURATION'.
+    2. Generate a Table of Contents.
+    3. Copy the content WITHOUT MODIFYING ANYTHING of integrator_rover.md to the rover_section.
+    4. Copy the content WITHOUT MODIFYING ANYTHING of integrator_drone.md to the drone_section.
+    5. Copy the content WITHOUT MODIFYING ANYTHING of integrator_satellite.md to the satellite_section.
+    6. Write a final conclusion confirming all systems are ready for deployment.
   expected_output: >
-    A JSON object that strictly matches this schema:
-
-    class FinalMissionReport(BaseModel):
-        title: str
-        table_of_contents: List[str]
-        rover_section: str
-        drone_section: str
-        satellite_section: str
-        conclusion: str
-
-    No extra keys.
-    No missing keys.
-    No modified text.
-
+    A single, comprehensive Markdown file named 'RESULT.md' that contains the concatenated and structured data from all three mission segments.
   agent: writer
+
 
 
