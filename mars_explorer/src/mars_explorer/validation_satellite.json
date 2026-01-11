@@ -1,4 +1,6 @@
+```json
 {
   "satellite_ok": true,
-  "feedback_satellite": "All required imaging and thermal anomaly detection nodes (N5, N58, N121, N150, N56, N112) are covered in the satellite route. Communication windows for thermal anomaly nodes N56 (4h) and N112 (2h) comply with the 5-hour constraint."
+  "feedback_satellite": "All satellite assignments match the required nodes from the priorities section. Thermal anomaly detection tasks at N56 and N112 do not exceed communication window constraints."
 }
+```

@@ -1,74 +1,54 @@
-```markdown
 # INTEGRATED MARS AERIAL OPERATIONS REPORT
 
 ## Section 1: Flight Trajectory Logs (by Drone ID)
 
-### Drone_3:
-- **Trajectory**: Nodes N70, N102, and N152.
-- **Objective**: Conducted air dust sample collection at specified nodes.
+### Drone_0
+- **Trajectory**: N30 → N33 → N30  
+- **Notes**: This drone's path is a triangular route centered around N30, with a focus on N33.
 
-### Drone_4:
-- **Trajectory**: Nodes N12, N86, and N1.
-- **Objective**: Performed CO2 frost mapping at designated locations.
+### Drone_2
+- **Trajectory**: N30 → N31 → N36 → N41 → N46 → N51 → N53 → N51 → N46 → N41 → N36 → N31 → N30  
+- **Notes**: This drone follows a more extensive route, reaching up to N53 before returning.
+
+### Drone_1
+- **Trajectory**: N84 → N83 → N78 → N73 → N68 → N63 → N68 → N73 → N78 → N83 → N84  
+- **Notes**: This drone's path is a diamond-shaped route centered around N68, with a focus on lower nodes.
+
+### Drone_3
+- **Trajectory**: N84 → N86 → N91 → N96 → N101 → N106 → N108 → N106 → N101 → N96 → N91 → N86 → N84  
+- **Notes**: This drone follows a linear path extending to N108 before returning.
 
 ---
 
-## Section 2: Integrated Scientific Protocols (Mapping Nodes to Procedures)
+## Section 2: Aerial Scientific Protocols (Mapping Nodes to Procedures)
 
-### Procedure 1: Air Dust Sample Collection
-- **Assigned Drone**: Drone_3
-- **Nodes Involved**: N70, N102, N152
-- **Objective**: Collect air dust samples at specified nodes.
-- **Protocol**:
-  1. Conduct a pre-mission system check.
-  2. Navigate to Node N70 using GPS.
-  3. Deploy the air sampling tool.
-  4. Collect dust samples from the atmosphere.
-  5. Seal and secure sample containers.
-  6. Log data and take photos.
-  7. Return to start point or proceed to the next node.
-  8. Repeat for Nodes N102 and N152.
-  9. Conduct a post-mission review.
+### Air Dust Sample Collection at N33
+- **Assigned Drone**: Drone_0  
+- **Protocol**: Conducted over N33 Crater, involving pre-flight checks, takeoff, navigation, hover at 500m, dust sampling at multiple altitudes, data transmission, and return to launch pad.
 
-### Procedure 2: CO2 Frost Mapping
-- **Assigned Drones**: Drone_3 and Drone_4
-- **Nodes Involved**: N70, N12, N86
-- **Objective**: Map CO2 frost distribution at specified nodes.
-- **Protocol**:
-  1. Conduct a pre-mission system check.
-  2. Navigate to Node N70 using GPS (Drone_3).
-  3. Deploy the CO2 frost detection仪.
-  4. Record data and environmental conditions.
-  5. Take photos of frost formations.
-  6. Log all data and photos.
-  7. Return to start point or proceed to the next node.
-  8. Repeat for Nodes N12 and N86 (Drone_4).
-  9. Conduct post-mission analysis.
-  10. Prepare final report.
+### CO2 Frost Mapping at N53
+- **Assigned Drone**: Drone_2  
+- **Protocol**: Pre-flight checks, takeoff, navigation to N53, imaging of CO2 frost, data transmission, and return to launch pad.
+
+### CO2 Frost Mapping at N108
+- **Assigned Drone**: Drone_3  
+- **Protocol**: Pre-flight checks, takeoff, navigation to N108, imaging of CO2 frost, data transmission, and return to launch pad.
+
+**Note**: The procedure for CO2 Frost Mapping also includes nodes N63 and N53. However, based on the provided trajectories, Drone_1 did not reach N63, leaving this node unmapped in the current mission.
 
 ---
 
 ## Section 3: Sensor & Instrumentation Overview
 
-### Scientific Equipment Required:
-- **Air sampling tool**: For collecting dust samples (Procedure 1).
-- **CO2 frost detection仪**: For mapping CO2 frost formations (Procedure 2).
-- **GPS navigation system**: Common equipment for all procedures.
-- **Sterile containers**: For securing collected samples.
-- **Imaging systems**: High-resolution cameras for capturing atmospheric and surface conditions.
+### Environmental Monitoring Requirements
+- **Wind Speed**: Monitored to ensure safe drone operation.
+- **Temperature**: Recorded for atmospheric data collection.
+- **Humidity**: Measured to understand environmental conditions affecting sample collection.
 
-### Environmental Monitoring Requirements:
-- **Wind speed**: Monitored to ensure safe sampling operations.
-- **Temperature**: Recorded to understand atmospheric conditions.
-- **Humidity**: Measured to assess environmental impact on sample integrity.
-
-### Overarching Mission Objectives:
-1. Collect air dust samples at strategic nodes (N70, N102, N152).
-2. Map CO2 frost formations across designated areas (N70, N12, N86).
-3. Ensure data accuracy and sample integrity through rigorous monitoring.
-4. Provide comprehensive atmospheric and surface data for scientific analysis.
+### Imaging Systems Used
+- **Drones 2 and 3**: Equipped with high-resolution cameras for CO2 frost mapping.
+- **Drone_0**: Fitted with dust sampling equipment for air quality analysis.
 
 ---
 
-This report synthesizes the flight trajectories and procedures into a unified operational document, ensuring clarity and alignment with mission objectives.
-```
+This report synthesizes the flight trajectories, scientific protocols, and instrumentation used during the mission, ensuring alignment with Mars aerial operations objectives.

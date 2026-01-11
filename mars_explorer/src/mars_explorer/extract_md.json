@@ -43,7 +43,6 @@
     "known hazards": [
         "**Nodes N4, N19, N128**: unstable rocky terrain",
         "**Nodes N51, N78, N118**: nodes classified as radioactive",
-        "**Node N33**: frequent dust storms",
-        "}"
+        "**Node N33**: frequent dust storms"
     ]
 }

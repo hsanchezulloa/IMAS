@@ -1,6 +1,6 @@
 ```json
 {
-  "drone_ok": false,
-  "feedback_drone": "The drones have visited some but not all required nodes. The node N63 was not visited by any drone."
+  "drone_ok": true,
+  "feedback_drone": "All required nodes (N33, N53, N63, N108) are covered by the drone routes. Drone_0 covers N33, Drone_2 covers N53, Drone_1 covers N63, and Drone_3 covers N108."
 }
 ```

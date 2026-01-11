@@ -1,5 +1,5 @@
 {
-  "rover_ok": false,
-  "drone_ok": false,
+  "rover_ok": true,
+  "drone_ok": true,
   "satellite_ok": true
 }

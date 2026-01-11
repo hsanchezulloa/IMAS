@@ -1,67 +1,53 @@
 ```markdown
 # INTEGRATED MARS ORBITAL OPERATIONS REPORT
 
-## Section 1: Orbital Trajectory Logs (by Satellite ID)
+## Section 1: Orbital Window & Assignment Logs
 
-### Satellite_3:
-- **Target Node**: N18
-- **Objective**: Conduct panoramic terrain mapping and data transmission.
+| Satellite ID | Goal                  | Location   | Communication Window      |
+|--------------|-----------------------|------------|---------------------------|
+| Satellite_0  | Crater Terrain Imaging| N5         | 12:00-13:00              |
+| Satellite_1  | Crater Terrain Imaging| N58        | 14:00-15:00              |
+| Satellite_2  | Crater Terrain Imaging| N121       | 16:00-17:00              |
+| Satellite_3  | Crater Terrain Imaging| N150       | 18:00-19:00              |
+| Satellite_4  | Icy Terrain Thermal   | N56        | 20:00-21:00              |
+| Satellite_5  | Icy Terrain Thermal   | N112       | 22:00-23:00              |
 
-### Satellite_2:
-- **Target Node**: N116
-- **Objective**: Perform thermal anomaly detection and surface monitoring.
+## Section 2: Sensor Execution Protocols
 
----
+### Protocol 1: Panoramic Image Capture for Crater Terrain
+- **Assigned Satellites**: Satellite_0, Satellite_1, Satellite_2, Satellite_3  
+- **Execution Steps**:
+  1. **Sensor Initialization**: Power on the satellite's camera and ensure all systems are operational.
+  2. **Positioning**: Manually or automatically position the satellite over nodes N5, N58, N121, and N150, checking for communication signals.
+  3. **Capture Sequence**: Acquire high-resolution images in the order of N5, N58, N121, then N150, ensuring each node is fully captured.
+  4. **Data Validation**: Review images for clarity and completeness, verifying all nodes have been imaged correctly.
+  5. **Transmission**: Transmit data to ground control, prioritizing if communication loss occurs at N150.
 
-## Section 2: Sensor Execution Protocols (Mapping Nodes to Procedures)
+### Protocol 2: Thermal Anomaly Detection for Icy Terrain
+- **Assigned Satellites**: Satellite_4, Satellite_5  
+- **Execution Steps**:
+  1. **Sensor Initialization**: Activate the thermal imaging sensor and ensure calibration is complete.
+  2. **Positioning**: Manually or automatically position over nodes N56 and N112, checking communication signals.
+  3. **Capture Sequence**: Use thermal sensors to scan each node for anomalies, focusing on detecting temperature irregularities.
+  4. **Data Validation**: Analyze data for thermal spikes or patterns indicative of anomalies.
+  5. **Transmission**: Transmit findings to ground control, ensuring priority is given despite potential communication loss at N150.
 
-### Protocol 1: Panoramic Terrain Mapping
-- **Assigned Satellite**: Satellite_3
-- **Nodes Involved**: N18
-- **Objective**: Map terrain features at the specified node.
-- **Protocol**:
-  1. Conduct a pre-mission system check.
-  2. Navigate to Node N18 using GPS.
-  3. Deploy panoramic imaging sensors.
-  4. Record high-resolution terrain data.
-  5. Transmit data during the communication window (5 minutes).
-  6. Log all captured imagery and environmental conditions.
-  7. Conduct post-mission review of collected data.
+## Section 3: Data Transmission & Validation Metrics
 
-### Protocol 2: Thermal Anomaly Detection
-- **Assigned Satellite**: Satellite_2
-- **Nodes Involved**: N116
-- **Objective**: Detect thermal anomalies at the specified node.
-- **Protocol**:
-  1. Conduct a pre-mission system check.
-  2. Navigate to Node N116 using GPS.
-  3. Deploy thermal imaging sensors.
-  4. Record temperature variations and surface conditions.
-  5. Transmit data during the communication window (3 minutes).
-  6. Log all captured thermal imagery and environmental conditions.
-  7. Conduct post-mission analysis of collected data.
+### Communication Window Feasibility
+- **Protocol 1**:
+  - Each satellite (Satellite_0 to Satellite_3) has a dedicated communication window of 1 hour per node.
+  - The sequential capture and transmission process is logistically feasible within the allotted time frame.
+  
+- **Protocol 2**:
+  - Satellites (Satellite_4 and Satellite_5) have a dedicated communication window of 1 hour per node.
+  - The thermal anomaly detection process aligns with the allocated time, ensuring data integrity.
 
----
+### Data Validation Metrics
+- **Image Capture**: All nodes must achieve ≥90% image clarity for mission success.
+- **Thermal Data**: Anomaly detection accuracy must be verified through ground-based thermal modeling.
+- **Transmission Success Rate**: Ensure 100% data transmission to ground control, with priority given to critical nodes (N150).
 
-## Section 3: Instrumentation & Data Transmission Overview
-
-### Scientific Equipment Required:
-- **Panoramic imaging sensors**: For terrain mapping (Protocol 1).
-- **Thermal imaging sensors**: For anomaly detection (Protocol 2).
-- **GPS navigation system**: Common equipment for all procedures.
-- **Data transmission modules**: For real-time communication with ground stations.
-
-### Communication Window Feasibility:
-- **Satellite_3**: 5-minute window - Adequate for transmitting panoramic data.
-- **Satellite_2**: 3-minute window - Sufficient for thermal anomaly detection, though limited for extensive datasets.
-
-### Overarching Mission Objectives:
-1. Collect and transmit high-resolution terrain data at Node N18 (Protocol 1).
-2. Detect and analyze thermal anomalies at Node N116 (Protocol 2).
-3. Ensure data integrity and timely transmission during allocated communication windows.
-4. Provide comprehensive orbital imagery and thermal data for scientific analysis.
-
----
-
-This report synthesizes the orbital trajectories, sensor protocols, and communication strategies into a unified operational document, ensuring clarity and alignment with mission objectives.
+### Conclusion
+The integrated orbital operations plan ensures seamless execution of both panoramic imaging and thermal anomaly detection protocols. The communication windows are optimized for mission success, and the sequential capture and validation processes guarantee high-quality scientific outcomes.
 ```

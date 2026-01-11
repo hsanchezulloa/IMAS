@@ -9,7 +9,25 @@
         "feasible": true,
         "warning": "WARNING: Low battery remaining (3.42)"
       },
+      "N12": {
+        "distance": 54.0,
+        "energy": 39.65,
+        "feasible": true,
+        "warning": "BATTERY OK"
+      },
+      "N20": {
+        "distance": 30.0,
+        "energy": 64.78,
+        "feasible": true,
+        "warning": "BATTERY OK"
+      },
       "N70": {
+        "distance": null,
+        "energy": null,
+        "feasible": false,
+        "warning": "NO FEASIBLE PATH (BATTERY)"
+      },
+      "N86": {
         "distance": null,
         "energy": null,
         "feasible": false,
@@ -20,24 +38,6 @@
         "energy": null,
         "feasible": false,
         "warning": "NO FEASIBLE PATH (BATTERY)"
-      },
-      "N12": {
-        "distance": 54.0,
-        "energy": 39.65,
-        "feasible": true,
-        "warning": "BATTERY OK"
-      },
-      "N86": {
-        "distance": null,
-        "energy": null,
-        "feasible": false,
-        "warning": "NO FEASIBLE PATH (BATTERY)"
-      },
-      "N20": {
-        "distance": 30.0,
-        "energy": 64.78,
-        "feasible": true,
-        "warning": "BATTERY OK"
       },
       "N59": {
         "distance": null,
@@ -57,9 +57,27 @@
         "feasible": false,
         "warning": "NO FEASIBLE PATH (BATTERY)"
       },
+      "N12": {
+        "distance": null,
+        "energy": null,
+        "feasible": false,
+        "warning": "NO FEASIBLE PATH (BATTERY)"
+      },
+      "N20": {
+        "distance": null,
+        "energy": null,
+        "feasible": false,
+        "warning": "NO FEASIBLE PATH (BATTERY)"
+      },
       "N70": {
         "distance": 42.0,
         "energy": 51.33,
+        "feasible": true,
+        "warning": "BATTERY OK"
+      },
+      "N86": {
+        "distance": 6.0,
+        "energy": 87.85,
         "feasible": true,
         "warning": "BATTERY OK"
       },
@@ -68,24 +86,6 @@
         "energy": 37.98,
         "feasible": true,
         "warning": "BATTERY OK"
-      },
-      "N12": {
-        "distance": null,
-        "energy": null,
-        "feasible": false,
-        "warning": "NO FEASIBLE PATH (BATTERY)"
-      },
-      "N86": {
-        "distance": 6.0,
-        "energy": 87.85,
-        "feasible": true,
-        "warning": "BATTERY OK"
-      },
-      "N20": {
-        "distance": null,
-        "energy": null,
-        "feasible": false,
-        "warning": "NO FEASIBLE PATH (BATTERY)"
       },
       "N59": {
         "distance": 75.0,
@@ -105,9 +105,27 @@
         "feasible": false,
         "warning": "NO FEASIBLE PATH (BATTERY)"
       },
+      "N12": {
+        "distance": null,
+        "energy": null,
+        "feasible": false,
+        "warning": "NO FEASIBLE PATH (BATTERY)"
+      },
+      "N20": {
+        "distance": null,
+        "energy": null,
+        "feasible": false,
+        "warning": "NO FEASIBLE PATH (BATTERY)"
+      },
       "N70": {
         "distance": 42.0,
         "energy": 33.33,
+        "feasible": true,
+        "warning": "BATTERY OK"
+      },
+      "N86": {
+        "distance": 6.0,
+        "energy": 69.85,
         "feasible": true,
         "warning": "BATTERY OK"
       },
@@ -116,24 +134,6 @@
         "energy": 19.98,
         "feasible": true,
         "warning": "WARNING: Low battery remaining (19.98)"
-      },
-      "N12": {
-        "distance": null,
-        "energy": null,
-        "feasible": false,
-        "warning": "NO FEASIBLE PATH (BATTERY)"
-      },
-      "N86": {
-        "distance": 6.0,
-        "energy": 69.85,
-        "feasible": true,
-        "warning": "BATTERY OK"
-      },
-      "N20": {
-        "distance": null,
-        "energy": null,
-        "feasible": false,
-        "warning": "NO FEASIBLE PATH (BATTERY)"
       },
       "N59": {
         "distance": null,
@@ -153,7 +153,25 @@
         "feasible": false,
         "warning": "NO FEASIBLE PATH (BATTERY)"
       },
+      "N12": {
+        "distance": 54.0,
+        "energy": 3.65,
+        "feasible": true,
+        "warning": "WARNING: Low battery remaining (3.65)"
+      },
+      "N20": {
+        "distance": 30.0,
+        "energy": 28.77,
+        "feasible": true,
+        "warning": "WARNING: Low battery remaining (28.77)"
+      },
       "N70": {
+        "distance": null,
+        "energy": null,
+        "feasible": false,
+        "warning": "NO FEASIBLE PATH (BATTERY)"
+      },
+      "N86": {
         "distance": null,
         "energy": null,
         "feasible": false,
@@ -164,24 +182,6 @@
         "energy": null,
         "feasible": false,
         "warning": "NO FEASIBLE PATH (BATTERY)"
-      },
-      "N12": {
-        "distance": 54.0,
-        "energy": 3.65,
-        "feasible": true,
-        "warning": "WARNING: Low battery remaining (3.65)"
-      },
-      "N86": {
-        "distance": null,
-        "energy": null,
-        "feasible": false,
-        "warning": "NO FEASIBLE PATH (BATTERY)"
-      },
-      "N20": {
-        "distance": 30.0,
-        "energy": 28.77,
-        "feasible": true,
-        "warning": "WARNING: Low battery remaining (28.77)"
       },
       "N59": {
         "distance": null,
@@ -201,9 +201,27 @@
         "feasible": false,
         "warning": "NO FEASIBLE PATH (BATTERY)"
       },
+      "N12": {
+        "distance": null,
+        "energy": null,
+        "feasible": false,
+        "warning": "NO FEASIBLE PATH (BATTERY)"
+      },
+      "N20": {
+        "distance": null,
+        "energy": null,
+        "feasible": false,
+        "warning": "NO FEASIBLE PATH (BATTERY)"
+      },
       "N70": {
         "distance": 42.0,
         "energy": 37.33,
+        "feasible": true,
+        "warning": "BATTERY OK"
+      },
+      "N86": {
+        "distance": 6.0,
+        "energy": 73.85,
         "feasible": true,
         "warning": "BATTERY OK"
       },
@@ -212,24 +230,6 @@
         "energy": 23.98,
         "feasible": true,
         "warning": "WARNING: Low battery remaining (23.98)"
-      },
-      "N12": {
-        "distance": null,
-        "energy": null,
-        "feasible": false,
-        "warning": "NO FEASIBLE PATH (BATTERY)"
-      },
-      "N86": {
-        "distance": 6.0,
-        "energy": 73.85,
-        "feasible": true,
-        "warning": "BATTERY OK"
-      },
-      "N20": {
-        "distance": null,
-        "energy": null,
-        "feasible": false,
-        "warning": "NO FEASIBLE PATH (BATTERY)"
       },
       "N59": {
         "distance": 75.0,

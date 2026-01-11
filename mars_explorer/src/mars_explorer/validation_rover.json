@@ -1,4 +1,4 @@
 {
-  "rover_ok": false,
-  "feedback_rover": "The following mission nodes were not visited: N102."
+  "rover_ok": true,
+  "feedback_rover": "All required mission nodes (N1, N12, N20, N59, N70, N86, N102) have been visited by the rovers. No hazardous nodes were traversed."
 }

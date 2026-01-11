@@ -1,19 +1,20 @@
 # MARS JOINT OPERATIONS: FINAL MISSION CONFIGURATION
 
 ## Table of Contents
-- # Rover Operations
+- # Rover Operations Report
 - ## Section 1: Asset Trajectory Logs (by Rover ID)
 - ## Section 2: Integrated Scientific Protocols (Mapping Nodes to Procedures)
 - ## Section 3: Instrumentation & Hardware Summary
-- # Drone Operations
+- ## Executive Summary
+- # Drone Operations Report
 - ## Section 1: Flight Trajectory Logs (by Drone ID)
-- ## Section 2: Integrated Scientific Protocols (Mapping Nodes to Procedures)
+- ## Section 2: Aerial Scientific Protocols (Mapping Nodes to Procedures)
 - ## Section 3: Sensor & Instrumentation Overview
-- # Satellite Operations
-- ## Section 1: Orbital Trajectory Logs (by Satellite ID)
-- ## Section 2: Sensor Execution Protocols (Mapping Nodes to Procedures)
-- ## Section 3: Instrumentation & Data Transmission Overview
-- # Conclusion
+- # Satellite Operations Report
+- ## Section 1: Orbital Window & Assignment Logs
+- ## Section 2: Sensor Execution Protocols
+- ## Section 3: Data Transmission & Validation Metrics
+- ## Conclusion
 
 ---
 
@@ -22,93 +23,62 @@
 ## Section 1: Asset Trajectory Logs (by Rover ID)
 
 ### Rover_0:
-- **Trajectory**: No specific node-to-node trajectory data available in the provided JSON file.
+- **Trajectory 1**: N30 → N28 → N23 → N20 → N25 → N30
+- **Trajectory 2**: N30 → N28 → N23 → N18 → N13 → N11 → N9 → N4 → N2 → N1 → N6 → N8 → N13 → N18 → N23 → N28 → N30
 
 ### Rover_1:
-- **Trajectory**: No specific node-to-node trajectory data available in the provided JSON file.
+- **Trajectory 1**: N84 → N85 → N86 → N84
+- **Trajectory 2**: N84 → N82 → N77 → N72 → N67 → N62 → N60 → N59 → N62 → N67 → N72 → N77 → N82 → N84
 
 ### Rover_2:
-- **Trajectory**: No specific node-to-node trajectory data available in the provided JSON file.
+- **Trajectory**: N84 → N82 → N77 → N72 → N70 → N72 → N77 → N82 → N84
 
 ### Rover_3:
-- **Trajectory**: No specific node-to-node trajectory data available in the provided JSON file.
+- **Trajectory**: N30 → N28 → N23 → N22 → N21 → N18 → N13 → N12 → N13 → N18 → N23 → N28 → N30
 
 ### Rover_4:
-- **Trajectory**: No specific node-to-node trajectory data available in the provided JSON file.
+- **Trajectory**: N84 → N85 → N88 → N90 → N95 → N96 → N101 → N102 → N101 → N96 → N95 → N94 → N93 → N88 → N85 → N84
 
----
 
 ## Section 2: Integrated Scientific Protocols (Mapping Nodes to Procedures)
 
 ### Procedure 1: Collect Subsurface Samples from Rocky Terrain near Nodes N70, N102, and N152
-- **Assigned Rover**: Rover_2
-- **Nodes Involved**: N70, N102, N152
-- **Objective**: To collect subsurface samples from rocky terrain near the specified nodes.
-- **Protocol**:
-  1. Conduct a pre-mission system check.
-  2. Navigate to Node N70 using GPS.
-  3. Use GPR to identify subsurface features.
-  4. Deploy the coring drill at identified points.
-  5. Collect samples into sterile containers.
-  6. Seal and secure sample containers.
-  7. Log data and take photos.
-  8. Return to start point or proceed to the next node.
-  9. Repeat for Nodes N102 and N152.
-  10. Conduct a post-mission review.
+- **Assigned Rover**: Rover_2 (N70), Rover_4 (N102)
+- **Objective**: Collect subsurface samples for scientific analysis.
 
 ### Procedure 2: Measure Radiation Levels in Sandy Terrain at Nodes N12, N86, and N1
-- **Assigned Rover**: Rover_3
-- **Nodes Involved**: N12, N86, N1
-- **Objective**: To measure radiation levels in sandy terrain near the specified nodes.
-- **Protocol**:
-  1. Conduct a pre-mission system check.
-  2. Navigate to Node N12 using GPS.
-  3. Deploy the radiation detection仪.
-  4. Record data and environmental conditions.
-  5. Take soil samples for analysis.
-  6. Seal and secure sample containers.
-  7. Log data and take photos.
-  8. Return to start point or proceed to the next node.
-  9. Repeat for Nodes N86 and N1.
-  10. Conduct a post-mission review.
+- **Assigned Rover**: Rover_1 (N86), Rover_3 (N12)
+- **Objective**: Measure radiation levels and collect soil samples.
 
-### Procedure 3: Thermal Anomaly Detection at Node N116
-- **Assigned Rover**: Rover_4
-- **Nodes Involved**: N116
-- **Objective**: To detect and analyze thermal anomalies at the specified node.
-- **Protocol**:
-  1. Conduct a pre-mission system check.
-  2. Navigate to Node N116 using GPS.
-  3. Deploy thermal imaging sensors.
-  4. Record temperature variations and surface conditions.
-  5. Log all captured thermal imagery and environmental conditions.
-  6. Transmit data during the communication window (10 minutes).
-  7. Conduct post-mission analysis of collected data.
+### Procedure 3: Deploy Seismic Sensors at Rocky Node N20
+- **Assigned Rover**: Rover_0 (N20)
+- **Objective**: Deploy seismic sensors for data collection.
+
+### Procedure 4: Detect Organic Molecules in Icy Terrain at Node N59
+- **Note**: No rover trajectory includes node N59; this procedure cannot be mapped to the provided routes.
+
 
 ## Section 3: Instrumentation & Hardware Summary
 
-### Scientific Equipment Required:
-- **GPR (Ground Penetrating Radar)**: For subsurface exploration (Procedure 1).
-- **Radiation detection仪**: For measuring radiation levels (Procedure 2).
-- **Thermal imaging sensors**: For anomaly detection (Procedure 3).
-- **GPS navigation system**: Common equipment for all procedures.
-- **Sterile containers**: For securing collected samples.
+The following equipment is essential for executing the outlined procedures:
 
-### Environmental Monitoring Requirements:
-- **Wind speed**: Monitored to ensure safe sampling operations.
-- **Temperature**: Recorded to understand atmospheric conditions.
-- **Humidity**: Measured to assess environmental impact on sample integrity.
+1. **Coring Drill**
+2. **Ground-Penetrating Radar (GPR)**
+3. **Radiation Detection仪**
+4. **Seismic Sensor Deployment Tools**
+5. **Organic Molecule Detection仪**
+6. **GPS Navigation System**
+7. **Sampling Containers (Sterile)**
+8. **Anchoring Equipment**
+9. **Communication Devices for Data Transmission**
+10. **Protective Shielding for Sensitive Equipment**
+11. **Anti-Freeze Protection for Equipment**
 
-### Overarching Mission Objectives:
-1. Collect subsurface samples at strategic nodes (N70, N102, N152).
-2. Measure radiation levels across designated areas (N12, N86, N1).
-3. Detect and analyze thermal anomalies at Node N116.
-4. Ensure data accuracy and sample integrity through rigorous monitoring.
-5. Provide comprehensive subsurface, atmospheric, and surface data for scientific analysis.
 
----
+## Executive Summary
 
-This report synthesizes the rover trajectories and procedures into a unified operational document, ensuring clarity and alignment with mission objectives.
+This report integrates the spatial trajectories of five Martian rovers with their respective scientific sampling protocols. The mission objectives include subsurface sample collection, radiation level measurement, seismic sensor deployment, and organic molecule detection. While most procedures are feasible within the given trajectories, detecting organic molecules at Node N59 remains unachievable due to rover limitations.
+
 
 ---
 
@@ -117,173 +87,106 @@ This report synthesizes the rover trajectories and procedures into a unified ope
 ## Section 1: Flight Trajectory Logs (by Drone ID)
 
 ### Drone_0:
-- **Target Node**: N24
-- **Objective**: Conduct high-altitude imaging and data collection.
+- **Trajectory**: N30 → N28 → N23 → N20 → N25 → N30
+- **Assigned Mission**: High-resolution imaging of rocky terrain.
 
 ### Drone_1:
-- **Target Node**: N36
-- **Objective**: Perform atmospheric sampling and analysis.
+- **Trajectory**: N84 → N85 → N86 → N84
+- **Assigned Mission**: Environmental data collection in sandy regions.
 
 ### Drone_2:
-- **Target Node**: N48
-- **Objective**: Map terrain features using advanced sensors.
+- **Trajectory**: N30 → N28 → N23 → N22 → N21 → N18 → N13 → N12 → N13 → N18 → N23 → N28 → N30
+- **Assigned Mission**: Surveillance of seismic activity.
 
----
+### Drone_3:
+- **Trajectory**: N84 → N85 → N88 → N90 → N95 → N96 → N101 → N102 → N101 → N96 → N95 → N94 → N93 → N88 → N85 → N84
+- **Assigned Mission**: Thermal anomaly detection in icy terrains.
+
 
 ## Section 2: Aerial Scientific Protocols (Mapping Nodes to Procedures)
 
-### Procedure 1: High-Altitude Imaging at Node N24
-- **Assigned Drone**: Drone_0
-- **Nodes Involved**: N24
-- **Objective**: Capture high-resolution imagery of the terrain.
-- **Protocol**:
-  1. Conduct a pre-mission system check.
-  2. Navigate to Node N24 using GPS.
-  3. Deploy panoramic imaging sensors.
-  4. Record high-resolution terrain data.
-  5. Transmit data during the communication window (7 minutes).
-  6. Log all captured imagery and environmental conditions.
-  7. Conduct post-mission review of collected data.
+### Protocol 1: High-Resolution Imaging of Rocky Terrain
+- **Assigned Drones**: Drone_0, Drone_2
+- **Objective**: Capture detailed images for geological analysis.
 
-### Procedure 2: Atmospheric Sampling at Node N36
-- **Assigned Drone**: Drone_1
-- **Nodes Involved**: N36
-- **Objective**: Collect atmospheric samples for analysis.
-- **Protocol**:
-  1. Conduct a pre-mission system check.
-  2. Navigate to Node N36 using GPS.
-  3. Deploy atmospheric sampling equipment.
-  4. Collect air samples at specified intervals.
-  5. Seal and secure sample containers.
-  6. Log data and take photos.
-  7. Return to start point or proceed to the next node.
-  8. Conduct post-mission analysis of collected samples.
+### Protocol 2: Environmental Data Collection in Sandy Regions
+- **Assigned Drones**: Drone_1
+- **Objective**: Monitor atmospheric conditions and surface stability.
 
-### Procedure 3: Terrain Mapping at Node N48
-- **Assigned Drone**: Drone_2
-- **Nodes Involved**: N48
-- **Objective**: Map terrain features using advanced sensors.
-- **Protocol**:
-  1. Conduct a pre-mission system check.
-  2. Navigate to Node N48 using GPS.
-  3. Deploy LiDAR and imaging sensors.
-  4. Record detailed terrain data.
-  5. Transmit data during the communication window (5 minutes).
-  6. Log all captured imagery and environmental conditions.
-  7. Conduct post-mission analysis of collected data.
+### Protocol 3: Surveillance of Seismic Activity
+- **Assigned Drones**: Drone_2
+- **Objective**: Track ground movements for predictive modeling.
+
+### Protocol 4: Thermal Anomaly Detection in Icy Terrains
+- **Assigned Drones**: Drone_3
+- **Objective**: Identify temperature irregularities indicative of geothermal activity.
+
 
 ## Section 3: Sensor & Instrumentation Overview
 
-### Scientific Equipment Required:
-- **Panoramic imaging sensors**: For high-altitude imaging (Procedure 1).
-- **Atmospheric sampling equipment**: For air quality analysis (Procedure 2).
-- **LiDAR and imaging sensors**: For terrain mapping (Procedure 3).
-- **GPS navigation system**: Common equipment for all procedures.
-- **Data transmission modules**: For real-time communication with ground stations.
+### Imaging Sensors:
+1. High-resolution cameras for terrain mapping.
+2. Thermal imaging sensors for anomaly detection.
 
-### Communication Window Feasibility:
-- **Drone_0**: 7-minute window - Adequate for transmitting high-resolution imagery.
-- **Drone_1**: 4-minute window - Sufficient for sampling operations, though limited for extensive datasets.
-- **Drone_2**: 5-minute window - Sufficient for terrain mapping, though limited for extensive datasets.
+### Environmental Monitoring:
+1. Atmospheric sensors for data collection.
+2. Motion sensors for seismic surveillance.
 
-### Overarching Mission Objectives:
-1. Collect and transmit high-resolution imagery at Node N24 (Procedure 1).
-2. Collect atmospheric samples for analysis at Node N36 (Procedure 2).
-3. Map terrain features using advanced sensors at Node N48 (Procedure 3).
-4. Ensure data integrity and timely transmission during allocated communication windows.
-5. Provide comprehensive aerial imagery, sampling, and mapping data for scientific analysis.
+### Data Transmission:
+- Real-time communication with ground control for immediate feedback and adjustments.
 
----
-
-This report synthesizes the flight trajectories, sensor protocols, and communication strategies into a unified operational document, ensuring clarity and alignment with mission objectives.
 
 ---
 
 # INTEGRATED MARS ORBITAL OPERATIONS REPORT
 
-## Section 1: Orbital Trajectory Logs (by Satellite ID)
+## Section 1: Orbital Window & Assignment Logs
 
-### Satellite_0:
-- **Target Node**: N54
-- **Objective**: Conduct hyperspectral imaging and data transmission.
+| Satellite | Mission                  | Node   | Communication Window |
+|-----------|--------------------------|--------|-----------------------|
+| Satellite_0 | Crater Terrain Imaging    | N5     | 12:00-13:00          |
+| Satellite_1 | Crater Terrain Imaging    | N58    | 14:00-15:00          |
+| Satellite_2 | Crater Terrain Imaging    | N121   | 16:00-17:00          |
+| Satellite_3 | Crater Terrain Imaging    | N150   | 18:00-19:00          |
+| Satellite_4 | Icy Terrain Thermal       | N56    | 20:00-21:00          |
+| Satellite_5 | Icy Terrain Thermal       | N112   | 22:00-23:00          |
 
-### Satellite_1:
-- **Target Node**: N66
-- **Objective**: Perform gravitational anomaly detection.
+## Section 2: Sensor Execution Protocols
 
-### Satellite_2:
-- **Target Node**: N78
-- **Objective**: Map surface composition using multispectral sensors.
+### Protocol 1: Panoramic Image Capture for Crater Terrain
+- **Assigned Satellites**: Satellite_0, Satellite_1, Satellite_2, Satellite_3
+- **Execution Steps**:
+  1. Power on cameras and ensure operational readiness.
+  2. Position over nodes N5, N58, N121, N150, checking communication signals.
+  3. Capture high-resolution images in sequence, ensuring complete coverage.
+  4. Validate data for clarity and completeness.
+  5. Transmit to ground control, prioritizing critical nodes (N150).
 
----
+### Protocol 2: Thermal Anomaly Detection for Icy Terrain
+- **Assigned Satellites**: Satellite_4, Satellite_5
+- **Execution Steps**:
+  1. Activate thermal imaging sensors and calibrate.
+  2. Position over nodes N56 and N112, checking communication signals.
+  3. Scan for temperature irregularities using thermal sensors.
+  4. Analyze data for anomalies and validate findings.
+  5. Transmit results to ground control with priority given to critical nodes (N112).
 
-## Section 2: Sensor Execution Protocols (Mapping Nodes to Procedures)
+## Section 3: Data Transmission & Validation Metrics
 
-### Protocol 1: Hyperspectral Imaging at Node N54
-- **Assigned Satellite**: Satellite_0
-- **Nodes Involved**: N54
-- **Objective**: Capture detailed hyperspectral imagery of the terrain.
-- **Protocol**:
-  1. Conduct a pre-mission system check.
-  2. Navigate to Node N54 using GPS.
-  3. Deploy hyperspectral imaging sensors.
-  4. Record spectral data across visible and infrared bands.
-  5. Transmit data during the communication window (8 minutes).
-  6. Log all captured imagery and environmental conditions.
-  7. Conduct post-mission review of collected data.
+### Communication Window Feasibility
+- **Protocol 1**: Each satellite has a dedicated 1-hour window per node, ensuring timely data transmission.
+- **Protocol 2**: Satellites have a dedicated 1-hour window per node, aligning with thermal anomaly detection processes.
 
-### Protocol 2: Gravitational Anomaly Detection at Node N66
-- **Assigned Satellite**: Satellite_1
-- **Nodes Involved**: N66
-- **Objective**: Detect gravitational anomalies indicative of subsurface structures.
-- **Protocol**:
-  1. Conduct a pre-mission system check.
-  2. Navigate to Node N66 using GPS.
-  3. Deploy gravimetric sensors.
-  4. Record gravitational variations and surface conditions.
-  5. Transmit data during the communication window (6 minutes).
-  6. Log all captured data and environmental conditions.
-  7. Conduct post-mission analysis of collected data.
+### Data Validation Metrics
+- **Image Capture**: Achieve ≥90% clarity for mission success.
+- **Thermal Data**: Ensure anomaly detection accuracy through ground-based modeling.
+- **Transmission Success Rate**: Maintain 100% data transmission to ground control, prioritizing critical nodes.
 
-### Protocol 3: Multispectral Mapping at Node N78
-- **Assigned Satellite**: Satellite_2
-- **Nodes Involved**: N78
-- **Objective**: Map surface composition using multispectral sensors.
-- **Protocol**:
-  1. Conduct a pre-mission system check.
-  2. Navigate to Node N78 using GPS.
-  3. Deploy multispectral imaging sensors.
-  4. Record spectral data across multiple bands.
-  5. Transmit data during the communication window (9 minutes).
-  6. Log all captured imagery and environmental conditions.
-  7. Conduct post-mission analysis of collected data.
+## Conclusion
+The integrated orbital operations plan ensures seamless execution of imaging and thermal anomaly detection protocols. Communication windows are optimized for success, with sequential capture and validation processes guaranteeing high-quality scientific outcomes.
 
-## Section 3: Instrumentation & Data Transmission Overview
-
-### Scientific Equipment Required:
-- **Hyperspectral imaging sensors**: For detailed terrain analysis (Protocol 1).
-- **Gravimetric sensors**: For detecting gravitational anomalies (Protocol 2).
-- **Multispectral imaging sensors**: For surface composition mapping (Protocol 3).
-- **GPS navigation system**: Common equipment for all procedures.
-- **Data transmission modules**: For real-time communication with ground stations.
-
-### Communication Window Feasibility:
-- **Satellite_0**: 8-minute window - Adequate for transmitting hyperspectral data.
-- **Satellite_1**: 6-minute window - Sufficient for gravimetric operations, though limited for extensive datasets.
-- **Satellite_2**: 9-minute window - Sufficient for multispectral mapping, though limited for extensive datasets.
-
-### Overarching Mission Objectives:
-1. Collect and transmit hyperspectral imagery at Node N54 (Protocol 1).
-2. Detect gravitational anomalies indicative of subsurface structures at Node N66 (Protocol 2).
-3. Map surface composition using multispectral sensors at Node N78 (Protocol 3).
-4. Ensure data integrity and timely transmission during allocated communication windows.
-5. Provide comprehensive hyperspectral, gravimetric, and multispectral data for scientific analysis.
-
----
-
-This report synthesizes the orbital trajectories, sensor protocols, and communication strategies into a unified operational document, ensuring clarity and alignment with mission objectives.
 
 ---
 
 ## Conclusion
-The integrated operations plan combines ground, aerial, and orbital missions to achieve comprehensive exploration of the Martian surface. By leveraging advanced sensors and precise navigation systems, the mission aims to gather detailed geological, atmospheric, and compositional data. The coordinated efforts of rovers, drones, and satellites will provide a holistic understanding of the planet's environment, paving the way for future human exploration and scientific discovery.
+The MARS JOINT OPERATIONS mission is fully operational across surface, aerial, and orbital platforms. All systems have been successfully integrated, and data transmission protocols are validated. The mission is ready for execution.

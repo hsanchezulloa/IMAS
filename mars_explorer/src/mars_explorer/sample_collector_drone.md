@@ -1,51 +1,69 @@
-# Sample Collector Drone Operations Manual
+```markdown
+# Drone Sampling Procedures
 
-## Procedure for Air Dust Sample Collection during Flight over N33 Crater
+## Procedure 1: Air Dust Sample Collection during Flight over N33 Crater
 
-1. **Pre-Flight Check**: Conduct a thorough pre-flight inspection of the drone, including battery levels, propeller integrity, and communication systems.
+### Step 1: Pre-Flight System Check
+- Conduct a thorough pre-flight inspection of the drone, including battery levels, propeller function, and communication systems.
 
-2. **Takeoff**: Launch the drone from the designated launch pad at the nearest safe zone to N33 crater.
+### Step 2: Take Off from Designated Launch Pad
+- Initiate takeoff using remote control or autonomous mode, ensuring stable ascent.
 
-3. **Navigate to N33 Crater**: Use GPS coordinates to fly the drone directly to the N33 crater area, maintaining a safe altitude above terrain features.
+### Step 3: Navigate to N33 Crater Area
+- Use GPS navigation to fly towards the coordinates of N33 crater at a safe altitude.
 
-4. **Initiate Sampling Mode**: Activate the air sampling system once the drone is over the crater to begin capturing dust particles.
+### Step 4: Hover at 500m Altitude Above Crater
+- Maintain hover position at 500 meters above the crater's surface to begin dust sampling.
 
-5. **Collect Samples at High Altitude (100m)**: Hover and collect samples for 5 minutes to gather data on higher atmospheric dust concentrations.
+### Step 5: Deploy Dust Sampling Equipment
+- Activate the dust collector mechanism, ensuring it is functioning properly.
 
-6. **Descend to Mid-Altitude (50m)**: Lower the drone to 50 meters to capture mid-altitude dust samples, ensuring continuous collection.
+### Step 6: Collect Air Samples at Various Altitudes
+- Collect samples at altitudes of 100m, 300m, and 500m to capture different layers of dust.
 
-7. **Maintain Safe Distance from Obstacles**: Avoid any rocks or debris near the crater to prevent damage to the drone or sample contamination.
+### Step 7: Ensure Safe Distance from Obstacles
+- Monitor surroundings for any obstacles or debris that could interfere with the drone's operation.
 
-8. **Return to Launch Point**: After completing sampling, fly back to the launch pad, ensuring no data loss during transmission.
+### Step 8: Transmit Sample Data to Base Station
+- Send collected data back to the base station for analysis and storage.
 
-9. **Post-Flight Check**: Inspect the drone for any damage and secure it in preparation for data analysis.
+### Step 9: Return to Launch Pad Safely
+- Navigate back to the launch pad, ensuring a smooth landing.
 
-10. **Document Samples Collected**: Record all collected samples with timestamps, altitudes, and locations for future reference.
-
----
-
-## Procedure for Mapping CO2 Frost Coverage in Icy Areas at N53, N63, and N108
-
-1. **Pre-Flight Setup**: Ensure the drone is equipped with multispectral imaging systems and sufficient battery life for extended missions.
-
-2. **Takeoff**: Launch from a safe zone near each target node to begin the mission.
-
-3. **Activate Imaging Systems**: Turn on CO2 frost detection sensors and cameras before reaching the target area.
-
-4. **Reach N53 Node**: Fly to N53, maintain a 50-meter altitude, and use imaging systems to map CO2 frost coverage.
-
-5. **Proceed to N63 Node**: From N53, navigate to N63, repeat imaging procedures for accurate data collection.
-
-6. **Move to N108 Node**: Continue the mission by flying to N108, ensuring consistent altitude and sensor use.
-
-7. **Avoid Icy Terrain Hazards**: Steer clear of any unstable ice formations to prevent accidents.
-
-8. **Monitor Battery Levels**: Check battery status periodically; return to base if levels are low.
-
-9. **Return to Base**: After completing all nodes, fly back to the launch point for data transfer and analysis.
-
-10. **Document Findings**: Compile images and data into a report, noting any anomalies or significant frost patterns observed.
+### Step 10: Post-Flight Inspection and Reporting
+- Perform post-flight checks, recharge batteries, and document all activities in the mission log.
 
 ---
 
-This manual ensures each drone operation is methodical, safe, and efficient, adhering to mission objectives and safety protocols.
+## Procedure 2: Map CO2 Frost Coverage in Icy Areas (N53, N63, N108)
+
+### Step 1: Pre-Flight System Check
+- Conduct a detailed pre-flight inspection of the drone's systems, including camera and sensor functionality.
+
+### Step 2: Take Off from Designated Launch Pad
+- Initiate takeoff using remote control or autonomous mode, ensuring stable ascent.
+
+### Step 3: Navigate to N53 Node
+- Fly towards the coordinates of N53 node at a safe altitude.
+
+### Step 4: Capture High-Resolution Images of CO2 Frost
+- Use imaging sensors to capture detailed images of CO2 frost coverage on the surface.
+
+### Step 5: Proceed to N63 Node
+- Navigate from N53 to N63, maintaining a safe distance and altitude.
+
+### Step 6: Repeat Imaging at N63
+- Capture additional high-resolution images at N63 node for comprehensive data collection.
+
+### Step 7: Move to N108 Node
+- Fly towards N108, ensuring smooth transition between nodes.
+
+### Step 8: Conduct Imaging at N108
+- Take more images at N108 to complete the mapping of CO2 frost coverage.
+
+### Step 9: Transmit Data to Base Station
+- Send all collected images and data back to the base station for analysis.
+
+### Step 10: Return to Launch Pad Safely
+- Navigate back to the launch pad, ensuring a smooth landing and post-flight inspection.
+```
