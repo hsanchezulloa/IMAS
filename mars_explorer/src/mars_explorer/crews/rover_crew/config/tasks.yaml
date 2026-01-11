@@ -5,7 +5,6 @@ final_nodes:
     A Python list containing all the node IDs where rovers need to perform their tasks.
   agent: extractor
 
-
 reporting_route:
   description: >
     You MUST do exactly these steps:
@@ -26,8 +25,6 @@ reporting_route:
     The output from the Multi_Rover_Route_Calculator tool. DO NOT MODIFY THE OUTPUT.
 
   agent: route_planner
-
-
 
 reporting_sampling:
   description: >

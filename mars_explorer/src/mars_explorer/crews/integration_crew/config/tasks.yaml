@@ -68,20 +68,50 @@ task_integrator_satellite:
   agent: integrator_satellite
 
 
+# task_writer:
+#   description: >
+#     Inputs:
+#     - Rover report: """{context.task_integrator_rover()}"""
+#     - Drone report: """{context.task_integrator_drone()}"""
+#     - Satellite report: """{context.task_integrator_satellite()}"""
+
+#     Consolidate the outputs from the Rover, Drone, and Satellite integration tasks.
+#     1. Set the title to 'MARS JOINT OPERATIONS: FINAL MISSION CONFIGURATION'.
+#     2. Generate a Table of Contents.
+#     3. Copy the content WITHOUT MODIFYING ANYTHING of integrator_rover.md to the rover_section.
+#     4. Copy the content WITHOUT MODIFYING ANYTHING of integrator_drone.md to the drone_section.
+#     5. Copy the content WITHOUT MODIFYING ANYTHING of integrator_satellite.md to the satellite_section.
+#     6. Write a final conclusion confirming all systems are ready for deployment.
+#   expected_output: >
+#     A single, comprehensive Markdown file named 'RESULT.md' that contains the concatenated and structured data from all three mission segments.
+#   agent: writer
+
+
 task_writer:
   description: >
-    Inputs:
-    - Rover report: """{context.task_integrator_rover()}"""
-    - Drone report: """{context.task_integrator_drone()}"""
-    - Satellite report: """{context.task_integrator_satellite()}"""
-
     Consolidate the outputs from the Rover, Drone, and Satellite integration tasks.
+
+    CRITICAL RULES:
+    - DO NOT invent file paths, filenames, directories, or references.
+    - ONLY use the exact inputs provided.
+    - NEVER assume locations or generate fake paths.
+    - Copy content EXACTLY as received. Zero modifications.
+
+    Steps:
     1. Set the title to 'MARS JOINT OPERATIONS: FINAL MISSION CONFIGURATION'.
     2. Generate a Table of Contents.
-    3. Copy the content WITHOUT MODIFYING ANYTHING of integrator_rover.md to the rover_section.
-    4. Copy the content WITHOUT MODIFYING ANYTHING of integrator_drone.md to the drone_section.
-    5. Copy the content WITHOUT MODIFYING ANYTHING of integrator_satellite.md to the satellite_section.
+    3. Copy the content WITHOUT MODIFYING ANYTHING from the Rover report 
+      into the rover_section. (VERBATIM COPY)
+    4. Copy the content WITHOUT MODIFYING ANYTHING from the Drone report 
+      into the drone_section. (VERBATIM COPY)
+    5. Copy the content WITHOUT MODIFYING ANYTHING from the Satellite report
+      into the satellite_section. (VERBATIM COPY)
     6. Write a final conclusion confirming all systems are ready for deployment.
+
+    Inputs:
+    - Rover report: """{integrator_rover}"""
+    - Drone report: """{integrator_drone}"""
+    - Satellite report: """{integrator_satellite}"""
   expected_output: >
-    A single, comprehensive Markdown file named 'RESULT.md' that contains the concatenated and structured data from all three mission segments.
+    A single, comprehensive json file that contains the concatenated and structured data from all three mission segments.
   agent: writer

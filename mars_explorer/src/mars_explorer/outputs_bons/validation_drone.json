@@ -1,4 +1,0 @@
-{
-  "drone_ok": false,
-  "feedback_drone": "All required nodes (N33, N53, N63, and N108) were visited by drones, but drone_4's route includes node N33, which is in the hazards list for drones."
-}

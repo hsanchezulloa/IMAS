@@ -1,4 +1,0 @@
-{
-  "satellite_ok": false,
-  "feedback_satellite": "The satellite route covers all required nodes. However, there is a communication violation: N56 has a window of 8h which exceeds the 5h limit."
-}

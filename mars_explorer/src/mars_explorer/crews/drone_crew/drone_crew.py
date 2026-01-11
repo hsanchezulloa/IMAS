@@ -68,7 +68,6 @@ class DronesCrew():
     @crew
     def crew(self) -> Crew:
         """Creates the DronesCrew crew"""
-
         return Crew(
             agents=self.agents,
             tasks=self.tasks,

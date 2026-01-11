@@ -38,7 +38,7 @@ class BatchDroneFlightTool(BaseTool):
         graph = env.get_graph()
         
         final_output = {}
-        DRONE_SPEED = 40.0 # Assumed speed unit
+        DRONE_SPEED = 40.0 # Assumed speed
         
         # Helper: Extract number from "N30" -> 30
         def get_node_number(node_str):
@@ -79,9 +79,6 @@ class BatchDroneFlightTool(BaseTool):
             if start_node not in graph or target_node not in graph:
                 print(f"SKIPPING {target_node}: Node not in graph.")
                 continue
-
-            # HAZARD (50% Chance)
-            # hazards = random.random() >= 0.5
 
             # FLIGHT CALCULATION
             # Trip: Start -> Target -> Start
