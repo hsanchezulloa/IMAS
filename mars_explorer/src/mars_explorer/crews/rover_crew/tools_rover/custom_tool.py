@@ -6,7 +6,7 @@ from tools.mars_environment import MarsEnvironment
 import random
 import itertools
 import json
-
+# Input schema for the tool
 class MultiRoverRouteInput(BaseModel):
     rovers: List[Dict[str, Any]] = Field(description="List of rovers with keys: id, location, energy")
     target_nodes: List[str] = Field(description="List of target node IDs")
@@ -23,15 +23,14 @@ class RoverPathfindingTool(BaseTool):
     args_schema: type[BaseModel] = MultiRoverRouteInput
 
     def _run(self, rovers: List[Dict], target_nodes: List[str], hazards) -> Dict[str, Any]:
+        # Load Mars environment graph
         env = MarsEnvironment()
         graph = env.get_graph()
         results = {}
-
-        # hazards = random.random() >= 0.5
         MAX_CANDIDATE_PATHS = 10
 
 
-        # Weight function (time-based)
+        # Weight function
         def weight_function(u, v, d):
             node_data = graph.nodes[v]
             temperature = float(d.get("temperature", -50))
@@ -82,11 +81,11 @@ class RoverPathfindingTool(BaseTool):
                 "energy": current_energy,
                 "output_nodes": {}
             }
-
+            # Skip invalid start nodes
             if start_node not in graph:
                 results[rover_id] = rover_result
                 continue
-
+            # Evaluate each target node
             for target in target_nodes:
                 node_result = {
                     "distance": None,
@@ -100,17 +99,19 @@ class RoverPathfindingTool(BaseTool):
                     continue
 
                 try:
+                    # Generate top-k candidate paths
                     go_paths = itertools.islice(nx.shortest_simple_paths(graph, start_node, target, weight=weight_function),MAX_CANDIDATE_PATHS)
                     feasible_found = False
                     for path_go in go_paths:
                         try:
+                            # Compute return path
                             path_back = nx.shortest_path(graph, target, start_node, weight=weight_function)
                         except nx.NetworkXNoPath:
                             continue
-
+                        # Full round trip
                         full_path = path_go + path_back[1:]
                         total_distance, total_energy = compute_energy_and_distance(full_path)
-
+                        # Check battery feasibility
                         if total_energy <= current_energy:
                             remaining = current_energy - total_energy
                             min_reserve = 100 * 0.30
@@ -138,8 +139,7 @@ class RoverPathfindingTool(BaseTool):
                 rover_result["output_nodes"][target] = node_result
 
             results[rover_id] = rover_result
-        
-        
+        # Save feasibility results
         with open(f"possible_paths_rovers.json", "w", encoding="utf-8") as f:
             json.dump(results, f, indent=2)
 
@@ -151,7 +151,7 @@ class RoverPathfindingTool(BaseTool):
         # Store only feasible paths
         feasible = {}
         all_nodes = set()
-
+        # Collect feasible nodes
         for rover, data in results.items():
             for node, info in data.get("output_nodes", {}).items():
                 if info.get("feasible"):
@@ -160,7 +160,7 @@ class RoverPathfindingTool(BaseTool):
 
         assignments = {rover: [] for rover in rovers_id}
         used_nodes = set()
-
+        # Re-defined weight function
         def weight_function(u, v, d):
             node_data = graph.nodes[v]
             distance = float(d.get("length", 0))
@@ -187,7 +187,7 @@ class RoverPathfindingTool(BaseTool):
             return min(candidates, key=lambda x: (x[1], -x[2]))[0]
 
 
-        # ensure each rover gets ≥1 node
+        # ensure each rover gets at least 1 node
         if enforce_min_one_per_rover:
             for rover in rovers_id:
                 if rover not in feasible:
@@ -206,12 +206,10 @@ class RoverPathfindingTool(BaseTool):
                 continue
             rover = best_rover_for_node(node)
             if rover:
-                # assignments[rover].append(node)
                 assignments[rover].append(node)
                 used_nodes.add(node)
-                
+        # Generate final round-trip paths  
         final_paths = {}
-
         for rover, nodes in assignments.items():
             start = results[rover]["location"]
             final_paths[rover] = []

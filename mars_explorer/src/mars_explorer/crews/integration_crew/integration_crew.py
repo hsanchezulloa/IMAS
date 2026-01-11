@@ -208,25 +208,11 @@ if __name__ == "__main__":
     ## Conclusion
     {report.conclusion}
     """
-    import re
     import json
-    def extract_json_object(self, text: str) -> dict:
-        m = re.search(r"```json\s*([\s\S]*?)\s*```", text, re.IGNORECASE)
-        if m:
-            return json.loads(m.group(1))
-        m = re.search(r"(\{[\s\S]*\})", text)
-        if not m:
-            raise ValueError("No JSON object found")
-        return json.loads(m.group(1))
-    integrator_rover = Path("results/non-hazards/integrator_rover.md").read_text(encoding="utf-8")
-    integrator_drone = Path("results/non-hazards/integrator_drone.md").read_text(encoding="utf-8")
-    integrator_satellite = Path("results/non-hazards/integrator_satellite.md").read_text(encoding="utf-8")
-    result = crew.kickoff(inputs = {'integrator_rover': integrator_rover, 'integrator_drone': integrator_drone, 'integrator_satellite': integrator_satellite})
-    raw_output = result.raw if hasattr(result, "raw") else result
-    result = extract_json_object(raw_output)
-    report = FinalMissionReport(**result)
+    with open("final_report_correct_1.json", "r", encoding="utf-8") as f:
+        report = json.load(f)
+    # report = Path("final_report.json").read_text(encoding="utf-8")
+    report = FinalMissionReport(**report)
     markdown = to_markdown(report)
     with open("final_mission_report_correct.md", "w", encoding="utf-8") as f:
         f.write(markdown)
-    # report_data = result.pydantic
-    # report_data.satellite_section

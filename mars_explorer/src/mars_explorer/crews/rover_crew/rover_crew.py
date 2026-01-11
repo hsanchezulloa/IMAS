@@ -76,12 +76,6 @@ class RoverCrew:
     @crew
     def crew(self) -> Crew:
         """Creates the Research Crew"""
-        # return Crew(
-        #     agents=[self.extractor(), self.route_planner()],
-        #     tasks=[self.final_nodes(), self.reporting_route()],
-        #     process=Process.sequential,
-        #     verbose=True
-        # )
 
         
         return Crew(
@@ -94,12 +88,7 @@ class RoverCrew:
 
 if __name__ == '__main__':
     crew = RoverCrew().crew()
-    # routes_rover = json.loads(Path("possible_routes_rover.json").read_text(encoding="utf-8"))
-    # report_priority = Path("report_priority.json").read_text(encoding="utf-8")
-    # rovers = Path("inputs/rovers.json").read_text(encoding="utf-8")
-    # result = crew.kickoff(inputs={'report_priority': report_priority, 'rovers': rovers})
-
+    routes_rover = json.loads(Path("possible_routes_rover.json").read_text(encoding="utf-8"))
     report_priority = Path("report_priority.json").read_text(encoding="utf-8")
     rovers = Path("inputs/rovers.json").read_text(encoding="utf-8")
     result = crew.kickoff(inputs={'report_priority': report_priority, 'rovers': rovers})
-    # print(result.raw)

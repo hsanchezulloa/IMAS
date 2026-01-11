@@ -1,56 +1,57 @@
-# {{crew_name}} Crew
+# Mars Explorer – Multi-Agent Planning System
+## Authors
+Laia Barcenilla Mañá, Núria Cardona Vilar, Natalia Muñoz Moruno and Helena Sánchez Ulloa
+## Overview
+Mars Explorer is a **multi-agent planning system** designed for autonomous Martian exploration. Built using CrewAI, the platform coordinates rovers, drones, and satellites to generate optimized mission plans while respecting environmental hazards and operational constraints.
 
-Welcome to the {{crew_name}} Crew project, powered by [crewAI](https://crewai.com). This template is designed to help you set up a multi-agent AI system with ease, leveraging the powerful and flexible framework provided by crewAI. Our goal is to enable your agents to collaborate effectively on complex tasks, maximizing their collective intelligence and capabilities.
+The system decomposes complex mission objectives into specialized agent crews that collaborate autonomously, ensuring safe, efficient, and robust exploration strategies. Full technical details and methodology are described in the accompanying report.
 
 ## Installation
 
-Ensure you have Python >=3.10 <3.14 installed on your system. This project uses [UV](https://docs.astral.sh/uv/) for dependency management and package handling, offering a seamless setup and execution experience.
-
-First, if you haven't already, install uv:
-
+Clone the repository:
 ```bash
-pip install uv
+git clone <https://github.com/hsanchezulloa/IMAS.git>
+cd IMAS/mars_explorer/src/mars_explorer 
 ```
-
-Next, navigate to your project directory and install the dependencies:
-
-(Optional) Lock the dependencies and install them by using the CLI command:
+Install dependencies:
 ```bash
-crewai install
+pip install -r requirements.txt
 ```
-
-### Customizing
-
-**Add your `OPENAI_API_KEY` into the `.env` file**
-
-- Modify `src/mars_explorer/config/agents.yaml` to define your agents
-- Modify `src/mars_explorer/config/tasks.yaml` to define your tasks
-- Modify `src/mars_explorer/crew.py` to add your own logic, tools and specific args
-- Modify `src/mars_explorer/main.py` to add custom inputs for your agents and tasks
-
-## Running the Project
-
-To kickstart your flow and begin execution, run this from the root folder of your project:
-
+## Execution
+Run the complete pipeline:
 ```bash
-crewai run
+python main.py
 ```
+This executes:
+- Mission analysis
+- Parallel planning (rovers, drones, satellites)
+- Automatic validation loop
+- Final mission integration
+- Markdown report generation
 
-This command initializes the mars-explorer Flow as defined in your configuration.
+## Results
 
-This example, unmodified, will run the create a `report.md` file with the output of a research on LLMs in the root folder.
+The best execution results are stored inside the results/ folder:
+```bash
+results/
+├── hazards/
+│   ├── routes_drone.json
+│   ├── routes_rover.json
+│   ├── routes_satellite.json
+│   └── ...
+└── non-hazards/
+    ├── routes_drone.json
+    ├── routes_rover.json
+    ├── routes_satellite.json
+    └── ...
+```
+Since hazards may or may not occur, two execution scenarios are provided:
 
-## Understanding Your Crew
+Hazards ON (hazards/)
+ - Routes strictly avoid unstable, radioactive and storm-affected nodes.
 
-The mars-explorer Crew is composed of multiple AI agents, each with unique roles, goals, and tools. These agents collaborate on a series of tasks, defined in `config/tasks.yaml`, leveraging their collective skills to achieve complex objectives. The `config/agents.yaml` file outlines the capabilities and configurations of each agent in your crew.
+Hazards OFF (non-hazards/)
+  - Optimized routes assuming ideal environmental conditions.
 
-## Support
+This dual execution provides a robust contingency plan, ensuring mission readiness under uncertain Martian conditions.
 
-For support, questions, or feedback regarding the {{crew_name}} Crew or crewAI.
-
-- Visit our [documentation](https://docs.crewai.com)
-- Reach out to us through our [GitHub repository](https://github.com/joaomdmoura/crewai)
-- [Join our Discord](https://discord.com/invite/X4JWnZnxPb)
-- [Chat with our docs](https://chatg.pt/DWjSBZn)
-
-Let's create wonders together with the power and simplicity of crewAI.

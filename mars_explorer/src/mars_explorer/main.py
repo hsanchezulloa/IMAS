@@ -18,7 +18,7 @@ class ValidationResult(BaseModel):
     satellite_ok: bool
 
 class MarsFlow(Flow):
-    MAX_RETRIES = 3
+    MAX_RETRIES = 3 # Maximum allowed replanning attempts
 
     def __init__(self, mission_crew, rover_crew, drone_crew, satellite_crew, validation_crew, integration_crew):
         super().__init__()
@@ -35,9 +35,9 @@ class MarsFlow(Flow):
     def run_mission_analysis(self):
         print("Mission analysis")
         mission_report = self.state.get("mission_report")
-        result = self.mission_crew.crew().kickoff(inputs={"mission_report": mission_report,})
+        result = self.mission_crew.crew().kickoff(inputs={"mission_report": mission_report})
         self.state["mission"] = result
-        self.state["retries"] = 0 
+        self.state["retries"] = 0
         return result
 
     # Utils
@@ -60,7 +60,6 @@ class MarsFlow(Flow):
         report_hazard_constraints = self.extract_json_object(Path("report_hazard_constraints.json").read_text(encoding="utf-8"))
         satellite_json = self.state.get("satellite_json")
         result = self.satellite_crew.crew().kickoff(inputs={"report_priority": report_priority, "satellite_json": satellite_json, 'report_hazard_constraints': report_hazard_constraints})
-
         self.state["satellite_plan"] = result
         return "satellite_ready"
     
@@ -86,15 +85,10 @@ class MarsFlow(Flow):
         self.state["drone_plan"] = result
         return "drone_ready"
 
-    
-
     # Validation
     @listen(or_(and_(run_rover_planning, run_drone_planning, run_satellite_planning), and_("replan_rover", run_rover_planning), and_("replan_drone", run_drone_planning), and_("replan_satellite", run_satellite_planning)))
     def validate_plans(self, _) -> ValidationResult:
         print("Integration Crew is validating individual routes...")
-        # if not all([self.state.get("rover_plan"), self.state.get("drone_plan"), self.state.get("satellite_plan")]):
-        #     return
-        # We call the validation_crew specifically for validation
         reporting_aggregation = self.extract_json_object(Path("reporting_aggregation.json").read_text(encoding="utf-8"))
         routes_satellite = self.extract_json_object(Path("routes_satellite.json").read_text(encoding="utf-8"))
         routes_drone = self.extract_json_object(Path("routes_drone.json").read_text(encoding="utf-8"))
@@ -106,11 +100,9 @@ class MarsFlow(Flow):
         try:
             res = self.extract_json_object(validation_output.raw)
             validation = ValidationResult(rover_ok=res.get("rover_ok", False), drone_ok=res.get("drone_ok", False), satellite_ok=res.get("satellite_ok", False))
-            # Store feedback in state so the replanning agents know what went wrong
             self.state["feedback"] = res.get("feedback", "No specific feedback provided.")
         except Exception as e:
             print(f"Validation parsing failed: {e}")
-            # Default to False if parsing fails to force a retry
             validation = ValidationResult(rover_ok=False, drone_ok=False, satellite_ok=False)
         self.state["validation"] = validation
         return validation
@@ -121,13 +113,10 @@ class MarsFlow(Flow):
         if validation.rover_ok and validation.drone_ok and validation.satellite_ok:
             print("All plans valid")
             return "integrate"
-
         self.state["retries"] = self.state.get("retries", 0) + 1
         print(f"Validation failed (attempt {self.state['retries']}/{self.MAX_RETRIES})")
-
         if self.state["retries"] >= self.MAX_RETRIES:
             return "integrate"
-
         if not validation.rover_ok:
             return "replan_rover"
         if not validation.drone_ok:
@@ -190,5 +179,5 @@ def plot():
 
 
 if __name__ == "__main__":
-    kickoff()
-    # plot()
+    # kickoff()
+    plot()
