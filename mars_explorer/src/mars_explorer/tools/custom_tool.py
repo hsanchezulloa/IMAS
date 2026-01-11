@@ -1,3 +1,4 @@
+# In this implementation, all custom tools were developed specifically for individual crews and are therefore integrated directly within each crew's codebase.
 # from typing import Type
 
 # from crewai.tools import BaseTool
