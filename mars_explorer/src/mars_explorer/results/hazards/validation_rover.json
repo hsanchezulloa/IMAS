@@ -1,0 +1,4 @@
+{
+  "rover_ok": false,
+  "feedback_rover": "Rover_0 and Rover_3 have paths that include node N4, which is marked as a hazardous unstable terrain. Additionally, all required mission nodes (N70, N102, N12, N86, N1, N20, N59) are covered by the rovers' routes."
+}

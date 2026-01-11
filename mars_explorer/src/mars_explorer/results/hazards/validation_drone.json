@@ -1,0 +1,6 @@
+```json
+{
+  "drone_ok": false,
+  "feedback_drone": "The drones' routes do not cover all required nodes. Missing nodes: N53, N63. Additionally, drone_3's route includes the hazardous node N78."
+}
+```

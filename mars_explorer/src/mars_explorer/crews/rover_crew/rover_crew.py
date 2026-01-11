@@ -5,6 +5,7 @@ from typing import List
 from pydantic import BaseModel
 from crews.rover_crew.tools_rover.custom_tool import RoverPathfindingTool
 from pathlib import Path
+import json
 
 ollama_llm = LLM(
     model='ollama/deepseek-r1:14b',
