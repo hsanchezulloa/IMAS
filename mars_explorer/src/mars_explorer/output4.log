@@ -1,0 +1,1012 @@
+﻿┌───────────────────────────────────────── Flow Execution ─────────────────────────────────────────┐
+│                                                                                                  │
+│  Starting Flow Execution                                                                         │
+│  Name: MarsFlow                                                                                  │
+│  ID: 460da2cb-8e00-49d1-8d5d-b0afc8ea0a0b                                                        │
+│  Tool Args:                                                                                      │
+│                                                                                                  │
+│                                                                                                  │
+└──────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+[1m[35m Flow started with ID: 460da2cb-8e00-49d1-8d5d-b0afc8ea0a0b[00m
+Mission analysis
+🌊 Flow: MarsFlow
+ID: 460da2cb-8e00-49d1-8d5d-b0afc8ea0a0b
+├── 🧠 Starting Flow...
+└── 🔄 Running: run_mission_analysis┌───────────────────────────────────── Crew Execution Started ─────────────────────────────────────┐
+│                                                                                                  │
+│  Crew Execution Started                                                                          │
+│  Name: crew                                                                                      │
+│  ID: 30da32c9-3c31-4d20-9491-91601d99abde                                                        │
+│  Tool Args:                                                                                      │
+│                                                                                                  │
+│                                                                                                  │
+└──────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+🚀 Crew: crew
+└── 📋 Task: 26f8cdea-7acf-4ba7-b788-3018f5854e58
+    Status: Executing Task...┌──────────────────────────────────────── 🤖 Agent Started ────────────────────────────────────────┐
+│                                                                                                  │
+│  Agent: Mars mission strategic planner                                                           │
+│                                                                                                  │
+│  Task: Your ONLY job is to take the entire raw text provided in 'mission_report'  and pass it    │
+│  UNCHANGED to the 'planner_divide_report' tool in the 'markdown_report' argument.                │
+│  Do NOT try to extract nodes or terrains yourself.  Do NOT summarize.  Pass the raw markdown     │
+│  exactly as it is: """ {                                                                         │
+│  ---                                                                                             │
+│                                                                                                  │
+│  # Mars Mission Report                                                                           │
+│                                                                                                  │
+│  ## Scientific Goals                                                                             │
+│                                                                                                  │
+│  - Collect subsurface samples from **rocky** terrain near nodes **N70** and **N102**.            │
+│  - Capture panoramic images of **crater** terrain at nodes **N5**, **N58**, **N121** and         │
+│  **N150**.                                                                                       │
+│  - Measure radiation levels in **sandy** terrain at node **N12**, **N86** and **N1**.            │
+│  - Deploy seismic sensors at the **rocky** node **N20**.                                         │
+│  - Detect organic molecules in **icy** terrain at **N59**.                                       │
+│  - Air **dust** sample collection during flight over **N33** crater.                             │
+│  - Map CO2 frost coverage in **icy** areas **N53**, **N63** and **N108**.                        │
+│  - Identification of thermal anomalies at **icy** nodes **N56** and **N112**.                    │
+│                                                                                                  │
+│  ---                                                                                             │
+│                                                                                                  │
+│  ## Operational Constraints                                                                      │
+│                                                                                                  │
+│  - **Rovers** and **drones** should recharge if energy drops below 30%.                          │
+│  - **Rovers** must enter a heat shelter during 20 minutes if the surface temperature is below    │
+│  -60ºC.                                                                                          │
+│  - **Rovers** cannot operate if node temperature is below -80ºC.                                 │
+│  - **Rover's** energy consumption is different depending on the type of terrain: 5% in rocky,    │
+│  increased 10% in sandy, increased 20% in icy and increased 15% in crater terrains.              │
+│  - **Drones** must return to base after 25 minutes of flight.                                    │
+│  - **Drones** are disabled if there is a dust storm.                                             │
+│  - **Drones** cannot operate if wind gusts are higher than 40 km/h.                              │
+│  - **Drone's** energy consumption is increased 15% if wind is higher than 30 km/h.               │
+│  - **Satellites** must maintain communication with the base station at N30 or N84 every 5 hours  │
+│  if they have to identify thermal anomalies.                                                     │
+│  - **Satellites** cannot communicate in nodes with communication loss.                           │
+│  - **Rovers** may not operate in terrain classified as radioactive.                              │
+│  - **Rovers** may not operate in terrain classified as unstable.                                 │
+│                                                                                                  │
+│  ---                                                                                             │
+│                                                                                                  │
+│  ## Mission Priorities                                                                           │
+│                                                                                                  │
+│  1. **High Priority**                                                                            │
+│     - Radiation measurement at **N12**, **N86** and **N1**.                                      │
+│     - Subsurface sample collection at **N70** and **N102**.                                      │
+│     - Deploy seismic sensors at node **N20**.                                                    │
+│                                                                                                  │
+│  2. **Medium Priority**                                                                          │
+│     - Air sample collection at **N33**.                                                          │
+│     - Organic sample collection at **N59**.                                                      │
+│     - Co2 analysis **N53**, **N63** and **N108**.                                                │
+│                                                                                                  │
+│  3. **Low Priority**                                                                             │
+│     - Panoramic imaging at **N5**, **N58**, **N121** and **N150**.                               │
+│     - Thermal anomalies at nodes **N56** and **N112**.                                           │
+│                                                                                                  │
+│  ---                                                                                             │
+│                                                                                                  │
+│  ## Known Hazards                                                                                │
+│                                                                                                  │
+│  - **Nodes N4, N19, N128**: unstable rocky terrain                                               │
+│  - **Nodes N51, N78, N118**: nodes classified as radioactive                                     │
+│  - **Node N33**: frequent dust storms                                                            │
+│                                                                                                  │
+│  ---                                                                                             │
+│  } """                                                                                           │
+│                                                                                                  │
+│                                                                                                  │
+└──────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+🚀 Crew: crew
+└── 📋 Task: 26f8cdea-7acf-4ba7-b788-3018f5854e58
+    Status: Executing Task...
+    └── 🔧 Used planner_divide_report (1)┌──────────────────────────────────── 🔧 Agent Tool Execution ─────────────────────────────────────┐
+│                                                                                                  │
+│  Agent: Mars mission strategic planner                                                           │
+│                                                                                                  │
+│  Thought: Thought: I will pass the raw markdown text exactly as provided to the                  │
+│  planner_divide_report tool.                                                                     │
+│                                                                                                  │
+│  Using Tool: planner_divide_report                                                               │
+│                                                                                                  │
+└──────────────────────────────────────────────────────────────────────────────────────────────────┘
+┌─────────────────────────────────────────── Tool Input ───────────────────────────────────────────┐
+│                                                                                                  │
+│  "{\"markdown_report\": \" {\\n---\\n\\n# Mars Mission Report\\n\\n## Scientific Goals\\n\\n-    │
+│  Collect subsurface samples from **rocky** terrain near nodes **N70** and **N102**. \\n-         │
+│  Capture panoramic images of **crater** terrain at nodes **N5**, **N58**, **N121** and           │
+│  **N150**. \\n- Measure radiation levels in **sandy** terrain at node **N12**, **N86** and       │
+│  **N1**. \\n- Deploy seismic sensors at the **rocky** node **N20**. \\n- Detect organic          │
+│  molecules in **icy** terrain at **N59**. \\n- Air **dust** sample collection during flight      │
+│  over **N33** crater. \\n- Map CO2 frost coverage in **icy** areas **N53**, **N63** and          │
+│  **N108**. \\n- Identification of thermal anomalies at **icy** nodes **N56** and **N112**.       │
+│  \\n\\n---\\n\\n## Operational Constraints\\n\\n- **Rovers** and **drones** should recharge if   │
+│  energy drops below 30%.\\n- **Rovers** must enter a heat shelter during 20 minutes if the       │
+│  surface temperature is below -60\\u00baC.\\n- **Rovers** cannot operate if node temperature is  │
+│  below -80\\u00baC.\\n- **Rover's** energy consumption is different depending on the type of     │
+│  terrain: 5% in rocky, increased 10% in sandy, increased 20% in icy and increased 15% in crater  │
+│  terrains.\\n- **Drones** must return to base after 25 minutes of flight.\\n- **Drones** are     │
+│  disabled if there is a dust storm.\\n- **Drones** cannot operate if wind gusts are higher than  │
+│  40 km/h.\\n- **Drone's** energy consumption is increased 15% if wind is higher than 30          │
+│  km/h.\\n- **Satellites** must maintain communication with the base station at N30 or N84 every  │
+│  5 hours if they have to identify thermal anomalies. \\n- **Satellites** cannot communicate in   │
+│  nodes with communication loss.\\n- **Rovers** may not operate in terrain classified as          │
+│  radioactive.\\n- **Rovers** may not operate in terrain classified as                            │
+│  unstable.\\n\\n---\\n\\n## Mission Priorities\\n\\n1. **High Priority**\\n   - Radiation        │
+│  measurement at **N12**, **N86** and **N1**.\\n   - Subsurface sample collection at **N70** and  │
+│  **N102**.\\n   - Deploy seismic sensors at node **N20**.\\n\\n2. **Medium Priority**  \\n   -   │
+│  Air sample collection at **N33**.\\n   - Organic sample collection at **N59**.\\n   - Co2       │
+│  analysis **N53**, **N63** and **N108**.\\n\\n3. **Low Priority**  \\n   - Panoramic imaging at  │
+│  **N5**, **N58**, **N121** and **N150**.\\n   - Thermal anomalies at nodes **N56** and           │
+│  **N112**.\\n\\n---\\n\\n## Known Hazards\\n\\n- **Nodes N4, N19, N128**: unstable rocky         │
+│  terrain  \\n- **Nodes N51, N78, N118**: nodes classified as radioactive \\n- **Node N33**:      │
+│  frequent dust storms\\n\\n---\\n}\"}"                                                           │
+│                                                                                                  │
+└──────────────────────────────────────────────────────────────────────────────────────────────────┘
+┌────────────────────────────────────────── Tool Output ───────────────────────────────────────────┐
+│                                                                                                  │
+│  {'scientific goals': ['Collect subsurface samples from **rocky** terrain near nodes **N70**     │
+│  and **N102**.', 'Capture panoramic images of **crater** terrain at nodes **N5**, **N58**,       │
+│  **N121** and **N150**.', 'Measure radiation levels in **sandy** terrain at node **N12**,        │
+│  **N86** and **N1**.', 'Deploy seismic sensors at the **rocky** node **N20**.', 'Detect organic  │
+│  molecules in **icy** terrain at **N59**.', 'Air **dust** sample collection during flight over   │
+│  **N33** crater.', 'Map CO2 frost coverage in **icy** areas **N53**, **N63** and **N108**.',     │
+│  'Identification of thermal anomalies at **icy** nodes **N56** and **N112**.'], 'operational     │
+│  constraints': ['**Rovers** and **drones** should recharge if energy drops below 30%.',          │
+│  '**Rovers** must enter a heat shelter during 20 minutes if the surface temperature is below     │
+│  -60ºC.', '**Rovers** cannot operate if node temperature is below -80ºC.', "**Rover's** energy   │
+│  consumption is different depending on the type of terrain: 5% in rocky, increased 10% in        │
+│  sandy, increased 20% in icy and increased 15% in crater terrains.", '**Drones** must return to  │
+│  base after 25 minutes of flight.', '**Drones** are disabled if there is a dust storm.',         │
+│  '**Drones** cannot operate if wind gusts are higher than 40 km/h.', "**Drone's** energy         │
+│  consumption is increased 15% if wind is higher than 30 km/h.", '**Satellites** must maintain    │
+│  communication with the base station at N30 or N84 every 5 hours if they have to identify        │
+│  thermal anomalies.', '**Satellites** cannot communicate in nodes with communication loss.',     │
+│  '**Rovers** may not operate in terrain classified as radioactive.', '**Rovers** may not         │
+│  operate in terrain classified as unstable.'], 'mission priorities': {'high': ['Radiation        │
+│  measurement at **N12**, **N86** and **N1**.', 'Subsurface sample collection at **N70** and      │
+│  **N102**.', 'Deploy seismic sensors at node **N20**.'], 'medium': ['Air sample collection at    │
+│  **N33**.', 'Organic sample collection at **N59**.', 'Co2 analysis **N53**, **N63** an...        │
+│                                                                                                  │
+└──────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+🚀 Crew: crew
+└── 📋 Task: 26f8cdea-7acf-4ba7-b788-3018f5854e58
+    Status: Executing Task...
+    └── 🔧 Used planner_divide_report (1)┌───────────────────────────────────── ✅ Agent Final Answer ──────────────────────────────────────┐
+│                                                                                                  │
+│  Agent: Mars mission strategic planner                                                           │
+│                                                                                                  │
+│  Final Answer:                                                                                   │
+│  {                                                                                               │
+│      "scientific goals": [                                                                       │
+│          "Collect subsurface samples from **rocky** terrain near nodes **N70** and **N102**.",   │
+│          "Capture panoramic images of **crater** terrain at nodes **N5**, **N58**, **N121** and  │
+│  **N150**.",                                                                                     │
+│          "Measure radiation levels in **sandy** terrain at node **N12**, **N86** and **N1**.",   │
+│          "Deploy seismic sensors at the **rocky** node **N20**.",                                │
+│          "Detect organic molecules in **icy** terrain at **N59**.",                              │
+│          "Air **dust** sample collection during flight over **N33** crater.",                    │
+│          "Map CO2 frost coverage in **icy** areas **N53**, **N63** and **N108**.",               │
+│          "Identification of thermal anomalies at **icy** nodes **N56** and **N112**."            │
+│      ],                                                                                          │
+│      "operational constraints": [                                                                │
+│          "**Rovers** and **drones** should recharge if energy drops below 30%.",                 │
+│          "**Rovers** must enter a heat shelter during 20 minutes if the surface temperature is   │
+│  below -60ºC.",                                                                                  │
+│          "**Rovers** cannot operate if node temperature is below -80ºC.",                        │
+│          "**Rover's** energy consumption is different depending on the type of terrain: 5% in    │
+│  rocky, increased 10% in sandy, increased 20% in icy and increased 15% in crater terrains.",     │
+│          "**Drones** must return to base after 25 minutes of flight.",                           │
+│          "**Drones** are disabled if there is a dust storm.",                                    │
+│          "**Drones** cannot operate if wind gusts are higher than 40 km/h.",                     │
+│          "**Drone's** energy consumption is increased 15% if wind is higher than 30 km/h.",      │
+│          "**Satellites** must maintain communication with the base station at N30 or N84 every   │
+│  5 hours if they have to identify thermal anomalies.",                                           │
+│          "**Satellites** cannot communicate in nodes with communication loss.",                  │
+│          "**Rovers** may not operate in terrain classified as radioactive.",                     │
+│          "**Rovers** may not operate in terrain classified as unstable."                         │
+│      ],                                                                                          │
+│      "mission priorities": {                                                                     │
+│          "high": [                                                                               │
+│              "Radiation measurement at **N12**, **N86** and **N1**.",                            │
+│              "Subsurface sample collection at **N70** and **N102**.",                            │
+│              "Deploy seismic sensors at node **N20**."                                           │
+│          ],                                                                                      │
+│          "medium": [                                                                             │
+│              "Air sample collection at **N33**.",                                                │
+│              "Organic sample collection at **N59**.",                                            │
+│              "Co2 analysis **N53**, **N63** and **N108**."                                       │
+│          ],                                                                                      │
+│          "low": [                                                                                │
+│              "Panoramic imaging at **N5**, **N58**, **N121** and **N150**.",                     │
+│              "Thermal anomalies at nodes **N56** and **N112**.",                                 │
+│              ""                                                                                  │
+│          ]                                                                                       │
+│      },                                                                                          │
+│      "known hazards": [                                                                          │
+│          "**Nodes N4, N19, N128**: unstable rocky terrain",                                      │
+│          "**Nodes N51, N78, N118**: nodes classified as radioactive",                            │
+│          "**Node N33**: frequent dust storms",                                                   │
+│          "}"                                                                                     │
+│      ]                                                                                           │
+│  }                                                                                               │
+│                                                                                                  │
+└──────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+🚀 Crew: crew
+└── 📋 Task: 26f8cdea-7acf-4ba7-b788-3018f5854e58
+    Assigned to: Mars mission strategic planner
+    
+    Status: ✅ Completed
+    └── 🔧 Used planner_divide_report (1)┌──────────────────────────────────────── Task Completion ─────────────────────────────────────────┐
+│                                                                                                  │
+│  Task Completed                                                                                  │
+│  Name: 26f8cdea-7acf-4ba7-b788-3018f5854e58                                                      │
+│  Agent: Mars mission strategic planner                                                           │
+│                                                                                                  │
+│  Tool Args:                                                                                      │
+│                                                                                                  │
+│                                                                                                  │
+└──────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+🚀 Crew: crew
+├── 📋 Task: 26f8cdea-7acf-4ba7-b788-3018f5854e58
+│   Assigned to: Mars mission strategic planner
+│   
+│   Status: ✅ Completed
+│   └── 🔧 Used planner_divide_report (1)
+├── 📋 Task: eb597a44-82c6-4b9e-9ec4-f7aca8579f65
+│   Status: Executing Task...
+└── 📋 Task: 1339f7e9-b402-4f00-b35a-7c9593616a0a
+    Status: Executing Task...┌──────────────────────────────────────── 🤖 Agent Started ────────────────────────────────────────┐
+│                                                                                                  │
+│  Agent: Mission decomposition & hazard allocator                                                 │
+│                                                                                                  │
+│  Task: Task Description:                                                                         │
+│    1. Extract: Isolate the operational constraints from the provided input """                   │
+│  {{context.additional_information}} """.                                                         │
+│    2. Classify: Categorize each constraint into rovers, drones, or satellites. If a constraint   │
+│  applies to multiple (e.g., "Drones and Rovers..."), include it in both.                         │
+│    3. Hazard Mapping: For each constraint, check the known hazards list. If a hazard (like       │
+│  "unstable rocky terrain") directly triggers or relates to a constraint (like "Rovers may not    │
+│  operate in terrain classified as unstable"), you must map the specific Nodes from the hazard    │
+│  list to that constraint. Moreover, remove the constraint if it maps to a hazard.                │
+│  Format: Output the final result as a valid JSON object following the provided structure.        │
+│                                                                                                  │
+│                                                                                                  │
+└──────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+┌──────────────────────────────────────── 🤖 Agent Started ────────────────────────────────────────┐
+│                                                                                                  │
+│  Agent: Mission decomposition & resource allocator                                               │
+│                                                                                                  │
+│  Task: Transforms a raw mission JSON loaded as an str """ {{context.additional_information}}     │
+│  """ into a structured asset-based task list. It parses scientific goals and matches them to     │
+│  the correct explorer (Rover, Drone, or Satellite) based on strict keyword-based classification  │
+│  rules and priority levels.                                                                      │
+│                                                                                                  │
+│                                                                                                  │
+└──────────────────────────────────────────────────────────────────────────────────────────────────┘
+🚀 Crew: crew
+├── 📋 Task: 26f8cdea-7acf-4ba7-b788-3018f5854e58
+│   Assigned to: Mars mission strategic planner
+│   
+│   Status: ✅ Completed
+│   └── 🔧 Used planner_divide_report (1)
+├── 📋 Task: eb597a44-82c6-4b9e-9ec4-f7aca8579f65
+│   Status: Executing Task...
+└── 📋 Task: 1339f7e9-b402-4f00-b35a-7c9593616a0a
+    Status: Executing Task...┌───────────────────────────────────── ✅ Agent Final Answer ──────────────────────────────────────┐
+│                                                                                                  │
+│  Agent: Mission decomposition & resource allocator                                               │
+│                                                                                                  │
+│  Final Answer:                                                                                   │
+│  {                                                                                               │
+│    "rover": {                                                                                    │
+│      "high": [                                                                                   │
+│        "Collect subsurface samples from **rocky** terrain near nodes **N70** and **N102**.",     │
+│        "Measure radiation levels in **sandy** terrain at node **N12**, **N86** and **N1**.",     │
+│        "Deploy seismic sensors at the **rocky** node **N20**."                                   │
+│      ],                                                                                          │
+│      "medium": [                                                                                 │
+│        "Detect organic molecules in **icy** terrain at **N59**."                                 │
+│      ],                                                                                          │
+│      "low": []                                                                                   │
+│    },                                                                                            │
+│    "drone": {                                                                                    │
+│      "high": [],                                                                                 │
+│      "medium": [                                                                                 │
+│        "Air **dust** sample collection during flight over **N33** crater.",                      │
+│        "Map CO2 frost coverage in **icy** areas **N53**, **N63** and **N108**."                  │
+│      ],                                                                                          │
+│      "low": []                                                                                   │
+│    },                                                                                            │
+│    "satellite": {                                                                                │
+│      "high": [],                                                                                 │
+│      "medium": [],                                                                               │
+│      "low": [                                                                                    │
+│        "Capture panoramic images of **crater** terrain at nodes **N5**, **N58**, **N121** and    │
+│  **N150**.",                                                                                     │
+│        "Identification of thermal anomalies at **icy** nodes **N56** and **N112**."              │
+│      ]                                                                                           │
+│    }                                                                                             │
+│  }                                                                                               │
+│                                                                                                  │
+└──────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+🚀 Crew: crew
+├── 📋 Task: 26f8cdea-7acf-4ba7-b788-3018f5854e58
+│   Assigned to: Mars mission strategic planner
+│   
+│   Status: ✅ Completed
+│   └── 🔧 Used planner_divide_report (1)
+├── 📋 Task: eb597a44-82c6-4b9e-9ec4-f7aca8579f65
+│   Assigned to: Mission decomposition & resource allocator
+│   
+│   Status: ✅ Completed
+└── 📋 Task: 1339f7e9-b402-4f00-b35a-7c9593616a0a
+    Status: Executing Task...┌──────────────────────────────────────── Task Completion ─────────────────────────────────────────┐
+│                                                                                                  │
+│  Task Completed                                                                                  │
+│  Name: eb597a44-82c6-4b9e-9ec4-f7aca8579f65                                                      │
+│  Agent: Mission decomposition & resource allocator                                               │
+│                                                                                                  │
+│  Tool Args:                                                                                      │
+│                                                                                                  │
+│                                                                                                  │
+└──────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+┌───────────────────────────────────── ✅ Agent Final Answer ──────────────────────────────────────┐
+│                                                                                                  │
+│  Agent: Mission decomposition & hazard allocator                                                 │
+│                                                                                                  │
+│  Final Answer:                                                                                   │
+│  {                                                                                               │
+│    "rover": {                                                                                    │
+│      "operational constraints": [                                                                │
+│        "Rovers must enter a heat shelter during 20 minutes if the surface temperature is below   │
+│  -60ºC.",                                                                                        │
+│        "Rovers cannot operate if node temperature is below -80ºC.",                              │
+│        "Rover's energy consumption is different depending on the type of terrain: 5% in rocky,   │
+│  increased 10% in sandy, increased 20% in icy and increased 15% in crater terrains."             │
+│      ],                                                                                          │
+│      "hazards": {                                                                                │
+│        "Rovers may not operate in terrain classified as radioactive": ["N51", "N78", "N118"],    │
+│        "Rovers may not operate in terrain classified as unstable": ["N4", "N19", "N128"]         │
+│      }                                                                                           │
+│    },                                                                                            │
+│    "drone": {                                                                                    │
+│      "operational constraints": [                                                                │
+│        "Drones must return to base after 25 minutes of flight.",                                 │
+│        "Drones cannot operate if wind gusts are higher than 40 km/h.",                           │
+│        "Drone's energy consumption is increased 15% if wind is higher than 30 km/h."             │
+│      ],                                                                                          │
+│      "hazards": {                                                                                │
+│        "Drones are disabled if there is a dust storm": ["N33"]                                   │
+│      }                                                                                           │
+│    },                                                                                            │
+│    "satellite": {                                                                                │
+│      "operational constraints": [                                                                │
+│        "Satellites must maintain communication with the base station at N30 or N84 every 5       │
+│  hours if they have to identify thermal anomalies.",                                             │
+│        "Satellites cannot communicate in nodes with communication loss."                         │
+│      ],                                                                                          │
+│      "hazards": []                                                                               │
+│    }                                                                                             │
+│  }                                                                                               │
+│                                                                                                  │
+└──────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+🚀 Crew: crew
+├── 📋 Task: 26f8cdea-7acf-4ba7-b788-3018f5854e58
+│   Assigned to: Mars mission strategic planner
+│   
+│   Status: ✅ Completed
+│   └── 🔧 Used planner_divide_report (1)
+├── 📋 Task: eb597a44-82c6-4b9e-9ec4-f7aca8579f65
+│   Assigned to: Mission decomposition & resource allocator
+│   
+│   Status: ✅ Completed
+└── 📋 Task: 1339f7e9-b402-4f00-b35a-7c9593616a0a
+    Assigned to: Mission decomposition & hazard allocator
+    
+    Status: ✅ Completed┌──────────────────────────────────────── Task Completion ─────────────────────────────────────────┐
+│                                                                                                  │
+│  Task Completed                                                                                  │
+│  Name: 1339f7e9-b402-4f00-b35a-7c9593616a0a                                                      │
+│  Agent: Mission decomposition & hazard allocator                                                 │
+│                                                                                                  │
+│  Tool Args:                                                                                      │
+│                                                                                                  │
+│                                                                                                  │
+└──────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+🚀 Crew: crew
+├── 📋 Task: 26f8cdea-7acf-4ba7-b788-3018f5854e58
+│   Assigned to: Mars mission strategic planner
+│   
+│   Status: ✅ Completed
+│   └── 🔧 Used planner_divide_report (1)
+├── 📋 Task: eb597a44-82c6-4b9e-9ec4-f7aca8579f65
+│   Assigned to: Mission decomposition & resource allocator
+│   
+│   Status: ✅ Completed
+├── 📋 Task: 1339f7e9-b402-4f00-b35a-7c9593616a0a
+│   Assigned to: Mission decomposition & hazard allocator
+│   
+│   Status: ✅ Completed
+└── 📋 Task: 8b958396-f6e9-446b-9612-fc726906cc5a
+    Status: Executing Task...┌──────────────────────────────────────── 🤖 Agent Started ────────────────────────────────────────┐
+│                                                                                                  │
+│  Agent: Mission Data Integration Architect                                                       │
+│                                                                                                  │
+│  Task: Task Description:                                                                         │
+│    1. Fetch Data: Retrieve the scientific priorities from """ {{context.reporting_priority}}     │
+│  """ and the hazard mappings from """ {{context.reporting_hazard}} """.                          │
+│    2. Align Assets: Match the "rover", "drone", and "satellite" data from both sources.          │
+│    3. Nest Priorities: Place the high, medium, and low priority scientific goals inside a new    │
+│  "priority" key for each asset.                                                                  │
+│    4. Append Constraints: Add the "operational constraints" and the mapped "hazards" directly    │
+│  under the asset level.                                                                          │
+│  Format: Output the final result as a valid, deeply nested JSON object.                          │
+│                                                                                                  │
+│                                                                                                  │
+└──────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+🚀 Crew: crew
+├── 📋 Task: 26f8cdea-7acf-4ba7-b788-3018f5854e58
+│   Assigned to: Mars mission strategic planner
+│   
+│   Status: ✅ Completed
+│   └── 🔧 Used planner_divide_report (1)
+├── 📋 Task: eb597a44-82c6-4b9e-9ec4-f7aca8579f65
+│   Assigned to: Mission decomposition & resource allocator
+│   
+│   Status: ✅ Completed
+├── 📋 Task: 1339f7e9-b402-4f00-b35a-7c9593616a0a
+│   Assigned to: Mission decomposition & hazard allocator
+│   
+│   Status: ✅ Completed
+└── 📋 Task: 8b958396-f6e9-446b-9612-fc726906cc5a
+    Status: Executing Task...┌───────────────────────────────────── ✅ Agent Final Answer ──────────────────────────────────────┐
+│                                                                                                  │
+│  Agent: Mission Data Integration Architect                                                       │
+│                                                                                                  │
+│  Final Answer:                                                                                   │
+│  {                                                                                               │
+│    "rovers": {                                                                                   │
+│      "priority": {                                                                               │
+│        "high": [                                                                                 │
+│          "Collect subsurface samples from **rocky** terrain near nodes **N70** and **N102**.",   │
+│          "Measure radiation levels in **sandy** terrain at node **N12**, **N86** and **N1**.",   │
+│          "Deploy seismic sensors at the **rocky** node **N20**."                                 │
+│        ],                                                                                        │
+│        "medium": [                                                                               │
+│          "Detect organic molecules in **icy** terrain at **N59**."                               │
+│        ],                                                                                        │
+│        "low": []                                                                                 │
+│      },                                                                                          │
+│      "operational constraints": [                                                                │
+│        "Rovers must enter a heat shelter during 20 minutes if the surface temperature is below   │
+│  -60ºC.",                                                                                        │
+│        "Rovers cannot operate if node temperature is below -80ºC.",                              │
+│        "Rover's energy consumption is different depending on the type of terrain: 5% in rocky,   │
+│  increased 10% in sandy, increased 20% in icy and increased 15% in crater terrains."             │
+│      ],                                                                                          │
+│      "hazards": {                                                                                │
+│        "Rovers may not operate in terrain classified as radioactive": ["N51", "N78", "N118"],    │
+│        "Rovers may not operate in terrain classified as unstable": ["N4", "N19", "N128"]         │
+│      }                                                                                           │
+│    },                                                                                            │
+│    "drones": {                                                                                   │
+│      "priority": {                                                                               │
+│        "high": [],                                                                               │
+│        "medium": [                                                                               │
+│          "Air **dust** sample collection during flight over **N33** crater.",                    │
+│          "Map CO2 frost coverage in **icy** areas **N53**, **N63** and **N108**."                │
+│        ],                                                                                        │
+│        "low": []                                                                                 │
+│      },                                                                                          │
+│      "operational constraints": [                                                                │
+│        "Drones must return to base after 25 minutes of flight.",                                 │
+│        "Drones cannot operate if wind gusts are higher than 40 km/h.",                           │
+│        "Drone's energy consumption is increased 15% if wind is higher than 30 km/h."             │
+│      ],                                                                                          │
+│      "hazards": {                                                                                │
+│        "Drones are disabled if there is a dust storm": ["N33"]                                   │
+│      }                                                                                           │
+│    },                                                                                            │
+│    "satellites": {                                                                               │
+│      "priority": {                                                                               │
+│        "high": [],                                                                               │
+│        "medium": [],                                                                             │
+│        "low": [                                                                                  │
+│          "Capture panoramic images of **crater** terrain at nodes **N5**, **N58**, **N121** and  │
+│  **N150**.",                                                                                     │
+│          "Identification of thermal anomalies at **icy** nodes **N56** and **N112**."            │
+│        ]                                                                                         │
+│      },                                                                                          │
+│      "operational constraints": [                                                                │
+│        "Satellites must maintain communication with the base station at N30 or N84 every 5       │
+│  hours if they have to identify thermal anomalies.",                                             │
+│        "Satellites cannot communicate in nodes with communication loss."                         │
+│      ],                                                                                          │
+│      "hazards": []                                                                               │
+│    }                                                                                             │
+│  }                                                                                               │
+│                                                                                                  │
+└──────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+🚀 Crew: crew
+├── 📋 Task: 26f8cdea-7acf-4ba7-b788-3018f5854e58
+│   Assigned to: Mars mission strategic planner
+│   
+│   Status: ✅ Completed
+│   └── 🔧 Used planner_divide_report (1)
+├── 📋 Task: eb597a44-82c6-4b9e-9ec4-f7aca8579f65
+│   Assigned to: Mission decomposition & resource allocator
+│   
+│   Status: ✅ Completed
+├── 📋 Task: 1339f7e9-b402-4f00-b35a-7c9593616a0a
+│   Assigned to: Mission decomposition & hazard allocator
+│   
+│   Status: ✅ Completed
+└── 📋 Task: 8b958396-f6e9-446b-9612-fc726906cc5a
+    Assigned to: Mission Data Integration Architect
+    
+    Status: ✅ Completed┌──────────────────────────────────────── Task Completion ─────────────────────────────────────────┐
+│                                                                                                  │
+│  Task Completed                                                                                  │
+│  Name: 8b958396-f6e9-446b-9612-fc726906cc5a                                                      │
+│  Agent: Mission Data Integration Architect                                                       │
+│                                                                                                  │
+│  Tool Args:                                                                                      │
+│                                                                                                  │
+│                                                                                                  │
+└──────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+┌──────────────────────────────────────── Crew Completion ─────────────────────────────────────────┐
+│                                                                                                  │
+│  Crew Execution Completed                                                                        │
+│  Name: crew                                                                                      │
+│  ID: 30da32c9-3c31-4d20-9491-91601d99abde                                                        │
+│  Tool Args:                                                                                      │
+│  Final Output: {                                                                                 │
+│    "rovers": {                                                                                   │
+│      "priority": {                                                                               │
+│        "high": [                                                                                 │
+│          "Collect subsurface samples from **rocky** terrain near nodes **N70** and **N102**.",   │
+│          "Measure radiation levels in **sandy** terrain at node **N12**, **N86** and **N1**.",   │
+│          "Deploy seismic sensors at the **rocky** node **N20**."                                 │
+│        ],                                                                                        │
+│        "medium": [                                                                               │
+│          "Detect organic molecules in **icy** terrain at **N59**."                               │
+│        ],                                                                                        │
+│        "low": []                                                                                 │
+│      },                                                                                          │
+│      "operational constraints": [                                                                │
+│        "Rovers must enter a heat shelter during 20 minutes if the surface temperature is below   │
+│  -60ºC.",                                                                                        │
+│        "Rovers cannot operate if node temperature is below -80ºC.",                              │
+│        "Rover's energy consumption is different depending on the type of terrain: 5% in rocky,   │
+│  increased 10% in sandy, increased 20% in icy and increased 15% in crater terrains."             │
+│      ],                                                                                          │
+│      "hazards": {                                                                                │
+│        "Rovers may not operate in terrain classified as radioactive": ["N51", "N78", "N118"],    │
+│        "Rovers may not operate in terrain classified as unstable": ["N4", "N19", "N128"]         │
+│      }                                                                                           │
+│    },                                                                                            │
+│    "drones": {                                                                                   │
+│      "priority": {                                                                               │
+│        "high": [],                                                                               │
+│        "medium": [                                                                               │
+│          "Air **dust** sample collection during flight over **N33** crater.",                    │
+│          "Map CO2 frost coverage in **icy** areas **N53**, **N63** and **N108**."                │
+│        ],                                                                                        │
+│        "low": []                                                                                 │
+│      },                                                                                          │
+│      "operational constraints": [                                                                │
+│        "Drones must return to base after 25 minutes of flight.",                                 │
+│        "Drones cannot operate if wind gusts are higher than 40 km/h.",                           │
+│        "Drone's energy consumption is increased 15% if wind is higher than 30 km/h."             │
+│      ],                                                                                          │
+│      "hazards": {                                                                                │
+│        "Drones are disabled if there is a dust storm": ["N33"]                                   │
+│      }                                                                                           │
+│    },                                                                                            │
+│    "satellites": {                                                                               │
+│      "priority": {                                                                               │
+│        "high": [],                                                                               │
+│        "medium": [],                                                                             │
+│        "low": [                                                                                  │
+│          "Capture panoramic images of **crater** terrain at nodes **N5**, **N58**, **N121** and  │
+│  **N150**.",                                                                                     │
+│          "Identification of thermal anomalies at **icy** nodes **N56** and **N112**."            │
+│        ]                                                                                         │
+│      },                                                                                          │
+│      "operational constraints": [                                                                │
+│        "Satellites must maintain communication with the base station at N30 or N84 every 5       │
+│  hours if they have to identify thermal anomalies.",                                             │
+│        "Satellites cannot communicate in nodes with communication loss."                         │
+│      ],                                                                                          │
+│      "hazards": []                                                                               │
+│    }                                                                                             │
+│  }                                                                                               │
+│                                                                                                  │
+│                                                                                                  │
+└──────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+Satellite planning
+🌊 Flow: MarsFlow
+ID: 460da2cb-8e00-49d1-8d5d-b0afc8ea0a0b
+├── Flow Method Step
+├── ✅ Completed: run_mission_analysis
+└── 🔄 Running: run_satellite_planning┌───────────────────────────────────── Crew Execution Started ─────────────────────────────────────┐
+│                                                                                                  │
+│  Crew Execution Started                                                                          │
+│  Name: crew                                                                                      │
+│  ID: 7117c008-9193-421e-8097-73ae1b009481                                                        │
+│  Tool Args:                                                                                      │
+│                                                                                                  │
+│                                                                                                  │
+└──────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+🚀 Crew: crew
+└── 📋 Task: 3e9bc0ef-9236-49e6-ba69-392f48797192
+    Status: Executing Task...┌──────────────────────────────────────── 🤖 Agent Started ────────────────────────────────────────┐
+│                                                                                                  │
+│  Agent: Communication loss extractor                                                             │
+│                                                                                                  │
+│  Task: You MUST do exactly these steps: Step 1) Call Communication_Loss_Detector Step 2) Return  │
+│  EXACTLY the tool output. Rules:                                                                 │
+│    - Do NOT add keys                                                                             │
+│    - Do NOT remove keys                                                                          │
+│    - Do NOT reformat                                                                             │
+│    - Do NOT summarize                                                                            │
+│    - Do NOT explain                                                                              │
+│                                                                                                  │
+│                                                                                                  │
+└──────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+LOST COMM NODES ['N7', 'N78', 'N150']
+🚀 Crew: crew
+└── 📋 Task: 3e9bc0ef-9236-49e6-ba69-392f48797192
+    Status: Executing Task...
+    └── 🔧 Used Communication_Loss_Detector (1)┌──────────────────────────────────── 🔧 Agent Tool Execution ─────────────────────────────────────┐
+│                                                                                                  │
+│  Agent: Communication loss extractor                                                             │
+│                                                                                                  │
+│  Thought: Thought: I need to call the Communication_Loss_Detector tool as instructed.            │
+│                                                                                                  │
+│  Using Tool: Communication_Loss_Detector                                                         │
+│                                                                                                  │
+└──────────────────────────────────────────────────────────────────────────────────────────────────┘
+┌─────────────────────────────────────────── Tool Input ───────────────────────────────────────────┐
+│                                                                                                  │
+│  "{}"                                                                                            │
+│                                                                                                  │
+└──────────────────────────────────────────────────────────────────────────────────────────────────┘
+┌────────────────────────────────────────── Tool Output ───────────────────────────────────────────┐
+│                                                                                                  │
+│  Nodes with Communication Loss: N7, N78, N150                                                    │
+│                                                                                                  │
+└──────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+🚀 Crew: crew
+└── 📋 Task: 3e9bc0ef-9236-49e6-ba69-392f48797192
+    Status: Executing Task...
+    └── 🔧 Used Communication_Loss_Detector (1)┌──────────────────────────────────── 🔧 Agent Tool Execution ─────────────────────────────────────┐
+│                                                                                                  │
+│  Agent: Communication loss extractor                                                             │
+│                                                                                                  │
+│  Thought: Thought: I need to call the Communication_Loss_Detector tool as instructed.            │
+│                                                                                                  │
+│  Using Tool: Communication_Loss_Detector                                                         │
+│                                                                                                  │
+└──────────────────────────────────────────────────────────────────────────────────────────────────┘
+┌─────────────────────────────────────────── Tool Input ───────────────────────────────────────────┐
+│                                                                                                  │
+│  "{}"                                                                                            │
+│                                                                                                  │
+└──────────────────────────────────────────────────────────────────────────────────────────────────┘
+┌────────────────────────────────────────── Tool Output ───────────────────────────────────────────┐
+│                                                                                                  │
+│  I tried reusing the same input, I must stop using this action input. I'll try something else    │
+│  instead.                                                                                        │
+│                                                                                                  │
+│                                                                                                  │
+│                                                                                                  │
+└──────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+🚀 Crew: crew
+└── 📋 Task: 3e9bc0ef-9236-49e6-ba69-392f48797192
+    Status: Executing Task...
+    └── 🔧 Used Communication_Loss_Detector (1)┌───────────────────────────────────── ✅ Agent Final Answer ──────────────────────────────────────┐
+│                                                                                                  │
+│  Agent: Communication loss extractor                                                             │
+│                                                                                                  │
+│  Final Answer:                                                                                   │
+│  Nodes with Communication Loss: N7, N78, N150                                                    │
+│                                                                                                  │
+└──────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+🚀 Crew: crew
+└── 📋 Task: 3e9bc0ef-9236-49e6-ba69-392f48797192
+    Assigned to: Communication loss extractor
+    Status: ✅ Completed
+    └── 🔧 Used Communication_Loss_Detector (1)┌──────────────────────────────────────── Task Completion ─────────────────────────────────────────┐
+│                                                                                                  │
+│  Task Completed                                                                                  │
+│  Name: 3e9bc0ef-9236-49e6-ba69-392f48797192                                                      │
+│  Agent: Communication loss extractor                                                             │
+│  Tool Args:                                                                                      │
+│                                                                                                  │
+│                                                                                                  │
+└──────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+🚀 Crew: crew
+├── 📋 Task: 3e9bc0ef-9236-49e6-ba69-392f48797192
+│   Assigned to: Communication loss extractor
+│   Status: ✅ Completed
+│   └── 🔧 Used Communication_Loss_Detector (1)
+└── 📋 Task: a2bdf48d-8f5f-49bd-867b-e17c93565c18
+    Status: Executing Task...┌──────────────────────────────────────── 🤖 Agent Started ────────────────────────────────────────┐
+│                                                                                                  │
+│  Agent: Data Parser. Provide a list containing the final nodes where satellites need to perform  │
+│  their tasks.                                                                                    │
+│                                                                                                  │
+│  Task: Based on the information inside the input file """ {{'rover': {'high': ['Collect          │
+│  subsurface samples from **rocky** terrain near nodes **N70** and **N102**.', 'Measure           │
+│  radiation levels in **sandy** terrain at node **N12**, **N86** and **N1**.', 'Deploy seismic    │
+│  sensors at the **rocky** node **N20**.'], 'medium': ['Detect organic molecules in **icy**       │
+│  terrain at **N59**.'], 'low': []}, 'drone': {'high': [], 'medium': ['Air **dust** sample        │
+│  collection during flight over **N33** crater.', 'Map CO2 frost coverage in **icy** areas        │
+│  **N53**, **N63** and **N108**.'], 'low': []}, 'satellite': {'high': [], 'medium': [], 'low':    │
+│  ['Capture panoramic images of **crater** terrain at nodes **N5**, **N58**, **N121** and         │
+│  **N150**.', 'Identification of thermal anomalies at **icy** nodes **N56** and **N112**.']}}}    │
+│  """, identify in which nodes satellites need to perform their tasks. ONLY TAKE INTO ACCOUNT     │
+│  INFORMATION FROM THE SATELLITES KEY                                                             │
+│                                                                                                  │
+│                                                                                                  │
+└──────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+🚀 Crew: crew
+├── 📋 Task: 3e9bc0ef-9236-49e6-ba69-392f48797192
+│   Assigned to: Communication loss extractor
+│   Status: ✅ Completed
+│   └── 🔧 Used Communication_Loss_Detector (1)
+└── 📋 Task: a2bdf48d-8f5f-49bd-867b-e17c93565c18
+    Status: Executing Task...┌───────────────────────────────────── ✅ Agent Final Answer ──────────────────────────────────────┐
+│                                                                                                  │
+│  Agent: Data Parser. Provide a list containing the final nodes where satellites need to perform  │
+│  their tasks.                                                                                    │
+│                                                                                                  │
+│  Final Answer:                                                                                   │
+│  ["N5", "N56", "N58", "N112", "N121", "N150"]                                                    │
+│                                                                                                  │
+└──────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+🚀 Crew: crew
+├── 📋 Task: 3e9bc0ef-9236-49e6-ba69-392f48797192
+│   Assigned to: Communication loss extractor
+│   Status: ✅ Completed
+│   └── 🔧 Used Communication_Loss_Detector (1)
+└── 📋 Task: a2bdf48d-8f5f-49bd-867b-e17c93565c18
+    Assigned to: Data Parser. Provide a list containing the final nodes where satellites need to 
+    perform their tasks.
+    
+    Status: ✅ Completed┌──────────────────────────────────────── Task Completion ─────────────────────────────────────────┐
+│                                                                                                  │
+│  Task Completed                                                                                  │
+│  Name: a2bdf48d-8f5f-49bd-867b-e17c93565c18                                                      │
+│  Agent: Data Parser. Provide a list containing the final nodes where satellites need to perform  │
+│  their tasks.                                                                                    │
+│                                                                                                  │
+│  Tool Args:                                                                                      │
+│                                                                                                  │
+│                                                                                                  │
+└──────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+🚀 Crew: crew
+├── 📋 Task: 3e9bc0ef-9236-49e6-ba69-392f48797192
+│   Assigned to: Communication loss extractor
+│   Status: ✅ Completed
+│   └── 🔧 Used Communication_Loss_Detector (1)
+├── 📋 Task: a2bdf48d-8f5f-49bd-867b-e17c93565c18
+│   Assigned to: Data Parser. Provide a list containing the final nodes where satellites need to 
+│   perform their tasks.
+│   
+│   Status: ✅ Completed
+└── 📋 Task: 92832b82-4714-4ce0-a82d-ec6c03bdde36
+    Status: Executing Task...┌──────────────────────────────────────── 🤖 Agent Started ────────────────────────────────────────┐
+│                                                                                                  │
+│  Agent: Satellite Observation & Communications Assignment Planner                                │
+│                                                                                                  │
+│  Task: YOU MUST OUTPUT ONLY RAW JSON. NO TEXT. NO EXPLANATIONS. NO MARKDOWN. IF YOU OUTPUT       │
+│  ANYTHING EXCEPT JSON, YOU FAILED.                                                               │
+│  REQUIRED OUTPUT FORMAT (EXACT):                                                                 │
+│  {                                                                                               │
+│    "assignments": [                                                                              │
+│      {                                                                                           │
+│        "id": "<satellite_id>",                                                                   │
+│        "goal": "<target_node>",                                                                  │
+│        "location": "<physical_location>",                                                        │
+│        "communication_window": <value_from_satellite_json>                                       │
+│      }                                                                                           │
+│    ]                                                                                             │
+│  }                                                                                               │
+│  OUTPUT RULES: - JSON ONLY - Must start with { and end with } - No comments - No trailing text   │
+│  - No code blocks - No markdown - No explanations                                                │
+│  -------------------------------------------------- FOLLOW THE RULES BELOW EXACTLY               │
+│  --------------------------------------------------                                              │
+│  DEFINITIONS (STRICT):                                                                           │
+│    - goal: target node assigned for observation.                                                 │
+│    - coverage: a satellite can observe a node ONLY if it appears in its covered_nodes list.      │
+│    - physical location: the single node where the satellite is positioned (chosen from coverage  │
+│  list).                                                                                          │
+│    - communication_window: timing value exactly as provided in satellite_json.                   │
+│                                                                                                  │
+│    NOTE:                                                                                         │
+│    - A satellite does NOT need to be physically located at its goal node. But the goal needs to  │
+│  be in the coverage list                                                                         │
+│    - goal and location may differ.                                                               │
+│                                                                                                  │
+│  INPUTS (AUTHORITATIVE):                                                                         │
+│    1) Hazard & Operational Constraints Report:                                                   │
+│      """ {{'rover': {'operational constraints': ['Rovers must enter a heat shelter during 20     │
+│  minutes if the surface temperature is below -60ºC.', 'Rovers cannot operate if node             │
+│  temperature is below -80ºC.', "Rover's energy consumption is different depending on the type    │
+│  of terrain: 5% in rocky, increased 10% in sandy, increased 20% in icy and increased 15% in      │
+│  crater terrains."], 'hazards': {'Rovers may not operate in terrain classified as radioactive':  │
+│  ['N51', 'N78', 'N118'], 'Rovers may not operate in terrain classified as unstable': ['N4',      │
+│  'N19', 'N128']}}, 'drone': {'operational constraints': ['Drones must return to base after 25    │
+│  minutes of flight.', 'Drones cannot operate if wind gusts are higher than 40 km/h.', "Drone's   │
+│  energy consumption is increased 15% if wind is higher than 30 km/h."], 'hazards': {'Drones are  │
+│  disabled if there is a dust storm': ['N33']}}, 'satellite': {'operational constraints':         │
+│  ['Satellites must maintain communication with the base station at N30 or N84 every 5 hours if   │
+│  they have to identify thermal anomalies.', 'Satellites cannot communicate in nodes with         │
+│  communication loss.'], 'hazards': []}}} """                                                     │
+│                                                                                                  │
+│    2) Satellite Registry (JSON):                                                                 │
+│      """ {[                                                                                      │
+│    {                                                                                             │
+│      "id": "satellite_0",                                                                        │
+│      "coverage": "N6, N7, N8, N10, N5, N2",                                                      │
+│      "communication_window": "7h"                                                                │
+│    },                                                                                            │
+│    {                                                                                             │
+│      "id": "satellite_1",                                                                        │
+│      "coverage": "N56, N51, N53, N57, N58",                                                      │
+│      "communication_window": "8h"                                                                │
+│    },                                                                                            │
+│    {                                                                                             │
+│      "id": "satellite_2",                                                                        │
+│      "coverage": "N116, N118, N119, N120, N121, N122",                                           │
+│      "communication_window": "3h"                                                                │
+│    },                                                                                            │
+│    {                                                                                             │
+│      "id": "satellite_3",                                                                        │
+│      "coverage": "N18, N150",                                                                    │
+│      "communication_window": "5h"                                                                │
+│    },                                                                                            │
+│    {                                                                                             │
+│      "id": "satellite_4",                                                                        │
+│      "coverage": "N56, N51, N53, N57, N58",                                                      │
+│      "communication_window": "4h"                                                                │
+│    },                                                                                            │
+│    {                                                                                             │
+│      "id": "satellite_5",                                                                        │
+│      "coverage": "N112, N113, N114, N115, N117, N107",                                           │
+│      "communication_window": "2h"                                                                │
+│    }                                                                                             │
+│  ]} """                                                                                          │
+│                                                                                                  │
+│    3) Target Nodes (Mission Priorities):                                                         │
+│      """ {{context.task_extractor}} """                                                          │
+│                                                                                                  │
+│    4) Communication-Loss Nodes (STRICT AVOIDANCE FOR LOCATIONS):                                 │
+│      """ {{context.task_communication_loss_extractor}} """                                       │
+│                                                                                                  │
+│  PLANNING RULES (MANDATORY):                                                                     │
+│                                                                                                  │
+│    1) Coverage Validation:                                                                       │
+│      - Compute reachable targets per satellite:                                                  │
+│        reachable = targets ∩ satellite.covered_nodes                                             │
+│      - A satellite MAY ONLY be assigned a goal from its reachable set.                           │
+│                                                                                                  │
+│    2) Hazard & Operational Constraints (PRIORITY STEP):                                          │
+│      - Apply ALL satellite-related constraints from the report_hazard_constraints report.        │
+│      - Operational constraints ALWAYS take priority.                                             │
+│                                                                                                  │
+│      - If a goal node has thermal anomalies:                                                     │
+│          - Only satellites with communication_window <= 5 are ALLOWED                            │
+│          - communication_window MUST match satellite_json exactly                                │
+│          - All satellites with window >5 are FORBIDDEN                                           │
+│                                                                                                  │
+│      - If any hazard rule forbids operation:                                                     │
+│          - That target MUST be removed from candidate pool                                       │
+│                                                                                                  │
+│    3) One-to-One Assignment:                                                                     │
+│      - EACH target node MUST be assigned to EXACTLY ONE satellite.                               │
+│      - NO target node may appear more than once.                                                 │
+│      - Satellites may only receive ONE goal unless explicitly stated otherwise.                  │
+│                                                                                                  │
+│    4) Communication Constraints:                                                                 │
+│      - physical location MUST NOT be in communication-loss nodes.                                │
+│      - goal node MAY be in communication-loss nodes (allowed).                                   │
+│                                                                                                  │
+│    5) Physical Location Selection:                                                               │
+│      - Each used satellite MUST have exactly ONE location.                                       │
+│      - location MUST be:                                                                         │
+│          - from satellite.covered_nodes                                                          │
+│          - NOT in communication-loss nodes                                                       │
+│                                                                                                  │
+│    6) Final Validation (REQUIRED BEFORE OUTPUT):                                                 │
+│      - All targets assigned exactly once                                                         │
+│      - All satellite IDs exist in satellite_json                                                 │
+│      - All goals are inside assigned satellite coverage                                          │
+│      - All locations are valid and non-loss nodes                                                │
+│      - communication_window matches satellite_json exactly                                       │
+│                                                                                                  │
+│  FORBIDDEN:                                                                                      │
+│    - Inventing satellites, nodes, hazards, or windows                                            │
+│    - Guessing missing data                                                                       │
+│    - Skipping any constraint                                                                     │
+│  CRITICAL OUTPUT RULES:                                                                          │
+│    - You MUST return ONLY valid JSON.                                                            │
+│    - Do NOT include explanations.                                                                │
+│    - Do NOT include markdown.                                                                    │
+│    - Do NOT include LaTeX.                                                                       │
+│    - Do NOT include tables.                                                                      │
+│    - Do NOT include bullet points.                                                               │
+│    - Output MUST start with { and end with }                                                     │
+│    - Any extra text INVALIDATES the answer.                                                      │
+│  FAILURE CONDITIONS:                                                                             │
+│    - If output is not pure JSON -> response is INVALID.                                          │
+│    - INVALID responses are considered mission failure.                                           │
+│                                                                                                  │
+│                                                                                                  │
+└──────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+🚀 Crew: crew
+├── 📋 Task: 3e9bc0ef-9236-49e6-ba69-392f48797192
+│   Assigned to: Communication loss extractor
+│   Status: ✅ Completed
+│   └── 🔧 Used Communication_Loss_Detector (1)
+├── 📋 Task: a2bdf48d-8f5f-49bd-867b-e17c93565c18
+│   Assigned to: Data Parser. Provide a list containing the final nodes where satellites need to 
+│   perform their tasks.
+│   
+│   Status: ✅ Completed
+└── 📋 Task: 92832b82-4714-4ce0-a82d-ec6c03bdde36
+    Status: Executing Task...┌───────────────────────────────────── ✅ Agent Final Answer ──────────────────────────────────────┐
+│                                                                                                  │
+│  Agent: Satellite Observation & Communications Assignment Planner                                │
+│                                                                                                  │
+│  Final Answer:                                                                                   │
+│  The mission cannot be completed as per the given constraints because the target node N121 is    │
+│  not covered by any satellite. Therefore, it's impossible to assign each target exactly once.    │
+│                                                                                                  │
+│  Step-by-step explanation:                                                                       │
+│                                                                                                  │
+│  1. **Identify Target Nodes**: The targets are ["N5", "N56", "N58", "N112", "N121", "N150"].     │
+│                                                                                                  │
+│  2. **Satellite Coverage Analysis**:                                                             │
+│     - Satellite_0 covers N5.                                                                     │
+│     - Satellite_1 and 4 cover N56, N58.                                                          │
+│     - Satellite_3 covers N150.                                                                   │
+│     - Satellite_5 covers N112.                                                                   │
+│     - No satellite covers N121.                                                                  │
+│                                                                                                  │
+│  3. **Conclusion**: Since no satellite can cover N121, the mission is impossible.                │
+│                                                                                                  │
+│  Answer: The assignment cannot be completed because target node N121 has no covering             │
+│  satellites.                                                                                     │
+│                                                                                                  │
+└──────────────────────────────────────────────────────────────────────────────────────────────────┘
+

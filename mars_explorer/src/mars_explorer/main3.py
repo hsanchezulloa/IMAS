@@ -2,7 +2,7 @@ from pydantic import BaseModel
 from pathlib import Path
 import json
 import re
-from crewai.flow import Flow, start, listen, or_, router
+from crewai.flow import Flow, start, listen, or_, router, and_
 
 from crews.mission_crew.mission_crew import MissionCrew
 from crews.rover_crew.rover_crew import RoverCrew
@@ -67,17 +67,17 @@ class MarsFlow(Flow):
         self.state["satellite_plan"] = None
 
         # trigger initial planning explicitly
+        self.emit("start_planning")
+        return result
+
     
-    @listen(run_mission_analysis)
-    def kickoff_planning(self, _):
-        return "plan_all"
 
     # ---------- PLANNERS ----------
-    @listen(or_("plan_all", "replan_rover"))
+    # @listen(or_(run_mission_analysis, "start_planning", "replan_rover"))
+    @listen(or_("start_planning", "replan_rover"))
     def run_rover_planning(self, trigger=None):
+        
         # Only run on initial plan_all or rover replan
-        if trigger not in ("plan_all", "replan_rover"):
-            return
         print("Rover planning")
 
         report_priority = self.extract_json_object(
@@ -90,12 +90,13 @@ class MarsFlow(Flow):
             inputs={"report_priority": report_priority, "rovers": rovers, "hazards": hazards}
         )
         self.state["rover_plan"] = result
-        return "rover_ready"
+        self.emit("rover_ready")
+        return result
 
-    @listen(or_("plan_all", "replan_drone"))
+    # @listen(or_(run_mission_analysis, "start_planning", "replan_drone"))
+    @listen(or_("start_planning", "replan_drone"))
     def run_drone_planning(self, trigger=None):
-        if trigger not in ("plan_all", "replan_drone"):
-            return
+        
         print("Drone planning")
 
         report_priority = self.extract_json_object(
@@ -108,12 +109,13 @@ class MarsFlow(Flow):
             inputs={"report_priority": report_priority, "drones": drones, "hazards": hazards}
         )
         self.state["drone_plan"] = result
-        return "drone_ready"
+        self.emit("drone_ready")
+        return result
 
-    @listen(or_("plan_all", "replan_satellite"))
+    # @listen(or_(run_mission_analysis, "start_planning", "replan_satellite"))
+    @listen(or_("start_planning", "replan_satellite"))
     def run_satellite_planning(self, trigger=None):
-        if trigger not in ("plan_all", "replan_satellite"):
-            return
+        
         print("Satellite planning")
 
         report_priority = self.extract_json_object(
@@ -132,10 +134,12 @@ class MarsFlow(Flow):
             }
         )
         self.state["satellite_plan"] = result
-        return "satellite_ready"
+        self.emit("satellite_ready")
+        return result
 
     # ---------- VALIDATION ----------
     # Only validate when a planner FINISHES (prevents "Waiting..." loops)
+    # @listen(or_(run_satellite_planning, "rover_ready", "drone_ready", "satellite_ready"))
     @listen(or_("rover_ready", "drone_ready", "satellite_ready"))
     def validate_plans(self, _):
         # anti-duplicate
@@ -219,13 +223,16 @@ class MarsFlow(Flow):
         # clear only the failing plan and trigger correct replan event
         if not validation.rover_ok:
             self.state["rover_plan"] = None
+            # self.emit("replan_rover")
             return "replan_rover"
 
         if not validation.drone_ok:
             self.state["drone_plan"] = None
+            # self.emit("replan_drone")
             return "replan_drone"
 
         self.state["satellite_plan"] = None
+        # self.emit("replan_satellite")
         return "replan_satellite"
 
     # ---------- INTEGRATION ----------

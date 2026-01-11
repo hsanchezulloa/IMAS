@@ -1,4 +1,4 @@
 {
-  "satellite_ok": false,
-  "feedback_satellite": "N150 location mismatch; N56 window is 24h, exceeding 5h limit"
+  "satellite_ok": true,
+  "feedback_satellite": "All required imaging and thermal anomaly detection nodes (N5, N58, N121, N150, N56, N112) are covered in the satellite route. Communication windows for thermal anomaly nodes N56 (4h) and N112 (2h) comply with the 5-hour constraint."
 }

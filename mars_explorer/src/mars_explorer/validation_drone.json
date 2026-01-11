@@ -1,4 +1,6 @@
+```json
 {
-  "drone_ok": true,
-  "feedback_drone": "All required nodes (N33, N53, N63, N108) were visited by the drones. Drone_2 visited N33, Drone_0 visited N53 and N63, and Drone_3 visited N108. No drones passed through hazardous nodes as hazards are reported as False."
+  "drone_ok": false,
+  "feedback_drone": "The drones have visited some but not all required nodes. The node N63 was not visited by any drone."
 }
+```

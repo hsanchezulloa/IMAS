@@ -114,6 +114,14 @@ class MissionCrew():
         # To learn how to add knowledge sources to your crew, check out the documentation:
         # https://docs.crewai.com/concepts/knowledge#what-is-knowledge
         # return Crew(agents=[self.aggregator()], tasks = [self.reporting_aggregation()], process = Process.sequential, verbose=True)
+        
+        # return Crew(
+        #     agents=[self.planner()], # Automatically created by the @agent decorator
+        #     tasks=[self.additional_information()], # Automatically created by the @task decorator
+        #     process=Process.sequential,
+        #     verbose=True,
+        #     # process=Process.hierarchical, # In case you wanna use that instead https://docs.crewai.com/how-to/Hierarchical/
+        # )
         return Crew(
             agents=self.agents, # Automatically created by the @agent decorator
             tasks=self.tasks, # Automatically created by the @task decorator

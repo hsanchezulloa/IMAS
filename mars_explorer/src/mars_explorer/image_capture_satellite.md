@@ -1,74 +1,72 @@
-Satellite Mission Execution Protocols
+---
+
+#### **Satellite Mission Protocol 1: Panoramic Image Capture of Crater Terrain**
+
+**Mission ID:** satellite_0, satellite_4, satellite_2, satellite_3  
+**Target Nodes:** N5, N58, N121, N150  
+**Terrain Type:** Crater  
+**Communication Window:** Varies per node (7h to 5h)  
 
 ---
 
-#### Protocol 1: Panoramic Image Capture of Crater Terrain
+**Step 1: Sensor Initialization**  
+- **Action:** Power up multispectral imaging sensors and ensure camera systems are operational.  
+- **Details:** Set sensor resolution to high definition for detailed terrain mapping. Enable panoramic stitching mode.  
 
-**Objective:** Capture high-resolution panoramic images of crater terrain at designated nodes.
+**Step 2: Positioning Over Target Node**  
+- **Action:** Manually or autonomously position satellite directly above the target node (e.g., N5, N58).  
+- **Details:** Use GPS coordinates provided in assignments JSON to align with the crater terrain. Ensure stable positioning within the communication window.  
 
-**Steps:**
+**Step 3: Capture Sequence**  
+- **Action:** Initiate panoramic image capture sequence.  
+- **Details:** Capture multiple overlapping images (minimum 10) to ensure complete coverage of the crater terrain. Adjust exposure settings based on lighting conditions (e.g., adjust shutter speed for low-light environments).  
 
-1. **Sensor Initialization:**
-   - Power on the satellite's optical camera system.
-   - Ensure panoramic imaging mode is activated and configured for wide-angle capture.
+**Step 4: Data Validation**  
+- **Action:** Review captured images for completeness and quality.  
+- **Details:** Ensure all images are free from artifacts and cover the entire target area. Stitch images together to form a panoramic mosaic.  
 
-2. **Positioning:**
-   - Adjust satellite orientation to ensure the camera faces the target crater area directly.
-   - Maintain stable altitude above the designated node (e.g., N5, N58, N121, N150) to ensure optimal image quality.
-
-3. **Capture Sequence:**
-   - Initiate panoramic imaging sequence over the assigned node.
-   - Capture multiple high-resolution images, ensuring full coverage of the crater terrain.
-
-4. **Data Validation:**
-   - Review captured images for clarity and completeness.
-   - Adjust exposure settings if necessary to enhance image quality.
-
-5. **Transmission:**
-   - Compress and encrypt the image data.
-   - Transmit the validated images to Earth or the control center via designated communication channels.
+**Step 5: Data Transmission**  
+- **Action:** Transmit validated data to ground control within the communication window.  
+- **Details:** If communication loss occurs (e.g., at N150), store data locally for retransmission during the next available window.  
 
 ---
 
-#### Protocol 2: Thermal Anomaly Identification on Icy Nodes
+#### **Satellite Mission Protocol 2: Thermal Anomaly Detection on Icy Nodes**
 
-**Objective:** Detect and monitor thermal anomalies at icy surface nodes.
-
-**Steps:**
-
-1. **Sensor Initialization:**
-   - Activate the satellite's thermal imaging sensor.
-   - Calibrate the sensor to account for extreme cold conditions on icy terrain.
-
-2. **Positioning:**
-   - Position the satellite directly above the assigned icy node (e.g., N56, N112).
-   - Ensure optimal altitude and orientation for accurate thermal data collection.
-
-3. **Capture Sequence:**
-   - Begin continuous thermal imaging over the target node.
-   - Collect temperature readings at regular intervals to monitor surface activity.
-
-4. **Data Validation:**
-   - Analyze thermal data for anomalies, such as unusual hotspots or temperature fluctuations.
-   - Cross-reference with historical data if necessary.
-
-5. **Transmission:**
-   - Format thermal data and coordinates for transmission.
-   - Send validated data to Earth or the control center via secure communication links.
+**Mission ID:** satellite_1, satellite_5  
+**Target Nodes:** N56, N112  
+**Terrain Type:** Icy  
+**Communication Window:** Varies per node (8h to 2h)  
 
 ---
 
-### Assigned Satellite Targets:
+**Step 1: Sensor Initialization**  
+- **Action:** Power up thermal imaging sensors and ensure radiometric calibration is complete.  
+- **Details:** Set sensor sensitivity to detect temperature variations in icy terrain. Enable anomaly detection algorithms.  
 
-| Satellite | Assigned Target Node |
-|-----------|----------------------|
-| 0         | N5                   |
-| 1         | N56                  |
-| 2         | N121                 |
-| 3         | N150 (location N18) |
-| 4         | N58                  |
-| 5         | N112                 |
+**Step 2: Positioning Over Target Node**  
+- **Action:** Manually or autonomously position satellite directly above the target node (e.g., N56).  
+- **Details:** Use GPS coordinates provided in assignments JSON to align with the icy terrain. Ensure stable positioning within the communication window.  
+
+**Step 3: Capture Sequence**  
+- **Action:** Initiate thermal anomaly detection sequence.  
+- **Details:** Capture high-resolution thermal images at regular intervals (minimum every 5 minutes). Adjust sensor settings for optimal detection in icy conditions (e.g., compensate for ambient temperature).  
+
+**Step 4: Data Validation**  
+- **Action:** Analyze captured data for thermal anomalies and validate against baseline readings.  
+- **Details:** Use onboard processing to identify anomalies and flag significant deviations from expected patterns.  
+
+**Step 5: Data Transmission**  
+- **Action:** Transmit validated data to ground control within the communication window.  
+- **Details:** If communication loss occurs (e.g., at N112), store data locally for retransmission during the next available window.  
 
 ---
 
-These protocols ensure that each satellite mission is executed efficiently, accounting for terrain types and specific operational requirements.
+### Notes:  
+- Ensure all missions are executed within their respective communication windows to avoid data loss.  
+- For nodes with communication loss (e.g., N150, N78), implement local storage and priority-based transmission protocols.  
+- Terrain type-specific adjustments (e.g., shutter speed for crater vs. icy terrain) must be applied during sensor initialization.  
+
+--- 
+
+This completes the transformation of raw satellite tasking data into precise, 5-step execution protocols for different imaging modalities.

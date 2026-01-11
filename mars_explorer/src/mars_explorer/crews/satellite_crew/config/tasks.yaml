@@ -179,8 +179,35 @@ task_extractor:
 
 task_planner:
   description: >
-    You are responsible for assigning mission target nodes to satellites
-    in a safe, constrained, and conflict-free manner.
+    YOU MUST OUTPUT ONLY RAW JSON.
+    NO TEXT. NO EXPLANATIONS. NO MARKDOWN.
+    IF YOU OUTPUT ANYTHING EXCEPT JSON, YOU FAILED.
+
+    REQUIRED OUTPUT FORMAT (EXACT):
+
+    {
+      "assignments": [
+        {
+          "id": "<satellite_id>",
+          "goal": "<target_node>",
+          "location": "<physical_location>",
+          "communication_window": <value_from_satellite_json>
+        }
+      ]
+    }
+
+    OUTPUT RULES:
+    - JSON ONLY
+    - Must start with { and end with }
+    - No comments
+    - No trailing text
+    - No code blocks
+    - No markdown
+    - No explanations
+
+    --------------------------------------------------
+    FOLLOW THE RULES BELOW EXACTLY
+    --------------------------------------------------
 
     DEFINITIONS (STRICT):
       - goal: target node assigned for observation.

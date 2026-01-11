@@ -37,7 +37,7 @@
 
 1. **High Priority**
    - Radiation measurement at **N12**, **N86** and **N1**.
-   - Subsurface sample collection at **N70**, **N102**, and **N152**.
+   - Subsurface sample collection at **N70** and **N102**.
    - Deploy seismic sensors at node **N20**.
 
 2. **Medium Priority**  
